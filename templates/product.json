@@ -12,35 +12,23 @@
     "shop_product_details_YnRKdn": {
       "type": "shop-product-details",
       "blocks": {
-        "trustpilot_rating_mrtVHq": {
-          "type": "trustpilot_rating",
+        "pdp_social_proof_chefs": {
+          "type": "pdp_social_proof",
           "settings": {
-            "rating_text": "",
-            "rating_score": "50k+ Satisfied Customers",
-            "text_color": "#e1e0df",
-            "star_color": "#00b67a",
-            "show_single_star_after_text": true,
-            "font_size_desktop": 13,
-            "font_size_tablet": 14,
-            "font_size_mobile": 11,
-            "star_size_desktop": 18,
-            "star_size_tablet": 18,
-            "star_size_mobile": 18,
-            "margin_top": 10,
-            "margin_bottom": 10,
-            "link": "reviews",
-            "enable_background": false,
-            "background_color": "#272625",
-            "enable_background_gradient": false,
-            "background_gradient_start": "#ffffff",
-            "background_gradient_end": "#2d2c2b",
-            "background_gradient_direction": "to right",
-            "border_color": "#3b3a39",
-            "border_width": 0,
-            "border_style": "dotted",
-            "border_radius": 4
-          },
-          "disabled": true
+            "text": "The Choice of Professional Chefs",
+            "link": "",
+            "avatar_size": 24,
+            "show_verified": true,
+            "font_size": 14,
+            "border_radius": 6,
+            "background_color": "#262423",
+            "border_color": "#3a3836",
+            "text_color": "#e8c9a8",
+            "verified_color": "#3897f0",
+            "avatar_border_color": "#262423",
+            "margin_top": 0,
+            "margin_bottom": 14
+          }
         },
         "title_jJAKcC": {
           "type": "title",
@@ -56,6 +44,20 @@
             "use_custom_font": true,
             "custom_font": "playfair_display_n4",
             "override_global_font": true
+          }
+        },
+        "pdp_subtitle_main": {
+          "type": "pdp_subtitle",
+          "settings": {
+            "text": "Pure titanium, pure performance",
+            "italic": true,
+            "use_custom_font": true,
+            "font": "playfair_display_i4",
+            "font_size": 17,
+            "line_height": 1.3,
+            "text_color": "#9c958e",
+            "margin_top": 0,
+            "margin_bottom": 12
           }
         },
         "price_BXHxWM": {
@@ -85,8 +87,195 @@
             "custom_save_amount": ""
           }
         },
+        "pdp_rating_main": {
+          "type": "pdp_rating_summary",
+          "settings": {
+            "star_count": 5,
+            "rating_label": "Excellent 4.7",
+            "reviews_text": "(16,000+ Reviews)",
+            "link": "",
+            "star_size": 14,
+            "font_size": 15,
+            "star_color": "#f5b400",
+            "text_color": "#f5f4f3",
+            "muted_color": "#9c958e",
+            "margin_top": 0,
+            "margin_bottom": 18
+          }
+        },
+        "pdp_features_main": {
+          "type": "pdp_feature_cards",
+          "settings": {
+            "feature_1_icon": "check_circle",
+            "feature_1_title": "100% Non-Toxic",
+            "feature_1_subtitle": "PFAS-Free",
+            "feature_2_icon": "shield",
+            "feature_2_title": "25-Years Warranty",
+            "feature_2_subtitle": "Build to last",
+            "feature_3_icon": "dishwasher",
+            "feature_3_title": "Dishwasher Safe",
+            "feature_3_subtitle": "Extremely easy to clean",
+            "feature_4_icon": "flame",
+            "feature_4_title": "All Heat Sources",
+            "feature_4_subtitle": "Gas, induction, oven & grill",
+            "columns_desktop": 2,
+            "columns_mobile": "2",
+            "card_radius": 6,
+            "title_size": 13,
+            "subtitle_size": 11,
+            "card_bg_color": "#262423",
+            "card_border_color": "#3a3836",
+            "icon_bg_color": "#2f2c2a",
+            "icon_border_color": "#4a4541",
+            "icon_color": "#d2a27a",
+            "title_color": "#f5f4f3",
+            "subtitle_color": "#9c958e",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        "pdp_variant_cards_main": {
+          "type": "pdp_variant_cards",
+          "settings": {
+            "primary_option": "1",
+            "primary_heading": "Choose your size",
+            "value_details": "9\" | 1 person\n10\" | 1–2 people\n11\" | 2–3 people",
+            "popular_values": "10\"",
+            "badge_text": "BEST SELLER",
+            "show_card_price": true,
+            "require_selection": true,
+            "select_text": "SELECT YOUR SIZE",
+            "secondary_option": "2",
+            "secondary_heading": "",
+            "show_delta": true,
+            "delta_prefix": "+",
+            "hide_zero_decimals": true,
+            "update_url": true,
+            "card_radius": 6,
+            "card_gap": 8,
+            "value_font_size": 17,
+            "heading_color": "#9c958e",
+            "card_bg_color": "#262423",
+            "card_border_color": "#3a3836",
+            "card_selected_bg_color": "#2b2724",
+            "card_selected_border_color": "#d2a27a",
+            "text_color": "#f5f4f3",
+            "muted_color": "#9c958e",
+            "badge_bg_color": "#c0392b",
+            "badge_text_color": "#ffffff",
+            "delta_color": "#d2a27a",
+            "margin_top": 0,
+            "margin_bottom": 14
+          }
+        },
+        "pdp_second_item_main": {
+          "type": "pdp_second_item",
+          "settings": {
+            "upsell_product": "",
+            "title": "Add a second pan with 10% off",
+            "text": "Mix & match any size. 10% off every extra pan.",
+            "badge_text": "-10%",
+            "checked_by_default": false,
+            "panel_primary_heading": "Second pan size",
+            "panel_secondary_heading": "",
+            "panel_note": "",
+            "cart_property_label": "Bundle",
+            "cart_property_value": "Second pan",
+            "border_style": "dashed",
+            "border_radius": 6,
+            "background_color": "#232120",
+            "border_color": "#4a4541",
+            "border_color_active": "#d2a27a",
+            "title_color": "#f5f4f3",
+            "text_color": "#9c958e",
+            "badge_bg_color": "#d2a27a",
+            "badge_text_color": "#201f1e",
+            "checkbox_color": "#d2a27a",
+            "margin_top": 0,
+            "margin_bottom": 14
+          }
+        },
+        "pdp_stock_main": {
+          "type": "pdp_stock_shipping",
+          "settings": {
+            "in_stock_text": "In stock",
+            "out_of_stock_text": "Out of stock",
+            "shipping_text": "Ships out within 24 Hours",
+            "pulse": true,
+            "font_size": 13,
+            "in_stock_color": "#3ecf6e",
+            "out_of_stock_color": "#e5484d",
+            "text_color": "#d6d3d0",
+            "margin_top": 0,
+            "margin_bottom": 12
+          }
+        },
+        "add_to_cart_hnegaC": {
+          "type": "add_to_cart",
+          "settings": {
+            "use_theme_colors": false,
+            "use_global_button_styling": false,
+            "show_fast_payment": false,
+            "button_behavior": "add_to_cart",
+            "button_text_override": "ADD TO CART",
+            "show_price_in_button": false,
+            "button_icon": "bag",
+            "custom_icon": "",
+            "icon_size": 18,
+            "button_border_color": "#c8956a",
+            "buy_box_button_bg_color": "#c8956a",
+            "button_text_color": "#201f1e",
+            "buy_box_button_hover_color": "#d6a77c",
+            "price_color": "#cccbca",
+            "custom_button_padding_y": 16,
+            "custom_button_font_size": 14,
+            "button_border_radius": 6
+          }
+        },
+        "payment_icons_ekNyqU": {
+          "type": "payment_icons",
+          "settings": {
+            "custom_payment_icons": "visa, mastercard, paypal, shopify_pay, american_express, apple_pay, google_pay",
+            "alignment": "center",
+            "icon_height": 22,
+            "icon_spacing": 6,
+            "margin_top": 10,
+            "margin_bottom": 10
+          }
+        },
+        "trustpilot_rating_mrtVHq": {
+          "type": "trustpilot_rating",
+          "disabled": true,
+          "settings": {
+            "rating_text": "",
+            "rating_score": "50k+ Satisfied Customers",
+            "text_color": "#e1e0df",
+            "star_color": "#00b67a",
+            "show_single_star_after_text": true,
+            "font_size_desktop": 13,
+            "font_size_tablet": 14,
+            "font_size_mobile": 11,
+            "star_size_desktop": 18,
+            "star_size_tablet": 18,
+            "star_size_mobile": 18,
+            "margin_top": 10,
+            "margin_bottom": 10,
+            "link": "reviews",
+            "enable_background": false,
+            "background_color": "#272625",
+            "enable_background_gradient": false,
+            "background_gradient_start": "#ffffff",
+            "background_gradient_end": "#2d2c2b",
+            "background_gradient_direction": "to right",
+            "border_color": "#3b3a39",
+            "border_width": 0,
+            "border_style": "dotted",
+            "border_radius": 4
+          }
+        },
         "custom_text_pdQQkk": {
           "type": "custom_text",
+          "disabled": true,
           "settings": {
             "text": "<p><strong>Clean 3x faster</strong></p>",
             "show_description": false,
@@ -143,11 +332,11 @@
             "divider_height": 1,
             "divider_style": "solid",
             "divider_spacing": 12
-          },
-          "disabled": true
+          }
         },
         "custom_text_Fm3qaa": {
           "type": "custom_text",
+          "disabled": true,
           "settings": {
             "text": "<p>Powerful multi-surface suction</p>",
             "show_description": false,
@@ -204,11 +393,11 @@
             "divider_height": 1,
             "divider_style": "solid",
             "divider_spacing": 12
-          },
-          "disabled": true
+          }
         },
         "custom_text_BYd69L": {
           "type": "custom_text",
+          "disabled": true,
           "settings": {
             "text": "<p>Lightweight, easy-to-use design</p>",
             "show_description": false,
@@ -265,11 +454,11 @@
             "divider_height": 1,
             "divider_style": "solid",
             "divider_spacing": 12
-          },
-          "disabled": true
+          }
         },
         "custom_text_XLBwJd": {
           "type": "custom_text",
+          "disabled": true,
           "settings": {
             "text": "<p>Works on carpet, rugs, stairs & upholstery</p>",
             "show_description": false,
@@ -326,11 +515,11 @@
             "divider_height": 1,
             "divider_style": "solid",
             "divider_spacing": 12
-          },
-          "disabled": true
+          }
         },
         "custom_text_teazbd": {
           "type": "custom_text",
+          "disabled": true,
           "settings": {
             "text": "<p><strong>Free $49 attachment on all orders over $100</strong></p>",
             "show_description": false,
@@ -387,8 +576,7 @@
             "divider_height": 1,
             "divider_style": "solid",
             "divider_spacing": 12
-          },
-          "disabled": true
+          }
         },
         "simple_variant_picker_NRqigG": {
           "type": "simple_variant_picker",
@@ -600,6 +788,7 @@
         },
         "quantity_break_7aB7qF": {
           "type": "quantity_break",
+          "disabled": true,
           "settings": {
             "show_radio_buttons": true,
             "enable_variant_selection": false,
@@ -614,7 +803,6 @@
             "show_option_1": true,
             "option_1_title": "1 Kit",
             "option_1_quantity": 1,
-            "option_1_image": "shopify://shop_images/Gemini_Generated_Image_7xodzw7xodzw7xod-removebg-preview.png",
             "enable_option_1_custom_price": false,
             "option_1_custom_price_amount": "",
             "option_1_compare_at_price": "",
@@ -634,7 +822,6 @@
             "show_option_2": true,
             "option_2_title": "2 Kits",
             "option_2_quantity": 2,
-            "option_2_image": "shopify://shop_images/Gemini_Generated_Image_7xodzw7xodzw7xod-removebg-preview.png",
             "enable_option_2_custom_price": false,
             "option_2_custom_price_amount": "",
             "option_2_compare_at_price": "187",
@@ -654,7 +841,6 @@
             "show_option_3": true,
             "option_3_title": "3 Kits",
             "option_3_quantity": 3,
-            "option_3_image": "shopify://shop_images/Gemini_Generated_Image_7xodzw7xodzw7xod-removebg-preview.png",
             "enable_option_3_custom_price": false,
             "option_3_custom_price_amount": "",
             "option_3_compare_at_price": "305",
@@ -814,11 +1000,11 @@
             "show_variant_row_divider": true,
             "variant_row_divider_color": "#343332",
             "preselected_option": "option_1"
-          },
-          "disabled": true
+          }
         },
         "product_upsell_334UzR": {
           "type": "product_upsell",
+          "disabled": true,
           "settings": {
             "upsell_product": "bag-tracker",
             "make_title_clickable": false,
@@ -857,11 +1043,11 @@
             "border_width": 1,
             "border_color": "#373635",
             "image_border_radius": 4
-          },
-          "disabled": true
+          }
         },
         "custom_text_hJbHX8": {
           "type": "custom_text",
+          "disabled": true,
           "settings": {
             "text": "<p>Track any item worldwide with Apple Find My, wrapped in water-resistant build and powered by a replaceable battery</p>",
             "show_description": false,
@@ -918,33 +1104,11 @@
             "divider_height": 1,
             "divider_style": "solid",
             "divider_spacing": 12
-          },
-          "disabled": true
-        },
-        "add_to_cart_hnegaC": {
-          "type": "add_to_cart",
-          "settings": {
-            "use_theme_colors": false,
-            "use_global_button_styling": false,
-            "show_fast_payment": false,
-            "button_behavior": "add_to_cart",
-            "button_text_override": "ADD TO CART",
-            "show_price_in_button": false,
-            "button_icon": "bag",
-            "custom_icon": "",
-            "icon_size": 18,
-            "button_border_color": "#c8956a",
-            "buy_box_button_bg_color": "#c8956a",
-            "button_text_color": "#201f1e",
-            "buy_box_button_hover_color": "#d6a77c",
-            "price_color": "#cccbca",
-            "custom_button_padding_y": 16,
-            "custom_button_font_size": 14,
-            "button_border_radius": 6
           }
         },
         "limited_inventory_XemxGK": {
           "type": "limited_inventory",
+          "disabled": true,
           "settings": {
             "inventory_text": "Only a few left in stock",
             "bold_first_word": true,
@@ -954,11 +1118,11 @@
             "font_size": 13,
             "margin_top": -14,
             "margin_bottom": 0
-          },
-          "disabled": true
+          }
         },
         "selling_out_fast_LKMCcy": {
           "type": "selling_out_fast",
+          "disabled": true,
           "settings": {
             "show_icon": false,
             "icon_type": "fire",
@@ -1012,8 +1176,7 @@
             "margin_top": -10,
             "margin_bottom": 0,
             "padding": 12
-          },
-          "disabled": true
+          }
         },
         "guarantee_badges_kkndyb": {
           "type": "guarantee_badges",
@@ -1023,12 +1186,10 @@
             "badge_1_text": "100 Day hassle free returns",
             "badge_1_icon": "custom_image",
             "badge_1_custom_icon": "",
-            "badge_1_custom_image": "shopify://shop_images/return_1.svg",
             "badge_2_show": false,
             "badge_2_text": "Free Shipping Included",
             "badge_2_icon": "custom_image",
             "badge_2_custom_icon": "",
-            "badge_2_custom_image": "shopify://shop_images/return_1.svg",
             "icon_color": "#b6974c",
             "text_color": "#b9b8b7",
             "container_margin_top": 10,
@@ -1040,17 +1201,6 @@
             "gap": 6,
             "align_center": true,
             "mobile_stack": false
-          }
-        },
-        "payment_icons_ekNyqU": {
-          "type": "payment_icons",
-          "settings": {
-            "custom_payment_icons": "visa, mastercard, paypal, shopify_pay, american_express, apple_pay, google_pay",
-            "alignment": "center",
-            "icon_height": 22,
-            "icon_spacing": 6,
-            "margin_top": 10,
-            "margin_bottom": 10
           }
         },
         "divider_hEdBUa": {
@@ -1076,7 +1226,6 @@
             "label_1_serving_count": "Durability guaranteed",
             "label_1_show_serving_count": true,
             "label_1_use_image": true,
-            "label_1_image": "shopify://shop_images/shield_2.svg",
             "label_1_drop_shadow_enabled": false,
             "label_1_shadow_blur": 8,
             "label_1_shadow_spread": 0,
@@ -1095,7 +1244,6 @@
             "label_2_serving_count": "Orders over $100",
             "label_2_show_serving_count": true,
             "label_2_use_image": true,
-            "label_2_image": "shopify://shop_images/box_3.svg",
             "label_2_drop_shadow_enabled": false,
             "label_2_shadow_blur": 8,
             "label_2_shadow_spread": 0,
@@ -1114,7 +1262,6 @@
             "label_3_serving_count": "Risk-free",
             "label_3_show_serving_count": true,
             "label_3_use_image": true,
-            "label_3_image": "shopify://shop_images/internet.svg",
             "label_3_drop_shadow_enabled": false,
             "label_3_shadow_blur": 8,
             "label_3_shadow_spread": 0,
@@ -1433,11 +1580,6 @@
         "image_rating_Pc9yqk": {
           "type": "image_rating",
           "settings": {
-            "avatar_1": "shopify://shop_images/3b2e2109-60a8-4b9d-9f20-8d0cfc4ae38a-ezgif.com-png-to-webp-converter.webp",
-            "avatar_2": "shopify://shop_images/39731f87-8cd1-4a4a-897e-d7d0a5c9f9f8-ezgif.com-png-to-webp-converter.webp",
-            "avatar_3": "shopify://shop_images/3b2e2109-60a8-4b9d-9f20-8d0cfc4ae38a-ezgif.com-png-to-webp-converter.webp",
-            "avatar_4": "shopify://shop_images/39731f87-8cd1-4a4a-897e-d7d0a5c9f9f8-ezgif.com-png-to-webp-converter.webp",
-            "avatar_5": "shopify://shop_images/3b2e2109-60a8-4b9d-9f20-8d0cfc4ae38a-ezgif.com-png-to-webp-converter.webp",
             "star_color": "#ffffff",
             "empty_star_color": "#ffffff",
             "rating_text": "<p>50,000+ Happy Travelers</p>",
@@ -1452,158 +1594,6 @@
             "margin_top": 10,
             "margin_bottom": 10,
             "link": "reviews"
-          }
-        },
-        "pdp_social_proof_chefs": {
-          "type": "pdp_social_proof",
-          "settings": {
-            "text": "The Choice of Professional Chefs",
-            "show_verified": true,
-            "avatar_size": 24,
-            "font_size": 14,
-            "border_radius": 6,
-            "background_color": "#262423",
-            "border_color": "#3a3836",
-            "text_color": "#e8c9a8",
-            "verified_color": "#3897f0",
-            "avatar_border_color": "#262423",
-            "margin_top": 0,
-            "margin_bottom": 14
-          }
-        },
-        "pdp_subtitle_main": {
-          "type": "pdp_subtitle",
-          "settings": {
-            "text": "Pure titanium, pure performance",
-            "italic": true,
-            "use_custom_font": true,
-            "font": "playfair_display_i4",
-            "font_size": 17,
-            "line_height": 1.3,
-            "text_color": "#9c958e",
-            "margin_top": 0,
-            "margin_bottom": 12
-          }
-        },
-        "pdp_rating_main": {
-          "type": "pdp_rating_summary",
-          "settings": {
-            "star_count": 5,
-            "rating_label": "Excellent 4.7",
-            "reviews_text": "(16,000+ Reviews)",
-            "star_size": 14,
-            "font_size": 15,
-            "star_color": "#f5b400",
-            "text_color": "#f5f4f3",
-            "muted_color": "#9c958e",
-            "margin_top": 0,
-            "margin_bottom": 18
-          }
-        },
-        "pdp_features_main": {
-          "type": "pdp_feature_cards",
-          "settings": {
-            "feature_1_icon": "check_circle",
-            "feature_1_title": "100% Non-Toxic",
-            "feature_1_subtitle": "PFAS-Free",
-            "feature_2_icon": "shield",
-            "feature_2_title": "25-Years Warranty",
-            "feature_2_subtitle": "Build to last",
-            "feature_3_icon": "dishwasher",
-            "feature_3_title": "Dishwasher Safe",
-            "feature_3_subtitle": "Extremely easy to clean",
-            "feature_4_icon": "flame",
-            "feature_4_title": "All Heat Sources",
-            "feature_4_subtitle": "Gas, induction, oven & grill",
-            "columns_desktop": 2,
-            "columns_mobile": "2",
-            "card_radius": 6,
-            "title_size": 13,
-            "subtitle_size": 11,
-            "card_bg_color": "#262423",
-            "card_border_color": "#3a3836",
-            "icon_bg_color": "#2f2c2a",
-            "icon_border_color": "#4a4541",
-            "icon_color": "#d2a27a",
-            "title_color": "#f5f4f3",
-            "subtitle_color": "#9c958e",
-            "margin_top": 0,
-            "margin_bottom": 20
-          }
-        },
-        "pdp_variant_cards_main": {
-          "type": "pdp_variant_cards",
-          "settings": {
-            "primary_option": "1",
-            "primary_heading": "Choose your size",
-            "value_details": "8\" | 1 person\n9\" | 1–2 people\n10\" | 2–3 people",
-            "popular_values": "9\"",
-            "badge_text": "POPULAR",
-            "show_card_price": true,
-            "require_selection": true,
-            "select_text": "SELECT YOUR SIZE",
-            "secondary_option": "2",
-            "secondary_heading": "",
-            "show_delta": true,
-            "delta_prefix": "+",
-            "hide_zero_decimals": true,
-            "update_url": true,
-            "card_radius": 6,
-            "card_gap": 8,
-            "value_font_size": 17,
-            "heading_color": "#9c958e",
-            "card_bg_color": "#262423",
-            "card_border_color": "#3a3836",
-            "card_selected_bg_color": "#2b2724",
-            "card_selected_border_color": "#d2a27a",
-            "text_color": "#f5f4f3",
-            "muted_color": "#9c958e",
-            "badge_bg_color": "#c0392b",
-            "badge_text_color": "#ffffff",
-            "delta_color": "#d2a27a",
-            "margin_top": 0,
-            "margin_bottom": 14
-          }
-        },
-        "pdp_second_item_main": {
-          "type": "pdp_second_item",
-          "settings": {
-            "title": "Add a second pan with 10% off",
-            "text": "Mix & match any size. 10% off every extra pan.",
-            "badge_text": "-10%",
-            "checked_by_default": false,
-            "panel_primary_heading": "Second pan size",
-            "panel_secondary_heading": "",
-            "panel_note": "",
-            "cart_property_label": "Bundle",
-            "cart_property_value": "Second pan",
-            "border_style": "dashed",
-            "border_radius": 6,
-            "background_color": "#232120",
-            "border_color": "#4a4541",
-            "border_color_active": "#d2a27a",
-            "title_color": "#f5f4f3",
-            "text_color": "#9c958e",
-            "badge_bg_color": "#d2a27a",
-            "badge_text_color": "#201f1e",
-            "checkbox_color": "#d2a27a",
-            "margin_top": 0,
-            "margin_bottom": 14
-          }
-        },
-        "pdp_stock_main": {
-          "type": "pdp_stock_shipping",
-          "settings": {
-            "in_stock_text": "In stock",
-            "out_of_stock_text": "Out of stock",
-            "shipping_text": "Ships out within 24 Hours",
-            "pulse": true,
-            "font_size": 13,
-            "in_stock_color": "#3ecf6e",
-            "out_of_stock_color": "#e5484d",
-            "text_color": "#d6d3d0",
-            "margin_top": 0,
-            "margin_bottom": 12
           }
         }
       },
@@ -1658,6 +1648,7 @@
         "use_theme_colors": false,
         "main_image_border_radius": 0,
         "thumbnail_border_radius": 0,
+        "current_product": "",
         "section_bg_color": "#201f1e",
         "blocks_spacing": 0,
         "text_color": "#1a371a",
@@ -1691,7 +1682,9 @@
         "mobile_thumbnails_2x2_grid": true,
         "hide_thumbnails_mobile": false,
         "thumbnails_left_column_desktop": false,
-        "main_image_portrait_adaptation": false
+        "main_image_portrait_adaptation": false,
+        "control_app_subscription_preselect": false,
+        "seal_selling_plan_id_preselect": ""
       }
     },
     "sticky_add_to_cart_NJqgUd": {
@@ -1966,7 +1959,6 @@
         "logo_8jWkhx": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/ezgif-1a805de910f80591.webp",
             "logo_alt": "",
             "size_adjustment": 130,
             "mobile_size_adjustment": 130,
@@ -1977,7 +1969,6 @@
         "logo_DF3KR3": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/ezgif-1d17a750c1e74af7.webp",
             "logo_alt": "",
             "size_adjustment": 130,
             "mobile_size_adjustment": 130,
@@ -1988,7 +1979,6 @@
         "logo_rEcnh9": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/ezgif-130175c4f5ae2ee2.webp",
             "logo_alt": "",
             "size_adjustment": 130,
             "mobile_size_adjustment": 130,
@@ -1999,7 +1989,6 @@
         "logo_FNyVxy": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/ezgif-1f7a603068439b67.webp",
             "logo_alt": "",
             "size_adjustment": 130,
             "mobile_size_adjustment": 140,
@@ -2010,7 +1999,6 @@
         "logo_jtpdUr": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/ezgif-1aaece3e5d6d02a4.webp",
             "logo_alt": "",
             "size_adjustment": 130,
             "mobile_size_adjustment": 130,
@@ -2021,7 +2009,6 @@
         "logo_ybgcPJ": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/ezgif-16ac581088f491d8.webp",
             "logo_alt": "",
             "size_adjustment": 130,
             "mobile_size_adjustment": 130,
@@ -2032,7 +2019,6 @@
         "logo_dJrXzf": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/ezgif-1ca3c192a0396f4a.webp",
             "logo_alt": "",
             "size_adjustment": 130,
             "mobile_size_adjustment": 130,
@@ -2043,7 +2029,6 @@
         "logo_H6xw3M": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/ezgif-1e7d18eeb3a80b0e.webp",
             "logo_alt": "",
             "size_adjustment": 130,
             "mobile_size_adjustment": 130,
@@ -2054,7 +2039,6 @@
         "logo_FiCD8A": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/ezgif-1608617f07e11435.webp",
             "logo_alt": "",
             "size_adjustment": 130,
             "mobile_size_adjustment": 130,
@@ -2065,7 +2049,6 @@
         "logo_jDcENP": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/ezgif-1d26600af19053e8.webp",
             "logo_alt": "",
             "size_adjustment": 130,
             "mobile_size_adjustment": 130,
@@ -2128,7 +2111,6 @@
           "settings": {
             "product_name": "AirVacuum Kit",
             "product_subtitle": "",
-            "product_image": "shopify://shop_images/ezgif-1f68c3b36da9c834.webp",
             "product_image_size": 150,
             "product_image_size_mobile": 50,
             "subtitle_custom_icon": "",
@@ -2150,7 +2132,6 @@
           "settings": {
             "product_name": "Packing Bags",
             "product_subtitle": "",
-            "product_image": "shopify://shop_images/ChatGPT_Image_Jan_29_2026_01_27_40_PM.png",
             "product_image_size": 150,
             "product_image_size_mobile": 50,
             "subtitle_custom_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\" viewbox=\"0 0 400 400\" fill=\"currentColor\"><path d=\"M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z\"></path></svg>",
@@ -2660,7 +2641,6 @@
         "enable_shadow": false,
         "heading": "",
         "heading_accent": "",
-        "image": "shopify://shop_images/Gemini_Generated_Image_7cse2j7cse2j7cse.jpg",
         "enable_image_fade_mask": false,
         "video_autoplay": true,
         "video_loop": true,
@@ -2867,7 +2847,6 @@
         "accent_font_family": "inherit",
         "accent_font_style": "normal",
         "accent_font_weight": 700,
-        "desktop_image": "shopify://shop_images/Gemini_Generated_Image_7xodzw7xodzw7xod-removebg-preview.png",
         "image_position": "right",
         "image_column_width": 50,
         "image_column_full_height": false,
@@ -3189,7 +3168,6 @@
         "enable_shadow": false,
         "heading": "",
         "heading_accent": "",
-        "image": "shopify://shop_images/Gemini_Generated_Image_7cse2j7cse2j7cse.jpg",
         "enable_image_fade_mask": false,
         "video_autoplay": true,
         "video_loop": true,
