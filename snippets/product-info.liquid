@@ -1293,14 +1293,16 @@
 
     {% when 'simple_variant_picker' %}
       {% assign product_form_id = 'product-form-' | append: section.id %}
+      {%- assign svp_margin_top = block.settings.margin_top | default: 0 -%}
+      {%- assign svp_margin_bottom = block.settings.margin_bottom | default: 0 -%}
       {%
         render 'simple-variant-picker',
         product: product,
         block: block,
         product_form_id: product_form_id,
-        margin_top: block.settings.margin_top | default: 0,
-        margin_bottom: block.settings.margin_bottom | default: 0,
-        use_dropdown: block.settings.use_dropdown
+        margin_top: svp_margin_top,
+        margin_bottom: svp_margin_bottom,
+        use_dropdown: block.settings.use_dropdown,
         hide_option_1: block.settings.hide_option_1,
         hide_option_2: block.settings.hide_option_2,
         hide_option_3: block.settings.hide_option_3,
@@ -2509,6 +2511,17 @@
       %}
 
     {% when 'premium_attachment_kit' %}
+      {%- assign pak_rely_on_product = block.settings.rely_on_product | default: settings.rely_on_product -%}
+      {%- assign pak_item_1_product = block.settings.item_1_product | default: settings.item_1_product -%}
+      {%- assign pak_item_2_product = block.settings.item_2_product | default: settings.item_2_product -%}
+      {%- assign pak_item_3_product = block.settings.item_3_product | default: settings.item_3_product -%}
+      {%- assign pak_item_4_product = block.settings.item_4_product | default: settings.item_4_product -%}
+      {%- assign pak_item_5_product = block.settings.item_5_product | default: settings.item_5_product -%}
+      {%- assign pak_item_6_product = block.settings.item_6_product | default: settings.item_6_product -%}
+      {%- assign pak_item_7_product = block.settings.item_7_product | default: settings.item_7_product -%}
+      {%- assign pak_item_8_product = block.settings.item_8_product | default: settings.item_8_product -%}
+      {%- assign pak_item_9_product = block.settings.item_9_product | default: settings.item_9_product -%}
+      {%- assign pak_item_10_product = block.settings.item_10_product | default: settings.item_10_product -%}
       {%
         render 'premium-attachment-kit',
         block: block,
@@ -2540,53 +2553,53 @@
         item_1_price: block.settings.item_1_price,
         item_1_compare_price: block.settings.item_1_compare_price,
         item_1_icon: block.settings.item_1_icon,
-        item_1_product: block.settings.item_1_product | default: settings.item_1_product,
+        item_1_product: pak_item_1_product,
         item_2_name: block.settings.item_2_name,
         item_2_price: block.settings.item_2_price,
         item_2_compare_price: block.settings.item_2_compare_price,
         item_2_icon: block.settings.item_2_icon,
-        item_2_product: block.settings.item_2_product | default: settings.item_2_product,
+        item_2_product: pak_item_2_product,
         item_3_name: block.settings.item_3_name,
         item_3_price: block.settings.item_3_price,
         item_3_compare_price: block.settings.item_3_compare_price,
         item_3_icon: block.settings.item_3_icon,
-        item_3_product: block.settings.item_3_product | default: settings.item_3_product,
+        item_3_product: pak_item_3_product,
         item_4_name: block.settings.item_4_name,
         item_4_price: block.settings.item_4_price,
         item_4_compare_price: block.settings.item_4_compare_price,
         item_4_icon: block.settings.item_4_icon,
-        item_4_product: block.settings.item_4_product | default: settings.item_4_product,
+        item_4_product: pak_item_4_product,
         item_5_name: block.settings.item_5_name,
         item_5_price: block.settings.item_5_price,
         item_5_compare_price: block.settings.item_5_compare_price,
         item_5_icon: block.settings.item_5_icon,
-        item_5_product: block.settings.item_5_product | default: settings.item_5_product,
+        item_5_product: pak_item_5_product,
         item_6_name: block.settings.item_6_name,
         item_6_price: block.settings.item_6_price,
         item_6_compare_price: block.settings.item_6_compare_price,
         item_6_icon: block.settings.item_6_icon,
-        item_6_product: block.settings.item_6_product | default: settings.item_6_product,
+        item_6_product: pak_item_6_product,
         item_7_name: block.settings.item_7_name,
         item_7_price: block.settings.item_7_price,
         item_7_compare_price: block.settings.item_7_compare_price,
         item_7_icon: block.settings.item_7_icon,
-        item_7_product: block.settings.item_7_product | default: settings.item_7_product,
+        item_7_product: pak_item_7_product,
         item_8_name: block.settings.item_8_name,
         item_8_price: block.settings.item_8_price,
         item_8_compare_price: block.settings.item_8_compare_price,
         item_8_icon: block.settings.item_8_icon,
-        item_8_product: block.settings.item_8_product | default: settings.item_8_product,
+        item_8_product: pak_item_8_product,
         item_9_name: block.settings.item_9_name,
         item_9_price: block.settings.item_9_price,
         item_9_compare_price: block.settings.item_9_compare_price,
         item_9_icon: block.settings.item_9_icon,
-        item_9_product: block.settings.item_9_product | default: settings.item_9_product,
+        item_9_product: pak_item_9_product,
         item_10_name: block.settings.item_10_name,
         item_10_price: block.settings.item_10_price,
         item_10_compare_price: block.settings.item_10_compare_price,
         item_10_icon: block.settings.item_10_icon,
-        item_10_product: block.settings.item_10_product | default: settings.item_10_product,
-        rely_on_product: block.settings.rely_on_product | default: settings.rely_on_product
+        item_10_product: pak_item_10_product,
+        rely_on_product: pak_rely_on_product
       %}
     {% when 'product_tabs' %}
       {% render 'product-tabs',

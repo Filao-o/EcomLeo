@@ -56,11 +56,12 @@
           {%- if upsell_handle != blank -%}
             {%- assign upsell_product = all_products[upsell_handle] -%}
             {%- if upsell_product and upsell_product.available -%}
+              {%- assign upsell_form_id = 'cart-notification-upsell-' | append: block.id -%}
               {%-
                 render 'cart-drawer-upsell',
                 block: block,
                 block_id: block.id,
-                product_form_id: 'cart-notification-upsell-' | append: block.id,
+                product_form_id: upsell_form_id,
                 upsell_product: upsell_product,
                 show_description: block.settings.show_upsell_description,
                 description_text: block.settings.upsell_description_text,
