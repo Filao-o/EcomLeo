@@ -1516,7 +1516,7 @@
             "feature_4_title": "All Heat Sources",
             "feature_4_subtitle": "Gas, induction, oven & grill",
             "columns_desktop": 2,
-            "columns_mobile": 2,
+            "columns_mobile": "2",
             "card_radius": 6,
             "title_size": 13,
             "subtitle_size": 11,
