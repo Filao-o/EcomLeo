@@ -31,6 +31,9 @@
     {% when 'pdp_second_item' %}
       {% render 'pdp-second-item', block: block, product: product, section: section %}
 
+    {% when 'pdp_trust_line' %}
+      {% render 'pdp-trust-line', block: block %}
+
     {% when 'pdp_stock_shipping' %}
       {% render 'pdp-stock-shipping', block: block, product: product %}
 

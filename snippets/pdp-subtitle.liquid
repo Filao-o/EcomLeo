@@ -16,10 +16,10 @@
       line-height: {{ s.line_height }};
       margin: {{ s.margin_top }}px 0 {{ s.margin_bottom }}px;
       {%- if s.use_custom_font and s.font != blank -%}
-        font-family: {{ s.font.family }}, {{ s.font.fallback_families }};
-        font-weight: {{ s.font.weight }};
+        font-family: {{ s.font.family }}, {{ s.font.fallback_families }} !important;
+        font-weight: {{ s.font.weight }} !important;
       {%- endif -%}
-      font-style: {% if s.italic %}italic{% else %}normal{% endif %};
+      font-style: {% if s.italic %}italic{% else %}normal{% endif %} !important;
     "
   >
     {{- s.text -}}

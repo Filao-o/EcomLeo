@@ -180,6 +180,15 @@
         padding: 0 40px !important;
         margin: 5px 0px 0px !important;
         gap: 0 !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x proximity;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .shop-thumbnails.mobile-2x2-grid::-webkit-scrollbar {
+        display: none;
       }
 
       /* When arrows are NOT overlaid (arrows off), remove padding */
@@ -192,10 +201,16 @@
         margin: 5px 0px 0px !important;
       }
 
+      {%- liquid
+        assign thumbs_per_row = section.settings.mobile_thumbnails_per_row | default: 4
+        assign thumbs_gaps = thumbs_per_row | floor
+        assign thumbs_gap_total = thumbs_gaps | times: 4
+      -%}
       .shop-thumbnails.mobile-2x2-grid .shop-thumbnail {
-        flex: 0 0 calc(25% - 3px) !important;
-        width: calc(25% - 3px) !important;
-        max-width: calc(25% - 3px) !important;
+        flex: 0 0 calc((100% - {{ thumbs_gap_total }}px) / {{ thumbs_per_row }}) !important;
+        width: calc((100% - {{ thumbs_gap_total }}px) / {{ thumbs_per_row }}) !important;
+        max-width: calc((100% - {{ thumbs_gap_total }}px) / {{ thumbs_per_row }}) !important;
+        scroll-snap-align: start;
         box-sizing: border-box !important;
         padding: 0 !important;
         margin: 0 !important;
@@ -1204,9 +1219,19 @@
     {
       "type": "checkbox",
       "id": "mobile_thumbnails_2x2_grid",
-      "label": "Fit 4 thumbnails in row on mobile",
+      "label": "Thumbnails on one row on mobile",
       "default": false,
-      "info": "When mobile arrows are disabled, arrange thumbnails in a compact single row that fits 4 images on mobile screens"
+      "info": "When mobile arrows are disabled, arrange thumbnails in a compact single scrollable row"
+    },
+    {
+      "type": "range",
+      "id": "mobile_thumbnails_per_row",
+      "label": "Thumbnails visible on mobile",
+      "min": 3,
+      "max": 8,
+      "step": 0.5,
+      "default": 4,
+      "info": "Use a half value (ex : 6.5) to show a partial thumbnail and hint that the row scrolls"
     },
     {
       "type": "checkbox",
@@ -2459,6 +2484,299 @@
           "step": 1,
           "default": 14,
           "unit": "px"
+        }
+      ]
+    },
+    {
+      "name": "⭐ Ligne de réassurance",
+      "type": "pdp_trust_line",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Élément 1"
+        },
+        {
+          "type": "select",
+          "id": "item_1_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "flag_au",
+              "label": "Drapeau Australie"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "check_circle",
+              "label": "Coche (cercle)"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            },
+            {
+              "value": "heart",
+              "label": "Cœur"
+            },
+            {
+              "value": "medal",
+              "label": "Médaille"
+            }
+          ],
+          "default": "flag_au"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_1_image",
+          "label": "Icône personnalisée"
+        },
+        {
+          "type": "text",
+          "id": "item_1_text",
+          "label": "Texte",
+          "default": "Free shipping to Australia"
+        },
+        {
+          "type": "header",
+          "content": "Élément 2"
+        },
+        {
+          "type": "select",
+          "id": "item_2_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "flag_au",
+              "label": "Drapeau Australie"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "check_circle",
+              "label": "Coche (cercle)"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            },
+            {
+              "value": "heart",
+              "label": "Cœur"
+            },
+            {
+              "value": "medal",
+              "label": "Médaille"
+            }
+          ],
+          "default": "return"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_2_image",
+          "label": "Icône personnalisée"
+        },
+        {
+          "type": "text",
+          "id": "item_2_text",
+          "label": "Texte",
+          "default": "30-day returns"
+        },
+        {
+          "type": "header",
+          "content": "Élément 3"
+        },
+        {
+          "type": "select",
+          "id": "item_3_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "flag_au",
+              "label": "Drapeau Australie"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "check_circle",
+              "label": "Coche (cercle)"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            },
+            {
+              "value": "heart",
+              "label": "Cœur"
+            },
+            {
+              "value": "medal",
+              "label": "Médaille"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_3_image",
+          "label": "Icône personnalisée"
+        },
+        {
+          "type": "text",
+          "id": "item_3_text",
+          "label": "Texte"
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "checkbox",
+          "id": "divider_top",
+          "label": "Séparateur au-dessus",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "divider_bottom",
+          "label": "Séparateur en dessous",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignement",
+          "options": [
+            {
+              "value": "flex-start",
+              "label": "Gauche"
+            },
+            {
+              "value": "center",
+              "label": "Centre"
+            },
+            {
+              "value": "flex-end",
+              "label": "Droite"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Taille du texte",
+          "min": 10,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "default": 13
+        },
+        {
+          "type": "range",
+          "id": "padding",
+          "label": "Espace intérieur (haut/bas)",
+          "min": 0,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Texte",
+          "default": "#d2d2d2"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icônes",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "divider_color",
+          "label": "Séparateurs",
+          "default": "#3a3836"
+        },
+        {
+          "type": "header",
+          "content": "Espacements"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Marge haute",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 4
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Marge basse",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 12
         }
       ]
     },
