@@ -247,6 +247,20 @@
     ]
   },
   {
+    "name": "Arrière-plans des pages",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Couleur de fond appliquée à toute la page (derrière les sections) pour un type de page précis. Laisse vide pour garder le fond par défaut du thème."
+      },
+      {
+        "type": "color",
+        "id": "product_page_background",
+        "label": "Fond de la page produit"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.typography.name",
     "settings": [
       {

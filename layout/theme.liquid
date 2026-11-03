@@ -279,6 +279,16 @@
       }
     </style>
 
+    {%- comment -%} Fond de page par template (réglage : Paramètres du thème > Arrière-plans des pages) {%- endcomment -%}
+    {%- if template.name == 'product' and settings.product_page_background != blank -%}
+      <style>
+        body,
+        #MainContent {
+          background-color: {{ settings.product_page_background }};
+        }
+      </style>
+    {%- endif -%}
+
     {% comment %} Button Styles {% endcomment %}
     {% render 'button-styles' %}
 
