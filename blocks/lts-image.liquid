@@ -1,0 +1,146 @@
+{% comment %}
+  Block: LTS Image - Image for Limited Time Sale
+{% endcomment %}
+
+<div class="lts-image lts-image-{{ block.id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.image != blank %}
+    {{
+      block.settings.image
+      | image_url: width: 800
+      | image_tag: 
+          alt: block.settings.image.alt, 
+          loading: 'lazy', 
+          decoding: 'async',
+          class: 'lts-image-img'
+    }}
+  {% else %}
+    <div class="lts-image-placeholder-{{ block.id }}">Upload image</div>
+  {% endif %}
+</div>
+
+<style>
+  .lts-image-{{ block.id }} {
+    background: {{ block.settings.bg_color }};
+    padding: {{ block.settings.padding }}px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    {% if block.settings.border_radius > 0 %}
+      border-radius: {{ block.settings.border_radius }}px;
+      overflow: hidden;
+    {% endif %}
+  }
+
+  .lts-image-{{ block.id }} .lts-image-img {
+    width: 100%;
+    {% if block.settings.object_fit == 'cover' %}
+      height: 100%;
+      max-width: none;
+    {% else %}
+      max-width: {{ block.settings.max_width }}px;
+      height: auto;
+    {% endif %}
+    object-fit: {{ block.settings.object_fit }};
+    display: block;
+    {% if block.settings.image_border_radius > 0 %}
+      border-radius: {{ block.settings.image_border_radius }}px;
+    {% endif %}
+  }
+
+  .lts-image-placeholder-{{ block.id }} {
+    width: 100%;
+    max-width: {{ block.settings.max_width }}px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    color: #888;
+    border: 1px dashed #bbb;
+    border-radius: 8px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "LTS Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Image Sizing"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 200,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Max Width",
+      "default": 380
+    },
+    {
+      "type": "select",
+      "id": "object_fit",
+      "label": "Object Fit",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "fill", "label": "Fill" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Container"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#D9ECFC"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Container Border Radius",
+      "default": 0
+    }
+  ],
+  "presets": [
+    { "name": "LTS Image" }
+  ]
+}
+{% endschema %}
+

@@ -1,0 +1,144 @@
+{% comment %}
+  Theme block: Sidebar Featured Product
+  Rendered inside the advertorial/content sidebar section.
+{% endcomment %}
+
+{%- assign s = block.settings -%}
+
+<style>
+  #sidebar-featured-product-{{ block.id }} {
+    {% if s.show_background %}
+      background-color: {{ s.background_color }};
+      padding: {{ s.padding }}px;
+      border-radius: {{ s.border_radius }}px;
+    {% endif %}
+  }
+</style>
+
+<div id="sidebar-featured-product-{{ block.id }}" class="sidebar-featured-product" {{ block.shopify_attributes }}>
+  {% if s.sidebar_product != blank %}
+    {% assign sidebar_product = s.sidebar_product %}
+
+    {% if sidebar_product.title != blank %}
+      <h3 class="h3">{{ sidebar_product.title }}</h3>
+    {% endif %}
+
+    <div class="image-container">
+      {% if sidebar_product.featured_image %}
+        {{
+          sidebar_product.featured_image
+          | image_url: width: 640
+          | image_tag: class: 'sidebar-product-image', loading: 'lazy'
+        }}
+      {% else %}
+        <img
+          src="https://placehold.co/200"
+          width="200"
+          height="200"
+          alt="sidebar image placeholder"
+          class="sidebar-product-image placeholder"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+
+    <a href="{{ sidebar_product.url }}" class="sidebar-product-link">
+      {{ s.sidebar_product_btn }}
+    </a>
+  {% elsif s.custom_image != blank %}
+    {% if s.custom_title != blank %}
+      <h3 class="h3">{{ s.custom_title }}</h3>
+    {% endif %}
+
+    <div class="image-container">
+      {{ s.custom_image | image_url: width: 640 | image_tag: class: 'sidebar-product-image', loading: 'lazy' }}
+    </div>
+
+    {% if s.custom_btn_text != blank %}
+      <a href="{{ s.custom_btn_url | default: '#' }}" class="sidebar-product-link">
+        {{ s.custom_btn_text }}
+      </a>
+    {% endif %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Sidebar Featured Product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "sidebar_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "sidebar_product_btn",
+      "label": "Featured product button text",
+      "default": "Get 50% off!"
+    },
+    {
+      "type": "header",
+      "content": "Custom Image Option",
+      "info": "Used if no product is selected"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "Custom Image"
+    },
+    {
+      "type": "text",
+      "id": "custom_title",
+      "label": "Custom Title"
+    },
+    {
+      "type": "text",
+      "id": "custom_btn_text",
+      "label": "Custom Button Text"
+    },
+    {
+      "type": "url",
+      "id": "custom_btn_url",
+      "label": "Custom Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_background",
+      "label": "Show Background",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "default": 20,
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "default": 8,
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px"
+    }
+  ],
+  "presets": [{ "name": "Sidebar Featured Product" }]
+}
+{% endschema %}

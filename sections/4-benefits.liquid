@@ -1,0 +1,1357 @@
+{% comment %} Google Fonts for accent text customization {% endcomment %}
+{% if section.settings.override_global_accent %}
+  {% if section.settings.accent_font_family != 'inherit' and section.settings.accent_font_family != 'serif' %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {% case section.settings.accent_font_family %}
+      {% when 'Georgia Pro' %}
+        <link href="https://fonts.googleapis.com/css2?family=Georgia+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+      {% when 'Bodoni Moda' %}
+        <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,400;1,6..96,500;1,6..96,600;1,6..96,700;1,6..96,800&display=swap" rel="stylesheet">
+      {% when 'Instrument Serif' %}
+        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+      {% when 'DM Serif Text' %}
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
+      {% when 'Nothing You Could Do' %}
+        <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+    {% endcase %}
+  {% endif %}
+{% endif %}
+
+{% liquid
+  assign display_mode = section.settings.image_display_mode
+  if section.settings.use_background_image and section.settings.background_image != blank
+    assign display_mode = 'background'
+  endif
+%}
+
+{% render 'component-benefits-grid',
+   benefits: section.blocks,
+   heading: section.settings.heading_regular,
+   heading_accent: section.settings.heading_accent,
+   subtitle: section.settings.subtitle,
+   image: section.settings.section_image,
+   layout: section.settings.desktop_layout,
+   image_display_mode: display_mode,
+   mobile_image_position: section.settings.mobile_image_position,
+   section_id: section.id %}
+
+<style>
+  /* Section-specific customizations */
+  #benefits-{{ section.id }} {
+    {% if section.settings.use_background_image and section.settings.background_image != blank %}
+      {% comment %} Image + Gradient/Color together {% endcomment %}
+      {% if section.settings.use_theme_colors %}
+        {% if settings.global_section_use_gradient_background %}
+          background-image: url('{{ section.settings.background_image | image_url: width: 2560 }}'), var(--gradient-background) !important;
+        {% else %}
+          background-image: url('{{ section.settings.background_image | image_url: width: 2560 }}') !important;
+          background-color: {{ settings.global_section_background_color }} !important;
+        {% endif %}
+      {% else %}
+        background-image: url('{{ section.settings.background_image | image_url: width: 2560 }}'), {{ section.settings.section_background | default: '#FFFFFF' }} !important;
+      {% endif %}
+      background-size: {{ section.settings.background_image_size | default: 'cover' }}, cover !important;
+      background-position: {{ section.settings.background_image_position | default: 'center center' }}, center !important;
+      background-repeat: no-repeat, no-repeat !important;
+      background-attachment: {{ section.settings.background_image_attachment | default: 'scroll' }}, scroll !important;
+      {% if section.settings.background_overlay_enable %}
+        position: relative;
+      {% endif %}
+    {% else %}
+      {% if section.settings.use_theme_colors %}
+        background: var(--gradient-background, {{ settings.global_section_background_color }});
+      {% else %}
+        background: {{ section.settings.section_background | default: '#FFFFFF' }};
+      {% endif %}
+    {% endif %}
+
+    padding: {{ section.settings.padding_top_mobile }}px {{ section.settings.padding_left_mobile }}px 
+             {{ section.settings.padding_bottom_mobile }}px {{ section.settings.padding_right_mobile }}px;
+    
+    {% if section.settings.enable_top_border %}
+      border-top: {{ section.settings.top_border_width | default: 1 }}px solid {{ section.settings.top_border_color | default: '#E5E5E5' }};
+    {% endif %}
+    
+    {% if section.settings.enable_bottom_border %}
+      border-bottom: {{ section.settings.bottom_border_width | default: 1 }}px solid {{ section.settings.bottom_border_color | default: '#E5E5E5' }};
+      {% endif %}
+  }
+  
+  /* Background overlay */
+  {% if section.settings.use_background_image and section.settings.background_image != blank and section.settings.background_overlay_enable %}
+  #benefits-{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: {{ section.settings.background_overlay_color | default: 'rgba(0,0,0,0.3)' }};
+    opacity: {{ section.settings.background_overlay_opacity | default: 30 | divided_by: 100.0 }};
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  #benefits-{{ section.id }} .benefits-grid__container {
+    position: relative;
+    z-index: 1;
+  }
+  {% endif %}
+  
+  /* Mobile background image */
+  @media screen and (max-width: 767px) {
+    {% if section.settings.use_background_image and section.settings.mobile_background_image != blank %}
+      #benefits-{{ section.id }} {
+        {% comment %} Mobile Image + Gradient together {% endcomment %}
+        {% if section.settings.use_theme_colors %}
+          {% if settings.global_section_use_gradient_background %}
+            background-image: url('{{ section.settings.mobile_background_image | image_url: width: 1024 }}'), var(--gradient-background) !important;
+          {% else %}
+            background-image: url('{{ section.settings.mobile_background_image | image_url: width: 1024 }}') !important;
+            background-color: {{ settings.global_section_background_color }} !important;
+          {% endif %}
+        {% else %}
+          background-image: url('{{ section.settings.mobile_background_image | image_url: width: 1024 }}'), {{ section.settings.section_background | default: '#FFFFFF' }} !important;
+        {% endif %}
+      }
+    {% endif %}
+  }
+  
+  #benefits-{{ section.id }} .benefits-grid__heading,
+  #benefits-{{ section.id }} .benefits-grid__heading * {
+    color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.heading_color }}{% endif %} !important;
+    font-size: {{ section.settings.heading_size_mobile }}px !important;
+    line-height: {{ section.settings.heading_line_height_mobile }} !important;
+    text-align: {{ section.settings.heading_alignment_mobile }} !important;
+  }
+  
+  #benefits-{{ section.id }} .benefits-grid__heading {
+    margin-bottom: {{ section.settings.heading_bottom_margin | default: 16 }}px !important;
+  }
+  
+  #benefits-{{ section.id }} .benefits-grid__heading-accent {
+    padding: 2px 4px !important;
+    margin: -2px -4px !important;
+    display: inline-block !important;
+    margin-left: {{ section.settings.accent_text_margin_left }}px !important;
+    
+    {% comment %} Color and gradient styling {% endcomment %}
+    {% if section.settings.use_accent_gradient %}
+      background: {{ section.settings.accent_text_gradient | default: 'linear-gradient(135deg, #EF4A65, #FF6B9D)' }} !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      color: transparent !important;
+      line-height: 1.3 !important;
+    {% else %}
+      color: {% if section.settings.use_theme_colors %}{{ settings.global_section_accent_1_color }}{% else %}{{ section.settings.accent_text_color | default: '#EF4A65' }}{% endif %} !important;
+    {% endif %}
+    
+    {% comment %} Typography styling {% endcomment %}
+    {% if section.settings.override_global_accent %}
+      {% if section.settings.accent_font_family != 'inherit' %}
+        {% case section.settings.accent_font_family %}
+          {% when 'serif' %}
+            font-family: serif !important;
+          {% when 'Georgia Pro' %}
+            font-family: 'Georgia Pro', Georgia, serif !important;
+          {% when 'Bodoni Moda' %}
+            font-family: 'Bodoni Moda', Georgia, serif !important;
+          {% when 'Instrument Serif' %}
+            font-family: 'Instrument Serif', Georgia, serif !important;
+          {% when 'DM Serif Text' %}
+            font-family: 'DM Serif Text', Georgia, serif !important;
+          {% when 'Nothing You Could Do' %}
+            font-family: 'Nothing You Could Do', cursive !important;
+        {% endcase %}
+      {% else %}
+        font-family: var(--font-accent-family, var(--font-body-family)) !important;
+      {% endif %}
+      font-style: {{ section.settings.accent_font_style | default: 'normal' }} !important;
+      font-weight: {% if section.settings.accent_font_weight != 'inherit' %}{{ section.settings.accent_font_weight }}{% else %}var(--font-accent-weight, inherit){% endif %} !important;
+    {% else %}
+      font-family: var(--font-accent-family, var(--font-body-family)) !important;
+      font-style: var(--font-accent-style, normal) !important;
+      font-weight: var(--font-accent-weight, inherit) !important;
+      letter-spacing: var(--font-accent-letter-spacing, inherit) !important;
+      text-transform: var(--font-accent-text-transform, none) !important;
+    {% endif %}
+  }
+  
+  /* Override any body font on accent text children */
+  #benefits-{{ section.id }} .benefits-grid__heading-accent * {
+    font-family: inherit !important;
+    font-style: inherit !important;
+    font-weight: inherit !important;
+  }
+
+  #benefits-{{ section.id }} .benefits-grid__subtitle {
+    color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.subtitle_color }}{% endif %} !important;
+    font-size: {{ section.settings.subtitle_size_mobile }}px !important;
+    text-align: {{ section.settings.heading_alignment_mobile }} !important;
+  }
+  
+  #benefits-{{ section.id }} .benefit-item {
+    text-align: {{ section.settings.benefit_content_alignment_mobile }} !important;
+  }
+  
+  #benefits-{{ section.id }} .benefit-item__icon {
+    {% if section.settings.benefit_content_alignment_mobile == 'left' %}
+      margin-left: 0 !important;
+      margin-right: auto !important;
+    {% else %}
+      margin-left: auto !important;
+      margin-right: auto !important;
+  {% endif %}
+    width: {{ section.settings.benefit_icon_container_size_mobile | default: 60 }}px !important;
+    height: {{ section.settings.benefit_icon_container_size_mobile | default: 60 }}px !important;
+  }
+  
+  #benefits-{{ section.id }} .benefit-item__icon-image,
+  #benefits-{{ section.id }} .benefit-item__icon-svg {
+    width: {{ section.settings.benefit_icon_size_mobile | default: 30 }}px !important;
+    height: {{ section.settings.benefit_icon_size_mobile | default: 30 }}px !important;
+  }
+  
+  #benefits-{{ section.id }} .benefit-item__title {
+    color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.benefit_title_color }}{% endif %} !important;
+    font-size: {{ section.settings.benefit_title_size_mobile }}px !important;
+    text-align: {{ section.settings.benefit_content_alignment_mobile }} !important;
+    {% if section.settings.benefit_content_alignment_mobile == 'left' %}
+      display: block !important;
+      width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: auto !important;
+    {% endif %}
+    {% if section.settings.benefit_title_bold %}
+      font-weight: 700 !important;
+    {% endif %}
+  }
+  
+  #benefits-{{ section.id }} .benefit-item__description {
+    color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.benefit_description_color }}{% endif %} !important;
+    font-size: {{ section.settings.benefit_description_size_mobile }}px !important;
+    text-align: {{ section.settings.benefit_content_alignment_mobile }} !important;
+  }
+  
+  #benefits-{{ section.id }} .benefit-item__icon {
+    {% unless section.settings.hide_icon_background %}
+      background: {% if section.settings.use_theme_colors %}{{ settings.global_accent_text_gradient_dark }}{% else %}{{ section.settings.icon_background | default: 'linear-gradient(135deg, #EF4A65, #FF6B9D)' }}{% endif %};
+      border-radius: {{ section.settings.icon_border_radius | default: 50 }}% !important;
+    {% endunless %}
+    {% if section.settings.hide_icon_background %}
+      background: transparent !important;
+      border-radius: {{ section.settings.icon_border_radius | default: 50 }}% !important;
+    {% endif %}
+    {% if section.settings.enable_icon_border %}
+      border: {{ section.settings.icon_border_width | default: 2 }}px {{ section.settings.icon_border_style | default: 'solid' }} {{ section.settings.icon_border_color | default: '#000000' }} !important;
+    {% endif %}
+    {% if section.settings.enable_icon_shadow %}
+      {% assign shadow_color_rgb = section.settings.icon_shadow_color | color_to_rgb | remove: 'rgb(' | remove: ')' %}
+      {% assign shadow_opacity = section.settings.icon_shadow_opacity | times: 0.01 %}
+      box-shadow: {{ section.settings.icon_shadow_horizontal }}px {{ section.settings.icon_shadow_vertical }}px {{ section.settings.icon_shadow_blur }}px {{ section.settings.icon_shadow_spread }}px rgba({{ shadow_color_rgb }}, {{ shadow_opacity }}) !important;
+    {% endif %}
+  }
+
+  @media screen and (min-width: 768px) {
+    #benefits-{{ section.id }} {
+      padding: {{ section.settings.padding_top_desktop }}px {{ section.settings.padding_left_desktop }}px 
+               {{ section.settings.padding_bottom_desktop }}px {{ section.settings.padding_right_desktop }}px;
+    }
+    
+    #benefits-{{ section.id }} .benefits-grid__container {
+      max-width: {{ section.settings.section_width_desktop | default: 1200 }}px;
+      margin: 0 auto;
+    }
+    
+    #benefits-{{ section.id }} .benefits-grid__content-wrapper--no-image .benefits-grid__content {
+      max-width: {{ section.settings.content_max_width_no_image | default: 600 }}px !important;
+    }
+    
+    #benefits-{{ section.id }} .benefits-grid__heading,
+    #benefits-{{ section.id }} .benefits-grid__heading * {
+      color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.heading_color }}{% endif %} !important;
+      font-size: {{ section.settings.heading_size_desktop }}px !important;
+      line-height: {{ section.settings.heading_line_height_desktop }} !important;
+      text-align: {{ section.settings.heading_alignment_desktop }} !important;
+    }
+    
+    #benefits-{{ section.id }} .benefits-grid__heading-accent {
+      padding: 2px 4px !important;
+      margin: -2px -4px !important;
+      display: inline-block !important;
+      margin-left: {{ section.settings.accent_text_margin_left }}px !important;
+      
+      {% comment %} Color and gradient styling {% endcomment %}
+      {% if section.settings.use_accent_gradient %}
+        background: {{ section.settings.accent_text_gradient | default: 'linear-gradient(135deg, #EF4A65, #FF6B9D)' }} !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+        color: transparent !important;
+        line-height: 1.3 !important;
+      {% else %}
+        color: {% if section.settings.use_theme_colors %}{{ settings.global_section_accent_1_color }}{% else %}{{ section.settings.accent_text_color | default: '#EF4A65' }}{% endif %} !important;
+      {% endif %}
+      
+      {% comment %} Typography styling {% endcomment %}
+      {% if section.settings.override_global_accent %}
+        {% if section.settings.accent_font_family != 'inherit' %}
+          {% case section.settings.accent_font_family %}
+            {% when 'serif' %}
+              font-family: serif !important;
+            {% when 'Georgia Pro' %}
+              font-family: 'Georgia Pro', Georgia, serif !important;
+            {% when 'Bodoni Moda' %}
+              font-family: 'Bodoni Moda', Georgia, serif !important;
+            {% when 'Instrument Serif' %}
+              font-family: 'Instrument Serif', Georgia, serif !important;
+            {% when 'DM Serif Text' %}
+              font-family: 'DM Serif Text', Georgia, serif !important;
+            {% when 'Nothing You Could Do' %}
+              font-family: 'Nothing You Could Do', cursive !important;
+          {% endcase %}
+        {% else %}
+          font-family: var(--font-accent-family, var(--font-body-family)) !important;
+        {% endif %}
+        font-style: {{ section.settings.accent_font_style | default: 'normal' }} !important;
+        font-weight: {% if section.settings.accent_font_weight != 'inherit' %}{{ section.settings.accent_font_weight }}{% else %}var(--font-accent-weight, inherit){% endif %} !important;
+      {% else %}
+        font-family: var(--font-accent-family, var(--font-body-family)) !important;
+        font-style: var(--font-accent-style, normal) !important;
+        font-weight: var(--font-accent-weight, inherit) !important;
+        letter-spacing: var(--font-accent-letter-spacing, inherit) !important;
+        text-transform: var(--font-accent-text-transform, none) !important;
+      {% endif %}
+    }
+
+    #benefits-{{ section.id }} .benefits-grid__subtitle {
+      color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.subtitle_color }}{% endif %} !important;
+      font-size: {{ section.settings.subtitle_size_desktop }}px !important;
+      text-align: {{ section.settings.heading_alignment_desktop }} !important;
+    }
+    
+    #benefits-{{ section.id }} .benefits-grid__items {
+      {% if section.settings.benefit_content_alignment_desktop == 'left' %}
+        justify-items: start !important;
+      {% else %}
+        justify-items: center !important;
+      {% endif %}
+    }
+
+    #benefits-{{ section.id }} .benefit-item {
+      text-align: {{ section.settings.benefit_content_alignment_desktop }} !important;
+      {% if section.settings.benefit_content_alignment_desktop == 'left' %}
+        align-items: flex-start !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+      {% else %}
+        align-items: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      {% endif %}
+    }
+    
+    #benefits-{{ section.id }} .benefit-item__icon {
+      {% if section.settings.benefit_content_alignment_desktop == 'left' %}
+        margin-left: 0 !important;
+        margin-right: auto !important;
+      {% else %}
+        margin-left: auto !important;
+        margin-right: auto !important;
+      {% endif %}
+      width: {{ section.settings.benefit_icon_container_size_desktop | default: 60 }}px !important;
+      height: {{ section.settings.benefit_icon_container_size_desktop | default: 60 }}px !important;
+    }
+    
+    #benefits-{{ section.id }} .benefit-item__icon-image,
+    #benefits-{{ section.id }} .benefit-item__icon-svg {
+      width: {{ section.settings.benefit_icon_size_desktop | default: 30 }}px !important;
+      height: {{ section.settings.benefit_icon_size_desktop | default: 30 }}px !important;
+    }
+    
+    #benefits-{{ section.id }} .benefit-item__title {
+      color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.benefit_title_color }}{% endif %} !important;
+      font-size: {{ section.settings.benefit_title_size_desktop }}px !important;
+      text-align: {{ section.settings.benefit_content_alignment_desktop }} !important;
+      {% if section.settings.benefit_content_alignment_desktop == 'left' %}
+        display: block !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+      {% endif %}
+      {% if section.settings.benefit_title_bold %}
+        font-weight: 700 !important;
+    {% endif %}
+  }
+
+    #benefits-{{ section.id }} .benefit-item__description {
+      color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.benefit_description_color }}{% endif %} !important;
+      font-size: {{ section.settings.benefit_description_size_desktop }}px !important;
+      text-align: {{ section.settings.benefit_content_alignment_desktop }} !important;
+    }
+  }
+</style>
+
+{%- comment -%}
+  Block-level custom icon sizing overrides
+  These MUST come after the section styles to win in cascade order
+{%- endcomment -%}
+{% for block in section.blocks %}
+  {% if block.settings.use_custom_icon_size %}
+    <style>
+      /* Block {{ block.id }} custom icon sizing */
+      #benefits-{{ section.id }} .benefits-grid__items .benefit-item[data-block-id="{{ block.id }}"] .benefit-item__icon {
+        width: {{ block.settings.icon_container_size_mobile | default: section.settings.benefit_icon_container_size_mobile | default: 60 }}px !important;
+        height: {{ block.settings.icon_container_size_mobile | default: section.settings.benefit_icon_container_size_mobile | default: 60 }}px !important;
+      }
+      #benefits-{{ section.id }} .benefits-grid__items .benefit-item[data-block-id="{{ block.id }}"] .benefit-item__icon-image,
+      #benefits-{{ section.id }} .benefits-grid__items .benefit-item[data-block-id="{{ block.id }}"] .benefit-item__icon-svg {
+        width: {{ block.settings.icon_size_mobile | default: 30 }}px !important;
+        height: {{ block.settings.icon_size_mobile | default: 30 }}px !important;
+      }
+      @media screen and (min-width: 768px) {
+        #benefits-{{ section.id }} .benefits-grid__items .benefit-item[data-block-id="{{ block.id }}"] .benefit-item__icon {
+          width: {{ block.settings.icon_container_size_desktop | default: section.settings.benefit_icon_container_size_desktop | default: 60 }}px !important;
+          height: {{ block.settings.icon_container_size_desktop | default: section.settings.benefit_icon_container_size_desktop | default: 60 }}px !important;
+        }
+        #benefits-{{ section.id }} .benefits-grid__items .benefit-item[data-block-id="{{ block.id }}"] .benefit-item__icon-image,
+        #benefits-{{ section.id }} .benefits-grid__items .benefit-item[data-block-id="{{ block.id }}"] .benefit-item__icon-svg {
+          width: {{ block.settings.icon_size_desktop | default: 30 }}px !important;
+          height: {{ block.settings.icon_size_desktop | default: 30 }}px !important;
+        }
+      }
+    </style>
+  {% endif %}
+{% endfor %}
+
+{% schema %}
+{
+  "name": "4 Benefits",
+  "tag": "section",
+  "class": "shopify-section--four-benefits-new", 
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading_regular",
+      "label": "Heading Text",
+      "default": "Your main heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading Accent Text",
+      "default": "goes here"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "Desktop Layout",
+      "options": [
+        { "value": "grid", "label": "2x2 Grid" },
+        { "value": "row", "label": "Single Row" }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_theme_colors",
+      "label": "Apply Theme Colors",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Alignment"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment_mobile",
+      "label": "Heading Alignment (Mobile)",
+      "options": [
+        {"value": "left", "label": "Left"},
+        {"value": "center", "label": "Center"}
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment_desktop",
+      "label": "Heading Alignment (Desktop)",
+      "options": [
+        {"value": "left", "label": "Left"},
+        {"value": "center", "label": "Center"}
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "benefit_content_alignment_mobile",
+      "label": "Benefit Content Alignment (Mobile)",
+      "options": [
+        {"value": "left", "label": "Left"},
+        {"value": "center", "label": "Center"}
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "benefit_content_alignment_desktop",
+      "label": "Benefit Content Alignment (Desktop)",
+      "options": [
+        {"value": "left", "label": "Left"},
+        {"value": "center", "label": "Center"}
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 18,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size (Mobile)",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size (Desktop)",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height_mobile",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "Heading Line Height (Mobile)",
+      "default": 1.2,
+      "info": "Line height for heading on mobile"
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height_desktop",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "Heading Line Height (Desktop)",
+      "default": 1.2,
+      "info": "Line height for heading on desktop"
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_margin",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Bottom Margin",
+      "default": 16,
+      "info": "Space below the heading"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_desktop",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle Size (Desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "benefit_title_size_mobile",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Benefit Title Size (Mobile)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "benefit_title_size_desktop",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Benefit Title Size (Desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "benefit_description_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Benefit Description Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "benefit_description_size_desktop",
+      "min": 13,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Benefit Description Size (Desktop)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "benefit_icon_container_size_mobile",
+      "min": 40,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Circle Size (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "benefit_icon_container_size_desktop",
+      "min": 50,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Circle Size (Desktop)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "benefit_icon_size_mobile",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Size (Mobile)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "benefit_icon_size_desktop",
+      "min": 24,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Size (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "checkbox",
+      "id": "benefit_title_bold",
+      "label": "Make Benefit Titles Bold",
+      "default": false,
+      "info": "Apply font-weight: 700 to benefit titles"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_background",
+      "id": "section_background",
+      "label": "Section Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Background Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_background_image",
+      "label": "Use Background Image",
+      "default": false,
+      "info": "Toggle to use a full-width background image instead of section background color"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image (Desktop)",
+      "info": "Full-width background image for the section"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_background_image",
+      "label": "Mobile Background Image",
+      "info": "Optional different background image for mobile devices"
+    },
+    {
+      "type": "select",
+      "id": "background_image_size",
+      "label": "Background Image Size",
+      "options": [
+        {"value": "cover", "label": "Cover"},
+        {"value": "contain", "label": "Contain"},
+        {"value": "auto", "label": "Auto"},
+        {"value": "100% 100%", "label": "Stretch"}
+      ],
+      "default": "cover",
+      "info": "How the background image should be sized"
+    },
+    {
+      "type": "select",
+      "id": "background_image_position",
+      "label": "Background Image Position",
+      "options": [
+        {"value": "center center", "label": "Center Center"},
+        {"value": "center top", "label": "Center Top"},
+        {"value": "center bottom", "label": "Center Bottom"},
+        {"value": "left center", "label": "Left Center"},
+        {"value": "right center", "label": "Right Center"},
+        {"value": "left top", "label": "Left Top"},
+        {"value": "right top", "label": "Right Top"},
+        {"value": "left bottom", "label": "Left Bottom"},
+        {"value": "right bottom", "label": "Right Bottom"}
+      ],
+      "default": "center center",
+      "info": "Position of the background image"
+    },
+    {
+      "type": "select",
+      "id": "background_image_attachment",
+      "label": "Background Image Attachment",
+      "options": [
+        {"value": "scroll", "label": "Scroll"},
+        {"value": "fixed", "label": "Fixed (Parallax)"}
+      ],
+      "default": "scroll",
+      "info": "Fixed creates a parallax effect"
+    },
+    {
+      "type": "checkbox",
+      "id": "background_overlay_enable",
+      "label": "Enable Background Overlay",
+      "default": false,
+      "info": "Add a color overlay on top of the background image"
+    },
+    {
+      "type": "color",
+      "id": "background_overlay_color",
+      "label": "Overlay Color",
+      "default": "#000000",
+      "info": "Color of the overlay"
+    },
+    {
+      "type": "range",
+      "id": "background_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 30,
+      "info": "Opacity of the overlay (0 = transparent, 100 = fully opaque)"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color", 
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Accent Text Styling"
+    },
+    {
+      "type": "color",
+      "id": "accent_text_color",
+      "label": "Accent Text Color",
+      "default": "#EF4A65",
+      "info": "Color for the accent part of the heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_accent_gradient",
+      "label": "Use Gradient for Accent Text",
+      "default": false,
+      "info": "Apply a gradient effect to the accent text"
+    },
+    {
+      "type": "color_background",
+      "id": "accent_text_gradient",
+      "label": "Accent Text Gradient",
+      "default": "linear-gradient(135deg, #EF4A65, #FF6B9D)",
+      "info": "Gradient for accent text (only used when gradient is enabled)"
+    },
+    {
+      "type": "checkbox",
+      "id": "override_global_accent",
+      "label": "Override Global Accent Typography",
+      "default": false,
+      "info": "Use section-specific accent typography settings instead of global settings"
+    },
+    {
+      "type": "select",
+      "id": "accent_font_family",
+      "label": "Accent Font Family",
+      "options": [
+        {"value": "inherit", "label": "Use Global Setting"},
+        {"value": "serif", "label": "System Serif"},
+        {"value": "Georgia Pro", "label": "Georgia Pro"},
+        {"value": "Bodoni Moda", "label": "Bodoni Moda"},
+        {"value": "Instrument Serif", "label": "Instrument Serif"},
+        {"value": "DM Serif Text", "label": "DM Serif Text"},
+        {"value": "Nothing You Could Do", "label": "Nothing You Could Do"}
+      ],
+      "default": "inherit",
+      "info": "Font family for accent text (only used when Override Global Accent Typography is enabled)"
+    },
+    {
+      "type": "select",
+      "id": "accent_font_style",
+      "label": "Accent Font Style",
+      "options": [
+        {"value": "normal", "label": "Normal"},
+        {"value": "italic", "label": "Italic"}
+      ],
+      "default": "normal",
+      "info": "Font style for accent text"
+    },
+    {
+      "type": "select",
+      "id": "accent_font_weight",
+      "label": "Accent Font Weight",
+      "options": [
+        {"value": "inherit", "label": "Default (Inherit)"},
+        {"value": "300", "label": "Light (300)"},
+        {"value": "400", "label": "Normal (400)"},
+        {"value": "500", "label": "Medium (500)"},
+        {"value": "600", "label": "Semi Bold (600)"},
+        {"value": "700", "label": "Bold (700)"},
+        {"value": "800", "label": "Extra Bold (800)"},
+        {"value": "900", "label": "Black (900)"}
+      ],
+      "default": "inherit",
+      "info": "Font weight for accent text"
+    },
+    {
+      "type": "range",
+      "id": "accent_text_margin_left",
+      "min": -10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Accent Text Left Margin",
+      "default": 0,
+      "info": "Spacing between regular heading and accent text"
+    },
+    {
+      "type": "header",
+      "content": "Benefit Items Colors"
+    },
+    {
+      "type": "color",
+      "id": "benefit_title_color",
+      "label": "Benefit Title Color",
+      "default": "#000000",
+      "info": "Color for individual benefit titles"
+    },
+    {
+      "type": "color",
+      "id": "benefit_description_color",
+      "label": "Benefit Description Color",
+      "default": "#666666",
+      "info": "Color for individual benefit descriptions"
+    },
+    {
+      "type": "color_background",
+      "id": "icon_background",
+      "label": "Icon Background",
+      "default": "linear-gradient(135deg, #EF4A65, #FF6B9D)"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_icon_background",
+      "label": "Remove Icon Background Circle",
+      "default": false,
+      "info": "Remove the circular background behind icons"
+    },
+    {
+      "type": "range",
+      "id": "icon_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Icon Circle Border Radius",
+      "default": 50,
+      "info": "50% = fully round, 0% = square"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_icon_border",
+      "label": "Enable Icon Circle Border",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "icon_border_width",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon Border Width",
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "icon_border_style",
+      "label": "Icon Border Style",
+      "options": [
+        {"value": "solid", "label": "Solid"},
+        {"value": "dashed", "label": "Dashed"},
+        {"value": "dotted", "label": "Dotted"},
+        {"value": "double", "label": "Double"}
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "icon_border_color",
+      "label": "Icon Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Icon Drop Shadow"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_icon_shadow",
+      "label": "Enable Icon Drop Shadow",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "icon_shadow_color",
+      "label": "Shadow Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "icon_shadow_horizontal",
+      "min": -20,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal Offset",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "icon_shadow_vertical",
+      "min": -20,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical Offset",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "icon_shadow_blur",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Blur Radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "icon_shadow_spread",
+      "min": -10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Spread Radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "icon_shadow_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Shadow Opacity",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Section Borders"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_top_border",
+      "label": "Enable Top Border",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "top_border_color",
+      "label": "Top Border Color",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "range",
+      "id": "top_border_width",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Border Width",
+      "default": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_bottom_border",
+      "label": "Enable Bottom Border",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bottom_border_color",
+      "label": "Bottom Border Color",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "range",
+      "id": "bottom_border_width",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Border Width",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Section Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_image",
+      "label": "Section Image"
+    },
+    {
+      "type": "select",
+      "id": "image_display_mode",
+      "label": "Image Display Mode",
+      "options": [
+        { "value": "standard", "label": "Standard" },
+        { "value": "full_height", "label": "Full Height" },
+        { "value": "background", "label": "Background Image" }
+      ],
+      "default": "standard",
+      "info": "Full height removes padding. Background displays image behind content."
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_position",
+      "label": "Mobile Image Position",
+      "options": [
+        { "value": "after_header", "label": "After Header (Below Heading)" },
+        { "value": "before_header", "label": "Before Header (Above Heading)" }
+      ],
+      "default": "after_header",
+      "info": "Choose where the image appears on mobile devices"
+    },
+    {
+      "type": "header",
+      "content": "Spacing - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile", 
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Left Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Right Padding", 
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Spacing - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "section_width_desktop",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Section Width",
+      "default": 1200,
+      "info": "Maximum width of the section content on desktop"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width_no_image",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Content Max Width (No Image)",
+      "default": 600,
+      "info": "Maximum width of content when no image is added"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Left Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Right Padding",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Benefit Title",
+          "default": "Benefit Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Benefit Description",
+          "default": "Description of benefit goes here."
+        },
+        {
+          "type": "select",
+          "id": "preset_icon",
+          "label": "Preset Icon",
+          "options": [
+            { "value": "lightning", "label": "Lightning" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "refresh", "label": "Refresh" },
+            { "value": "check", "label": "Check" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_custom_icon",
+          "label": "Use Custom SVG Icon",
+          "default": false
+        },
+        {
+          "type": "html",
+          "id": "custom_icon_svg",
+          "label": "Custom SVG Icon Code"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image (Alternative)"
+        },
+        {
+          "type": "header",
+          "content": "Icon Size Customization"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_custom_icon_size",
+          "label": "Use Custom Icon Size",
+          "default": false,
+          "info": "Override section default icon sizes for this benefit"
+        },
+        {
+          "type": "range",
+          "id": "icon_container_size_mobile",
+          "min": 30,
+          "max": 150,
+          "step": 5,
+          "unit": "px",
+          "label": "Mobile Icon Container Size",
+          "default": 60,
+          "visible_if": "{{ block.settings.use_custom_icon_size == true }}"
+        },
+        {
+          "type": "range",
+          "id": "icon_container_size_desktop",
+          "min": 40,
+          "max": 200,
+          "step": 5,
+          "unit": "px",
+          "label": "Desktop Icon Container Size",
+          "default": 60,
+          "visible_if": "{{ block.settings.use_custom_icon_size == true }}"
+        },
+        {
+          "type": "range",
+          "id": "icon_size_mobile",
+          "min": 15,
+          "max": 200,
+          "step": 5,
+          "unit": "px",
+          "label": "Mobile Icon Size",
+          "default": 30,
+          "visible_if": "{{ block.settings.use_custom_icon_size == true }}"
+        },
+        {
+          "type": "range",
+          "id": "icon_size_desktop",
+          "min": 15,
+          "max": 200,
+          "step": 5,
+          "unit": "px",
+          "label": "Desktop Icon Size",
+          "default": 30,
+          "visible_if": "{{ block.settings.use_custom_icon_size == true }}"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "4 Benefits",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Fast & Reliable",
+            "description": "Get your results quickly with our optimized system.",
+            "preset_icon": "lightning"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Secure & Safe",
+            "description": "Your data is protected with enterprise-grade security.", 
+            "preset_icon": "shield"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Always Updated",
+            "description": "Regular updates keep you ahead of the competition.",
+            "preset_icon": "refresh"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Quality Guaranteed",
+            "description": "100% satisfaction guarantee or your money back.",
+            "preset_icon": "check"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

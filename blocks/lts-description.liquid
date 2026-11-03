@@ -1,0 +1,139 @@
+{% comment %}
+  Block: LTS Description - Description text for Limited Time Sale
+{% endcomment %}
+
+<p class="lts-description lts-description-{{ block.id }}" {{ block.shopify_attributes }}>
+  {{ block.settings.text }}
+</p>
+
+<style>
+  .lts-description-{{ block.id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.font_size }}px !important;
+    line-height: {{ block.settings.line_height }};
+    font-weight: {{ block.settings.font_weight }} !important;
+    letter-spacing: {{ block.settings.letter_spacing }}px;
+    text-align: {{ block.settings.text_align }};
+    max-width: {{ block.settings.max_width }}ch;
+    margin: 0 auto {{ block.settings.margin_bottom }}px;
+  }
+
+  @media (max-width: 768px) {
+    .lts-description-{{ block.id }} {
+      font-size: {{ block.settings.font_size_mobile }}px !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "LTS Description",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description Text",
+      "default": "This exclusive offer is in high demand and stock keeps selling out."
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Line Height",
+      "default": 1.5
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "ch",
+      "label": "Max Width",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 16
+    }
+  ],
+  "presets": [
+    { "name": "LTS Description" }
+  ]
+}
+{% endschema %}
+

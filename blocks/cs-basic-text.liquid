@@ -1,0 +1,159 @@
+{% comment %}
+  Block: CS Basic Text
+  A simple rich text block with optional image for the Content Sidebar section.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+{%- liquid 
+  assign content = this.content
+  assign highlighted_texts = this.highlighted_texts | split: '|'
+  assign custom_styled = false
+
+  if this.padding_top > 0 or this.padding_bottom > 0 or this.padding_left > 0 or this.padding_right > 0 or this.highlighted_texts != blank
+    assign custom_styled = true
+  endif
+-%}
+
+{%- if this.highlighted_texts != blank -%}
+  {%- for highlighted_text in highlighted_texts -%}
+    {%- assign trimmed_text = highlighted_text | strip -%}
+    {%- if trimmed_text != blank -%}
+      {%- capture highlighted -%}
+        <span class="highlighted-text">{{ trimmed_text }}</span>
+      {%- endcapture -%}
+      {%- assign content = content | replace: highlighted_text, highlighted -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if custom_styled -%}
+  <style>
+    #cs-basic-text-{{ block.id }} {
+      padding: {{ this.padding_top }}px {{ this.padding_right }}px {{ this.padding_bottom }}px {{ this.padding_left }}px;
+    }
+    {%- if this.highlighted_texts != blank -%}
+      #cs-basic-text-{{ block.id }} .highlighted-text {
+        background-color: {{ this.highlight_texts_color }};
+        {%- if this.highlight_text_color != blank -%}
+          color: {{ this.highlight_text_color }};
+        {%- endif -%}
+        padding: 0 4px;
+        border-radius: 2px;
+      }
+    {%- endif -%}
+  </style>
+{%- endif -%}
+
+<div 
+  {% if custom_styled %}id="cs-basic-text-{{ block.id }}"{% endif %} 
+  class="section-block basic-text-block" 
+  {{ block.shopify_attributes }}
+>
+  {%- if this.image and this.image_position == 'above' -%}
+    <div class="basic-text-image" style="width: {{ this.image_width }}%; margin: 0 auto 20px;">
+      {{ this.image | image_url: width: 800 | image_tag: class: 'basic-text-img', style: 'width: 100%; height: auto; border-radius: 8px;' }}
+    </div>
+  {%- endif -%}
+  
+  <div class="basic-text-content" style="letter-spacing: var(--letter-spacing-body);">
+    {{ content }}
+  </div>
+  
+  {%- if this.image and this.image_position == 'below' -%}
+    <div class="basic-text-image" style="width: {{ this.image_width }}%; margin: 20px auto 0;">
+      {{ this.image | image_url: width: 800 | image_tag: class: 'basic-text-img', style: 'width: 100%; height: auto; border-radius: 8px;' }}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "CS Basic Text",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Add your content here.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "highlighted_texts",
+      "label": "Highlighted texts",
+      "info": "Separate multiple words/phrases with | symbol"
+    },
+    {
+      "type": "color",
+      "id": "highlight_texts_color",
+      "label": "Highlight background color",
+      "default": "#fff3cd"
+    },
+    {
+      "type": "color",
+      "id": "highlight_text_color",
+      "label": "Highlight text color",
+      "info": "Leave blank to inherit text color"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "default": "above",
+      "options": [
+        { "label": "Above Text", "value": "above" },
+        { "label": "Below Text", "value": "below" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Image Width",
+      "default": 100,
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "number",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_left",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_right",
+      "label": "Padding right",
+      "default": 0
+    }
+  ],
+  "presets": [
+    { "name": "CS Basic Text" }
+  ]
+}
+{% endschema %}

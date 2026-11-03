@@ -1,0 +1,221 @@
+{% comment %}
+  Block: CS Image
+  An image/video block for the Content Sidebar section.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+
+<style>
+  #cs-image-{{ block.id }} {
+    display: flex;
+    justify-content: {{ this.image_alignment }};
+    padding: {{ this.padding_top }}px {{ this.padding_right }}px {{ this.padding_bottom }}px {{ this.padding_left }}px;
+    width: 100%;
+  }
+
+  #cs-image-{{ block.id }} .image-container {
+    {%- if this.image_width == 'custom' -%}
+      width: {{ this.custom_image_width }}%;
+    {%- else -%}
+      width: 100%;
+    {%- endif -%}
+    {%- if this.image_radius -%}
+      border-radius: {{ this.image_radius }}px;
+    {%- endif -%}
+    overflow: hidden;
+    position: relative;
+  }
+
+  #cs-image-{{ block.id }} .image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  #cs-image-{{ block.id }} .image-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background-color: #000;
+  }
+</style>
+
+<div 
+  id="cs-image-{{ block.id }}" 
+  class="section-block image-block" 
+  {{ block.shopify_attributes }}
+>
+  <div class="image-container">
+    {%- if this.content_type == 'video' and this.video -%}
+      {%- liquid
+        assign video_attributes = ''
+        if this.video_autoplay
+          assign video_attributes = video_attributes | append: ' autoplay muted'
+        endif
+        if this.video_loop
+          assign video_attributes = video_attributes | append: ' loop'
+        endif
+        if this.video_controls
+          assign video_attributes = video_attributes | append: ' controls'
+        endif
+      -%}
+      <video 
+        class="block-video" 
+        width="100%" 
+        height="auto"
+        preload="metadata"
+        playsinline
+        {{ video_attributes }}
+      >
+        {%- for source in this.video.sources -%}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {%- endfor -%}
+        <p>Your browser doesn't support HTML5 video. <a href="{{ this.video.sources[0].url }}">Download the video</a> instead.</p>
+      </video>
+    {%- elsif this.content_type == 'image' and this.image -%}
+      {{ this.image | image_url: width: 1200 | image_tag: class: 'block-image' }}
+    {%- elsif this.content_type == 'video' -%}
+      <div class="video-placeholder" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; min-height: 200px; color: #666;">
+        <p>Video placeholder - Upload a video file</p>
+      </div>
+    {%- else -%}
+      <img src="https://placehold.co/1200x628" width="1200" height="628" alt="image block placeholder" class="block-image" />
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CS Image",
+  "settings": [
+    {
+      "type": "select",
+      "id": "content_type",
+      "label": "Content Type",
+      "default": "image",
+      "options": [
+        { "label": "Image", "value": "image" },
+        { "label": "Video", "value": "video" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Shopify Hosted Video"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Autoplay Video",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "video_loop",
+      "label": "Loop Video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_controls",
+      "label": "Show Video Controls",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "image_alignment",
+      "label": "Content alignment",
+      "default": "center",
+      "options": [
+        { "label": "Left", "value": "flex-start" },
+        { "label": "Center", "value": "center" },
+        { "label": "Right", "value": "flex-end" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_width",
+      "label": "Image width",
+      "default": "full",
+      "options": [
+        { "label": "Full width", "value": "full" },
+        { "label": "Custom", "value": "custom" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "custom_image_width",
+      "label": "Custom width",
+      "default": 100,
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_height",
+      "label": "Custom height",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "image_height",
+      "label": "Height",
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "image_size",
+      "label": "Image fit",
+      "default": "cover",
+      "options": [
+        { "label": "Cover", "value": "cover" },
+        { "label": "Contain", "value": "contain" }
+      ]
+    },
+    {
+      "type": "number",
+      "id": "image_radius",
+      "label": "Border radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "number",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_left",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_right",
+      "label": "Padding right",
+      "default": 0
+    }
+  ],
+  "presets": [
+    { "name": "CS Image" }
+  ]
+}
+{% endschema %}

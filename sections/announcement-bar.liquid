@@ -1,0 +1,294 @@
+{{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .announcement-text strong,
+  .announcement-text b {
+    font-weight: 700 !important;
+  }
+  {% if section.settings.hide_shine_effect %}
+    .announcement-bar.gradient-active::after {
+      display: none !important;
+    }
+  {% endif %}
+</style>
+
+<div class="section-announcement">
+  <div class="announcement-bar gradient-active" style="
+    {% if section.settings.use_theme_colors %}
+      background: linear-gradient(
+        -45deg,
+        {{ settings.global_section_accent_2_color }},
+        {{ settings.global_section_accent_1_color }},
+        {{ settings.global_section_accent_2_color }},
+        {{ settings.global_section_accent_1_color }}
+      );
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+    {% else %}
+      background: linear-gradient(
+        -45deg,
+        {{ section.settings.gradient_color_1 }},
+        {{ section.settings.gradient_color_2 }},
+        {{ section.settings.gradient_color_3 }},
+        {{ section.settings.gradient_color_4 }}
+      );
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+    {% endif %}
+  ">
+    <div class="announcement-text" style="color: {% if section.settings.use_theme_colors %}{{ settings.global_section_background_color }}{% else %}{{ section.settings.text_color }}{% endif %};">
+      {{ section.settings.announcement_text }}
+    </div>
+    <div class="countdown">
+      {% if section.settings.show_days %}
+      <div class="countdown-item" style="padding: 3px 1px; background-color: {% if section.settings.use_theme_colors %}{{ settings.global_section_background_color }}{% else %}{{ section.settings.timer_bg_color }}{% endif %};">
+        <span class="time days" style="color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.timer_text_color }}{% endif %};">00</span>
+        <span class="label label-smaller" style="margin-top: 1px; color: {% if section.settings.use_theme_colors %}{{ settings.global_section_accent_1_color }}{% else %}{{ section.settings.label_text_color }}{% endif %};">{{ section.settings.days_label }}</span>
+      </div>
+      <span class="separator" style="color: {% if section.settings.use_theme_colors %}{{ settings.global_section_background_color }}{% else %}{{ section.settings.text_color }}{% endif %};">:</span>
+      {% endif %}
+      <div class="countdown-item" style="padding: 3px 1px; background-color: {% if section.settings.use_theme_colors %}{{ settings.global_section_background_color }}{% else %}{{ section.settings.timer_bg_color }}{% endif %};">
+        <span class="time hours" style="color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.timer_text_color }}{% endif %};">24</span>
+        <span class="label label-smaller" style="margin-top: 1px; color: {% if section.settings.use_theme_colors %}{{ settings.global_section_accent_1_color }}{% else %}{{ section.settings.label_text_color }}{% endif %};">{{ section.settings.hours_label }}</span>
+      </div>
+      <span class="separator" style="color: {% if section.settings.use_theme_colors %}{{ settings.global_section_background_color }}{% else %}{{ section.settings.text_color }}{% endif %};">:</span>
+      <div class="countdown-item" style="padding: 3px 1px; background-color: {% if section.settings.use_theme_colors %}{{ settings.global_section_background_color }}{% else %}{{ section.settings.timer_bg_color }}{% endif %};">
+        <span class="time minutes" style="color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.timer_text_color }}{% endif %};">00</span>
+        <span class="label" style="margin-top: 1px; color: {% if section.settings.use_theme_colors %}{{ settings.global_section_accent_1_color }}{% else %}{{ section.settings.label_text_color }}{% endif %};">{{ section.settings.minutes_label }}</span>
+      </div>
+      <span class="separator" style="color: {% if section.settings.use_theme_colors %}{{ settings.global_section_background_color }}{% else %}{{ section.settings.text_color }}{% endif %};">:</span>
+      <div class="countdown-item" style="padding: 3px 1px; background-color: {% if section.settings.use_theme_colors %}{{ settings.global_section_background_color }}{% else %}{{ section.settings.timer_bg_color }}{% endif %};">
+        <span class="time seconds" style="color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.timer_text_color }}{% endif %};">00</span>
+        <span class="label" style="margin-top: 1px; color: {% if section.settings.use_theme_colors %}{{ settings.global_section_accent_1_color }}{% else %}{{ section.settings.label_text_color }}{% endif %};">{{ section.settings.seconds_label }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  function getTimezoneMidnight() {
+    const timezone = '{{ section.settings.timezone | default: "America/New_York" }}';
+    const now = new Date();
+    const localTime = new Date(now.toLocaleString('en-US', { timeZone: timezone }));
+    const midnight = new Date(localTime);
+    midnight.setHours(24, 0, 0, 0);
+    return midnight;
+  }
+
+  function calculateTimeLeft() {
+    const timezone = '{{ section.settings.timezone | default: "America/New_York" }}';
+    const now = new Date();
+    const localTime = new Date(now.toLocaleString('en-US', { timeZone: timezone }));
+    
+    {% if section.settings.custom_date %}
+    // Use custom end date if set
+    const endDate = new Date('{{ section.settings.end_date }}');
+    let diff = endDate - now;
+    {% else %}
+    // Otherwise use midnight in selected timezone
+    const midnight = getTimezoneMidnight();
+    let diff = midnight - localTime;
+    
+    // If we're past midnight, get next midnight
+    if (diff < 0) {
+      midnight.setDate(midnight.getDate() + 1);
+      diff = midnight - localTime;
+    }
+    {% endif %}
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    return { days, hours, minutes, seconds };
+  }
+
+  function updateDisplay() {
+    const timeLeft = calculateTimeLeft();
+    
+    {% if section.settings.show_days %}
+    document.querySelector('.days').textContent = timeLeft.days.toString().padStart(2, '0');
+    {% endif %}
+    document.querySelector('.hours').textContent = timeLeft.hours.toString().padStart(2, '0');
+    document.querySelector('.minutes').textContent = timeLeft.minutes.toString().padStart(2, '0');
+    document.querySelector('.seconds').textContent = timeLeft.seconds.toString().padStart(2, '0');
+  }
+
+  // Update immediately and then every second
+  updateDisplay();
+  const timer = setInterval(updateDisplay, 1000);
+
+  // Cleanup on section unload to avoid memory leaks
+  document.addEventListener('shopify:section:unload', function() {
+    clearInterval(timer);
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Countdown Banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "use_theme_colors",
+      "label": "Use Theme Colors",
+      "default": true,
+      "info": "Apply the global theme colors to this section"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_with_header",
+      "label": "Stick with Header",
+      "default": false,
+      "info": "Makes the announcement bar sticky and scroll with the site header"
+    },    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "HOLIDAY SALE ENDS IN",
+      "info": "You can use bold and italic formatting in your announcement text"
+    },
+    {
+      "type": "header",
+      "content": "Timer Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_days",
+      "label": "Show Days",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_date",
+      "label": "Use Custom End Date",
+      "default": false,
+      "info": "If unchecked, countdown will be to next midnight EST"
+    },
+    {
+      "type": "text",
+      "id": "end_date",
+      "label": "End Date (YYYY-MM-DD HH:MM:SS)",
+      "default": "2023-12-31 23:59:59",
+      "info": "Format: YYYY-MM-DD HH:MM:SS"
+    },
+    {
+      "type": "select",
+      "id": "timezone",
+      "label": "Timezone for Midnight Reset",
+      "options": [
+        { "value": "America/New_York", "label": "Eastern Time (EST/EDT)" },
+        { "value": "America/Chicago", "label": "Central Time (CST/CDT)" },
+        { "value": "America/Denver", "label": "Mountain Time (MST/MDT)" },
+        { "value": "America/Los_Angeles", "label": "Pacific Time (PST/PDT)" },
+        { "value": "America/Anchorage", "label": "Alaska Time (AKST/AKDT)" },
+        { "value": "Pacific/Honolulu", "label": "Hawaii Time (HST)" },
+        { "value": "Europe/London", "label": "GMT/BST (London)" },
+        { "value": "Europe/Paris", "label": "CET/CEST (Paris)" },
+        { "value": "Europe/Berlin", "label": "CET/CEST (Berlin)" },
+        { "value": "Asia/Tokyo", "label": "JST (Tokyo)" },
+        { "value": "Asia/Shanghai", "label": "CST (Shanghai)" },
+        { "value": "Australia/Sydney", "label": "AEST/AEDT (Sydney)" }
+      ],
+      "default": "America/New_York",
+      "info": "Choose the timezone for when the daily countdown resets at midnight"
+    },    {
+      "type": "text",
+      "id": "days_label",
+      "label": "Days Label",
+      "default": "DAYS"
+    },
+    {
+      "type": "text",
+      "id": "hours_label",
+      "label": "Hours Label",
+      "default": "HRS"
+    },
+    {
+      "type": "text",
+      "id": "minutes_label",
+      "label": "Minutes Label",
+      "default": "MIN"
+    },
+    {
+      "type": "text",
+      "id": "seconds_label",
+      "label": "Seconds Label",
+      "default": "SEC"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_shine_effect",
+      "label": "Hide Shine Effect",
+      "default": false,
+      "info": "Remove the animated shine/shimmer effect on the background"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "timer_bg_color",
+      "label": "Timer Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "timer_text_color",
+      "label": "Timer Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "label_text_color",
+      "label": "Label Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient Color 1",
+      "default": "#FFF5EA"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient Color 2",
+      "default": "#FFDAE0"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_3",
+      "label": "Gradient Color 3",
+      "default": "#FDFFE7"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_4",
+      "label": "Gradient Color 4",
+      "default": "#FF99A9"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown Banner",
+      "category": "Promotional"
+    }
+  ]
+}
+{% endschema %}

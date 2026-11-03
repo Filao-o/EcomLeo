@@ -1,0 +1,350 @@
+{% comment %}
+  Block: LTS Button - CTA Button for Limited Time Sale
+{% endcomment %}
+
+<div class="lts-button-wrapper lts-button-wrapper-{{ block.id }}" {{ block.shopify_attributes }}>
+  <a href="{{ block.settings.link | default: '#' }}" class="lts-button lts-button-{{ block.id }}">
+    {% if block.settings.icon != blank and block.settings.icon_position == 'left' %}
+      <span class="lts-button-icon">{{ block.settings.icon }}</span>
+    {% endif %}
+    <span class="lts-button-text">{{ block.settings.text }}</span>
+    {% if block.settings.icon != blank and block.settings.icon_position == 'right' %}
+      <span class="lts-button-icon">{{ block.settings.icon }}</span>
+    {% endif %}
+  </a>
+</div>
+
+<style>
+  .lts-button-wrapper-{{ block.id }} {
+    text-align: {{ block.settings.alignment }};
+    margin-bottom: {{ block.settings.margin_bottom }}px;
+  }
+
+  .lts-button-{{ block.id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: {{ block.settings.icon_gap }}px;
+    
+    {% if block.settings.use_gradient %}
+      background: {{ block.settings.bg_gradient }};
+    {% else %}
+      background-color: {{ block.settings.bg_color }};
+    {% endif %}
+    
+    color: {{ block.settings.text_color }} !important;
+    text-decoration: none;
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: {{ block.settings.padding_y }}px {{ block.settings.padding_x }}px;
+    font-weight: {{ block.settings.font_weight }} !important;
+    font-size: {{ block.settings.font_size }}px !important;
+    letter-spacing: {{ block.settings.letter_spacing }}px;
+    text-transform: {{ block.settings.text_transform }};
+    
+    {% if block.settings.full_width %}
+      width: 100%;
+    {% endif %}
+    
+    border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+    transition: all 0.3s ease;
+  }
+
+  .lts-button-{{ block.id }}:hover {
+    {% if block.settings.use_gradient %}
+      background: {{ block.settings.hover_bg_gradient }};
+    {% else %}
+      background-color: {{ block.settings.hover_bg_color }};
+    {% endif %}
+    color: {{ block.settings.hover_text_color }} !important;
+    transform: translateY(-2px);
+  }
+
+  .lts-button-{{ block.id }} .lts-button-icon {
+    font-size: {{ block.settings.icon_size }}px;
+    line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    .lts-button-{{ block.id }} {
+      font-size: {{ block.settings.font_size_mobile }}px !important;
+      padding: {{ block.settings.padding_y_mobile }}px {{ block.settings.padding_x_mobile }}px;
+      {% if block.settings.full_width_mobile %}
+        width: 100%;
+      {% endif %}
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "LTS Button",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Button Text",
+      "default": "CLAIM 60% OFF + FREE SERUM"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "icon",
+      "label": "Icon (Emoji)",
+      "info": "Leave blank for no icon"
+    },
+    {
+      "type": "select",
+      "id": "icon_position",
+      "label": "Icon Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "icon_gap",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Gap",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_gradient",
+      "label": "Use Gradient Background",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#25282A"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "hover_bg_color",
+      "label": "Hover Background Color",
+      "default": "#1a1c1e"
+    },
+    {
+      "type": "color_background",
+      "id": "hover_bg_gradient",
+      "label": "Hover Gradient"
+    },
+    {
+      "type": "color",
+      "id": "hover_text_color",
+      "label": "Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#25282A"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Radius",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Vertical (Desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_x",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Horizontal (Desktop)",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_y_mobile",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Vertical (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_x_mobile",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Horizontal (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full Width (Desktop)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width_mobile",
+      "label": "Full Width (Mobile)",
+      "default": true
+    }
+  ],
+  "presets": [
+    { "name": "LTS Button" }
+  ]
+}
+{% endschema %}
+

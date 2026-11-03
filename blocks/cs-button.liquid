@@ -1,0 +1,208 @@
+{% comment %}
+  Block: CS Button
+  A CTA button block for the Content Sidebar section.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+
+<style>
+  #cs-button-{{ block.id }} {
+    display: flex;
+    width: 100%;
+    padding: {{ this.padding_top }}px {{ this.padding_right }}px {{ this.padding_bottom }}px {{ this.padding_left }}px;
+    {% unless this.full_width %}justify-content: {{ this.button_alignment }};{% endunless %}
+  }
+  {% if this.full_width %}
+    #cs-button-{{ block.id }} .content-button-link {
+      width: 100%;
+    }
+  {% endif %}
+  {%- if this.button_icon != blank or this.icon_image != blank -%}
+    #cs-button-{{ block.id }} .button-icon {
+      width: {{ this.icon_size }}px;
+      height: {{ this.icon_size }}px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+    }
+    #cs-button-{{ block.id }} .button-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+    #cs-button-{{ block.id }} .button-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    #cs-button-{{ block.id }} .button-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+  {%- endif -%}
+</style>
+
+<div 
+  id="cs-button-{{ block.id }}" 
+  class="section-block button-block{% if this.full_width %} button-block-full-width{% endif %}" 
+  {{ block.shopify_attributes }}
+>
+  {%- if this.button_text != blank -%}
+    {%- liquid
+      assign button_href = this.button_url
+      if this.button_action == 'cart'
+        assign button_href = '/cart'
+      elsif this.button_url == blank
+        assign button_href = '#'
+      endif
+    -%}
+    <a href="{{ button_href }}" class="content-button-link">
+      {%- if this.button_icon != blank or this.icon_image != blank -%}
+        <div class="button-content">
+          {%- if this.icon_position == 'left' -%}
+            <span class="button-icon">
+              {%- if this.icon_image != blank -%}
+                {{ this.icon_image | image_url: width: 100 | image_tag }}
+              {%- else -%}
+                {{ this.button_icon }}
+              {%- endif -%}
+            </span>
+            <span>{{ this.button_text }}</span>
+          {%- else -%}
+            <span>{{ this.button_text }}</span>
+            <span class="button-icon">
+              {%- if this.icon_image != blank -%}
+                {{ this.icon_image | image_url: width: 100 | image_tag }}
+              {%- else -%}
+                {{ this.button_icon }}
+              {%- endif -%}
+            </span>
+          {%- endif -%}
+        </div>
+      {%- else -%}
+        {{ this.button_text }}
+      {%- endif -%}
+    </a>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "CS Button",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Click Here"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "select",
+      "id": "button_action",
+      "label": "Button Action",
+      "default": "url",
+      "options": [
+        { "label": "Go to URL", "value": "url" },
+        { "label": "Go to Cart", "value": "cart" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full Width",
+      "default": true,
+      "info": "Button styling is controlled at the section level"
+    },
+    {
+      "type": "select",
+      "id": "button_alignment",
+      "label": "Button Alignment",
+      "default": "center",
+      "options": [
+        { "label": "Left", "value": "flex-start" },
+        { "label": "Center", "value": "center" },
+        { "label": "Right", "value": "flex-end" }
+      ],
+      "info": "Only applies when Full Width is disabled"
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "Icon Image",
+      "info": "Upload an image to use as icon (takes priority over SVG)"
+    },
+    {
+      "type": "html",
+      "id": "button_icon",
+      "label": "Icon SVG",
+      "info": "Paste SVG code here (used if no image is uploaded)"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon Size",
+      "default": 20,
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "icon_position",
+      "label": "Icon Position",
+      "default": "left",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Right", "value": "right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "number",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_left",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_right",
+      "label": "Padding right",
+      "default": 0
+    }
+  ],
+  "presets": [
+    { "name": "CS Button" }
+  ]
+}
+{% endschema %}

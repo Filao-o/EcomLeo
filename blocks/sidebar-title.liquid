@@ -1,0 +1,206 @@
+{% comment %}
+  Block: Sidebar Title
+  A simple title block for the CS Sidebar.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+
+<style>
+  #sidebar-title-{{ block.id }} {
+    text-align: {{ this.text_align }};
+    margin-bottom: {{ this.margin_bottom }}px;
+    padding-bottom: {{ this.padding_bottom }}px;
+    {% if this.show_border %}
+      border-bottom: {{ this.border_width }}px solid {{ this.border_color }};
+    {% endif %}
+  }
+
+  #sidebar-title-{{ block.id }} .sidebar-title-text {
+    font-size: {{ this.font_size }}px;
+    font-weight: {{ this.font_weight }};
+    color: {{ this.text_color }};
+    margin: 0;
+    letter-spacing: var(--cs-heading-letter-spacing, -0.3px);
+    line-height: 1.3;
+  }
+
+  #sidebar-title-{{ block.id }} .sidebar-subtitle-text {
+    font-size: {{ this.subtitle_font_size }}px;
+    color: {{ this.subtitle_color }};
+    margin: {{ this.subtitle_margin_top }}px 0 0 0;
+    letter-spacing: var(--cs-body-letter-spacing, 0px);
+    line-height: 1.4;
+  }
+
+  @media screen and (max-width: 768px) {
+    #sidebar-title-{{ block.id }} .sidebar-title-text {
+      font-size: {{ this.font_size | times: 0.9 | round }}px;
+    }
+    #sidebar-title-{{ block.id }} .sidebar-subtitle-text {
+      font-size: {{ this.subtitle_font_size | times: 0.9 | round }}px;
+    }
+  }
+</style>
+
+<div id="sidebar-title-{{ block.id }}" class="sidebar-title-block" {{ block.shopify_attributes }}>
+  <{{ this.heading_tag }} class="sidebar-title-text">{{ this.title }}</{{ this.heading_tag }}>
+  {%- if this.subtitle != blank -%}
+    <p class="sidebar-subtitle-text">{{ this.subtitle }}</p>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Sidebar Title",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Recommended"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "p", "label": "Paragraph" }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Title Font Size",
+      "default": 22,
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Subtitle"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size",
+      "label": "Subtitle Font Size",
+      "default": 14,
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_margin_top",
+      "label": "Subtitle Margin Top",
+      "default": 5,
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "default": 20,
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "default": 15,
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Show Bottom Border",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border Width",
+      "default": 1,
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e0e0e0"
+    }
+  ],
+  "presets": [{ "name": "Sidebar Title" }]
+}
+{% endschema %}

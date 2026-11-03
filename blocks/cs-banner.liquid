@@ -1,0 +1,212 @@
+{% comment %}
+  Block: CS Banner
+  A full-width sticky banner/header block for the Content Sidebar section.
+  This block outputs a placeholder - actual rendering is done via cs-banner-inline snippet
+  outside of the main grid container for full-width display.
+{% endcomment %}
+
+<div class="cs-banner-placeholder" style="display: none !important;" {{ block.shopify_attributes }}></div>
+
+{% schema %}
+{
+  "name": "CS Banner",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Sticky Header",
+      "default": true,
+      "info": "Make the banner stick to the top when scrolling"
+    },
+    {
+      "type": "header",
+      "content": "Banner Text"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Banner Text",
+      "default": "<strong>NEW YEAR SALE:</strong> Up to 50% OFF"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Banner/Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "underline_link",
+      "label": "Underline Text Link",
+      "default": false,
+      "info": "Only applies when no button is shown"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Get 50% OFF",
+      "info": "Leave blank to hide button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button_arrow",
+      "label": "Show Arrow Icon",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background",
+      "default": "#2e7d32"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button Font Size",
+      "default": 14,
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button Border Radius",
+      "default": 6,
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Button Vertical Padding",
+      "default": 12,
+      "min": 6,
+      "max": 20,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Button Horizontal Padding",
+      "default": 24,
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Banner Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_gradient",
+      "label": "Use Gradient Background",
+      "default": false
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient",
+      "default": "linear-gradient(90deg, #1a1a1a 0%, #333333 100%)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Text Font Size",
+      "default": 16,
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "default": "400",
+      "options": [
+        { "label": "Normal", "value": "400" },
+        { "label": "Medium", "value": "500" },
+        { "label": "Semi-Bold", "value": "600" },
+        { "label": "Bold", "value": "700" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Content Max Width",
+      "default": 1200,
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical Padding",
+      "default": 14,
+      "min": 6,
+      "max": 30,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Horizontal Padding",
+      "default": 20,
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_stack",
+      "label": "Stack Text & Button on Mobile",
+      "default": false,
+      "info": "Show text and button in a column on mobile"
+    }
+  ],
+  "presets": [
+    { "name": "CS Banner" }
+  ]
+}
+{% endschema %}

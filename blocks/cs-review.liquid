@@ -1,0 +1,488 @@
+{% comment %}
+  Block: CS Review
+  A simple customer review block for the Content Sidebar section.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+
+<style>
+  #cs-review-{{ block.id }} {
+    padding: {{ this.padding }}px;
+    background-color: {{ this.bg_color }};
+    border-radius: {{ this.border_radius }}px;
+    {% if this.border_width > 0 %}
+      border: {{ this.border_width }}px solid {{ this.border_color }};
+    {% endif %}
+    letter-spacing: 0px;
+  }
+  #cs-review-{{ block.id }} .cs-review-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  #cs-review-{{ block.id }} .cs-review-avatar {
+    width: {{ this.avatar_size }}px;
+    height: {{ this.avatar_size }}px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  #cs-review-{{ block.id }} .cs-review-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #cs-review-{{ block.id }} .cs-review-avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: {{ this.accent_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: {{ this.avatar_size | divided_by: 2.5 | round }}px;
+  }
+  #cs-review-{{ block.id }} .cs-review-meta {
+    flex: 1;
+  }
+  #cs-review-{{ block.id }} .cs-review-name {
+    font-weight: 600;
+    font-size: {{ this.name_font_size }}px;
+    color: {{ this.text_color }};
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #cs-review-{{ block.id }} .cs-review-verified {
+    color: {{ this.accent_color }};
+  }
+  #cs-review-{{ block.id }} .cs-review-verified svg {
+    width: 16px;
+    height: 16px;
+  }
+  #cs-review-{{ block.id }} .cs-review-date {
+    font-size: {{ this.date_font_size }}px;
+    color: {{ this.date_color }};
+    margin-top: 2px;
+  }
+  #cs-review-{{ block.id }} .cs-review-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 10px;
+  }
+  #cs-review-{{ block.id }} .cs-review-stars svg {
+    width: {{ this.star_size }}px;
+    height: {{ this.star_size }}px;
+  }
+  #cs-review-{{ block.id }} .cs-review-content {
+    font-size: {{ this.content_font_size }}px;
+    line-height: 1.5;
+    color: {{ this.text_color }};
+  }
+  #cs-review-{{ block.id }} .cs-review-content p {
+    margin: 0;
+  }
+  #cs-review-{{ block.id }} .cs-review-image {
+    margin-top: 12px;
+    width: 100%;
+    max-width: {{ this.review_image_max_width }}px;
+    border-radius: {{ this.review_image_radius }}px;
+    overflow: hidden;
+  }
+  #cs-review-{{ block.id }} .cs-review-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  #cs-review-{{ block.id }} .cs-review-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid {{ this.border_color | default: '#e0e0e0' }};
+  }
+  #cs-review-{{ block.id }} .cs-review-helpful {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background-color: {{ this.helpful_bg_color }};
+    color: {{ this.helpful_text_color }};
+    border: 1px solid {{ this.helpful_border_color }};
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  #cs-review-{{ block.id }} .cs-review-helpful:hover {
+    background-color: {{ this.helpful_hover_bg }};
+  }
+  #cs-review-{{ block.id }} .cs-review-helpful svg {
+    width: 14px;
+    height: 14px;
+  }
+  #cs-review-{{ block.id }} .cs-review-helpful-count {
+    font-size: 13px;
+    color: {{ this.date_color }};
+  }
+</style>
+
+<div 
+  id="cs-review-{{ block.id }}" 
+  class="section-block cs-review-block" 
+  {{ block.shopify_attributes }}
+>
+  <div class="cs-review-header">
+    <div class="cs-review-avatar">
+      {%- if this.avatar -%}
+        {{ this.avatar | image_url: width: 100 | image_tag }}
+      {%- else -%}
+        <div class="cs-review-avatar-placeholder">
+          {{ this.reviewer_name | slice: 0 | upcase }}
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="cs-review-meta">
+      <div class="cs-review-name">
+        {{ this.reviewer_name }}
+        {%- if this.verified -%}
+          <span class="cs-review-verified" title="Verified Buyer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" fill="currentColor">
+              <path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"/>
+            </svg>
+          </span>
+        {%- endif -%}
+      </div>
+      {%- if this.review_date != blank -%}
+        <div class="cs-review-date">{{ this.review_date }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+  
+  {%- if this.show_stars -%}
+    <div class="cs-review-stars">
+      {%- for i in (1..5) -%}
+        {%- liquid 
+          assign star_width = '100%'
+          if forloop.index > this.rating
+            assign star_width = '0%'
+          endif
+        -%}
+        <svg width="{{ this.star_size }}" height="{{ this.star_size }}" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <mask id="cs-review-star-mask-{{ block.id }}-{{ forloop.index }}" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1920">
+              <path d="M1915.918 737.475c-10.955-33.543-42.014-56.131-77.364-56.131h-612.029l-189.063-582.1v-.112C1026.394 65.588 995.335 43 959.984 43c-35.237 0-66.41 22.588-77.365 56.245L693.443 681.344H81.415c-35.35 0-66.41 22.588-77.365 56.131-10.955 33.544.79 70.137 29.478 91.03l495.247 359.831-189.177 582.212c-10.955 33.657 1.13 70.25 29.817 90.918 14.23 10.278 30.946 15.487 47.66 15.487 16.716 0 33.432-5.21 47.775-15.6l495.134-359.718 495.021 359.718c28.574 20.781 67.087 20.781 95.662.113 28.687-20.668 40.658-57.261 29.703-91.03l-189.176-582.1 495.36-359.83c28.574-20.894 40.433-57.487 29.364-91.03" fill="{{ this.star_color }}" fill-rule="evenodd"/>
+            </mask>
+          </defs>
+          <path d="M1915.918 737.475c-10.955-33.543-42.014-56.131-77.364-56.131h-612.029l-189.063-582.1v-.112C1026.394 65.588 995.335 43 959.984 43c-35.237 0-66.41 22.588-77.365 56.245L693.443 681.344H81.415c-35.35 0-66.41 22.588-77.365 56.131-10.955 33.544.79 70.137 29.478 91.03l495.247 359.831-189.177 582.212c-10.955 33.657 1.13 70.25 29.817 90.918 14.23 10.278 30.946 15.487 47.66 15.487 16.716 0 33.432-5.21 47.775-15.6l495.134-359.718 495.021 359.718c28.574 20.781 67.087 20.781 95.662.113 28.687-20.668 40.658-57.261 29.703-91.03l-189.176-582.1 495.36-359.83c28.574-20.894 40.433-57.487 29.364-91.03" stroke="{{ this.empty_star_color }}" stroke-width="10" fill="none" fill-rule="evenodd"/>
+          <g mask="url(#cs-review-star-mask-{{ block.id }}-{{ forloop.index }})">
+            <rect width="1920" height="1920" fill="{{ this.star_color }}" style="width: {{ star_width }};" />
+          </g>
+        </svg>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+  
+  <div class="cs-review-content">
+    {{ this.review_text }}
+  </div>
+
+  {%- if this.review_image != blank -%}
+    <div class="cs-review-image">
+      {{ this.review_image | image_url: width: 800 | image_tag }}
+    </div>
+  {%- endif -%}
+
+  {%- if this.show_helpful -%}
+    <div class="cs-review-footer">
+      <button type="button" class="cs-review-helpful" aria-label="Mark as helpful">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+        </svg>
+        {{ this.helpful_text }}
+      </button>
+      {%- if this.helpful_count > 0 -%}
+        <span class="cs-review-helpful-count">{{ this.helpful_count }} people found this helpful</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "CS Review",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Reviewer"
+    },
+    {
+      "type": "text",
+      "id": "reviewer_name",
+      "label": "Reviewer Name",
+      "default": "Sarah M."
+    },
+    {
+      "type": "image_picker",
+      "id": "avatar",
+      "label": "Avatar Image"
+    },
+    {
+      "type": "text",
+      "id": "review_date",
+      "label": "Review Date",
+      "default": "Verified Buyer - 2 days ago"
+    },
+    {
+      "type": "checkbox",
+      "id": "verified",
+      "label": "Show Verified Badge",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Review"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stars",
+      "label": "Show Star Rating",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "rating",
+      "label": "Star Rating",
+      "default": 5,
+      "min": 1,
+      "max": 5,
+      "step": 1
+    },
+    {
+      "type": "richtext",
+      "id": "review_text",
+      "label": "Review Text",
+      "default": "<p>\"This product exceeded my expectations! I've been using it for 2 weeks now and the results are amazing. Highly recommend to anyone looking for relief.\"</p>"
+    },
+    {
+      "type": "header",
+      "content": "Review Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_image",
+      "label": "Review Image",
+      "info": "Optional image attached to the review"
+    },
+    {
+      "type": "range",
+      "id": "review_image_max_width",
+      "label": "Image Max Width",
+      "default": 300,
+      "min": 100,
+      "max": 500,
+      "step": 25,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "review_image_radius",
+      "label": "Image Border Radius",
+      "default": 8,
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Helpful Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_helpful",
+      "label": "Show Helpful Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "helpful_text",
+      "label": "Button Text",
+      "default": "Helpful"
+    },
+    {
+      "type": "number",
+      "id": "helpful_count",
+      "label": "Helpful Count",
+      "default": 24,
+      "info": "Number of people who found this helpful (0 to hide)"
+    },
+    {
+      "type": "color",
+      "id": "helpful_bg_color",
+      "label": "Button Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "helpful_text_color",
+      "label": "Button Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "helpful_border_color",
+      "label": "Button Border Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "helpful_hover_bg",
+      "label": "Button Hover Background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#19bdff",
+      "info": "Used for verified badge and avatar placeholder"
+    },
+    {
+      "type": "color",
+      "id": "date_color",
+      "label": "Date Color",
+      "default": "#888888"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Color",
+      "default": "#F1C40F"
+    },
+    {
+      "type": "color",
+      "id": "empty_star_color",
+      "label": "Empty Star Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "header",
+      "content": "Sizes"
+    },
+    {
+      "type": "range",
+      "id": "avatar_size",
+      "label": "Avatar Size",
+      "default": 48,
+      "min": 32,
+      "max": 64,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "label": "Star Size",
+      "default": 18,
+      "min": 14,
+      "max": 24,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "name_font_size",
+      "label": "Name Font Size",
+      "default": 16,
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "date_font_size",
+      "label": "Date Font Size",
+      "default": 13,
+      "min": 11,
+      "max": 16,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "content_font_size",
+      "label": "Content Font Size",
+      "default": 15,
+      "min": 13,
+      "max": 18,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Container"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "default": 20,
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "default": 8,
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border Width",
+      "default": 0,
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e0e0e0"
+    }
+  ],
+  "presets": [
+    { "name": "CS Review" }
+  ]
+}
+{% endschema %}

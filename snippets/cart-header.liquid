@@ -1,0 +1,21 @@
+<style>
+  .cart-drawer .drawer__header {
+    background-color: var(--cart-drawer-header-background);
+  }
+</style>
+<div class="drawer__header">
+  <h2 class="drawer__heading">
+    {{ 'sections.cart.title' | t -}}
+    <span class="gb-cart-total-item">{{ cart.item_count }}</span>
+  </h2>
+  <button
+    class="drawer__close"
+    type="button"
+    onclick="this.closest('cart-drawer').close()"
+    aria-label="{{ 'accessibility.close' | t }}"
+  >
+    <span class="svg-wrapper">
+      {{- 'icon-close.svg' | inline_asset_content -}}
+    </span>
+  </button>
+</div>

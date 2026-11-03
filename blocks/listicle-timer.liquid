@@ -1,0 +1,653 @@
+{% comment %}
+  Block: Listicle Timer (Countdown Banner Style)
+  Matches the previous countdown banner block from the listicle section code.
+{% endcomment %}
+
+{%- liquid
+  assign timer_id = 'timer-' | append: block.id
+-%}
+
+<div class="listicle-timer listicle-timer-{{ block.id }}{% if block.settings.sticky %} is-sticky{% endif %}" {{ block.shopify_attributes }}>
+  <div class="listicle-timer-container">
+    <div class="listicle-timer-content">
+      <div class="listicle-timer-text">
+        {% if block.settings.title != blank %}
+          <h3 class="timer-title">{{ block.settings.title }}</h3>
+        {% endif %}
+        {% if block.settings.subtitle != blank %}
+          <p class="timer-subtitle">{{ block.settings.subtitle }}</p>
+        {% endif %}
+      </div>
+
+      <div class="timer-display" 
+           id="{{ timer_id }}"
+           data-countdown-type="{{ block.settings.countdown_type }}"
+           data-hours="{{ block.settings.countdown_hours }}"
+           data-minutes="{{ block.settings.countdown_minutes }}"
+           data-seconds="{{ block.settings.countdown_seconds }}"
+           data-deadline="{{ block.settings.countdown_deadline }}">
+        
+        <div class="timer-unit">
+          <div class="timer-value hours">00</div>
+          <div class="timer-label">{{ block.settings.hours_label }}</div>
+        </div>
+        
+        <span class="timer-separator">:</span>
+        
+        <div class="timer-unit">
+          <div class="timer-value minutes">00</div>
+          <div class="timer-label">{{ block.settings.minutes_label }}</div>
+        </div>
+        
+        <span class="timer-separator">:</span>
+        
+        <div class="timer-unit">
+          <div class="timer-value seconds">00</div>
+          <div class="timer-label">{{ block.settings.seconds_label }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .listicle-timer-{{ block.id }},
+  .listicle-timer-{{ block.id }} * {
+    letter-spacing: 0px !important;
+  }
+
+  .listicle-timer-{{ block.id }} {
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_vertical }}px {{ block.settings.padding_horizontal }}px;
+    margin-top: calc(-1 * var(--section-padding-top, 0px));
+    margin-bottom: {{ block.settings.margin_bottom }}px;
+    border-radius: 0 !important;
+    box-sizing: border-box;
+    z-index: 1000;
+    /* Force to top of section */
+    order: -1;
+    /* Full-width breakout */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Sticky overrides */
+  {% if block.settings.sticky %}
+  .listicle-timer-{{ block.id }}.is-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 9999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin: 0 !important;
+    border-radius: 0 !important;
+    transform: none;
+  }
+  {% endif %}
+
+  .listicle-timer-{{ block.id }} .listicle-timer-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: {{ block.settings.gap }}px;
+    flex-wrap: wrap;
+    max-width: 1200px; /* Optional: keep content contained even if background is full width */
+    margin: 0 auto;
+  }
+
+  .listicle-timer-{{ block.id }} .listicle-timer-text {
+    text-align: center;
+  }
+
+  .listicle-timer-{{ block.id }} .timer-title {
+    margin: 0;
+    color: {{ block.settings.title_color }} !important;
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 700 !important;
+    line-height: 1.2;
+  }
+
+  .listicle-timer-{{ block.id }} .timer-subtitle {
+    margin: 2px 0 0;
+    color: {{ block.settings.subtitle_color }} !important;
+    font-size: {{ block.settings.subtitle_size }}px;
+    line-height: 1.2;
+  }
+
+  .listicle-timer-{{ block.id }} .timer-display {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .listicle-timer-{{ block.id }} .timer-unit {
+    background-color: {{ block.settings.timer_background_color }};
+    color: {{ block.settings.timer_value_color }};
+    border-radius: {{ block.settings.timer_border_radius }}px;
+    padding: {{ block.settings.timer_padding_vertical }}px {{ block.settings.timer_padding_horizontal }}px;
+    min-width: {{ block.settings.unit_min_width }}px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .listicle-timer-{{ block.id }} .timer-value {
+    font-size: {{ block.settings.timer_value_size }}px;
+    font-weight: 700 !important;
+    line-height: 1;
+  }
+
+  .listicle-timer-{{ block.id }} .timer-label {
+    font-size: {{ block.settings.timer_label_size }}px;
+    color: {{ block.settings.timer_label_color }};
+    font-weight: 600;
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+
+  .listicle-timer-{{ block.id }} .timer-separator {
+    color: {{ block.settings.timer_separator_color }};
+    font-weight: 700 !important;
+    font-size: {{ block.settings.timer_value_size }}px;
+    margin-bottom: {{ block.settings.timer_label_size | plus: 2 }}px;
+  }
+
+  @media (max-width: 768px) {
+    .listicle-timer-{{ block.id }} {
+      padding: {{ block.settings.mobile_padding_vertical }}px {{ block.settings.mobile_padding_horizontal }}px;
+    }
+    .listicle-timer-{{ block.id }} .listicle-timer-content {
+      flex-direction: row;
+      gap: {{ block.settings.mobile_gap }}px;
+      flex-wrap: nowrap; /* Force row on mobile */
+    }
+    .listicle-timer-{{ block.id }} .timer-title {
+      font-size: {{ block.settings.mobile_title_size }}px;
+    }
+    .listicle-timer-{{ block.id }} .timer-subtitle {
+      font-size: {{ block.settings.mobile_subtitle_size }}px;
+    }
+    .listicle-timer-{{ block.id }} .timer-unit {
+      padding: {{ block.settings.mobile_timer_padding_vertical }}px {{ block.settings.mobile_timer_padding_horizontal }}px;
+      min-width: {{ block.settings.mobile_unit_min_width }}px;
+    }
+    .listicle-timer-{{ block.id }} .timer-value {
+      font-size: {{ block.settings.mobile_timer_value_size }}px;
+    }
+    .listicle-timer-{{ block.id }} .timer-label {
+      font-size: {{ block.settings.mobile_timer_label_size }}px;
+    }
+    .listicle-timer-{{ block.id }} .timer-separator {
+      font-size: {{ block.settings.mobile_timer_value_size }}px;
+      margin-bottom: {{ block.settings.mobile_timer_label_size | plus: 2 }}px;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    function initTimer() {
+      const timer = document.getElementById('{{ timer_id }}');
+      if (!timer) return;
+
+      const type = timer.getAttribute('data-countdown-type');
+      const hoursVal = parseInt(timer.getAttribute('data-hours')) || 0;
+      const minsVal = parseInt(timer.getAttribute('data-minutes')) || 0;
+      const secsVal = parseInt(timer.getAttribute('data-seconds')) || 0;
+      const deadlineStr = timer.getAttribute('data-deadline');
+
+      let endTime;
+
+      if (type === 'duration') {
+        const key = 'timer_end_' + timer.id;
+        let storedEnd = localStorage.getItem(key);
+        
+        if (storedEnd) {
+          endTime = parseInt(storedEnd);
+          // If stored time is in the past, reset it
+          if (endTime < Date.now()) {
+            endTime = Date.now() + (hoursVal * 3600 + minsVal * 60 + secsVal) * 1000;
+            localStorage.setItem(key, endTime);
+          }
+        } else {
+          endTime = Date.now() + (hoursVal * 3600 + minsVal * 60 + secsVal) * 1000;
+          localStorage.setItem(key, endTime);
+        }
+      } else {
+        endTime = new Date(deadlineStr).getTime();
+      }
+
+      const hEl = timer.querySelector('.hours');
+      const mEl = timer.querySelector('.minutes');
+      const sEl = timer.querySelector('.seconds');
+
+      function update() {
+        const now = Date.now();
+        const diff = endTime - now;
+
+        if (diff <= 0) {
+          hEl.textContent = '00';
+          mEl.textContent = '00';
+          sEl.textContent = '00';
+          return;
+        }
+
+        const h = Math.floor(diff / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        hEl.textContent = String(h).padStart(2, '0');
+        mEl.textContent = String(m).padStart(2, '0');
+        sEl.textContent = String(s).padStart(2, '0');
+
+        requestAnimationFrame(update);
+      }
+
+      update();
+    }
+
+    initTimer();
+    document.addEventListener('shopify:block:select', (e) => {
+      if (e.detail.blockId === '{{ block.id }}') initTimer();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Listicle Timer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "⚡ FLASH SALE ENDING SOON ⚡"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "60% OFF + FREE SERUM - Limited Stock Available!"
+    },
+    {
+      "type": "header",
+      "content": "Countdown Settings"
+    },
+    {
+      "type": "select",
+      "id": "countdown_type",
+      "label": "Type",
+      "options": [
+        { "value": "duration", "label": "Duration (Evergreen)" },
+        { "value": "deadline", "label": "Fixed Deadline" }
+      ],
+      "default": "duration"
+    },
+    {
+      "type": "range",
+      "id": "countdown_hours",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "label": "Hours",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "countdown_minutes",
+      "min": 0,
+      "max": 59,
+      "step": 1,
+      "label": "Minutes",
+      "default": 47
+    },
+    {
+      "type": "range",
+      "id": "countdown_seconds",
+      "min": 0,
+      "max": 59,
+      "step": 1,
+      "label": "Seconds",
+      "default": 33
+    },
+    {
+      "type": "text",
+      "id": "countdown_deadline",
+      "label": "Deadline (ISO Format)",
+      "info": "Format: 2025-12-31T23:59:59Z",
+      "default": "2025-12-31T23:59:59Z"
+    },
+    {
+      "type": "text",
+      "id": "hours_label",
+      "label": "Hours Label",
+      "default": "HRS"
+    },
+    {
+      "type": "text",
+      "id": "minutes_label",
+      "label": "Minutes Label",
+      "default": "MIN"
+    },
+    {
+      "type": "text",
+      "id": "seconds_label",
+      "label": "Seconds Label",
+      "default": "SEC"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#25282a"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "timer_background_color",
+      "label": "Timer Unit Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "timer_value_color",
+      "label": "Timer Value Color",
+      "default": "#25282a"
+    },
+    {
+      "type": "color",
+      "id": "timer_label_color",
+      "label": "Timer Label Color",
+      "default": "#25282a"
+    },
+    {
+      "type": "color",
+      "id": "timer_separator_color",
+      "label": "Timer Separator Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Sizing"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Content Gap",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Vertical",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Horizontal",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle Font Size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "timer_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Timer Border Radius",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "timer_padding_vertical",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Timer Padding Vertical",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "timer_padding_horizontal",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Timer Padding Horizontal",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "unit_min_width",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Timer Unit Min Width",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "timer_value_size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Timer Value Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "timer_label_size",
+      "min": 6,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Timer Label Size",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Mobile Sizing"
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Content Gap",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_vertical",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Padding Vertical",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_horizontal",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Padding Horizontal",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Title Size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_subtitle_size",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Subtitle Size",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_timer_padding_vertical",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Timer Padding Vertical",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "mobile_timer_padding_horizontal",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Timer Padding Horizontal",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "mobile_unit_min_width",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Timer Unit Min Width",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mobile_timer_value_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Timer Value Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_timer_label_size",
+      "min": 6,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Timer Label Size",
+      "default": 9
+    },
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Banner Border Radius",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Sticky Header Mode",
+      "default": true,
+      "info": "If enabled, the banner will be full width and stick to the top of the screen."
+    }
+  ],
+  "presets": [
+    { "name": "Listicle Timer" }
+  ]
+}
+{% endschema %}

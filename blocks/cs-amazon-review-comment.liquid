@@ -1,0 +1,334 @@
+{% comment %}
+  Block: CS Amazon Review Comment
+  Individual review comment for the CS Amazon Reviews parent block.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+{%- assign parent = block.parent.settings -%}
+
+<style>
+  #amazon-review-comment-{{ block.id }} {
+    margin-top: {{ this.margin_top }}px;
+    margin-bottom: {{ this.margin_bottom }}px;
+  }
+</style>
+
+<div id="amazon-review-comment-{{ block.id }}" class="amazon-review-item" {{ block.shopify_attributes }}>
+  <div class="review-header">
+    {% if this.avatar != blank %}
+      <img
+        src="{{ this.avatar | image_url: width: 100, height: 100 }}"
+        alt="{{ this.reviewer_name }}"
+        width="100"
+        height="100"
+        class="reviewer-avatar"
+      >
+    {% else %}
+      <div class="reviewer-avatar reviewer-avatar-placeholder">
+        <span>{{ this.reviewer_name | slice: 0 }}</span>
+      </div>
+    {% endif %}
+    <div class="reviewer-info">
+      <h3 class="review-title">
+        <span class="reviewer-name">{{ this.reviewer_name }}</span>
+        {% if this.show_review_title and this.review_title != blank %}
+          - {{ this.review_title }}
+        {% endif %}
+      </h3>
+    </div>
+  </div>
+
+  <div class="review-meta">
+    <div class="review-stars" role="img" aria-label="{{ this.rating }} out of 5 stars">
+      {% for i in (1..5) %}
+        {% if i <= this.rating %}
+          <svg class="amazon-review-star" fill="currentColor" viewBox="0 0 32 32">
+            <path d="M16 4.588l2.833 8.719H28l-7.416 5.387 2.832 8.719L16 22.023l-7.417 5.389 2.833-8.719L4 13.307h9.167L16 4.588z"/>
+          </svg>
+        {% else %}
+          <svg class="amazon-review-star empty" fill="currentColor" viewBox="0 0 32 32">
+            <path d="M16 4.588l2.833 8.719H28l-7.416 5.387 2.832 8.719L16 22.023l-7.417 5.389 2.833-8.719L4 13.307h9.167L16 4.588z"/>
+          </svg>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if this.show_verified %}
+      <div class="verified-badge">
+        {% if this.verified_badge_text != blank %}
+          {% liquid
+            assign verified_content = this.verified_badge_text
+
+            if this.highlight_words != blank
+              assign highlight_words = this.highlight_words | split: ','
+              assign highlighted_content = verified_content
+
+              for word in highlight_words
+                assign clean_word = word | strip
+                if clean_word != blank
+                  assign highlight_color = this.highlight_color | default: '#C45500'
+                  assign span_open = '<span class="highlight-word" style="color: ' | append: highlight_color | append: ' !important; font-weight: bold !important;">'
+                  assign span_close = '</span>'
+                  assign replacement = span_open | append: clean_word | append: span_close
+                  assign highlighted_content = highlighted_content | replace: clean_word, replacement
+                endif
+              endfor
+
+              echo highlighted_content
+            else
+              echo verified_content
+            endif
+          %}
+        {% else %}
+          <p>Verified Purchase</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="review-date">
+    Reviewed
+    {%- if this.review_country != blank %}
+      in the <span>{{ this.review_country }}</span>
+    {% endif -%}
+    {%- if this.review_date != blank %}
+      on <span>{{ this.review_date }}</span>
+    {% endif %}
+  </div>
+
+  {% if this.review_content != blank %}
+    <div class="review-content">
+      {{ this.review_content }}
+    </div>
+  {% endif %}
+
+  {% if this.image_1 != blank or this.image_2 != blank or this.image_3 != blank or this.image_4 != blank %}
+    <div class="review-images">
+      {% liquid
+        assign aspect_ratio_class = ''
+        assign img_width = 200
+        assign img_height = 200
+
+        if this.image_aspect_ratio == '1/1'
+          assign aspect_ratio_class = ' aspect-ratio-square'
+          assign img_width = 200
+          assign img_height = 200
+        elsif this.image_aspect_ratio == '9/16'
+          assign aspect_ratio_class = ' aspect-ratio-portrait'
+          assign img_width = 180
+          assign img_height = 320
+        endif
+      %}
+      {% if this.image_1 != blank %}
+        <img src="{{ this.image_1 | image_url: width: img_width, height: img_height }}" alt="Review image 1" class="review-image{{ aspect_ratio_class }}">
+      {% endif %}
+      {% if this.image_2 != blank %}
+        <img src="{{ this.image_2 | image_url: width: img_width, height: img_height }}" alt="Review image 2" class="review-image{{ aspect_ratio_class }}">
+      {% endif %}
+      {% if this.image_3 != blank %}
+        <img src="{{ this.image_3 | image_url: width: img_width, height: img_height }}" alt="Review image 3" class="review-image{{ aspect_ratio_class }}">
+      {% endif %}
+      {% if this.image_4 != blank %}
+        <img src="{{ this.image_4 | image_url: width: img_width, height: img_height }}" alt="Review image 4" class="review-image{{ aspect_ratio_class }}">
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if this.helpful_count > 0 %}
+    <div class="review-helpful">
+      {{ this.helpful_count }} {{ this.helpful_text }}
+    </div>
+  {% endif %}
+
+  {% if this.show_helpful_report_buttons %}
+    <div class="review-actions">
+      <button class="helpful-button" type="button">
+        <span class="helpful-text">{{ this.helpful_button_text | default: 'Helpful' }}</span>
+      </button>
+      <span class="action-divider">|</span>
+      <button class="report-button" type="button">
+        <span class="report-text">{{ this.report_button_text | default: 'Report' }}</span>
+      </button>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Review Comment",
+  "settings": [
+    {
+      "type": "text",
+      "id": "reviewer_name",
+      "label": "Reviewer Name",
+      "default": "John Doe"
+    },
+    {
+      "type": "image_picker",
+      "id": "avatar",
+      "label": "Avatar Image"
+    },
+    {
+      "type": "text",
+      "id": "review_title",
+      "label": "Review Title",
+      "default": "Great product!"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_review_title",
+      "label": "Show Review Title",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "rating",
+      "label": "Star Rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "show_verified",
+      "label": "Show Verified Badge",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "verified_badge_text",
+      "label": "Verified Badge Text",
+      "default": "<p>Verified Purchase</p>"
+    },
+    {
+      "type": "text",
+      "id": "highlight_words",
+      "label": "Words to Highlight",
+      "default": "Verified Purchase",
+      "info": "Comma-separated words to highlight"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#C45500"
+    },
+    {
+      "type": "text",
+      "id": "review_country",
+      "label": "Review Country",
+      "default": "United States"
+    },
+    {
+      "type": "text",
+      "id": "review_date",
+      "label": "Review Date",
+      "default": "January 1, 2024"
+    },
+    {
+      "type": "textarea",
+      "id": "review_content",
+      "label": "Review Content",
+      "default": "I've been using this product for a few weeks now and I'm really impressed with the quality."
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Review Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Review Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Review Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Review Image 4"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "options": [
+        { "value": "auto", "label": "Auto" },
+        { "value": "1/1", "label": "Square (1:1)" },
+        { "value": "9/16", "label": "Portrait (9:16)" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "header",
+      "content": "Helpful Section"
+    },
+    {
+      "type": "number",
+      "id": "helpful_count",
+      "label": "Helpful Count",
+      "default": 15,
+      "info": "Set to 0 to hide"
+    },
+    {
+      "type": "text",
+      "id": "helpful_text",
+      "label": "Helpful Text",
+      "default": "people found this helpful"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_helpful_report_buttons",
+      "label": "Show Helpful | Report Buttons",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "helpful_button_text",
+      "label": "Helpful Button Text",
+      "default": "Helpful"
+    },
+    {
+      "type": "text",
+      "id": "report_button_text",
+      "label": "Report Button Text",
+      "default": "Report"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "default": 10,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    { "name": "Review Comment" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,330 @@
+{% comment %}
+  Block: Listicle Sticky Add to Cart
+  Matches the image provided with a large button and discount subtext.
+{% endcomment %}
+
+<div class="listicle-sticky-atc listicle-sticky-atc-{{ block.id }} {% if block.settings.sticky %} is-sticky{% endif %} {% if block.settings.mobile_only %} mobile-only{% endif %}" {{ block.shopify_attributes }}>
+  <div class="sticky-atc-container">
+    <a href="{{ block.settings.button_link }}" class="sticky-atc-button">
+      <span class="button-text">{{ block.settings.button_text }}</span>
+      <span class="button-arrow">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </span>
+    </a>
+    
+    {% if block.settings.show_subtext %}
+      <div class="sticky-atc-subtext">
+        <span class="subtext-icon">
+          {% if block.settings.subtext_icon_image != blank %}
+            <img src="{{ block.settings.subtext_icon_image | image_url: width: 40 }}" alt="" width="20" height="20">
+          {% else %}
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          {% endif %}
+        </span>
+        <span class="subtext-content">{{ block.settings.subtext }}</span>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .listicle-sticky-atc-{{ block.id }} {
+    margin-top: {{ block.settings.margin_top }}px;
+    margin-bottom: {{ block.settings.margin_bottom }}px;
+    width: 100%;
+    max-width: {{ block.settings.max_width }}px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 0px !important;
+    background-color: {{ block.settings.container_bg }} !important;
+  }
+
+  .listicle-sticky-atc-{{ block.id }} * {
+    letter-spacing: 0px !important;
+  }
+
+  .listicle-sticky-atc-{{ block.id }}.is-sticky {
+    position: fixed;
+    bottom: 0 !important;
+    left: 0 !important;
+    z-index: 9999;
+    width: 100vw !important;
+    max-width: none !important;
+    background: {{ block.settings.container_bg }} !important;
+    padding: 15px 20px;
+    border-radius: 0;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+    transform: none !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Desktop Hide Option */
+  @media (min-width: 769px) {
+    .listicle-sticky-atc-{{ block.id }}.mobile-only {
+      display: none !important;
+    }
+  }
+
+  .listicle-sticky-atc-{{ block.id }} .sticky-atc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .listicle-sticky-atc-{{ block.id }} .sticky-atc-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    background-color: {{ block.settings.button_bg }};
+    color: {{ block.settings.button_text_color }};
+    padding: {{ block.settings.button_padding_y }}px {{ block.settings.button_padding_x }}px;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-weight: 700 !important;
+    font-size: {{ block.settings.button_font_size }}px;
+    text-transform: uppercase;
+    transition: transform 0.2s ease;
+  }
+
+  .listicle-sticky-atc-{{ block.id }} .sticky-atc-button:hover {
+    transform: scale(1.02);
+  }
+
+  .listicle-sticky-atc-{{ block.id }} .button-arrow {
+    display: flex;
+    align-items: center;
+  }
+
+  .listicle-sticky-atc-{{ block.id }} .sticky-atc-subtext {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: {{ block.settings.subtext_color }};
+    font-size: {{ block.settings.subtext_font_size }}px;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+  }
+
+  .listicle-sticky-atc-{{ block.id }} .subtext-icon {
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .listicle-sticky-atc-{{ block.id }}.is-sticky {
+      bottom: 0 !important;
+      width: 100vw !important;
+      left: 0 !important;
+      padding: 15px 20px;
+    }
+    .listicle-sticky-atc-{{ block.id }} .sticky-atc-button {
+      padding: {{ block.settings.button_padding_y_mobile }}px {{ block.settings.button_padding_x_mobile }}px;
+      font-size: {{ block.settings.button_font_size_mobile }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Sticky Add to Cart",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "YES, GET 58% OFF"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background Color",
+      "default": "#25282a"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size (Desktop)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "button_font_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_y",
+      "min": 5,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_padding_x",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Subtext Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subtext",
+      "label": "Show Subtext",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "NEW YEAR, NEW ME DISCOUNT ACTIVE"
+    },
+    {
+      "type": "image_picker",
+      "id": "subtext_icon_image",
+      "label": "Custom Icon Image"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext Color",
+      "default": "#25282a"
+    },
+    {
+      "type": "range",
+      "id": "subtext_font_size",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtext Font Size",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Enable Sticky Mode",
+      "default": true,
+      "info": "If enabled, the button will stick to the bottom of the screen."
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_only",
+      "label": "Show on Mobile Only",
+      "default": false,
+      "info": "Hide this block on desktop screens."
+    },
+    {
+      "type": "color",
+      "id": "container_bg",
+      "label": "Sticky Container Background",
+      "default": "#ffffff",
+      "info": "Only used when sticky mode is enabled."
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 300,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "label": "Max Width",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Container Border Radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 20
+    }
+  ],
+  "presets": [
+    { "name": "Sticky Add to Cart" }
+  ]
+}
+{% endschema %}
+

@@ -1,0 +1,186 @@
+{% comment %}
+  Block: CS Text
+  A rich text block with highlight support for the Content Sidebar section.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+{%- liquid 
+  assign text = this.text
+  assign highlighted_texts = this.highlighted_texts | split: '|'
+  assign custom_styled = false
+
+  if this.custom_size or this.text_color != blank or this.highlighted_texts != blank or this.padding_top > 0 or this.padding_bottom > 0 or this.padding_left > 0 or this.padding_right > 0
+    assign custom_styled = true
+  endif
+-%}
+
+{%- if this.highlighted_texts != blank -%}
+  {%- for highlighted_text in highlighted_texts -%}
+    {%- assign trimmed_text = highlighted_text | strip -%}
+    {%- if trimmed_text != blank -%}
+      {%- capture highlighted -%}
+        <span class="highlighted-text">{{ trimmed_text }}</span>
+      {%- endcapture -%}
+      {%- assign text = text | replace: highlighted_text, highlighted -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if custom_styled -%}
+  <style>
+    #cs-text-{{ block.id }} {
+      padding: {{ this.padding_top }}px {{ this.padding_right }}px {{ this.padding_bottom }}px {{ this.padding_left }}px;
+      {%- if this.custom_size -%}
+        font-size: {{ this.text_size }}px;
+      {%- endif -%}
+      {%- if this.text_color != blank -%}
+        color: {{ this.text_color }} !important;
+      {%- endif -%}
+      letter-spacing: var(--letter-spacing-body);
+    }
+    {%- if this.custom_size -%}
+      @media screen and (max-width: 768px) {
+        #cs-text-{{ block.id }} {
+          font-size: {{ this.text_size | times: 0.9 | round }}px;
+        }
+      }
+    {%- endif -%}
+    {%- if this.highlighted_texts != blank -%}
+      #cs-text-{{ block.id }} .highlighted-text {
+        {%- if this.highlight_text_color != blank and this.highlight_text_color != 'rgba(0,0,0,0)' and this.highlight_text_color != 'transparent' -%}
+          color: {{ this.highlight_text_color }} !important;
+        {%- endif -%}
+        {%- if this.highlight_texts_color != blank and this.highlight_texts_color != 'rgba(0,0,0,0)' and this.highlight_texts_color != 'transparent' -%}
+          background-color: {{ this.highlight_texts_color }} !important;
+          padding: {{ this.highlight_padding_vertical | default: 2 }}px {{ this.highlight_padding_horizontal | default: 4 }}px;
+          border-radius: {{ this.highlight_border_radius | default: 2 }}px;
+          display: inline;
+          box-decoration-break: clone;
+          -webkit-box-decoration-break: clone;
+        {%- endif -%}
+      }
+    {%- endif -%}
+    #cs-text-{{ block.id }} > *:first-child {
+      margin-top: 0;
+    }
+    #cs-text-{{ block.id }} > *:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+{%- endif -%}
+
+<div 
+  {% if custom_styled %}id="cs-text-{{ block.id }}"{% endif %} 
+  class="section-block text-block" 
+  {{ block.shopify_attributes }}
+>
+  {{ text }}
+</div>
+
+{% schema %}
+{
+  "name": "CS Text",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Add your text content here.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "highlighted_texts",
+      "label": "Highlighted texts",
+      "info": "Separate multiple words/phrases with | symbol"
+    },
+    {
+      "type": "color",
+      "id": "highlight_texts_color",
+      "label": "Highlight background color"
+    },
+    {
+      "type": "color",
+      "id": "highlight_text_color",
+      "label": "Highlight text color"
+    },
+    {
+      "type": "range",
+      "id": "highlight_padding_vertical",
+      "label": "Highlight Vertical Padding",
+      "default": 2,
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "highlight_padding_horizontal",
+      "label": "Highlight Horizontal Padding",
+      "default": 4,
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "highlight_border_radius",
+      "label": "Highlight Border Radius",
+      "default": 2,
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_size",
+      "label": "Custom text size",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "text_size",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "number",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_left",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_right",
+      "label": "Padding right",
+      "default": 0
+    }
+  ],
+  "presets": [
+    { "name": "CS Text" }
+  ]
+}
+{% endschema %}

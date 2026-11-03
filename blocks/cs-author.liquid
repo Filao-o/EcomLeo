@@ -1,0 +1,190 @@
+{% comment %}
+  Block: CS Author
+  An author card block for the Content Sidebar section.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+{%- liquid 
+  assign custom_styled = false
+  if this.text_size != 16 or this.star_color != "#F1C40F" or this.empty_star_color != "#e0e0e0" or this.badge_color != "#19bdff" or this.padding_top > 0 or this.padding_bottom > 0 or this.padding_left > 0 or this.padding_right > 0
+    assign custom_styled = true
+  endif
+-%}
+
+<style>
+  #cs-author-{{ block.id }} {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: var(--letter-spacing-body);
+    padding: {{ this.padding_top }}px {{ this.padding_right }}px {{ this.padding_bottom }}px {{ this.padding_left }}px;
+  }
+  #cs-author-{{ block.id }} .author-image-container {
+    display: flex;
+    border-radius: 99999px;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+  }
+  #cs-author-{{ block.id }} .author-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #cs-author-{{ block.id }} .author-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  #cs-author-{{ block.id }} .author-info {
+    display: flex;
+    align-items: center;
+  }
+  #cs-author-{{ block.id }} .author-date-container {
+    padding-top: 3px;
+    border-top: 1px solid #e0e0e0;
+  }
+  #cs-author-{{ block.id }} .author-name {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    gap: 7px;
+  }
+  #cs-author-{{ block.id }} .author-name > svg {
+    width: 16px;
+  }
+  #cs-author-{{ block.id }} .author-name .name {
+    font-weight: 600 !important;
+  }
+  {%- if custom_styled -%}
+    #cs-author-{{ block.id }} .author-name,
+    #cs-author-{{ block.id }} .date {
+      font-size: {{ this.text_size }}px;
+    }
+    @media screen and (max-width: 768px) {
+      #cs-author-{{ block.id }} .author-name,
+      #cs-author-{{ block.id }} .date {
+        font-size: {{ this.text_size | times: 0.9 | round }}px;
+      }
+    }
+    {%- if this.badge_color != "#19bdff" -%}
+      #cs-author-{{ block.id }} .author-badge svg path {
+        fill: {{ this.badge_color }};
+      }
+    {%- endif -%}
+  {%- endif -%}
+</style>
+
+<div
+  id="cs-author-{{ block.id }}"
+  class="section-block author-block"
+  {{ block.shopify_attributes }}
+>
+  <div class="author-image-container">
+    {%- if this.author_image -%}
+      {{ this.author_image | image_url: width: 200 | image_tag: class: 'author-image' }}
+    {%- else -%}
+      <img src="https://placehold.co/50" width="100" height="100" alt="author image placeholder" class="author-image" />
+    {%- endif -%}
+  </div>
+  <div class="author-meta">
+    <div class="author-info">
+      <div class="author-name">
+        <span class="name">{{ this.author_name }}</span>
+        {%- if this.badge -%}
+          {%- if this.custom_badge -%}
+            {{ this.custom_badge | image_url: width: 200 | image_tag: class: "author-badge" }}
+          {%- else -%}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" class="author-badge">
+              <path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z" fill="#19BDFF"/>
+            </svg>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="author-date-container">
+      <div class="date">
+        {{ this.date }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CS Author",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "author_image",
+      "label": "Author Image"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author Name",
+      "default": "John Doe"
+    },
+    {
+      "type": "checkbox",
+      "id": "badge",
+      "label": "Show Badge",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_badge",
+      "label": "Custom Badge Image"
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Badge Color",
+      "default": "#19bdff"
+    },
+    {
+      "type": "text",
+      "id": "date",
+      "label": "Date",
+      "default": "January 1, 2024"
+    },
+    {
+      "type": "number",
+      "id": "text_size",
+      "label": "Text Size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "number",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_left",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_right",
+      "label": "Padding right",
+      "default": 0
+    }
+  ],
+  "presets": [
+    { "name": "CS Author" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,281 @@
+<div class="comparison-table-header comparison-table-header-{{ block.id }} {% if block.settings.hide_feature_header %}feature-header-hidden{% endif %}" {{ block.shopify_attributes }}>
+  <div class="comparison-table__row header-row">
+    <!-- Feature Header -->
+    <div class="comparison-table__cell comparison-table__label-cell header-cell">
+      {% unless block.settings.hide_feature_header %}
+        <span class="header-text">{{ block.settings.feature_header_text }}</span>
+      {% endunless %}
+    </div>
+
+    <!-- Brand Header -->
+    <div class="comparison-table__cell comparison-table__brand-cell header-cell">
+      <div class="header-content">
+        {% if block.settings.brand_logo != blank %}
+          <img 
+            src="{{ block.settings.brand_logo | image_url: width: 200 }}" 
+            alt="{{ block.settings.brand_header_text }}" 
+            class="comparison-table__logo"
+            width="{{ block.settings.brand_logo.width }}"
+            height="{{ block.settings.brand_logo.height }}"
+            loading="lazy"
+          >
+        {% else %}
+          <span class="header-text">{{ block.settings.brand_header_text }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Competitor Header -->
+    <div class="comparison-table__cell comparison-table__competitor-cell header-cell">
+      <div class="header-content">
+        {% if block.settings.competitor_logo != blank %}
+          <img 
+            src="{{ block.settings.competitor_logo | image_url: width: 200 }}" 
+            alt="{{ block.settings.competitor_header_text }}" 
+            class="comparison-table__logo"
+            width="{{ block.settings.competitor_logo.width }}"
+            height="{{ block.settings.competitor_logo.height }}"
+            loading="lazy"
+          >
+        {% else %}
+          <span class="header-text">{{ block.settings.competitor_header_text }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- 2nd Competitor Header (Optional) -->
+    <div class="comparison-table__cell comparison-table__competitor-2-cell header-cell">
+      <div class="header-content">
+        {% if block.settings.competitor_2_logo != blank %}
+          <img 
+            src="{{ block.settings.competitor_2_logo | image_url: width: 200 }}" 
+            alt="{{ block.settings.competitor_2_header_text }}" 
+            class="comparison-table__logo"
+            width="{{ block.settings.competitor_2_logo.width }}"
+            height="{{ block.settings.competitor_2_logo.height }}"
+            loading="lazy"
+          >
+        {% else %}
+          <span class="header-text">{{ block.settings.competitor_2_header_text }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .comparison-table-header-{{ block.id }} .header-cell {
+    background-color: {{ block.settings.header_bg_color }};
+    color: {{ block.settings.header_text_color }};
+    font-size: {{ block.settings.header_font_size }}px;
+    font-weight: {{ block.settings.header_font_weight }};
+    padding: {{ block.settings.header_padding_y }}px {{ block.settings.header_padding_x }}px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .comparison-table-header-{{ block.id }} .comparison-table__label-cell {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .comparison-table-header-{{ block.id }} .comparison-table__logo {
+    max-width: {{ block.settings.logo_max_width }}px;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-table-header-{{ block.id }} .header-cell {
+      font-size: {{ block.settings.header_font_size_mobile }}px;
+      padding: {{ block.settings.header_padding_y_mobile }}px {{ block.settings.header_padding_x_mobile }}px;
+    }
+    .comparison-table-header-{{ block.id }} .comparison-table__logo {
+      max-width: {{ block.settings.logo_max_width_mobile }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Table Header Row",
+  "presets": [
+    { "name": "Table Header Row" }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Column 1 (Features)"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_feature_header",
+      "label": "Hide Feature Header",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "feature_header_text",
+      "label": "Feature Header",
+      "default": "Features"
+    },
+    {
+      "type": "header",
+      "content": "Column 2 (Our Brand)"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo",
+      "label": "Brand Logo"
+    },
+    {
+      "type": "text",
+      "id": "brand_header_text",
+      "label": "Brand Title (if no logo)",
+      "default": "Our Brand"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "min": 40,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo Width (Desktop)",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width_mobile",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo Width (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Column 3 (Competitor)"
+    },
+    {
+      "type": "image_picker",
+      "id": "competitor_logo",
+      "label": "Competitor Logo"
+    },
+    {
+      "type": "text",
+      "id": "competitor_header_text",
+      "label": "Competitor Title (if no logo)",
+      "default": "Others"
+    },
+    {
+      "type": "header",
+      "content": "Column 4 (2nd Competitor)"
+    },
+    {
+      "type": "image_picker",
+      "id": "competitor_2_logo",
+      "label": "2nd Competitor Logo"
+    },
+    {
+      "type": "text",
+      "id": "competitor_2_header_text",
+      "label": "2nd Competitor Title (if no logo)",
+      "default": "Others"
+    },
+    {
+      "type": "header",
+      "content": "Header Styling"
+    },
+    {
+      "type": "color",
+      "id": "header_bg_color",
+      "label": "Header Background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Header Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Desktop)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "header_font_size_mobile",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Mobile)",
+      "default": 11
+    },
+    {
+      "type": "select",
+      "id": "header_font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "header_padding_x",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "header_padding_y",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "header_padding_x_mobile",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Horizontal Padding",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "header_padding_y_mobile",
+      "min": 4,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Vertical Padding",
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

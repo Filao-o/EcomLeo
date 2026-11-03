@@ -1,0 +1,308 @@
+{% comment %}
+  Block: CS Sidebar
+  Parent container block for sidebar in Content Sidebar section.
+  Contains nested child blocks for featured product, ratings, features list.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+
+<style>
+  #cs-sidebar-{{ block.id }} {
+    background-color: {{ this.background_color }};
+    padding: {{ this.padding }}px;
+    border-radius: {{ this.border_radius }}px;
+  }
+  #cs-sidebar-{{ block.id }} .sidebar-featured-product {
+    margin-bottom: 30px;
+  }
+  #cs-sidebar-{{ block.id }} .sidebar-featured-product h3 {
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: var(--letter-spacing-heading);
+  }
+  #cs-sidebar-{{ block.id }} .sidebar-featured-product .image-container {
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  #cs-sidebar-{{ block.id }} .sidebar-featured-product .image-container img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    border-radius: 8px;
+  }
+  #cs-sidebar-{{ block.id }} .sidebar-product-link {
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: {{ this.button_bg_color }};
+    color: {{ this.button_text_color }};
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: 700;
+    border-bottom: 4px solid {{ this.button_border_color }};
+    letter-spacing: var(--letter-spacing-body);
+  }
+  #cs-sidebar-{{ block.id }} .sidebar-rating h4 {
+    padding: 12px 0;
+    text-align: center;
+    margin: 0;
+    color: {{ this.title_color }};
+    border-bottom: 1px solid #dfdfdf;
+    font-size: 20px;
+    letter-spacing: var(--letter-spacing-heading);
+  }
+  #cs-sidebar-{{ block.id }} .ratings-by-star {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  #cs-sidebar-{{ block.id }} .total-rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 17px;
+    padding: 12px 0;
+    letter-spacing: var(--letter-spacing-body);
+  }
+  #cs-sidebar-{{ block.id }} .ratings-by-star .stars-wrapper {
+    display: flex;
+    gap: 3px;
+  }
+  #cs-sidebar-{{ block.id }} .ratings-by-star .stars-wrapper > svg {
+    width: 16px;
+    height: auto;
+  }
+  #cs-sidebar-{{ block.id }} .ratings-by-star .ratings {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  #cs-sidebar-{{ block.id }} .star-bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 35px);
+    gap: 5px;
+    justify-content: space-between;
+    letter-spacing: var(--letter-spacing-body);
+  }
+  #cs-sidebar-{{ block.id }} .star-bar > div:last-child {
+    font-weight: 700 !important;
+  }
+  #cs-sidebar-{{ block.id }} .review-rating-text {
+    font-weight: 700 !important;
+  }
+  #cs-sidebar-{{ block.id }} .rating-bar {
+    position: relative;
+    flex: 1;
+    height: 25px;
+    border: 1px solid #dedede;
+    background-color: {{ this.rating_bar_bg }};
+  }
+  #cs-sidebar-{{ block.id }} .rating-progress {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: {{ this.rating_bar_color }};
+    width: var(--bar-progress);
+  }
+  #cs-sidebar-{{ block.id }} .features {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 15px;
+    border: 1px solid {{ this.features_border_color }};
+    border-radius: 0px;
+    background-color: {{ this.features_bg_color }};
+  }
+  #cs-sidebar-{{ block.id }} .feature {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    letter-spacing: var(--letter-spacing-body);
+    padding: 12px 0;
+    border-bottom: 1px solid {{ this.features_border_color }};
+  }
+  #cs-sidebar-{{ block.id }} .feature:last-child {
+    border-bottom: none;
+  }
+  #cs-sidebar-{{ block.id }} .feature-title {
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-body);
+  }
+  #cs-sidebar-{{ block.id }} .feature-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #cs-sidebar-{{ block.id }} .feature-rating .stars-wrapper {
+    display: flex;
+    gap: 3px;
+  }
+  #cs-sidebar-{{ block.id }} .feature-rating .stars-wrapper > svg {
+    width: 16px;
+    height: auto;
+  }
+  /* Mobile styles handled by parent section */
+  @media screen and (max-width: 768px) {
+    {% if this.hide_mobile %}
+      #cs-sidebar-{{ block.id }} {
+        display: none !important;
+      }
+    {% endif %}
+    #cs-sidebar-{{ block.id }} .sidebar-featured-product h3 {
+      font-size: 18px;
+    }
+    #cs-sidebar-{{ block.id }} .sidebar-product-link {
+      font-size: 17px;
+    }
+    #cs-sidebar-{{ block.id }} .sidebar-rating h4 {
+      font-size: 18px;
+    }
+    #cs-sidebar-{{ block.id }} .star-bar {
+      font-size: 15px;
+    }
+  }
+</style>
+
+<aside 
+  id="cs-sidebar-{{ block.id }}" 
+  class="section-sidebar reviews-sidebar" 
+  {{ block.shopify_attributes }}
+>
+  {%- if block.blocks.size == 0 -%}
+    <div style="padding: 30px 15px; text-align: center; background: #f9f9f9; border: 2px dashed #ddd; border-radius: 8px;">
+      <p style="font-size: 14px; color: #666; margin: 0 0 8px 0;">Sidebar is empty</p>
+      <p style="font-size: 12px; color: #999; margin: 0;">Add featured product, ratings, etc.</p>
+    </div>
+  {%- endif -%}
+  {% content_for 'blocks' %}
+</aside>
+
+{% schema %}
+{
+  "name": "CS Sidebar",
+  "blocks": [
+    { "type": "sidebar-title" },
+    { "type": "cs-header-banner" },
+    { "type": "sidebar-featured-product" },
+    { "type": "sidebar-rating-summary" },
+    { "type": "sidebar-features-list" }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Sticky Sidebar",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "sticky_top",
+      "label": "Sticky Top Offset",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_mobile",
+      "label": "Hide on Mobile",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "padding",
+      "label": "Padding",
+      "default": 20
+    },
+    {
+      "type": "number",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Button Style"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background",
+      "default": "#1a3a5c"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#0f2a45"
+    },
+    {
+      "type": "header",
+      "content": "Rating Bars"
+    },
+    {
+      "type": "color",
+      "id": "rating_bar_color",
+      "label": "Rating Bar Color",
+      "default": "#1a3a5c"
+    },
+    {
+      "type": "color",
+      "id": "rating_bar_bg",
+      "label": "Rating Bar Background",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "header",
+      "content": "Features List"
+    },
+    {
+      "type": "color",
+      "id": "features_bg_color",
+      "label": "Features Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "features_border_color",
+      "label": "Features Border Color",
+      "default": "#e0e0e0"
+    }
+  ],
+  "presets": [
+    { "name": "CS Sidebar" }
+  ]
+}
+{% endschema %}

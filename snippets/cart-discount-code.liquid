@@ -1,0 +1,368 @@
+{% comment %}
+  💡 Cart Discount Code Component
+  
+  This snippet renders a discount code input field with apply button
+  for the cart drawer.
+  
+  Parameters:
+  - block: The discount code block settings
+{% endcomment %}
+
+<div 
+  id="cart-discount-code-form-block" 
+  class="cart-discount-code-wrapper" 
+  data-success-message="{{ block.settings.success_message | default: "Discount code will be applied at checkout" }}"
+  data-error-message="{{ block.settings.error_message | default: "Error applying discount code" }}"
+  data-empty-code-message="{{ block.settings.empty_code_message | default: "Please enter a discount code" }}"
+  data-code-exists-message="{{ block.settings.code_exists_message | default: "Discount code already applied" }}"
+  {{ block.shopify_attributes }}
+>
+  <form class="cart-discount-code-form" id="CartDrawer-DiscountCode-{{ block.id }}">
+    <div class="cart-discount-code-input-wrapper">
+      <label for="CartDrawer-DiscountCodeInput-{{ block.id }}" class="visually-hidden">
+        Discount code
+      </label>
+      <input
+        type="text"
+        name="discount_code"
+        class="cart-discount-code-input"
+        id="CartDrawer-DiscountCodeInput-{{ block.id }}"
+        placeholder="{{ block.settings.placeholder_text | default: 'Enter discount code' }}"
+        aria-label="Discount code"
+        autocomplete="off"
+      >
+      <button
+        type="submit"
+        class="cart-discount-code-button disable-global-button-styling"
+        id="CartDrawer-DiscountCodeButton-{{ block.id }}"
+        aria-label="Apply discount code"
+      >
+        <span class="cart-discount-code-button-text">{{ block.settings.button_text | default: 'APPLY' }}</span>
+        <div class="cart-discount-code-loading hidden">
+			    <div class="spin-animation">
+            <span></span>
+          </div>
+        </div>
+      </button>
+    </div>
+    <div class="cart-discount-code-message" id="CartDrawer-DiscountCodeMessage-{{ block.id }}" role="alert" aria-live="polite"></div>
+  </form>
+</div>
+
+<style>
+  .cart-discount-code-wrapper {
+    padding: 8px 0px;
+    {% if block.settings.margin_top != blank %}
+      margin-top: {{ block.settings.margin_top }}px;
+    {% endif %}
+    {% if block.settings.margin_bottom != blank %}
+      margin-bottom: {{ block.settings.margin_bottom }}px;
+    {% endif %}
+  }
+
+  .cart-discount-code-form {
+    width: 100%;
+  }
+
+  .cart-discount-code-input-wrapper {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+    width: 100%;
+    height: {{ block.settings.input_wrapper_height | default: 44 }}px;
+  }
+
+  .cart-discount-code-input,
+  #CartDrawer .cart-discount-code-input {
+    flex: 1 !important;
+    padding: 8px 10px !important;
+    {% if section.settings.use_theme_colors_cart_drawer %}
+      border: 1px solid {{ settings.global_section_text_color | color_modify: 'alpha', 0.2 }} !important;
+      background-color: {{ settings.global_section_background_color }} !important;
+      color: {{ settings.global_section_text_color }} !important;
+    {% else %}
+      border: 1px solid {{ block.settings.input_border_color | default: '#E5E5E5' }} !important;
+      background-color: {{ block.settings.input_bg_color | default: '#FFFFFF' }} !important;
+      color: {{ block.settings.input_text_color | default: '#000000' }} !important;
+    {% endif %}
+    border-radius: {{ block.settings.input_border_radius | default: 4 }}px !important;
+    font-size: 13px !important;
+    font-family: inherit !important;
+    min-width: 0 !important;
+  }
+
+  /* Prevent Safari iOS zoom on input focus - requires min 16px font-size */
+  @media screen and (max-width: 749px) {
+    .cart-discount-code-input,
+    #CartDrawer .cart-discount-code-input {
+      font-size: 16px !important;
+    }
+  }
+
+  .cart-discount-code-input::placeholder,
+  #CartDrawer .cart-discount-code-input::placeholder {
+    {% if section.settings.use_theme_colors_cart_drawer %}
+      color: {{ settings.global_section_text_color | color_modify: 'alpha', 0.6 }} !important;
+    {% else %}
+      color: {{ block.settings.placeholder_text_color | default: '#707070' }} !important;
+    {% endif %}
+    opacity: 1 !important;
+  }
+
+  .cart-discount-code-input:focus,
+  #CartDrawer .cart-discount-code-input:focus {
+    outline: none !important;
+    {% if section.settings.use_theme_colors_cart_drawer %}
+      border-color: {{ settings.global_section_accent_1_color }} !important;
+    {% else %}
+      border-color: {{ block.settings.input_border_color | default: '#E5E5E5' | color_darken: 10 }} !important;
+    {% endif %}
+  }
+
+  /* Discount code button variables */
+  .cart-discount-code-wrapper {
+    {% if section.settings.use_theme_colors_cart_drawer %}
+      --discount-button-bg: {{ settings.global_section_accent_1_color }};
+      --discount-button-text: {{ settings.global_section_button_text_color }};
+      --discount-button-border: {{ settings.global_section_accent_1_color }};
+    {% else %}
+      --discount-button-bg: {{ block.settings.button_bg_color | default: '#000000' }};
+      --discount-button-text: {{ block.settings.button_text_color | default: '#FFFFFF' }};
+      --discount-button-border: {{ block.settings.button_border_color | default: '#000000' }};
+    {% endif %}
+    --discount-button-radius: {{ block.settings.button_border_radius | default: 4 }}px;
+  }
+
+  /* High specificity button styles */
+  cart-drawer .cart-discount-code-button.disable-global-button-styling,
+  #CartDrawer .cart-discount-code-button.disable-global-button-styling,
+  .cart-drawer .cart-discount-code-button.disable-global-button-styling {
+    padding: 8px 16px !important;
+    background-color: var(--discount-button-bg) !important;
+    color: var(--discount-button-text) !important;
+    background: var(--discount-button-bg) !important;
+    border: 1px solid var(--discount-button-border) !important;
+    border-left: 1px solid var(--discount-button-border) !important;
+    border-right: 1px solid var(--discount-button-border) !important;
+    border-top: 1px solid var(--discount-button-border) !important;
+    border-bottom: 1px solid var(--discount-button-border) !important;
+    border-radius: var(--discount-button-radius) !important;
+    font-size: 13px !important;
+    font-weight: var(--font-weight-semibold) !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 70px !important;
+    transition: opacity 0.2s !important;
+    position: relative !important;
+    overflow: visible !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    text-decoration: none !important;
+    outline: none !important;
+  }
+
+  /* Hover state */
+  cart-drawer .cart-discount-code-button.disable-global-button-styling:hover,
+  #CartDrawer .cart-discount-code-button.disable-global-button-styling:hover,
+  .cart-drawer .cart-discount-code-button.disable-global-button-styling:hover {
+    background-color: var(--discount-button-bg) !important;
+    color: var(--discount-button-text) !important;
+    background: var(--discount-button-bg) !important;
+    border: 1px solid var(--discount-button-border) !important;
+    border-left: 1px solid var(--discount-button-border) !important;
+    border-right: 1px solid var(--discount-button-border) !important;
+    border-top: 1px solid var(--discount-button-border) !important;
+    border-bottom: 1px solid var(--discount-button-border) !important;
+    opacity: 0.9 !important;
+  }
+
+  /* Text color override for all child elements */
+  cart-drawer .cart-discount-code-button.disable-global-button-styling *,
+  #CartDrawer .cart-discount-code-button.disable-global-button-styling *,
+  .cart-drawer .cart-discount-code-button.disable-global-button-styling * {
+    color: var(--discount-button-text) !important;
+  }
+
+  .cart-discount-code-button.disable-global-button-styling:disabled,
+  #CartDrawer .cart-discount-code-button.disable-global-button-styling:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+  }
+
+  .cart-discount-code-button-text {
+    display: block;
+  }
+
+  .cart-discount-code-loading {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-discount-code-loading.hidden {
+    display: none;
+  }
+
+  .cart-discount-code-button.loading .cart-discount-code-button-text {
+    opacity: 0;
+  }
+
+  .cart-discount-code-button.loading .cart-discount-code-loading {
+    display: flex;
+  }
+
+  .cart-discount-code-message {
+    margin-top: 8px;
+    font-size: 12px;
+    min-height: 16px;
+  }
+
+  .cart-discount-code-message.success {
+    color: #4CAF50;
+  }
+
+  .cart-discount-code-message.error {
+    color: #F44336;
+    letter-spacing: 0.01em;
+    
+  }
+</style>
+
+<script>
+  (function() {
+    const form = document.getElementById('CartDrawer-DiscountCode-{{ block.id }}');
+    const input = document.getElementById('CartDrawer-DiscountCodeInput-{{ block.id }}');
+    const button = document.getElementById('CartDrawer-DiscountCodeButton-{{ block.id }}');
+    const message = document.getElementById('CartDrawer-DiscountCodeMessage-{{ block.id }}');
+
+    if (!form) return;
+
+    const showMessage = (text, type) => {
+      message.textContent = text;
+      message.className = `cart-discount-code-message ${type}`;
+    };
+
+    const setLoading = (loading) => {
+      button.classList.toggle('loading', loading);
+      button.disabled = loading;
+      if (loading) {
+        message.textContent = '';
+        message.className = 'cart-discount-code-message';
+      }
+    };
+
+    // Update cart drawer without page refresh (same pattern as quantity updates)
+    const updateCartAfterDiscount = async (expectedCode) => {
+      try {
+        // Get cart drawer container
+        const cartDrawerContainer = document.querySelector('cart-drawer');
+        if (!cartDrawerContainer) {
+          console.error('Cart drawer not found');
+          return { success: false };
+        }
+
+        // Fetch cart data first to include in pub/sub event
+        const cartResponse = await fetch('/cart.js');
+        const cartData = await cartResponse.json();
+
+        // Note: Shopify discount codes are stored in session and applied at checkout
+        // They don't appear in cart.js as cart_level_discount_applications
+        // Only automatic discounts show there. Manual codes show in cart HTML/checkout.
+
+        // Fetch updated cart drawer section (same as onCartUpdate in cart.js)
+        const response = await fetch(`${window.Shopify.routes.root}cart?section_id=cart-drawer`);
+        const html = await response.text();
+
+        // Parse the response
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newCartDrawer = doc.querySelector('#CartDrawer');
+
+        if (!newCartDrawer) {
+          console.error('New cart drawer not found in response');
+          return { success: false };
+        }
+
+        // Check if cart HTML shows discount message/code applied
+        // This is a better indicator than cart.js for manual discount codes
+        const discountIndicator = newCartDrawer.querySelector('[data-cart-discount], .cart__discount, .discount-code');
+
+        // Use updateCartDrawer function (same as quantity updates)
+        updateCartDrawer(cartDrawerContainer, newCartDrawer, true, () => {
+          // Publish cart update event with cart data (same as quantity updates)
+          if (window.publish && window.PUB_SUB_EVENTS) {
+            window.publish(window.PUB_SUB_EVENTS.cartUpdate, {
+              source: 'cart-discount-code',
+              cartData: cartData,
+            });
+          }
+        });
+
+        // Consider success if no explicit error
+        // Actual discount validation happens at checkout
+        return { success: true, cartData: cartData };
+      } catch (error) {
+        console.error('Error updating cart after discount:', error);
+        return { success: false };
+      }
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const code = input.value.trim();
+      if (!code) {
+        showMessage('{{ block.settings.empty_code_message | default: "Please enter a discount code" }}', 'error');
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        // Apply discount using fetch - Shopify expects GET that redirects
+        // Using redirect: 'manual' prevents page refresh but still applies discount
+        let discountApplied = false;
+
+        try {
+          const response = await fetch(`/discount/${encodeURIComponent(code)}`, {
+            method: 'GET',
+            redirect: 'manual',
+            credentials: 'include'
+          });
+
+          // Status 0 or 302 means redirect happened (discount endpoint redirects after applying)
+          if (response.type === 'opaqueredirect' || response.status === 0 || response.status === 302) {
+            discountApplied = true;
+          }
+        } catch (fetchError) {
+          // With redirect: 'manual', fetch may throw - that's actually expected
+          console.log('Discount fetch completed (redirect intercepted)');
+          discountApplied = true;
+        }
+
+        // Wait a bit longer for Shopify to process discount in session
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        // Update cart drawer without page refresh
+        const result = await updateCartAfterDiscount(code);
+
+        if (result.success) {
+          showMessage('{{ block.settings.success_message | default: "Discount code will be applied at checkout" }}', 'success');
+          input.value = '';
+        } else {
+          showMessage('{{ block.settings.error_message | default: "Error applying discount code" }}', 'error');
+        }
+      } catch (error) {
+        console.error('Error applying discount code:', error);
+        showMessage('{{ block.settings.error_message | default: "Error applying discount code" }}', 'error');
+      } finally {
+        setLoading(false);
+      }
+    });
+  })();
+</script>
+

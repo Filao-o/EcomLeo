@@ -1,0 +1,100 @@
+{% comment %}
+  Block: CS Content
+  Parent container block for content area in Content Sidebar section.
+  Contains nested child blocks for headings, text, images, etc.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+
+<style>
+  #cs-content-{{ block.id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ this.blocks_gap }}px;
+    padding: {{ this.padding_top }}px {{ this.padding_right }}px {{ this.padding_bottom }}px {{ this.padding_left }}px;
+  }
+  #cs-content-{{ block.id }} .section-block {
+    margin-bottom: 0;
+  }
+  #cs-content-{{ block.id }} .section-block:last-child {
+    margin-bottom: 0;
+  }
+</style>
+
+<div 
+  id="cs-content-{{ block.id }}" 
+  class="section-content cs-content-wrapper" 
+  {{ block.shopify_attributes }}
+>
+  {%- if block.blocks.size == 0 -%}
+    <div style="padding: 40px 20px; text-align: center; background: #f9f9f9; border: 2px dashed #ddd; border-radius: 8px;">
+      <p style="font-size: 16px; color: #666; margin: 0 0 8px 0;">Content area is empty</p>
+      <p style="font-size: 14px; color: #999; margin: 0;">Click "Add block" to add headings, text, images, etc.</p>
+    </div>
+  {%- endif -%}
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "CS Content",
+  "blocks": [
+    { "type": "cs-heading" },
+    { "type": "cs-text" },
+    { "type": "cs-rating" },
+    { "type": "cs-image" },
+    { "type": "cs-video" },
+    { "type": "cs-author" },
+    { "type": "cs-basic-text" },
+    { "type": "cs-button" },
+    { "type": "cs-review" }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "blocks_gap",
+      "label": "Gap Between Blocks",
+      "default": 20,
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "number",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_left",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_right",
+      "label": "Padding right",
+      "default": 0
+    }
+  ],
+  "presets": [
+    { "name": "CS Content" }
+  ]
+}
+{% endschema %}

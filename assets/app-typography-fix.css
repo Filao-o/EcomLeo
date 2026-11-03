@@ -1,0 +1,121 @@
+/* App Typography Fixes
+   Ensures third-party apps use consistent letter spacing
+   Prevents apps from using heading letter spacing inappropriately
+*/
+
+/* Target common app selectors and force them to use body letter spacing */
+.shopify-app-block,
+.shopify-buy-frame,
+div[data-shopify-app],
+div[data-app-id],
+div[class*="app-"],
+div[class*="App"],
+#bundle-container,
+#bundle-app,
+[data-bundle-app],
+.bundle-builder,
+#ReCharge,
+[data-rebuy-id],
+[data-rebuy-container],
+[data-bold-bundle],
+[data-loyalty-container],
+[data-quickview],
+[data-sm-buy],
+[data-judge-me],
+#judgeme_product_reviews {
+  --letter-spacing-heading: var(--app-letter-spacing, var(--letter-spacing-body)) !important;
+  letter-spacing: var(--app-letter-spacing, var(--letter-spacing-body)) !important;
+}
+
+/* Also target all children of app containers */
+.shopify-app-block *,
+.shopify-buy-frame *,
+div[data-shopify-app] *,
+div[data-app-id] *,
+div[class*="app-"] *,
+div[class*="App"] *,
+#bundle-container *,
+#bundle-app *,
+[data-bundle-app] *,
+.bundle-builder *,
+#ReCharge *,
+[data-rebuy-id] *,
+[data-rebuy-container] *,
+[data-bold-bundle] *,
+[data-loyalty-container] *,
+[data-quickview] *,
+[data-sm-buy] *,
+[data-judge-me] *,
+#judgeme_product_reviews * {
+  --letter-spacing-heading: var(--app-letter-spacing, var(--letter-spacing-body)) !important;
+  letter-spacing: var(--app-letter-spacing, var(--letter-spacing-body)) !important;
+}
+
+/* Fix for frames and iframes which might contain app content */
+iframe[src*="app"],
+iframe[src*="bundle"],
+iframe[src*="recharge"],
+iframe[src*="rebuy"],
+iframe[src*="loyalty"] {
+  --letter-spacing-heading: var(--app-letter-spacing, var(--letter-spacing-body)) !important;
+}
+
+/* Fix specific app containers by class name patterns */
+[class*="bundle"],
+[class*="Bundle"],
+[class*="subscription"],
+[class*="Subscription"],
+[class*="rebuy"],
+[class*="Rebuy"],
+[class*="recharge"],
+[class*="Recharge"],
+[class*="quickview"],
+[class*="Quickview"] {
+  --letter-spacing-heading: var(--app-letter-spacing, var(--letter-spacing-body)) !important;
+  letter-spacing: var(--app-letter-spacing, var(--letter-spacing-body)) !important;
+}
+
+/* Fix for apps that use letter-spacing directly - only target app elements */
+.shopify-app-block[style*="letter-spacing"],
+.shopify-buy-frame[style*="letter-spacing"],
+div[data-shopify-app][style*="letter-spacing"],
+div[data-app-id][style*="letter-spacing"],
+div[class*="app-"][style*="letter-spacing"],
+div[class*="App"][style*="letter-spacing"],
+#bundle-container[style*="letter-spacing"],
+#bundle-app[style*="letter-spacing"],
+[data-bundle-app][style*="letter-spacing"],
+.bundle-builder[style*="letter-spacing"],
+#ReCharge[style*="letter-spacing"],
+[data-rebuy-id][style*="letter-spacing"],
+[data-rebuy-container][style*="letter-spacing"],
+[data-bold-bundle][style*="letter-spacing"],
+[data-loyalty-container][style*="letter-spacing"],
+[data-quickview][style*="letter-spacing"],
+[data-sm-buy][style*="letter-spacing"],
+[data-judge-me][style*="letter-spacing"],
+#judgeme_product_reviews[style*="letter-spacing"] {
+  letter-spacing: var(--app-letter-spacing, var(--letter-spacing-body)) !important;
+}
+
+/* Exclude shop-product-details blocks from app letter-spacing rules */
+.shop-product-section,
+.shop-product-info,
+.shop-product-info *:not(.shop-product-title):not([class*="product-title"]),
+.shop-product-section *:not(.shop-product-title):not([class*="product-title"]),
+.blocks-section:not(.shopify-app-block):not([data-shopify-app]):not([data-app-id]):not([class*="app-"]):not(
+    [class*="App"]
+  ),
+.limited-inventory-alert,
+.limited-inventory-alert *,
+.product-description-block,
+.product-description-block * {
+  letter-spacing: var(--letter-spacing-body) !important;
+}
+
+/* Product title should use heading letter-spacing */
+.shop-product-title,
+.shop-product-section .shop-product-title,
+[class*="product-title-title"] {
+  letter-spacing: var(--letter-spacing-heading) !important;
+}

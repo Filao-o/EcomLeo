@@ -1,0 +1,380 @@
+<div class="comparison-table-row comparison-table-row-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="comparison-table__row">
+    <!-- Column 1: Feature Label -->
+    <div class="comparison-table__cell comparison-table__label-cell">
+      <div class="cell-content">
+        {% if block.settings.col_1_image != blank %}
+          <div class="cell-image-icon">
+            {{ block.settings.col_1_image | image_url: width: 80 | image_tag: loading: 'lazy' }}
+          </div>
+        {% elsif block.settings.col_1_icon != blank %}
+          <span class="cell-icon">{{ block.settings.col_1_icon }}</span>
+        {% endif %}
+        <span class="cell-text">{{ block.settings.col_1_text }}</span>
+      </div>
+    </div>
+
+    <!-- Column 2: Brand Value -->
+    <div class="comparison-table__cell comparison-table__brand-cell">
+      <div class="cell-content">
+        {% if block.settings.col_2_image != blank %}
+          <div class="cell-image-icon">
+            {{ block.settings.col_2_image | image_url: width: 80 | image_tag: loading: 'lazy' }}
+          </div>
+        {% elsif block.settings.col_2_icon != blank %}
+          <span class="cell-icon">{{ block.settings.col_2_icon }}</span>
+        {% else %}
+          <span class="cell-value">{{ block.settings.col_2_text }}</span>
+          {% if block.settings.col_2_subtext != blank %}
+            <span class="cell-subtext">{{ block.settings.col_2_subtext }}</span>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Column 3: Competitor Value -->
+    <div class="comparison-table__cell comparison-table__competitor-cell">
+      <div class="cell-content">
+        {% if block.settings.col_3_image != blank %}
+          <div class="cell-image-icon">
+            {{ block.settings.col_3_image | image_url: width: 80 | image_tag: loading: 'lazy' }}
+          </div>
+        {% elsif block.settings.col_3_icon != blank %}
+          <span class="cell-icon">{{ block.settings.col_3_icon }}</span>
+        {% else %}
+          <span class="cell-value">{{ block.settings.col_3_text }}</span>
+          {% if block.settings.col_3_subtext != blank %}
+            <span class="cell-subtext">{{ block.settings.col_3_subtext }}</span>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Column 4: 2nd Competitor Value (Optional) -->
+    <div class="comparison-table__cell comparison-table__competitor-2-cell">
+      <div class="cell-content">
+        {% if block.settings.col_4_image != blank %}
+          <div class="cell-image-icon">
+            {{ block.settings.col_4_image | image_url: width: 80 | image_tag: loading: 'lazy' }}
+          </div>
+        {% elsif block.settings.col_4_icon != blank %}
+          <span class="cell-icon">{{ block.settings.col_4_icon }}</span>
+        {% else %}
+          <span class="cell-value">{{ block.settings.col_4_text }}</span>
+          {% if block.settings.col_4_subtext != blank %}
+            <span class="cell-subtext">{{ block.settings.col_4_subtext }}</span>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .comparison-table-row-{{ block.id }} .comparison-table__row {
+    background-color: {{ block.settings.row_bg_color }};
+  }
+
+  .comparison-table-row-{{ block.id }} .cell-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .comparison-table-row-{{ block.id }} .comparison-table__label-cell .cell-content {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 8px;
+  }
+
+  .comparison-table-row-{{ block.id }} .cell-text {
+    font-size: {{ block.settings.label_size }}px;
+    font-weight: {{ block.settings.label_weight }};
+    color: {{ block.settings.label_color }};
+  }
+
+  .comparison-table-row-{{ block.id }} .cell-value {
+    font-size: {{ block.settings.value_size }}px;
+    font-weight: {{ block.settings.value_weight }};
+  }
+
+  .comparison-table-row-{{ block.id }} .cell-subtext {
+    font-size: {{ block.settings.subtext_size }}px;
+    opacity: 0.7;
+  }
+
+  .comparison-table-row-{{ block.id }} .cell-icon {
+    font-size: {{ block.settings.icon_size }}px;
+    line-height: 1;
+  }
+
+  .comparison-table-row-{{ block.id }} .cell-image-icon {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .comparison-table-row-{{ block.id }} .cell-image-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-table-row-{{ block.id }} .cell-text { font-size: {{ block.settings.label_size_mobile }}px; }
+    .comparison-table-row-{{ block.id }} .cell-value { font-size: {{ block.settings.value_size_mobile }}px; }
+    .comparison-table-row-{{ block.id }} .cell-subtext { font-size: {{ block.settings.subtext_size_mobile }}px; }
+    .comparison-table-row-{{ block.id }} .cell-icon { font-size: {{ block.settings.icon_size_mobile }}px; }
+    .comparison-table-row-{{ block.id }} .cell-image-icon {
+      width: {{ block.settings.icon_size_mobile }}px;
+      height: {{ block.settings.icon_size_mobile }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Table Row",
+  "presets": [
+    { "name": "Table Row" }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Column 1 (Feature)"
+    },
+    {
+      "type": "text",
+      "id": "col_1_text",
+      "label": "Feature Label",
+      "default": "Calories"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_1_image",
+      "label": "Feature Image Icon",
+      "info": "Overrides emoji icon"
+    },
+    {
+      "type": "text",
+      "id": "col_1_icon",
+      "label": "Feature Icon (emoji)",
+      "default": "📋"
+    },
+    {
+      "type": "header",
+      "content": "Column 2 (Our Brand)"
+    },
+    {
+      "type": "text",
+      "id": "col_2_text",
+      "label": "Brand Value",
+      "default": "100"
+    },
+    {
+      "type": "text",
+      "id": "col_2_subtext",
+      "label": "Brand Sub-text"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_2_image",
+      "label": "Brand Image Icon",
+      "info": "Overrides text/emoji"
+    },
+    {
+      "type": "text",
+      "id": "col_2_icon",
+      "label": "Brand Icon (emoji)"
+    },
+    {
+      "type": "header",
+      "content": "Column 3 (Competitor)"
+    },
+    {
+      "type": "text",
+      "id": "col_3_text",
+      "label": "Competitor Value",
+      "default": "250"
+    },
+    {
+      "type": "text",
+      "id": "col_3_subtext",
+      "label": "Competitor Sub-text"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_3_image",
+      "label": "Competitor Image Icon",
+      "info": "Overrides text/emoji"
+    },
+    {
+      "type": "text",
+      "id": "col_3_icon",
+      "label": "Competitor Icon (emoji)"
+    },
+    {
+      "type": "header",
+      "content": "Column 4 (2nd Competitor)"
+    },
+    {
+      "type": "text",
+      "id": "col_4_text",
+      "label": "2nd Competitor Value",
+      "default": "250"
+    },
+    {
+      "type": "text",
+      "id": "col_4_subtext",
+      "label": "2nd Competitor Sub-text"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_4_image",
+      "label": "2nd Competitor Image Icon",
+      "info": "Overrides text/emoji"
+    },
+    {
+      "type": "text",
+      "id": "col_4_icon",
+      "label": "2nd Competitor Icon (emoji)"
+    },
+    {
+      "type": "header",
+      "content": "Row Styling"
+    },
+    {
+      "type": "color",
+      "id": "row_bg_color",
+      "label": "Row Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography - Labels"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "min": 8,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Label Size (Desktop)",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "label_size_mobile",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Label Size (Mobile)",
+      "default": 11
+    },
+    {
+      "type": "select",
+      "id": "label_weight",
+      "label": "Label Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi-Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Typography - Values"
+    },
+    {
+      "type": "range",
+      "id": "value_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Value Size (Desktop)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "value_size_mobile",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Value Size (Mobile)",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "value_weight",
+      "label": "Value Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Typography - Subtext & Icons"
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "min": 6,
+      "max": 14,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtext Size (Desktop)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "subtext_size_mobile",
+      "min": 6,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtext Size (Mobile)",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Size (Desktop)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Size (Mobile)",
+      "default": 14
+    }
+  ]
+}
+{% endschema %}

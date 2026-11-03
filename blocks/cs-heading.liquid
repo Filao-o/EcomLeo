@@ -1,0 +1,203 @@
+{% comment %}
+  Block: CS Heading
+  A heading block for the Content Sidebar section.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+{%- liquid
+  assign heading_text = this.heading
+  assign highlighted_texts = this.highlighted_texts | split: '|'
+  assign custom_styled = false
+  
+  if this.custom_size or this.text_color != blank or this.padding_top > 0 or this.padding_bottom > 0 or this.padding_left > 0 or this.padding_right > 0 or this.highlighted_texts != blank
+    assign custom_styled = true
+  endif
+-%}
+
+{%- if this.highlighted_texts != blank -%}
+  {%- for highlighted_text in highlighted_texts -%}
+    {%- assign trimmed_text = highlighted_text | strip -%}
+    {%- if trimmed_text != blank -%}
+      {%- capture highlighted -%}
+        <span class="heading-highlight">{{ trimmed_text }}</span>
+      {%- endcapture -%}
+      {%- assign heading_text = heading_text | replace: highlighted_text, highlighted -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+<style>
+  #cs-heading-{{ block.id }} {
+    padding: {{ this.padding_top }}px {{ this.padding_right }}px {{ this.padding_bottom }}px {{ this.padding_left }}px;
+  }
+  #cs-heading-{{ block.id }} {{ this.tag }} {
+    {%- if this.custom_size -%}
+      font-size: {{ this.text_size }}px;
+    {%- endif -%}
+    {% if this.text_color != blank %}
+      color: {{ this.text_color }} !important;
+    {% endif %}
+    margin: 0;
+    letter-spacing: var(--cs-heading-letter-spacing, -0.3px);
+  }
+  {%- if this.highlighted_texts != blank -%}
+    #cs-heading-{{ block.id }} .heading-highlight {
+      {%- if this.highlight_color != blank -%}
+        color: {{ this.highlight_color }} !important;
+      {%- endif -%}
+      {%- if this.highlight_bg_color != blank and this.highlight_bg_color != 'rgba(0,0,0,0)' and this.highlight_bg_color != 'transparent' -%}
+        background-color: {{ this.highlight_bg_color }} !important;
+        padding: {{ this.highlight_padding_vertical }}px {{ this.highlight_padding_horizontal }}px;
+        border-radius: {{ this.highlight_border_radius }}px;
+        margin: 0 2px;
+        display: inline;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+      {%- endif -%}
+    }
+  {%- endif -%}
+  {%- if this.custom_size -%}
+    @media screen and (max-width: 768px) {
+      #cs-heading-{{ block.id }} {{ this.tag }} {
+        font-size: {{ this.text_size | times: 0.85 | round }}px;
+      }
+    }
+  {%- endif -%}
+</style>
+
+<div 
+  id="cs-heading-{{ block.id }}" 
+  class="section-block heading-block" 
+  {{ block.shopify_attributes }}
+>
+  <{{ this.tag }} class="{{ this.tag }}">
+    {{ heading_text }}
+  </{{ this.tag }}>
+</div>
+
+{% schema %}
+{
+  "name": "CS Heading",
+  "settings": [
+    {
+      "type": "select",
+      "id": "tag",
+      "label": "Tag",
+      "default": "h2",
+      "options": [
+        { "label": "H1", "value": "h1" },
+        { "label": "H2", "value": "h2" },
+        { "label": "H3", "value": "h3" },
+        { "label": "H4", "value": "h4" },
+        { "label": "H5", "value": "h5" },
+        { "label": "H6", "value": "h6" }
+      ]
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your Heading Here"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_size",
+      "label": "Custom text size",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "text_size",
+      "label": "Text size",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color"
+    },
+    {
+      "type": "header",
+      "content": "Highlight"
+    },
+    {
+      "type": "textarea",
+      "id": "highlighted_texts",
+      "label": "Highlighted texts",
+      "info": "Words/phrases to highlight with a different color. Separate multiple with | symbol"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Text Color",
+      "default": "#19bdff"
+    },
+    {
+      "type": "color",
+      "id": "highlight_bg_color",
+      "label": "Highlight Background Color"
+    },
+    {
+      "type": "range",
+      "id": "highlight_padding_vertical",
+      "label": "Highlight Vertical Padding",
+      "default": 2,
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "highlight_padding_horizontal",
+      "label": "Highlight Horizontal Padding",
+      "default": 5,
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "highlight_border_radius",
+      "label": "Highlight Border Radius",
+      "default": 4,
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "number",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_left",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_right",
+      "label": "Padding right",
+      "default": 0
+    }
+  ],
+  "presets": [
+    { "name": "CS Heading" }
+  ]
+}
+{% endschema %}

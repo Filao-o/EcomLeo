@@ -1,0 +1,204 @@
+{% comment %}
+  Block: CS Header Banner
+  A full-width banner with an image on the left and text on the right.
+{% endcomment %}
+
+{%- assign s = block.settings -%}
+
+<style>
+  .cs-header-banner-{{ block.id }} {
+    background-color: {{ s.background_color }};
+    padding: {{ s.padding_vertical }}px {{ s.padding_horizontal }}px;
+    margin-bottom: {{ s.margin_bottom }}px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    grid-column: 1 / -1; /* Spans full width of the grid if in section-layout */
+  }
+
+  .cs-header-banner-{{ block.id }} .banner-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .cs-header-banner-{{ block.id }} .banner-image {
+    height: {{ s.image_height }}px;
+    width: auto;
+    display: block;
+  }
+
+  .cs-header-banner-{{ block.id }} .banner-text-left {
+    color: {{ s.text_color }};
+    font-size: {{ s.font_size_left }}px;
+    font-weight: 700;
+    margin: 0;
+    {% if s.show_border_left %}
+      border: 1px solid {{ s.text_color }};
+      padding: 5px 15px;
+    {% endif %}
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .cs-header-banner-{{ block.id }} .banner-right {
+    color: {{ s.text_color }};
+    font-size: {{ s.font_size_right }}px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .cs-header-banner-{{ block.id }} {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+    }
+    .cs-header-banner-{{ block.id }} .banner-left {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<div class="cs-header-banner-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="banner-left">
+    {%- if s.image != blank -%}
+      {{ s.image | image_url: height: 100 | image_tag: class: 'banner-image', loading: 'lazy' }}
+    {%- endif -%}
+    {%- if s.title != blank -%}
+      <p class="banner-text-left">{{ s.title }}</p>
+    {%- endif -%}
+  </div>
+  
+  {%- if s.right_text != blank -%}
+    <div class="banner-right">
+      {{ s.right_text }}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "CS Header Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical Padding",
+      "default": 15,
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Horizontal Padding",
+      "default": 25,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "default": 20,
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Left Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Logo / Image"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Image Height",
+      "default": 40,
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Left Text",
+      "default": "SPINE-MAGAZINE"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border_left",
+      "label": "Show border around left text",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "font_size_left",
+      "label": "Left Text Font Size",
+      "default": 24,
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Right Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "right_text",
+      "label": "Right Text",
+      "default": "Trending in 'Health'"
+    },
+    {
+      "type": "range",
+      "id": "font_size_right",
+      "label": "Right Text Font Size",
+      "default": 20,
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CS Header Banner"
+    }
+  ]
+}
+{% endschema %}
+

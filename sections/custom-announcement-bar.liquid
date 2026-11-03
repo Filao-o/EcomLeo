@@ -1,0 +1,1416 @@
+{{ 'custom-announcement-bar.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .announcement-bar-section-{{ section.id }} {
+    {% if section.settings.use_theme_colors %}
+      background: {{ settings.global_section_background_color }} !important;
+    {% else %}
+      background: {{ section.settings.background_color }} !important;
+    {% endif %}
+    background-image: none !important;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .announcement-bar-section-{{ section.id }},
+  .announcement-bar-section-{{ section.id }} * {
+    color: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.text_color }}{% endif %} !important;
+    font-size: {{ section.settings.font_size_mobile }}px;
+  }
+
+  {% if section.settings.bold_font_weight_700 %}
+  .announcement-bar-section-{{ section.id }} strong,
+  .announcement-bar-section-{{ section.id }} b,
+  .announcement-bar-section-{{ section.id }} .announcement-highlight {
+    font-weight: 700 !important;
+  }
+  {% endif %}
+
+  @media screen and (min-width: 750px) {
+    .announcement-bar-section-{{ section.id }},
+    .announcement-bar-section-{{ section.id }} * {
+      font-size: {{ section.settings.font_size_desktop }}px;
+    }
+  }
+
+  /* Slider Container - fixed height from settings */
+  .announcement-slider-{{ section.id }} {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    height: {{ section.settings.bar_height_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .announcement-slider-{{ section.id }} {
+      height: {{ section.settings.bar_height }}px;
+    }
+  }
+
+  /* All slides are absolute and fill full height */
+  .announcement-slider-{{ section.id }} .announcement-slide-{{ section.id }} {
+    position: absolute;
+    height: 100%;
+  }
+
+  .announcement-slider-{{ section.id }} .announcement-slide-{{ section.id }}.active {
+    position: absolute;
+    height: 100%;
+  }
+
+  /* Individual Slides - active slide is relative to set container height */
+  .announcement-slide-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform {{ section.settings.transition_speed }}ms ease;
+    pointer-events: none;
+    z-index: 1;
+    padding: {{ section.settings.vertical_padding }}px {{ section.settings.horizontal_padding }}px;
+    box-sizing: border-box;
+    visibility: hidden;
+  }
+
+  /* Entering slide - positioned for animation start */
+  .announcement-slide-{{ section.id }}.entering {
+    transform: translateY(100%);
+    visibility: visible;
+  }
+
+  /* Active slide is position relative so it determines container height */
+  .announcement-slide-{{ section.id }}.active {
+    position: relative;
+    transform: translateY(0);
+    pointer-events: auto;
+    z-index: 3;
+    visibility: visible;
+  }
+
+  /* Exiting slide stays fully visible while sliding out */
+  .announcement-slide-{{ section.id }}.exiting {
+    transform: translateY(-100%);
+    z-index: 2;
+    visibility: visible;
+  }
+
+  @media screen and (max-width: 749px) {
+    .announcement-slide-{{ section.id }} {
+      padding: {{ section.settings.vertical_padding_mobile | default: section.settings.vertical_padding }}px {{ section.settings.horizontal_padding }}px;
+    }
+  }
+
+  /* Per-slide highlight text styling */
+  .announcement-slide-{{ section.id }}[data-slide-index="0"] .announcement-highlight {
+    color: {{ section.settings.slide_1_highlight_color | default: '#FFD700' }} !important;
+    {% if section.settings.slide_1_highlight_bg != blank and section.settings.slide_1_highlight_bg != 'rgba(0,0,0,0)' %}
+    background-color: {{ section.settings.slide_1_highlight_bg }};
+    padding: 0 4px;
+    border-radius: 2px;
+    {% endif %}
+  }
+  .announcement-slide-{{ section.id }}[data-slide-index="1"] .announcement-highlight {
+    color: {{ section.settings.slide_2_highlight_color | default: '#FFD700' }} !important;
+    {% if section.settings.slide_2_highlight_bg != blank and section.settings.slide_2_highlight_bg != 'rgba(0,0,0,0)' %}
+    background-color: {{ section.settings.slide_2_highlight_bg }};
+    padding: 0 4px;
+    border-radius: 2px;
+    {% endif %}
+  }
+  .announcement-slide-{{ section.id }}[data-slide-index="2"] .announcement-highlight {
+    color: {{ section.settings.slide_3_highlight_color | default: '#FFD700' }} !important;
+    {% if section.settings.slide_3_highlight_bg != blank and section.settings.slide_3_highlight_bg != 'rgba(0,0,0,0)' %}
+    background-color: {{ section.settings.slide_3_highlight_bg }};
+    padding: 0 4px;
+    border-radius: 2px;
+    {% endif %}
+  }
+  .announcement-slide-{{ section.id }}[data-slide-index="3"] .announcement-highlight {
+    color: {{ section.settings.slide_4_highlight_color | default: '#FFD700' }} !important;
+    {% if section.settings.slide_4_highlight_bg != blank and section.settings.slide_4_highlight_bg != 'rgba(0,0,0,0)' %}
+    background-color: {{ section.settings.slide_4_highlight_bg }};
+    padding: 0 4px;
+    border-radius: 2px;
+    {% endif %}
+  }
+  .announcement-slide-{{ section.id }}[data-slide-index="4"] .announcement-highlight {
+    color: {{ section.settings.slide_5_highlight_color | default: '#FFD700' }} !important;
+    {% if section.settings.slide_5_highlight_bg != blank and section.settings.slide_5_highlight_bg != 'rgba(0,0,0,0)' %}
+    background-color: {{ section.settings.slide_5_highlight_bg }};
+    padding: 0 4px;
+    border-radius: 2px;
+    {% endif %}
+  }
+
+  /* Static mode (no slider) */
+  .announcement-static-{{ section.id }} {
+    text-align: center;
+    padding: {{ section.settings.vertical_padding }}px {{ section.settings.horizontal_padding }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .announcement-static-{{ section.id }} {
+      padding: {{ section.settings.vertical_padding_mobile | default: section.settings.vertical_padding }}px {{ section.settings.horizontal_padding }}px;
+    }
+  }
+
+  .announcement-slide-{{ section.id }} p,
+  .announcement-static-{{ section.id }} p {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Slide content wrapper with icon - applies to ALL slides */
+  .announcement-slide-content-{{ section.id }},
+  .announcement-slider-{{ section.id }} .announcement-slide-content-{{ section.id }},
+  .announcement-slide-{{ section.id }} .announcement-slide-content-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: {{ section.settings.icon_gap }}px;
+    /* Padding is now on the slide itself, not the content wrapper */
+    padding: 0 !important;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .announcement-slide-icon-{{ section.id }} {
+    flex-shrink: 0;
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .announcement-slide-icon-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .announcement-slide-text-{{ section.id }} {
+    display: inline;
+  }
+
+  .announcement-slide-text-{{ section.id }} p {
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .announcement-slide-text-{{ section.id }},
+    .announcement-slide-text-{{ section.id }} p {
+      display: block;
+      text-align: center;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    
+    .announcement-slide-content-{{ section.id }} {
+      flex-direction: row;
+      gap: 8px;
+      width: 100%;
+    }
+  }
+
+  /* Button styling */
+  .announcement-slide-button-{{ section.id }} {
+    display: inline-block;
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }} !important;
+    font-size: {{ section.settings.button_font_size }}px !important;
+    padding: {{ section.settings.button_padding_y }}px {{ section.settings.button_padding_x }}px;
+    border-radius: {{ section.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+    white-space: nowrap;
+    letter-spacing: var(--letter-spacing-body);
+  }
+
+  .announcement-slide-button-{{ section.id }}:hover {
+    opacity: 0.85;
+  }
+
+  /* Per-slide background colors */
+  .announcement-slide-{{ section.id }}[data-slide-index="0"][data-custom-bg="true"] {
+    background-color: {{ section.settings.slide_1_bg_color }};
+  }
+  .announcement-slide-{{ section.id }}[data-slide-index="1"][data-custom-bg="true"] {
+    background-color: {{ section.settings.slide_2_bg_color }};
+  }
+  .announcement-slide-{{ section.id }}[data-slide-index="2"][data-custom-bg="true"] {
+    background-color: {{ section.settings.slide_3_bg_color }};
+  }
+  .announcement-slide-{{ section.id }}[data-slide-index="3"][data-custom-bg="true"] {
+    background-color: {{ section.settings.slide_4_bg_color }};
+  }
+  .announcement-slide-{{ section.id }}[data-slide-index="4"][data-custom-bg="true"] {
+    background-color: {{ section.settings.slide_5_bg_color }};
+  }
+
+  /* Navigation Arrows */
+  .announcement-nav-{{ section.id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .announcement-nav-{{ section.id }}:hover {
+    opacity: 1;
+  }
+
+  .announcement-nav-{{ section.id }} svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: {% if section.settings.use_theme_colors %}{{ settings.global_section_text_color }}{% else %}{{ section.settings.text_color }}{% endif %};
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .announcement-nav-prev-{{ section.id }} {
+    left: 10px;
+  }
+
+  .announcement-nav-next-{{ section.id }} {
+    right: 10px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .announcement-nav-{{ section.id }} {
+      padding: 10px;
+    }
+
+    .announcement-nav-{{ section.id }} svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .announcement-nav-prev-{{ section.id }} {
+      left: 20px;
+    }
+
+    .announcement-nav-next-{{ section.id }} {
+      right: 20px;
+    }
+  }
+
+  /* Per-slide text colors - need higher specificity to override global */
+  {% if section.settings.slide_1_custom_colors %}
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="0"][data-custom-bg="true"],
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="0"][data-custom-bg="true"] *,
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="0"][data-custom-bg="true"] .announcement-slide-text-{{ section.id }},
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="0"][data-custom-bg="true"] .announcement-slide-text-{{ section.id }} p {
+    color: {{ section.settings.slide_1_text_color }} !important;
+  }
+  {% endif %}
+  {% if section.settings.slide_2_custom_colors %}
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="1"][data-custom-bg="true"],
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="1"][data-custom-bg="true"] *,
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="1"][data-custom-bg="true"] .announcement-slide-text-{{ section.id }},
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="1"][data-custom-bg="true"] .announcement-slide-text-{{ section.id }} p {
+    color: {{ section.settings.slide_2_text_color }} !important;
+  }
+  {% endif %}
+  {% if section.settings.slide_3_custom_colors %}
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="2"][data-custom-bg="true"],
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="2"][data-custom-bg="true"] *,
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="2"][data-custom-bg="true"] .announcement-slide-text-{{ section.id }},
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="2"][data-custom-bg="true"] .announcement-slide-text-{{ section.id }} p {
+    color: {{ section.settings.slide_3_text_color }} !important;
+  }
+  {% endif %}
+  {% if section.settings.slide_4_custom_colors %}
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="3"][data-custom-bg="true"],
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="3"][data-custom-bg="true"] *,
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="3"][data-custom-bg="true"] .announcement-slide-text-{{ section.id }},
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="3"][data-custom-bg="true"] .announcement-slide-text-{{ section.id }} p {
+    color: {{ section.settings.slide_4_text_color }} !important;
+  }
+  {% endif %}
+  {% if section.settings.slide_5_custom_colors %}
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="4"][data-custom-bg="true"],
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="4"][data-custom-bg="true"] *,
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="4"][data-custom-bg="true"] .announcement-slide-text-{{ section.id }},
+  .announcement-bar-section-{{ section.id }} .announcement-slide-{{ section.id }}[data-slide-index="4"][data-custom-bg="true"] .announcement-slide-text-{{ section.id }} p {
+    color: {{ section.settings.slide_5_text_color }} !important;
+  }
+  {% endif %}
+</style>
+
+<div class="announcement-bar-section announcement-bar-section-{{ section.id }}">
+  {% if section.settings.enable_slider %}
+    {% assign slide_count = 1 %}
+    {% if section.settings.enable_slide_2 and section.settings.slide_2 != blank %}{% assign slide_count = slide_count | plus: 1 %}{% endif %}
+    {% if section.settings.enable_slide_3 and section.settings.slide_3 != blank %}{% assign slide_count = slide_count | plus: 1 %}{% endif %}
+    {% if section.settings.enable_slide_4 and section.settings.slide_4 != blank %}{% assign slide_count = slide_count | plus: 1 %}{% endif %}
+    {% if section.settings.enable_slide_5 and section.settings.slide_5 != blank %}{% assign slide_count = slide_count | plus: 1 %}{% endif %}
+
+    {%- comment -%} Determine default background color for slides {%- endcomment -%}
+    {%- if section.settings.use_theme_colors -%}
+      {%- assign default_slide_bg = settings.global_section_background_color -%}
+    {%- else -%}
+      {%- assign default_slide_bg = section.settings.background_color -%}
+    {%- endif -%}
+
+    {% if slide_count > 1 %}
+      <div class="announcement-slider announcement-slider-{{ section.id }}" data-section-id="{{ section.id }}" data-slide-duration="{{ section.settings.slide_duration }}" data-transition-speed="{{ section.settings.transition_speed }}">
+        {% unless section.settings.hide_arrows %}
+          <!-- Navigation Arrows -->
+          <button type="button" class="announcement-nav announcement-nav-{{ section.id }} announcement-nav-prev-{{ section.id }}" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button type="button" class="announcement-nav announcement-nav-{{ section.id }} announcement-nav-next-{{ section.id }}" aria-label="Next slide">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        {% endunless %}
+        {%- comment -%} Slide 1 is always shown when slider is enabled {%- endcomment -%}
+        <div class="announcement-slide announcement-slide-{{ section.id }} active" data-slide-index="0" data-custom-bg="{{ section.settings.slide_1_custom_colors }}" style="background-color: {% if section.settings.slide_1_custom_colors %}{{ section.settings.slide_1_bg_color }}{% else %}{{ default_slide_bg }}{% endif %};">
+          <div class="announcement-slide-content announcement-slide-content-{{ section.id }}">
+            {% if section.settings.slide_1_icon != blank %}
+              <span class="announcement-slide-icon announcement-slide-icon-{{ section.id }}">
+                <img src="{{ section.settings.slide_1_icon | image_url: width: 80 }}" alt="" loading="lazy" width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}">
+              </span>
+            {% endif %}
+            <span class="announcement-slide-text announcement-slide-text-{{ section.id }}">{{ section.settings.slide_1 }}</span>
+            {% if section.settings.slide_1_button_text != blank and section.settings.slide_1_button_link != blank %}
+              <a href="{{ section.settings.slide_1_button_link }}" class="announcement-slide-button announcement-slide-button-{{ section.id }}" style="{% if section.settings.slide_1_button_bg != blank %}background-color: {{ section.settings.slide_1_button_bg }};{% endif %}{% if section.settings.slide_1_button_text_color != blank %}color: {{ section.settings.slide_1_button_text_color }} !important;{% endif %}{% if section.settings.slide_1_button_radius %}border-radius: {{ section.settings.slide_1_button_radius }}px;{% endif %}">{{ section.settings.slide_1_button_text }}</a>
+            {% endif %}
+          </div>
+        </div>
+        {% if section.settings.enable_slide_2 and section.settings.slide_2 != blank %}
+          <div class="announcement-slide announcement-slide-{{ section.id }}" data-slide-index="1" data-custom-bg="{{ section.settings.slide_2_custom_colors }}" style="background-color: {% if section.settings.slide_2_custom_colors %}{{ section.settings.slide_2_bg_color }}{% else %}{{ default_slide_bg }}{% endif %};">
+            <div class="announcement-slide-content announcement-slide-content-{{ section.id }}">
+              {% if section.settings.slide_2_icon != blank %}
+                <span class="announcement-slide-icon announcement-slide-icon-{{ section.id }}">
+                  <img src="{{ section.settings.slide_2_icon | image_url: width: 80 }}" alt="" loading="lazy" width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}">
+                </span>
+              {% endif %}
+              <span class="announcement-slide-text announcement-slide-text-{{ section.id }}">{{ section.settings.slide_2 }}</span>
+              {% if section.settings.slide_2_button_text != blank and section.settings.slide_2_button_link != blank %}
+                <a href="{{ section.settings.slide_2_button_link }}" class="announcement-slide-button announcement-slide-button-{{ section.id }}" style="{% if section.settings.slide_2_button_bg != blank %}background-color: {{ section.settings.slide_2_button_bg }};{% endif %}{% if section.settings.slide_2_button_text_color != blank %}color: {{ section.settings.slide_2_button_text_color }} !important;{% endif %}{% if section.settings.slide_2_button_radius %}border-radius: {{ section.settings.slide_2_button_radius }}px;{% endif %}">{{ section.settings.slide_2_button_text }}</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+        {% if section.settings.enable_slide_3 and section.settings.slide_3 != blank %}
+          <div class="announcement-slide announcement-slide-{{ section.id }}" data-slide-index="2" data-custom-bg="{{ section.settings.slide_3_custom_colors }}" style="background-color: {% if section.settings.slide_3_custom_colors %}{{ section.settings.slide_3_bg_color }}{% else %}{{ default_slide_bg }}{% endif %};">
+            <div class="announcement-slide-content announcement-slide-content-{{ section.id }}">
+              {% if section.settings.slide_3_icon != blank %}
+                <span class="announcement-slide-icon announcement-slide-icon-{{ section.id }}">
+                  <img src="{{ section.settings.slide_3_icon | image_url: width: 80 }}" alt="" loading="lazy" width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}">
+                </span>
+              {% endif %}
+              <span class="announcement-slide-text announcement-slide-text-{{ section.id }}">{{ section.settings.slide_3 }}</span>
+              {% if section.settings.slide_3_button_text != blank and section.settings.slide_3_button_link != blank %}
+                <a href="{{ section.settings.slide_3_button_link }}" class="announcement-slide-button announcement-slide-button-{{ section.id }}" style="{% if section.settings.slide_3_button_bg != blank %}background-color: {{ section.settings.slide_3_button_bg }};{% endif %}{% if section.settings.slide_3_button_text_color != blank %}color: {{ section.settings.slide_3_button_text_color }} !important;{% endif %}{% if section.settings.slide_3_button_radius %}border-radius: {{ section.settings.slide_3_button_radius }}px;{% endif %}">{{ section.settings.slide_3_button_text }}</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+        {% if section.settings.enable_slide_4 and section.settings.slide_4 != blank %}
+          <div class="announcement-slide announcement-slide-{{ section.id }}" data-slide-index="3" data-custom-bg="{{ section.settings.slide_4_custom_colors }}" style="background-color: {% if section.settings.slide_4_custom_colors %}{{ section.settings.slide_4_bg_color }}{% else %}{{ default_slide_bg }}{% endif %};">
+            <div class="announcement-slide-content announcement-slide-content-{{ section.id }}">
+              {% if section.settings.slide_4_icon != blank %}
+                <span class="announcement-slide-icon announcement-slide-icon-{{ section.id }}">
+                  <img src="{{ section.settings.slide_4_icon | image_url: width: 80 }}" alt="" loading="lazy" width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}">
+                </span>
+              {% endif %}
+              <span class="announcement-slide-text announcement-slide-text-{{ section.id }}">{{ section.settings.slide_4 }}</span>
+              {% if section.settings.slide_4_button_text != blank and section.settings.slide_4_button_link != blank %}
+                <a href="{{ section.settings.slide_4_button_link }}" class="announcement-slide-button announcement-slide-button-{{ section.id }}" style="{% if section.settings.slide_4_button_bg != blank %}background-color: {{ section.settings.slide_4_button_bg }};{% endif %}{% if section.settings.slide_4_button_text_color != blank %}color: {{ section.settings.slide_4_button_text_color }} !important;{% endif %}{% if section.settings.slide_4_button_radius %}border-radius: {{ section.settings.slide_4_button_radius }}px;{% endif %}">{{ section.settings.slide_4_button_text }}</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+        {% if section.settings.enable_slide_5 and section.settings.slide_5 != blank %}
+          <div class="announcement-slide announcement-slide-{{ section.id }}" data-slide-index="4" data-custom-bg="{{ section.settings.slide_5_custom_colors }}" style="background-color: {% if section.settings.slide_5_custom_colors %}{{ section.settings.slide_5_bg_color }}{% else %}{{ default_slide_bg }}{% endif %};">
+            <div class="announcement-slide-content announcement-slide-content-{{ section.id }}">
+              {% if section.settings.slide_5_icon != blank %}
+                <span class="announcement-slide-icon announcement-slide-icon-{{ section.id }}">
+                  <img src="{{ section.settings.slide_5_icon | image_url: width: 80 }}" alt="" loading="lazy" width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}">
+                </span>
+              {% endif %}
+              <span class="announcement-slide-text announcement-slide-text-{{ section.id }}">{{ section.settings.slide_5 }}</span>
+              {% if section.settings.slide_5_button_text != blank and section.settings.slide_5_button_link != blank %}
+                <a href="{{ section.settings.slide_5_button_link }}" class="announcement-slide-button announcement-slide-button-{{ section.id }}" style="{% if section.settings.slide_5_button_bg != blank %}background-color: {{ section.settings.slide_5_button_bg }};{% endif %}{% if section.settings.slide_5_button_text_color != blank %}color: {{ section.settings.slide_5_button_text_color }} !important;{% endif %}{% if section.settings.slide_5_button_radius %}border-radius: {{ section.settings.slide_5_button_radius }}px;{% endif %}">{{ section.settings.slide_5_button_text }}</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <script>
+        (function() {
+          const slider = document.querySelector('.announcement-slider-{{ section.id }}');
+          if (!slider) return;
+
+          const slides = slider.querySelectorAll('.announcement-slide-{{ section.id }}');
+          if (slides.length < 2) return;
+
+          const prevBtn = slider.querySelector('.announcement-nav-prev-{{ section.id }}');
+          const nextBtn = slider.querySelector('.announcement-nav-next-{{ section.id }}');
+
+          const slideDuration = parseInt(slider.dataset.slideDuration) || 4000;
+          const transitionSpeed = parseInt(slider.dataset.transitionSpeed) || 500;
+          let currentIndex = 0;
+          let isTransitioning = false;
+          let autoPlayInterval = null;
+
+          function goToSlide(targetIndex, direction) {
+            if (isTransitioning || targetIndex === currentIndex) return;
+            isTransitioning = true;
+
+            const currentSlide = slides[currentIndex];
+            const nextSlideEl = slides[targetIndex];
+
+            // Make next slide entering (absolute, animating in)
+            nextSlideEl.classList.add('entering');
+            
+            // Force reflow to ensure entering class is applied
+            nextSlideEl.offsetHeight;
+            
+            // Start transition - current becomes previous, next becomes active
+            currentSlide.classList.remove('active');
+            currentSlide.classList.add('exiting');
+            nextSlideEl.classList.remove('entering');
+            nextSlideEl.classList.add('active');
+
+            // Clean up after transition completes
+            setTimeout(() => {
+              currentSlide.classList.remove('exiting');
+              currentIndex = targetIndex;
+              isTransitioning = false;
+            }, transitionSpeed);
+          }
+
+          function nextSlide() {
+            const nextIndex = (currentIndex + 1) % slides.length;
+            goToSlide(nextIndex, 'next');
+          }
+
+          function prevSlide() {
+            const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+            goToSlide(prevIndex, 'prev');
+          }
+
+          function resetAutoPlay() {
+            if (autoPlayInterval) {
+              clearInterval(autoPlayInterval);
+            }
+            autoPlayInterval = setInterval(nextSlide, slideDuration);
+          }
+
+          // Arrow button event listeners
+          if (prevBtn) {
+            prevBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              prevSlide();
+              resetAutoPlay();
+            });
+          }
+
+          if (nextBtn) {
+            nextBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              nextSlide();
+              resetAutoPlay();
+            });
+          }
+
+          // Start auto-play
+          autoPlayInterval = setInterval(nextSlide, slideDuration);
+        })();
+      </script>
+    {% else %}
+      {%- comment -%} Only one slide, show it statically {%- endcomment -%}
+      <div class="announcement-static-{{ section.id }}">
+        <div class="announcement-slide-content announcement-slide-content-{{ section.id }}">
+          {% if section.settings.slide_1_icon != blank %}
+            <span class="announcement-slide-icon announcement-slide-icon-{{ section.id }}">
+              <img src="{{ section.settings.slide_1_icon | image_url: width: 80 }}" alt="" loading="lazy" width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}">
+            </span>
+          {% endif %}
+          <span class="announcement-slide-text announcement-slide-text-{{ section.id }}">
+            {% if section.settings.slide_1 != blank %}
+              {{ section.settings.slide_1 }}
+            {% else %}
+              {{ section.settings.text }}
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    {% endif %}
+  {% else %}
+    {%- comment -%} Slider disabled, show static text {%- endcomment -%}
+    <div class="announcement-static-{{ section.id }}">
+      <div class="announcement-slide-content announcement-slide-content-{{ section.id }}">
+        <span class="announcement-slide-text announcement-slide-text-{{ section.id }}">{{ section.settings.text }}</span>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  (function() {
+    // Highlight text function
+    function highlightText(container, textToHighlight) {
+      if (!container || !textToHighlight || textToHighlight.trim() === '') return;
+      
+      const textSpan = container.querySelector('.announcement-slide-text-{{ section.id }}');
+      if (!textSpan) return;
+      
+      const html = textSpan.innerHTML;
+      const escapedText = textToHighlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp('(' + escapedText + ')', 'gi');
+      
+      if (regex.test(html)) {
+        textSpan.innerHTML = html.replace(regex, '<span class="announcement-highlight">$1</span>');
+      }
+    }
+    
+    // Apply highlights to each slide
+    {% if section.settings.slide_1_highlight_text != blank %}
+      const slide0 = document.querySelector('.announcement-slide-{{ section.id }}[data-slide-index="0"]');
+      highlightText(slide0, {{ section.settings.slide_1_highlight_text | json }});
+    {% endif %}
+    
+    {% if section.settings.slide_2_highlight_text != blank %}
+      const slide1 = document.querySelector('.announcement-slide-{{ section.id }}[data-slide-index="1"]');
+      highlightText(slide1, {{ section.settings.slide_2_highlight_text | json }});
+    {% endif %}
+    
+    {% if section.settings.slide_3_highlight_text != blank %}
+      const slide2 = document.querySelector('.announcement-slide-{{ section.id }}[data-slide-index="2"]');
+      highlightText(slide2, {{ section.settings.slide_3_highlight_text | json }});
+    {% endif %}
+    
+    {% if section.settings.slide_4_highlight_text != blank %}
+      const slide3 = document.querySelector('.announcement-slide-{{ section.id }}[data-slide-index="3"]');
+      highlightText(slide3, {{ section.settings.slide_4_highlight_text | json }});
+    {% endif %}
+    
+    {% if section.settings.slide_5_highlight_text != blank %}
+      const slide4 = document.querySelector('.announcement-slide-{{ section.id }}[data-slide-index="4"]');
+      highlightText(slide4, {{ section.settings.slide_5_highlight_text | json }});
+    {% endif %}
+    
+    // Also handle static single slide
+    {% if section.settings.slide_1_highlight_text != blank %}
+      const staticSlide = document.querySelector('.announcement-static-{{ section.id }}');
+      if (staticSlide) {
+        highlightText(staticSlide, {{ section.settings.slide_1_highlight_text | json }});
+      }
+    {% endif %}
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "use_theme_colors",
+      "label": "Use Theme Colors",
+      "default": true,
+      "info": "Apply the global theme colors to this section (inverted)"
+    },
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slider",
+      "label": "Enable Slide Rotation",
+      "default": false,
+      "info": "Enable rotating between multiple announcement slides"
+    },
+    {
+      "type": "range",
+      "id": "slide_duration",
+      "min": 2000,
+      "max": 9500,
+      "step": 500,
+      "unit": "ms",
+      "label": "Time Between Slides",
+      "default": 4000,
+      "info": "How long each slide is displayed",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "range",
+      "id": "transition_speed",
+      "min": 200,
+      "max": 1000,
+      "step": 50,
+      "unit": "ms",
+      "label": "Transition Speed",
+      "default": 500,
+      "info": "Speed of the fade up/down animation",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_arrows",
+      "label": "Hide Navigation Arrows",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Slide 1",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_1_icon",
+      "label": "Slide 1 Icon",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "richtext",
+      "id": "slide_1",
+      "label": "Slide 1 Text",
+      "default": "<p>Save 50% Off - Limited Time Only!</p>",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "slide_1_custom_colors",
+      "label": "Use custom colors for Slide 1",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_1_bg_color",
+      "label": "Slide 1 Background",
+      "default": "#000000",
+      "visible_if": "{{ section.settings.slide_1_custom_colors == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_1_text_color",
+      "label": "Slide 1 Text Color",
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.slide_1_custom_colors == true }}"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_button_text",
+      "label": "Slide 1 Button Text",
+      "info": "Leave blank for no button",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "url",
+      "id": "slide_1_button_link",
+      "label": "Slide 1 Button Link",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_1_button_bg",
+      "label": "Slide 1 Button Background",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_1_button_text_color",
+      "label": "Slide 1 Button Text Color",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "range",
+      "id": "slide_1_button_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Slide 1 Button Border Radius",
+      "default": 4,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_highlight_text",
+      "label": "Slide 1 Text to Highlight",
+      "info": "Enter the exact text you want to highlight (case-insensitive)",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_1_highlight_color",
+      "label": "Slide 1 Highlight Text Color",
+      "default": "#FFD700",
+      "info": "Color for the highlighted text specified above",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_1_highlight_bg",
+      "label": "Slide 1 Highlight Background",
+      "info": "Leave empty for no background",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slide_2",
+      "label": "Enable Slide 2",
+      "default": true,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Slide 2",
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_2_icon",
+      "label": "Slide 2 Icon",
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "richtext",
+      "id": "slide_2",
+      "label": "Slide 2 Text",
+      "default": "<p>Free Shipping On All US Orders</p>",
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "slide_2_custom_colors",
+      "label": "Use custom colors for Slide 2",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_2_bg_color",
+      "label": "Slide 2 Background",
+      "default": "#000000",
+      "visible_if": "{{ section.settings.slide_2_custom_colors == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_2_text_color",
+      "label": "Slide 2 Text Color",
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.slide_2_custom_colors == true }}"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_button_text",
+      "label": "Slide 2 Button Text",
+      "info": "Leave blank for no button",
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "url",
+      "id": "slide_2_button_link",
+      "label": "Slide 2 Button Link",
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_2_button_bg",
+      "label": "Slide 2 Button Background",
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_2_button_text_color",
+      "label": "Slide 2 Button Text Color",
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "range",
+      "id": "slide_2_button_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Slide 2 Button Border Radius",
+      "default": 4,
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_highlight_text",
+      "label": "Slide 2 Text to Highlight",
+      "info": "Enter the exact text you want to highlight (case-insensitive)",
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_2_highlight_color",
+      "label": "Slide 2 Highlight Text Color",
+      "default": "#FFD700",
+      "info": "Color for the highlighted text specified above",
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_2_highlight_bg",
+      "label": "Slide 2 Highlight Background",
+      "info": "Leave empty for no background",
+      "visible_if": "{{ section.settings.enable_slide_2 == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slide_3",
+      "label": "Enable Slide 3",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3",
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_3_icon",
+      "label": "Slide 3 Icon",
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "richtext",
+      "id": "slide_3",
+      "label": "Slide 3 Text",
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "slide_3_custom_colors",
+      "label": "Use custom colors for Slide 3",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_3_bg_color",
+      "label": "Slide 3 Background",
+      "default": "#000000",
+      "visible_if": "{{ section.settings.slide_3_custom_colors == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_3_text_color",
+      "label": "Slide 3 Text Color",
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.slide_3_custom_colors == true }}"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_button_text",
+      "label": "Slide 3 Button Text",
+      "info": "Leave blank for no button",
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "url",
+      "id": "slide_3_button_link",
+      "label": "Slide 3 Button Link",
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_3_button_bg",
+      "label": "Slide 3 Button Background",
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_3_button_text_color",
+      "label": "Slide 3 Button Text Color",
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "range",
+      "id": "slide_3_button_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Slide 3 Button Border Radius",
+      "default": 4,
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_highlight_text",
+      "label": "Slide 3 Text to Highlight",
+      "info": "Enter the exact text you want to highlight (case-insensitive)",
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_3_highlight_color",
+      "label": "Slide 3 Highlight Text Color",
+      "default": "#FFD700",
+      "info": "Color for the highlighted text specified above",
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_3_highlight_bg",
+      "label": "Slide 3 Highlight Background",
+      "info": "Leave empty for no background",
+      "visible_if": "{{ section.settings.enable_slide_3 == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slide_4",
+      "label": "Enable Slide 4",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Slide 4",
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_4_icon",
+      "label": "Slide 4 Icon",
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "richtext",
+      "id": "slide_4",
+      "label": "Slide 4 Text",
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "slide_4_custom_colors",
+      "label": "Use custom colors for Slide 4",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_4_bg_color",
+      "label": "Slide 4 Background",
+      "default": "#000000",
+      "visible_if": "{{ section.settings.slide_4_custom_colors == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_4_text_color",
+      "label": "Slide 4 Text Color",
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.slide_4_custom_colors == true }}"
+    },
+    {
+      "type": "text",
+      "id": "slide_4_button_text",
+      "label": "Slide 4 Button Text",
+      "info": "Leave blank for no button",
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "url",
+      "id": "slide_4_button_link",
+      "label": "Slide 4 Button Link",
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_4_button_bg",
+      "label": "Slide 4 Button Background",
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_4_button_text_color",
+      "label": "Slide 4 Button Text Color",
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "range",
+      "id": "slide_4_button_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Slide 4 Button Border Radius",
+      "default": 4,
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "text",
+      "id": "slide_4_highlight_text",
+      "label": "Slide 4 Text to Highlight",
+      "info": "Enter the exact text you want to highlight (case-insensitive)",
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_4_highlight_color",
+      "label": "Slide 4 Highlight Text Color",
+      "default": "#FFD700",
+      "info": "Color for the highlighted text specified above",
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_4_highlight_bg",
+      "label": "Slide 4 Highlight Background",
+      "info": "Leave empty for no background",
+      "visible_if": "{{ section.settings.enable_slide_4 == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slide_5",
+      "label": "Enable Slide 5",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Slide 5",
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_5_icon",
+      "label": "Slide 5 Icon",
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "richtext",
+      "id": "slide_5",
+      "label": "Slide 5 Text",
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "slide_5_custom_colors",
+      "label": "Use custom colors for Slide 5",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_5_bg_color",
+      "label": "Slide 5 Background",
+      "default": "#000000",
+      "visible_if": "{{ section.settings.slide_5_custom_colors == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_5_text_color",
+      "label": "Slide 5 Text Color",
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.slide_5_custom_colors == true }}"
+    },
+    {
+      "type": "text",
+      "id": "slide_5_button_text",
+      "label": "Slide 5 Button Text",
+      "info": "Leave blank for no button",
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "url",
+      "id": "slide_5_button_link",
+      "label": "Slide 5 Button Link",
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_5_button_bg",
+      "label": "Slide 5 Button Background",
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_5_button_text_color",
+      "label": "Slide 5 Button Text Color",
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "range",
+      "id": "slide_5_button_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Slide 5 Button Border Radius",
+      "default": 4,
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "text",
+      "id": "slide_5_highlight_text",
+      "label": "Slide 5 Text to Highlight",
+      "info": "Enter the exact text you want to highlight (case-insensitive)",
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_5_highlight_color",
+      "label": "Slide 5 Highlight Text Color",
+      "default": "#FFD700",
+      "info": "Color for the highlighted text specified above",
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slide_5_highlight_bg",
+      "label": "Slide 5 Highlight Background",
+      "info": "Leave empty for no background",
+      "visible_if": "{{ section.settings.enable_slide_5 == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Icon Settings",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 20,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "range",
+      "id": "icon_gap",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap Between Icon and Text",
+      "default": 8,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Button Settings",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background",
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#000000",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 12,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_x",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 12,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_y",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 6,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 4,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "range",
+      "id": "button_gap",
+      "min": 6,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap Before Button",
+      "default": 10,
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Static Text (when slider disabled)",
+      "visible_if": "{{ section.settings.enable_slider == false }}"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "<p>LIMITED TIME: SAVE UP TO 48%</p>",
+      "visible_if": "{{ section.settings.enable_slider == false }}"
+    },
+    {
+      "type": "header",
+      "content": "Style Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size (Desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "checkbox",
+      "id": "bold_font_weight_700",
+      "label": "Use font-weight 700 for bold text",
+      "default": false,
+      "info": "When enabled, bold text in rich text will use font-weight: 700 instead of browser default"
+    },
+    {
+      "type": "range",
+      "id": "bar_height",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Bar Height - Desktop",
+      "default": 45,
+      "info": "Height of the announcement bar on desktop",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "range",
+      "id": "bar_height_mobile",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Bar Height - Mobile",
+      "default": 40,
+      "info": "Height of the announcement bar on mobile",
+      "visible_if": "{{ section.settings.enable_slider == true }}"
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical Padding - Desktop",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical Padding - Mobile",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal Padding",
+      "default": 15
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar",
+      "category": "Promotional"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,776 @@
+{% comment %}
+  Block: CS Amazon Reviews
+  Parent container for Amazon-styled reviews in Content Sidebar section.
+  Renders at full width below the main content/sidebar grid.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+
+<style>
+  #cs-amazon-reviews-{{ block.id }} {
+    grid-column: 1 / -1;
+    padding-top: {{ this.padding_top }}px;
+    padding-bottom: {{ this.padding_bottom }}px;
+    background-color: {{ this.background_color }};
+    letter-spacing: var(--cs-body-letter-spacing, 0);
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .amazon-reviews-container {
+    max-width: {{ this.max_width }}px;
+    margin: 0 auto;
+    padding: 0 {{ this.horizontal_padding }}px;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .amazon-reviews-header {
+    text-align: {{ this.header_alignment }};
+    margin-bottom: {{ this.header_spacing }}px;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .amazon-reviews-heading {
+    font-size: {{ this.heading_size }}px;
+    color: {{ this.heading_color }};
+    font-weight: {{ this.heading_weight }};
+    margin-bottom: {{ this.heading_margin }}px;
+    letter-spacing: var(--cs-heading-letter-spacing, -0.3px);
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .amazon-reviews-subheading {
+    font-size: {{ this.subheading_size }}px;
+    color: {{ this.subheading_color }};
+    font-weight: {{ this.subheading_weight }};
+    margin-top: 0;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .amazon-review-item {
+    background-color: {{ this.review_background }};
+    border: {{ this.review_border_width }}px solid {{ this.review_border_color }};
+    border-radius: {{ this.review_border_radius }}px;
+    padding: {{ this.review_padding }}px;
+    margin-bottom: {{ this.review_spacing }}px;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .amazon-review-item:last-child {
+    margin-bottom: 0;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .reviewer-avatar {
+    width: {{ this.avatar_size }}px;
+    height: {{ this.avatar_size }}px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .reviewer-avatar-placeholder {
+    background-color: {{ this.avatar_placeholder_bg }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .reviewer-avatar-placeholder span {
+    font-size: {{ this.avatar_size | divided_by: 2 }}px;
+    color: {{ this.avatar_placeholder_text }};
+    font-weight: 600;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .reviewer-info {
+    flex: 1;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .reviewer-name {
+    font-size: {{ this.name_size }}px;
+    color: {{ this.name_color }};
+    font-weight: 700 !important;
+    display: inline;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-title {
+    font-size: {{ this.title_size }}px;
+    color: {{ this.title_color }};
+    font-weight: {{ this.title_weight }};
+    margin: 0;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-stars {
+    display: flex;
+    gap: -2px;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .amazon-review-star {
+    width: {{ this.star_size }}px;
+    height: {{ this.star_size }}px;
+    color: {{ this.star_color }};
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .amazon-review-star.empty {
+    color: {{ this.star_empty_color }};
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .verified-badge {
+    background-color: {{ this.badge_background }};
+    padding: {{ this.badge_padding }};
+    border-radius: {{ this.badge_radius }}px;
+    font-size: {{ this.badge_size }}px;
+    font-weight: {{ this.badge_weight }};
+    color: {{ this.badge_color }} !important;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .verified-badge p {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline !important;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-date {
+    color: {{ this.date_color }};
+    font-size: {{ this.date_size }}px;
+    display: inline;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-content {
+    font-size: {{ this.content_size }}px;
+    color: {{ this.content_color }};
+    line-height: {{ this.content_line_height }};
+    margin-bottom: {{ this.content_margin }}px;
+    margin-top: 10px;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-images {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-image {
+    width: auto;
+    height: {{ this.review_image_height }}px;
+    object-fit: cover;
+    border-radius: {{ this.image_border_radius }}px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-image.aspect-ratio-square {
+    aspect-ratio: 1/1;
+    width: {{ this.review_image_height }}px;
+    height: {{ this.review_image_height }}px;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-image.aspect-ratio-portrait {
+    aspect-ratio: 9/16;
+    width: auto;
+    height: {{ this.review_image_height }}px;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-image:hover {
+    transform: scale(1.05);
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-helpful {
+    color: {{ this.helpful_color }};
+    font-size: {{ this.helpful_size }}px;
+    margin-top: 10px;
+    font-weight: 700 !important;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .review-actions {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .helpful-button,
+  #cs-amazon-reviews-{{ block.id }} .report-button {
+    background: none;
+    border: none;
+    color: {{ this.helpful_button_color }};
+    font-size: {{ this.action_button_size }}px;
+    cursor: pointer;
+    padding: 4px 0;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .helpful-button:hover {
+    color: {{ this.helpful_button_hover_color }};
+  }
+
+  #cs-amazon-reviews-{{ block.id }} .action-divider {
+    color: {{ this.helpful_button_color }};
+    font-size: {{ this.action_button_size }}px;
+  }
+
+  @media (max-width: 768px) {
+    #cs-amazon-reviews-{{ block.id }} .amazon-reviews-container {
+      padding: 0 20px;
+    }
+
+    #cs-amazon-reviews-{{ block.id }} .amazon-reviews-heading {
+      font-size: calc({{ this.heading_size }}px * 0.55);
+      line-height: 1;
+    }
+
+    #cs-amazon-reviews-{{ block.id }} .amazon-reviews-subheading {
+      font-size: calc({{ this.subheading_size }}px * 0.85);
+      line-height: 1.3;
+    }
+  }
+</style>
+
+<div id="cs-amazon-reviews-{{ block.id }}" class="cs-amazon-reviews-wrapper" {{ block.shopify_attributes }}>
+  <div class="amazon-reviews-container">
+    {% if this.heading != blank or this.subheading != blank %}
+      <div class="amazon-reviews-header">
+        {% if this.heading != blank %}
+          <h2 class="amazon-reviews-heading">{{ this.heading }}</h2>
+        {% endif %}
+        {% if this.subheading != blank %}
+          <p class="amazon-reviews-subheading">{{ this.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="amazon-reviews-list">
+      {%- if block.blocks.size == 0 -%}
+        <div style="padding: 30px; text-align: center; background: #f9f9f9; border: 2px dashed #ddd; border-radius: 8px;">
+          <p style="font-size: 14px; color: #666; margin: 0 0 8px 0;">No reviews yet</p>
+          <p style="font-size: 12px; color: #999; margin: 0;">Click "Add block" to add review comments</p>
+        </div>
+      {%- endif -%}
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CS Amazon Reviews",
+  "blocks": [
+    { "type": "cs-amazon-review-comment" }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See what our customers are saying"
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "header_spacing",
+      "label": "Header Bottom Spacing",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 30,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum Width",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "default": 950,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal Padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Typography - Heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#0F1111"
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin",
+      "label": "Heading Bottom Margin",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Typography - Subheading"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#565959"
+    },
+    {
+      "type": "select",
+      "id": "subheading_weight",
+      "label": "Subheading Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "review_background",
+      "label": "Review Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "review_border_color",
+      "label": "Review Border Color",
+      "default": "#D5D9D9"
+    },
+    {
+      "type": "header",
+      "content": "Review Card Styling"
+    },
+    {
+      "type": "range",
+      "id": "review_padding",
+      "label": "Review Padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "review_spacing",
+      "label": "Space Between Reviews",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "default": 35,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "review_border_width",
+      "label": "Border Width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "review_border_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Avatar Settings"
+    },
+    {
+      "type": "range",
+      "id": "avatar_size",
+      "label": "Avatar Size",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "avatar_placeholder_bg",
+      "label": "Avatar Placeholder Background",
+      "default": "#dddddd"
+    },
+    {
+      "type": "color",
+      "id": "avatar_placeholder_text",
+      "label": "Avatar Placeholder Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Reviewer Name & Title"
+    },
+    {
+      "type": "range",
+      "id": "name_size",
+      "label": "Name Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Name Color",
+      "default": "#0F1111"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Font Size",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#0F1111"
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Star Rating"
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "label": "Star Size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Color",
+      "default": "#FFA41C"
+    },
+    {
+      "type": "color",
+      "id": "star_empty_color",
+      "label": "Empty Star Color",
+      "default": "#DDD"
+    },
+    {
+      "type": "header",
+      "content": "Verified Badge"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Badge Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Badge Text Color",
+      "default": "#C45500"
+    },
+    {
+      "type": "text",
+      "id": "badge_padding",
+      "label": "Badge Padding",
+      "default": "0"
+    },
+    {
+      "type": "range",
+      "id": "badge_radius",
+      "label": "Badge Border Radius",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "badge_size",
+      "label": "Badge Font Size",
+      "min": 10,
+      "max": 14,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "badge_weight",
+      "label": "Badge Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Date"
+    },
+    {
+      "type": "color",
+      "id": "date_color",
+      "label": "Date Color",
+      "default": "#565959"
+    },
+    {
+      "type": "range",
+      "id": "date_size",
+      "label": "Date Font Size",
+      "min": 10,
+      "max": 15,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Review Content"
+    },
+    {
+      "type": "range",
+      "id": "content_size",
+      "label": "Content Font Size",
+      "min": 13,
+      "max": 18,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content Color",
+      "default": "#0F1111"
+    },
+    {
+      "type": "range",
+      "id": "content_line_height",
+      "label": "Line Height",
+      "min": 1.2,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "content_margin",
+      "label": "Content Bottom Margin",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Review Images"
+    },
+    {
+      "type": "range",
+      "id": "review_image_height",
+      "label": "Image Height",
+      "min": 60,
+      "max": 150,
+      "step": 5,
+      "default": 100,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image Border Radius",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Helpful Section"
+    },
+    {
+      "type": "color",
+      "id": "helpful_color",
+      "label": "Helpful Text Color",
+      "default": "#565959"
+    },
+    {
+      "type": "range",
+      "id": "helpful_size",
+      "label": "Helpful Font Size",
+      "min": 11,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Action Buttons"
+    },
+    {
+      "type": "range",
+      "id": "action_button_size",
+      "label": "Button Font Size",
+      "min": 11,
+      "max": 16,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "helpful_button_color",
+      "label": "Button Color",
+      "default": "#767676"
+    },
+    {
+      "type": "color",
+      "id": "helpful_button_hover_color",
+      "label": "Button Hover Color",
+      "default": "#555555"
+    }
+  ],
+  "presets": [
+    { "name": "CS Amazon Reviews" }
+  ]
+}
+{% endschema %}

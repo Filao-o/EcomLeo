@@ -1,0 +1,4 @@
+/* Custom fix: Maintain field border on focus with global text color */
+.field:focus-within:after {
+  box-shadow: 0 0 0 var(--inputs-border-width) color-mix(in srgb, var(--global-section-text-color) 50%, transparent) !important;
+}

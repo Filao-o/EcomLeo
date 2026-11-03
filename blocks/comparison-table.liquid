@@ -1,0 +1,311 @@
+<div class="comparison-table comparison-table-{{ block.id }}{% if block.settings.show_third_column %} has-three-cols{% endif %}" 
+     data-highlight-col="2"
+     {{ block.shopify_attributes }}>
+  <div class="comparison-table__container">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+<style>
+  .comparison-table-{{ block.id }} {
+    margin-top: {{ block.settings.margin_top }}px;
+    margin-bottom: {{ block.settings.margin_bottom }}px;
+    letter-spacing: 0 !important;
+    --highlight-color: {{ block.settings.brand_highlight_color }};
+    --highlight-text-color: {{ block.settings.brand_highlight_text_color }};
+  }
+
+  .comparison-table-{{ block.id }} * {
+    letter-spacing: 0 !important;
+  }
+
+  .comparison-table-{{ block.id }} .comparison-table__container {
+    width: 100%;
+    border-radius: {{ block.settings.border_radius }}px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    {% if block.settings.show_outer_border %}
+      border: {{ block.settings.border_style }} 1px {{ block.settings.border_color }};
+    {% endif %}
+    overflow: hidden;
+  }
+
+  .comparison-table-{{ block.id }} .comparison-table__row {
+    display: grid;
+    {% if block.settings.show_third_column %}
+      grid-template-columns: 34% 1fr 1fr 1fr;
+    {% else %}
+      grid-template-columns: 35% 1fr 1fr;
+    {% endif %}
+    width: 100%;
+  }
+
+  .comparison-table-{{ block.id }}:not(.has-three-cols) .comparison-table__competitor-2-cell {
+    display: none !important;
+  }
+
+  /* When 4 columns are active, Comp 1 needs a divider line */
+  .comparison-table-{{ block.id }}.has-three-cols .comparison-table__competitor-cell {
+    border-right: {{ block.settings.border_style }} 1px {{ block.settings.border_color }};
+  }
+
+  .comparison-table-{{ block.id }} .comparison-table__cell {
+    padding: {{ block.settings.cell_padding_y }}px {{ block.settings.cell_padding_x }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    border-bottom: {{ block.settings.border_style }} 1px {{ block.settings.border_color }};
+  }
+
+  /* Remove double border at bottom of table */
+  .comparison-table-{{ block.id }} .comparison-table__container > *:last-child .comparison-table__cell {
+    border-bottom: none !important;
+  }
+
+  /* Default Row Lines (Feature Column Divider) */
+  .comparison-table-{{ block.id }} .comparison-table__label-cell {
+    border-right: {{ block.settings.border_style }} 1px {{ block.settings.border_color }};
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  /* Competitor column border */
+  .comparison-table-{{ block.id }} .comparison-table__competitor-cell {
+    border-right: {{ block.settings.border_style }} 1px {{ block.settings.border_color }};
+  }
+
+  /* Specific fix: Remove border-right from the header's top-left label cell */
+  .comparison-table-{{ block.id }} .header-row .comparison-table__label-cell {
+    border-right: none !important;
+  }
+
+  /* Highlight logic - applying to each cell in the column */
+  .comparison-table-{{ block.id }} .comparison-table__brand-cell {
+    background-color: var(--highlight-color) !important;
+    color: var(--highlight-text-color) !important;
+    border-left: {{ block.settings.highlight_border_width }}px solid {{ block.settings.highlight_border_color }} !important;
+    border-right: {{ block.settings.highlight_border_width }}px solid {{ block.settings.highlight_border_color }} !important;
+    border-bottom: {{ block.settings.border_style }} 1px {{ block.settings.highlight_inner_border_color }} !important;
+    z-index: 2;
+  }
+
+  /* When hiding feature header, the top left corner is clean */
+  .comparison-table-{{ block.id }} .feature-header-hidden .comparison-table__label-cell {
+    background-color: transparent !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    visibility: hidden;
+  }
+
+  .comparison-table-{{ block.id }} .feature-header-hidden .comparison-table__competitor-cell {
+    background-color: transparent !important;
+  }
+
+  /* Continuous Highlight Border */
+  .comparison-table-{{ block.id }} .comparison-table-header:first-child .comparison-table__brand-cell {
+    border-top: {{ block.settings.highlight_border_width }}px solid {{ block.settings.highlight_border_color }} !important;
+    border-top-left-radius: {{ block.settings.border_radius }}px !important;
+    border-top-right-radius: {{ block.settings.border_radius }}px !important;
+    margin-top: -{{ block.settings.highlight_border_width }}px;
+    padding-top: calc({{ block.settings.cell_padding_y }}px + {{ block.settings.highlight_border_width }}px);
+  }
+
+  /* Fix for when feature header is hidden - ensure highlighted column starts clean */
+  .comparison-table-{{ block.id }} .feature-header-hidden .comparison-table__brand-cell {
+    border-top-left-radius: {{ block.settings.border_radius }}px !important;
+    border-top-right-radius: {{ block.settings.border_radius }}px !important;
+  }
+
+  .comparison-table-{{ block.id }} .comparison-table-row:last-child .comparison-table__brand-cell {
+    border-bottom: {{ block.settings.highlight_border_width }}px solid {{ block.settings.highlight_border_color }} !important;
+    border-bottom-left-radius: {{ block.settings.border_radius }}px !important;
+    border-bottom-right-radius: {{ block.settings.border_radius }}px !important;
+  }
+
+  /* Highlight logic for nested text */
+  .comparison-table-{{ block.id }} .comparison-table__brand-cell * {
+    color: var(--highlight-text-color) !important;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-table-{{ block.id }} .comparison-table__cell {
+      padding: {{ block.settings.cell_padding_y_mobile }}px {{ block.settings.cell_padding_x_mobile }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Comparison Table",
+  "tag": "div",
+  "class": "comparison-table-wrapper",
+  "blocks": [
+    { "type": "comparison-table-header" },
+    { "type": "comparison-table-row" }
+  ],
+  "presets": [
+    {
+      "name": "Comparison Table",
+      "blocks": [
+        { "type": "comparison-table-header" },
+        { "type": "comparison-table-row", "settings": { "col_1_text": "Feature 1", "col_2_text": "Yes", "col_3_text": "No" } },
+        { "type": "comparison-table-row", "settings": { "col_1_text": "Feature 2", "col_2_text": "Yes", "col_3_text": "Maybe" } }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Highlighting"
+    },
+    {
+      "type": "color",
+      "id": "brand_highlight_color",
+      "label": "Highlight Background Color",
+      "default": "#E6FBF8"
+    },
+    {
+      "type": "color",
+      "id": "brand_highlight_text_color",
+      "label": "Highlight Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "highlight_border_color",
+      "label": "Highlight Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "highlight_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Highlight Border Width",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "highlight_inner_border_color",
+      "label": "Inner Row Border Color (Highlighted Col)",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "header",
+      "content": "Table Style"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_outer_border",
+      "label": "Show Outer Border",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_third_column",
+      "label": "Show 3rd Data Column",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Border Style",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Table Corner Radius",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Cell Padding"
+    },
+    {
+      "type": "range",
+      "id": "cell_padding_x",
+      "min": 4,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "cell_padding_y",
+      "min": 4,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "cell_padding_x_mobile",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Horizontal Padding",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "cell_padding_y_mobile",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Vertical Padding",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 32
+    }
+  ]
+}
+{% endschema %}

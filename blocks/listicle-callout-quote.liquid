@@ -1,0 +1,197 @@
+<div class="listicle-callout-quote listicle-callout-quote-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="callout-quote-inner">
+    {% if block.settings.content != blank %}
+      <div class="callout-quote-content">{{ block.settings.content }}</div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .listicle-callout-quote-{{ block.id }} {
+    margin-top: {{ block.settings.margin_top }}px;
+    margin-bottom: {{ block.settings.margin_bottom }}px;
+    padding: {{ block.settings.padding_y }}px {{ block.settings.padding_x }}px;
+    border-left: {{ block.settings.border_width }}px solid {{ block.settings.accent_color }};
+    background: {{ block.settings.bg_color }};
+  }
+  .listicle-callout-quote-{{ block.id }} .callout-quote-content {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.font_size }}px;
+    font-weight: {{ block.settings.font_weight }};
+    {% if block.settings.font_italic %}font-style: italic;{% else %}font-style: normal;{% endif %}
+    line-height: 1.5;
+  }
+  .listicle-callout-quote-{{ block.id }} .callout-quote-content p {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+  }
+
+  @media (max-width: 768px) {
+    .listicle-callout-quote-{{ block.id }} {
+      padding: {{ block.settings.padding_y_mobile }}px {{ block.settings.padding_x_mobile }}px;
+    }
+    .listicle-callout-quote-{{ block.id }} .callout-quote-content {
+      font-size: {{ block.settings.font_size_mobile }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Callout Quote",
+  "tag": "div",
+  "class": "listicle-callout-quote-wrapper",
+  "presets": [
+    { "name": "Callout Quote" }
+  ],
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Quote Content",
+      "default": "<p>\"This is a powerful callout quote to highlight key points.\"</p>"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Left Border)",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Desktop)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "checkbox",
+      "id": "font_italic",
+      "label": "Italic Text",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Spacing & Border"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Left Border Width",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical Padding (Desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_x",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal Padding (Desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_y_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical Padding (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_x_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal Padding (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 20
+    }
+  ]
+}
+{% endschema %}

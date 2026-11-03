@@ -1,0 +1,943 @@
+{% comment %} Google Fonts for accent text customization {% endcomment %}
+{% if section.settings.override_global_accent %}
+  {% if section.settings.accent_font_family != 'inherit' and section.settings.accent_font_family != 'serif' %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {% case section.settings.accent_font_family %}
+      {% when 'Georgia Pro' %}
+        <link href="https://fonts.googleapis.com/css2?family=Georgia+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+      {% when 'Bodoni Moda' %}
+        <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,400;1,6..96,500;1,6..96,600;1,6..96,700;1,6..96,800&display=swap" rel="stylesheet">
+      {% when 'Instrument Serif' %}
+        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+      {% when 'DM Serif Text' %}
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
+      {% when 'Nothing You Could Do' %}
+        <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+    {% endcase %}
+  {% endif %}
+{% endif %}
+
+{%- liquid
+  assign layout = 'grid'
+  if section.settings.horizontal_layout
+    assign layout = 'horizontal'
+  elsif section.settings.pyramid_layout  
+    assign layout = 'pyramid'
+  endif
+-%}
+
+{% render 'component-cards-grid',
+   cards: section.blocks,
+   heading: section.settings.heading,
+   subtitle: section.settings.subtitle,
+   accent_text: section.settings.accent_text,
+   layout: layout,
+   hide_description: section.settings.hide_description,
+   section_id: section.id,
+   override_global_accent: section.settings.override_global_accent %}
+
+<style>
+  /* Section-specific customizations */
+  #cards-{{ section.id }} {
+    background: {{ section.settings.section_background_gradient | default: '#FFFFFF' }};
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_left }}px 
+             {{ section.settings.padding_bottom }}px {{ section.settings.padding_right }}px;
+             
+    /* CSS Variables for card styling */
+    --card-background: {{ section.settings.card_background_gradient | default: '#ffffff' }};
+    --card-border-color: {{ section.settings.card_border_color | default: '#f0f0f0' }};
+    --card-border-width: {{ section.settings.card_border_width | default: 1 }}px;
+    --card-border-style: {{ section.settings.card_border_style | default: 'solid' }};
+    --card-border-radius: {{ section.settings.card_border_radius | default: 12 }}px;
+    --card-image-object-fit: {{ section.settings.card_image_object_fit | default: 'cover' }};
+  }
+  
+  /* Apply card image height for vertical layout - Desktop */
+  #cards-{{ section.id }} .card-item__image {
+    padding-bottom: 0 !important;
+    height: {{ section.settings.card_image_height_desktop | default: section.settings.card_image_height | default: 240 }}px !important;
+  }
+  
+  /* Apply card image size for horizontal layout - Desktop */
+  #cards-{{ section.id }} .cards-grid__items[data-layout="horizontal"] .card-item__image {
+    width: {{ section.settings.card_image_height_horizontal_desktop | default: section.settings.card_image_height_horizontal | default: 150 }}px !important;
+    min-width: {{ section.settings.card_image_height_horizontal_desktop | default: section.settings.card_image_height_horizontal | default: 150 }}px !important;
+    height: {{ section.settings.card_image_height_horizontal_desktop | default: section.settings.card_image_height_horizontal | default: 150 }}px !important;
+    max-width: {{ section.settings.card_image_height_horizontal_desktop | default: section.settings.card_image_height_horizontal | default: 150 }}px !important;
+    max-height: {{ section.settings.card_image_height_horizontal_desktop | default: section.settings.card_image_height_horizontal | default: 150 }}px !important;
+  }
+  
+  /* Apply card image height for vertical layout - Mobile */
+  @media (max-width: 768px) {
+    #cards-{{ section.id }} .card-item__image {
+      height: {{ section.settings.card_image_height_mobile | default: 180 }}px !important;
+    }
+    
+    /* Apply card image size for horizontal layout - Mobile */
+    #cards-{{ section.id }} .cards-grid__items[data-layout="horizontal"] .card-item__image {
+      width: {{ section.settings.card_image_height_horizontal_mobile | default: 100 }}px !important;
+      min-width: {{ section.settings.card_image_height_horizontal_mobile | default: 100 }}px !important;
+      height: {{ section.settings.card_image_height_horizontal_mobile | default: 100 }}px !important;
+      max-width: {{ section.settings.card_image_height_horizontal_mobile | default: 100 }}px !important;
+      max-height: {{ section.settings.card_image_height_horizontal_mobile | default: 100 }}px !important;
+    }
+  }
+  
+  @media (min-width: 1023px) {
+    #cards-{{ section.id }} .card-item {
+      {% if section.settings.card_min_height_desktop and section.settings.card_min_height_desktop > 0 %}
+        min-height: {{ section.settings.card_min_height_desktop }}px !important;
+      {% endif %}
+    }
+  }
+  
+  #cards-{{ section.id }} .cards-grid__heading {
+    color: {{ section.settings.heading_color | default: '#000000' }} !important;
+    font-size: {{ section.settings.heading_size | default: 32 }}px;
+    text-align: {{ section.settings.heading_alignment | default: 'center' }};
+  }
+  
+  @media screen and (max-width: 768px) {
+    #cards-{{ section.id }} .cards-grid__heading {
+      font-size: {{ section.settings.heading_size_mobile | default: 24 }}px;
+    }
+  }
+  
+  #cards-{{ section.id }} .cards-grid__subtitle {
+    color: {{ section.settings.subtitle_color | default: '#666666' }} !important;
+    text-align: {{ section.settings.heading_alignment | default: 'center' }};
+  }
+  
+  /* Override default cards-grid__accent styling when using global/custom accent */
+  #cards-{{ section.id }} .cards-grid__accent.global-accent-text,
+  #cards-{{ section.id }} .cards-grid__accent.custom-accent-text {
+    color: inherit !important;
+    margin-left: 0 !important;
+  }
+
+  /* Accent text styling */
+  #cards-{{ section.id }} .cards-grid__heading .global-accent-text,
+  #cards-{{ section.id }} .cards-grid__heading .custom-accent-text,
+  #cards-{{ section.id }} .cards-grid__accent.global-accent-text,
+  #cards-{{ section.id }} .cards-grid__accent.custom-accent-text {
+    padding: 2px 4px !important;
+    margin: -2px -4px !important;
+    display: inline-block !important;
+    margin-left: {{ section.settings.accent_left_margin | default: 0 }}px !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Global accent text - uses theme settings */
+  #cards-{{ section.id }} .cards-grid__container .cards-grid__header .cards-grid__heading .global-accent-text,
+  #cards-{{ section.id }} .cards-grid__heading .global-accent-text,
+  #cards-{{ section.id }} .cards-grid__accent.global-accent-text {
+    {% if section.settings.use_accent_gradient and section.settings.accent_text_gradient != blank %}
+      background: {{ section.settings.accent_text_gradient }} !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      color: transparent !important;
+    {% else %}
+      color: {{ section.settings.accent_color | default: '#EF4A65' }} !important;
+    {% endif %}
+    font-family: var(--font-accent-family) !important;
+    font-style: var(--font-accent-style) !important;
+    font-weight: var(--font-accent-weight) !important;
+    letter-spacing: var(--font-accent-letter-spacing) !important;
+    text-transform: var(--font-accent-text-transform) !important;
+  }
+  
+  /* Override any body font on global/custom accent children */
+  #cards-{{ section.id }} .global-accent-text *,
+  #cards-{{ section.id }} .cards-grid__accent.global-accent-text *,
+  #cards-{{ section.id }} .custom-accent-text *,
+  #cards-{{ section.id }} .cards-grid__accent.custom-accent-text * {
+    font-family: inherit !important;
+    font-style: inherit !important;
+    font-weight: inherit !important;
+  }
+
+  /* Custom accent text - uses section-specific settings */
+  #cards-{{ section.id }} .cards-grid__heading .custom-accent-text,
+  #cards-{{ section.id }} .cards-grid__accent.custom-accent-text {
+    {% if section.settings.use_accent_gradient and section.settings.accent_text_gradient != blank %}
+      background: {{ section.settings.accent_text_gradient }} !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      color: transparent !important;
+    {% else %}
+      color: {{ section.settings.accent_color | default: '#EF4A65' }} !important;
+    {% endif %}
+
+    {% if section.settings.accent_font_family == 'Georgia Pro' %}
+      font-family: 'Georgia Pro', Georgia, serif !important;
+    {% elsif section.settings.accent_font_family == 'Bodoni Moda' %}
+      font-family: 'Bodoni Moda', Georgia, serif !important;
+    {% elsif section.settings.accent_font_family == 'Instrument Serif' %}
+      font-family: 'Instrument Serif', Georgia, serif !important;
+    {% elsif section.settings.accent_font_family == 'DM Serif Text' %}
+      font-family: 'DM Serif Text', Georgia, serif !important;
+    {% elsif section.settings.accent_font_family == 'Nothing You Could Do' %}
+      font-family: 'Nothing You Could Do', cursive, serif !important;
+    {% elsif section.settings.accent_font_family == 'serif' %}
+      font-family: Georgia, serif !important;
+    {% endif %}
+
+    {% if section.settings.accent_font_style == 'italic' %}
+      font-style: italic !important;
+    {% endif %}
+
+    {% if section.settings.accent_font_weight != 'inherit' %}
+      font-weight: {{ section.settings.accent_font_weight }} !important;
+    {% endif %}
+  }
+  
+  #cards-{{ section.id }} .card-item__title {
+    color: {{ section.settings.title_color | default: '#000000' }} !important;
+  }
+  
+  #cards-{{ section.id }} .card-item__description {
+    color: {{ section.settings.description_color | default: '#666666' }} !important;
+  }
+  
+  #cards-{{ section.id }} .card-item__image-element {
+    object-fit: var(--card-image-object-fit, cover) !important;
+  }
+  
+  /* Image inside card padding styling */
+  {% if section.settings.image_inside_padding %}
+    #cards-{{ section.id }} .card-item__image {
+      margin: {{ section.settings.image_padding }}px {{ section.settings.image_padding }}px 0 {{ section.settings.image_padding }}px !important;
+      border-radius: {{ section.settings.image_border_radius }}px !important;
+      width: calc(100% - {{ section.settings.image_padding | times: 2 }}px) !important;
+    }
+    
+    #cards-{{ section.id }} .card-item__image-element {
+      border-radius: {{ section.settings.image_border_radius }}px !important;
+    }
+    
+    #cards-{{ section.id }} .card-item__image-placeholder {
+      border-radius: {{ section.settings.image_border_radius }}px !important;
+    }
+    
+    /* Horizontal layout adjustments */
+    #cards-{{ section.id }} .cards-grid__items[data-layout="horizontal"] .card-item__image {
+      margin: {{ section.settings.image_padding }}px 0 {{ section.settings.image_padding }}px {{ section.settings.image_padding }}px !important;
+      width: auto !important;
+    }
+  {% endif %}
+  
+  /* Font sizes responsive */
+  #cards-{{ section.id }} .card-item__title {
+    font-size: {{ section.settings.title_size_mobile | default: 14 }}px;
+  }
+  
+  #cards-{{ section.id }} .card-item__description {
+    font-size: {{ section.settings.description_size_mobile | default: 10 }}px;
+  }
+  
+  #cards-{{ section.id }} .card-item__bullet-text {
+    font-size: {{ section.settings.bullet_size_mobile | default: 9 }}px;
+  }
+  
+  @media (min-width: 767px) {
+    #cards-{{ section.id }} .card-item__title {
+      font-size: {{ section.settings.title_size | default: 18 }}px;
+    }
+    
+    #cards-{{ section.id }} .card-item__description {
+      font-size: {{ section.settings.description_size | default: 14 }}px;
+    }
+    
+    #cards-{{ section.id }} .card-item__bullet-text {
+      font-size: {{ section.settings.bullet_size | default: 13 }}px;
+    }
+  }
+  
+  /* Bullet styling per card */
+  {% for card in section.blocks %}
+    #cards-{{ section.id }} .card-item[data-block-id="{{ card.id }}"] .card-item__bullet-icon {
+      color: {{ card.settings.bullet_icon_color | default: '#333333' }} !important;
+    }
+    
+    #cards-{{ section.id }} .card-item[data-block-id="{{ card.id }}"] .card-item__bullet-text {
+      color: {{ card.settings.bullet_text_color | default: '#666666' }} !important;
+    }
+    
+    {% if card.settings.bullet_container %}
+      #cards-{{ section.id }} .card-item[data-block-id="{{ card.id }}"] .card-item__bullet--container {
+        background-color: {{ card.settings.bullet_container_bg | default: '#f8f9fa' }} !important;
+        border: {{ card.settings.bullet_container_border_width | default: 1 }}px 
+                {{ card.settings.bullet_container_border_style | default: 'solid' }} 
+                {{ card.settings.bullet_container_border_color | default: '#e9ecef' }} !important;
+        border-radius: {{ card.settings.bullet_container_border_radius | default: 4 }}px;
+      }
+    {% endif %}
+  {% endfor %}
+</style>
+
+{% schema %}
+{
+  "name": "Cards",
+  "tag": "section",
+  "class": "shopify-section--cards-new",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Our Features"
+    },
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent text",
+      "placeholder": "Text to highlight with accent styling"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section subtitle",
+      "placeholder": "Add a subtitle to provide additional context"
+    },
+    {
+      "type": "header",
+      "content": "Layout Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "horizontal_layout",
+      "label": "Use horizontal layout",
+      "default": false,
+      "info": "Cards display horizontally with image on left and text on right"
+    },
+    {
+      "type": "checkbox",
+      "id": "pyramid_layout",
+      "label": "Use pyramid layout",
+      "default": false,
+      "info": "Display first 2 cards in a row, third card centered below"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_description",
+      "label": "Hide card descriptions",
+      "default": false,
+      "info": "Show only titles and bullet points"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 70,
+      "step": 2,
+      "default": 32,
+      "label": "Heading Font Size (Desktop)",
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 14,
+      "max": 70,
+      "step": 2,
+      "default": 24,
+      "label": "Heading Font Size (Mobile)",
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "default": 18,
+      "label": "Card title size (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 14,
+      "label": "Card title size (Mobile)"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Card title color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 14,
+      "label": "Description size (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "default": 10,
+      "label": "Description size (Mobile)"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "bullet_size",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "default": 13,
+      "label": "Bullet size (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "bullet_size_mobile",
+      "min": 6,
+      "max": 14,
+      "step": 1,
+      "default": 9,
+      "label": "Bullet size (Mobile)"
+    },
+    {
+      "type": "header",
+      "content": "Accent Text"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#EF4A65"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_accent_gradient",
+      "label": "Use accent gradient",
+      "default": false
+    },
+    {
+      "type": "color_background",
+      "id": "accent_text_gradient",
+      "label": "Accent gradient",
+      "default": "linear-gradient(45deg, #EF4A65, #FF6B9D)"
+    },
+    {
+      "type": "range",
+      "id": "accent_left_margin",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Accent left margin",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "override_global_accent",
+      "label": "Override Global Accent Typography",
+      "default": false,
+      "info": "When enabled, use section-specific accent typography settings below. When disabled, use the global accent typography from Theme Settings > Typography > Accent Typography."
+    },
+    {
+      "type": "select",
+      "id": "accent_font_family",
+      "label": "Accent Font Family",
+      "options": [
+        {
+          "value": "inherit",
+          "label": "Use Global Setting"
+        },
+        {
+          "value": "serif",
+          "label": "System Serif"
+        },
+        {
+          "value": "Georgia Pro",
+          "label": "Georgia Pro"
+        },
+        {
+          "value": "Bodoni Moda",
+          "label": "Bodoni Moda"
+        },
+        {
+          "value": "Instrument Serif",
+          "label": "Instrument Serif"
+        },
+        {
+          "value": "DM Serif Text",
+          "label": "DM Serif Text"
+        },
+        {
+          "value": "Nothing You Could Do",
+          "label": "Nothing You Could Do"
+        }
+      ],
+      "default": "inherit",
+      "info": "Choose a custom font family for the accent text (only used when Override Global Accent Typography is enabled)"
+    },
+    {
+      "type": "select",
+      "id": "accent_font_style",
+      "label": "Accent Text Font Style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        }
+      ],
+      "default": "normal",
+      "info": "Choose the font style for the accent text"
+    },
+    {
+      "type": "select",
+      "id": "accent_font_weight",
+      "label": "Accent Text Font Weight",
+      "options": [
+        {
+          "value": "inherit",
+          "label": "Default (Inherit)"
+        },
+        {
+          "value": "300",
+          "label": "Light (300)"
+        },
+        {
+          "value": "400",
+          "label": "Normal (400)"
+        },
+        {
+          "value": "500",
+          "label": "Medium (500)"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold (600)"
+        },
+        {
+          "value": "700",
+          "label": "Bold (700)"
+        },
+        {
+          "value": "800",
+          "label": "Extra Bold (800)"
+        },
+        {
+          "value": "900",
+          "label": "Black (900)"
+        }
+      ],
+      "default": "inherit",
+      "info": "Choose the font weight (boldness) for the accent text"
+    },
+    {
+      "type": "header",
+      "content": "Card Styling"
+    },
+    {
+      "type": "color_background",
+      "id": "card_background_gradient",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "select",
+      "id": "card_border_style",
+      "label": "Card border style",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" },
+        { "value": "none", "label": "None" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "card_image_object_fit",
+      "label": "Card Image Fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover (fills space)"
+        },
+        {
+          "value": "contain",
+          "label": "Contain (shows full image)"
+        }
+      ],
+      "default": "cover",
+      "info": "Choose how the card image should fit within its container"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_inside_padding",
+      "label": "Image Inside Card Padding",
+      "default": false,
+      "info": "When enabled, the image will have padding around it and a border radius, instead of being full-width at the top"
+    },
+    {
+      "type": "range",
+      "id": "image_padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Image Padding",
+      "default": 16,
+      "info": "Padding around the image when 'Image Inside Card Padding' is enabled"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 8,
+      "info": "Border radius for the image when 'Image Inside Card Padding' is enabled"
+    },
+    {
+      "type": "range",
+      "id": "card_image_height_desktop",
+      "min": 100,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Card Image Height - Desktop (Vertical Layout)",
+      "default": 240,
+      "info": "Set the height of card images in vertical layout on desktop"
+    },
+    {
+      "type": "range",
+      "id": "card_image_height_mobile",
+      "min": 80,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Card Image Height - Mobile (Vertical Layout)",
+      "default": 180,
+      "info": "Set the height of card images in vertical layout on mobile"
+    },
+    {
+      "type": "range",
+      "id": "card_image_height_horizontal_desktop",
+      "min": 80,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Card Image Size - Desktop (Horizontal Layout)",
+      "default": 150,
+      "info": "Set the width and height of card images in horizontal layout on desktop"
+    },
+    {
+      "type": "range",
+      "id": "card_image_height_horizontal_mobile",
+      "min": 60,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Card Image Size - Mobile (Horizontal Layout)",
+      "default": 100,
+      "info": "Set the width and height of card images in horizontal layout on mobile"
+    },
+    {
+      "type": "range",
+      "id": "card_min_height_desktop",
+      "min": 0,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Card Minimum Height (Desktop)",
+      "default": 0,
+      "info": "Set a minimum height for cards on desktop. Set to 0 for auto height."
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60,
+      "label": "Bottom padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "label": "Left padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "label": "Right padding"
+    },
+    {
+      "type": "header",
+      "content": "Section Background"
+    },
+    {
+      "type": "color_background",
+      "id": "section_background_gradient",
+      "label": "Section background",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Card Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card image"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card title",
+          "default": "Card Title"
+        },
+        {
+          "type": "textarea",
+          "id": "card_description",
+          "label": "Card description",
+          "default": "Add your card description here."
+        },
+        {
+          "type": "header",
+          "content": "Bullet Points"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_bullets",
+          "label": "Show bullet points",
+          "default": false
+        },
+        {
+          "type": "html",
+          "id": "bullet_icon",
+          "label": "Custom bullet icon (SVG)",
+          "info": "Paste your custom SVG code here"
+        },
+        {
+          "type": "textarea",
+          "id": "bullet_points",
+          "label": "Bullet points",
+          "placeholder": "Feature 1, Feature 2, Feature 3",
+          "info": "Enter bullet points separated by commas"
+        },
+        {
+          "type": "header",
+          "content": "Bullet Styling"
+        },
+        {
+          "type": "color",
+          "id": "bullet_icon_color",
+          "label": "Icon color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "bullet_text_color",
+          "label": "Bullet text color",
+          "default": "#666666"
+        },
+        {
+          "type": "checkbox",
+          "id": "bullet_container",
+          "label": "Add background container to bullet points",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "bullet_container_bg",
+          "label": "Container background color",
+          "default": "#f8f9fa"
+        },
+        {
+          "type": "color",
+          "id": "bullet_container_border_color",
+          "label": "Container border color",
+          "default": "#e9ecef"
+        },
+        {
+          "type": "select",
+          "id": "bullet_container_border_style",
+          "label": "Container border style",
+          "options": [
+            { "value": "solid", "label": "Solid" },
+            { "value": "dashed", "label": "Dashed" },
+            { "value": "dotted", "label": "Dotted" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "solid"
+        },
+        {
+          "type": "range",
+          "id": "bullet_container_border_width",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "unit": "px",
+          "label": "Container border width",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "bullet_container_border_radius",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Container border radius",
+          "default": 4
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cards",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "card_title": "Premium Quality",
+            "card_description": "Experience the finest quality with our carefully curated selection.",
+            "show_bullets": true,
+            "bullet_points": "Handpicked materials, Expert craftsmanship, Quality guaranteed"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "card_title": "Fast Shipping",
+            "card_description": "Get your orders delivered quickly with our expedited shipping options.",
+            "show_bullets": true,
+            "bullet_points": "Next-day delivery, Free shipping over $50, Express options"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "card_title": "24/7 Support",
+            "card_description": "Our dedicated support team is available around the clock.",
+            "show_bullets": true,
+            "bullet_points": "Live chat support, Phone assistance, Email help"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "card_title": "Easy Returns",
+            "card_description": "Not satisfied? Return within 30 days for a full refund.",
+            "show_bullets": true,
+            "bullet_points": "30-day returns, No questions asked, Full refund"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

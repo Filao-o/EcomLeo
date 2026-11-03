@@ -1,0 +1,236 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "custom_announcement_bar_inxgM4": {
+      "type": "custom-announcement-bar",
+      "name": "Announcement Bar",
+      "settings": {
+        "use_theme_colors": false,
+        "enable_slider": true,
+        "slide_duration": 4000,
+        "transition_speed": 500,
+        "hide_arrows": false,
+        "slide_1": "<p><strong>NEW YEAR SALE - OFFER ENDING SOON!</strong></p>",
+        "slide_1_custom_colors": false,
+        "slide_1_bg_color": "#000000",
+        "slide_1_text_color": "#ffffff",
+        "slide_1_button_text": "",
+        "slide_1_button_link": "",
+        "slide_1_button_bg": "#fffefd",
+        "slide_1_button_text_color": "#181b1d",
+        "slide_1_button_radius": 30,
+        "slide_1_highlight_text": "",
+        "slide_1_highlight_color": "#ffd700",
+        "slide_1_highlight_bg": "",
+        "enable_slide_2": true,
+        "slide_2": "<p><strong>FREE SHIPPING ON ALL ORDERS!</strong></p>",
+        "slide_2_custom_colors": false,
+        "slide_2_bg_color": "#000000",
+        "slide_2_text_color": "#ffffff",
+        "slide_2_button_text": "",
+        "slide_2_button_link": "",
+        "slide_2_button_bg": "",
+        "slide_2_button_text_color": "",
+        "slide_2_button_radius": 4,
+        "slide_2_highlight_text": "",
+        "slide_2_highlight_color": "#ffd700",
+        "slide_2_highlight_bg": "",
+        "enable_slide_3": true,
+        "slide_3": "<p><strong>30-DAYS MONEY BACK GUARANTEE</strong></p>",
+        "slide_3_custom_colors": false,
+        "slide_3_bg_color": "#000000",
+        "slide_3_text_color": "#ffffff",
+        "slide_3_button_text": "",
+        "slide_3_button_link": "",
+        "slide_3_button_bg": "",
+        "slide_3_button_text_color": "",
+        "slide_3_button_radius": 4,
+        "slide_3_highlight_text": "",
+        "slide_3_highlight_color": "#ffd700",
+        "slide_3_highlight_bg": "",
+        "enable_slide_4": false,
+        "slide_4": "",
+        "slide_4_custom_colors": false,
+        "slide_4_bg_color": "#000000",
+        "slide_4_text_color": "#ffffff",
+        "slide_4_button_text": "",
+        "slide_4_button_link": "",
+        "slide_4_button_bg": "",
+        "slide_4_button_text_color": "",
+        "slide_4_button_radius": 4,
+        "slide_4_highlight_text": "",
+        "slide_4_highlight_color": "#ffd700",
+        "slide_4_highlight_bg": "",
+        "enable_slide_5": false,
+        "slide_5": "",
+        "slide_5_custom_colors": false,
+        "slide_5_bg_color": "#000000",
+        "slide_5_text_color": "#ffffff",
+        "slide_5_button_text": "",
+        "slide_5_button_link": "",
+        "slide_5_button_bg": "",
+        "slide_5_button_text_color": "",
+        "slide_5_button_radius": 4,
+        "slide_5_highlight_text": "",
+        "slide_5_highlight_color": "#ffd700",
+        "slide_5_highlight_bg": "",
+        "icon_size": 34,
+        "icon_gap": 8,
+        "button_bg_color": "#484848",
+        "button_text_color": "#fffefd",
+        "button_font_size": 12,
+        "button_padding_x": 12,
+        "button_padding_y": 6,
+        "button_border_radius": 4,
+        "button_gap": 10,
+        "text": "<p>☆ Welcome to ElixLabs ☆</p>",
+        "background_color": "#ff5801",
+        "text_color": "#ffffff",
+        "font_size_desktop": 11,
+        "font_size_mobile": 11,
+        "bold_font_weight_700": false,
+        "bar_height": 40,
+        "bar_height_mobile": 40,
+        "vertical_padding": 12,
+        "vertical_padding_mobile": 8,
+        "horizontal_padding": 15
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "middle-center",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": false,
+        "full_width_header": false,
+        "header_horizontal_padding": 30,
+        "enable_top_border": false,
+        "top_border_width": 1,
+        "top_border_style": "solid",
+        "top_border_color": "#e0e0e0",
+        "menu_underline_thickness": 1,
+        "menu_underline_color": "#141720",
+        "use_theme_colors": true,
+        "use_global_gradient": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "cart_icon_type": "bag",
+        "margin_bottom": 0,
+        "padding_top": 10,
+        "padding_bottom": 10
+      }
+    },
+    "scrolling_features_bar_J64Pwx": {
+      "type": "scrolling-features-bar",
+      "blocks": {
+        "feature_item_WT7GNy": {
+          "type": "feature_item",
+          "settings": {
+            "text": "MASCULINE DRIVE & HORMONES",
+            "icon_type": "image",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\"><path d=\"M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z\"></path></svg>"
+          }
+        },
+        "feature_item_Lhmgyf": {
+          "type": "feature_item",
+          "settings": {
+            "text": "FULVIC ACID DELIVERY",
+            "icon_type": "image",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\"><path d=\"M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zm-6 0H5V6h9v2zm-9 11.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm12 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z\"></path></svg>"
+          }
+        },
+        "feature_item_gdbX3h": {
+          "type": "feature_item",
+          "settings": {
+            "text": "GOLD STANDARD POTENCY",
+            "icon_type": "image",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z\"></path></svg>"
+          }
+        },
+        "feature_item_9ELRUB": {
+          "type": "feature_item",
+          "settings": {
+            "text": "MENTAL EDGE",
+            "icon_type": "image",
+            "icon": ""
+          }
+        },
+        "feature_item_LwrzTr": {
+          "type": "feature_item",
+          "settings": {
+            "text": "MUSCLE & STAMINA",
+            "icon_type": "image",
+            "icon": ""
+          }
+        },
+        "feature_item_4AhQrK": {
+          "type": "feature_item",
+          "settings": {
+            "text": "ADAPTOGENIC STABILITY",
+            "icon_type": "image",
+            "icon": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_WT7GNy",
+        "feature_item_Lhmgyf",
+        "feature_item_gdbX3h",
+        "feature_item_9ELRUB",
+        "feature_item_LwrzTr",
+        "feature_item_4AhQrK"
+      ],
+      "disabled": true,
+      "name": "Scrolling Features Bar",
+      "settings": {
+        "theme_color_mode": "custom",
+        "vertical_padding": 15,
+        "item_gap": 40,
+        "mobile_item_gap": 30,
+        "font_size": 16,
+        "mobile_font_size": 14,
+        "letter_spacing": 0,
+        "uppercase_text": false,
+        "override_bold": false,
+        "icon_size": 20,
+        "mobile_icon_size": 16,
+        "icon_spacing": 20,
+        "slider_direction": "left",
+        "scrolling_velocity": 40,
+        "pause_on_hover": false,
+        "background_color": "#ffffff",
+        "text_color": "#141720",
+        "icon_color": "#000000",
+        "use_gradient_background": false,
+        "background_gradient": "",
+        "enable_top_border": true,
+        "top_border_width": 1,
+        "top_border_style": "solid",
+        "top_border_color": "#000000",
+        "enable_bottom_border": true,
+        "bottom_border_width": 1,
+        "bottom_border_style": "solid",
+        "bottom_border_color": "#000000"
+      }
+    }
+  },
+  "order": [
+    "custom_announcement_bar_inxgM4",
+    "header",
+    "scrolling_features_bar_J64Pwx"
+  ]
+}

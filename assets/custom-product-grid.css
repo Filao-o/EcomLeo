@@ -1,0 +1,86 @@
+.card-information .card__heading {
+  font-weight: bold !important;
+  font-size: 15px !important;
+}
+.card-information .price {
+  margin: 0.5rem 0 0.2rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+.card-information .price__regular .price-item--regular,
+.card-information .price__sale .price-item--sale {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.card-information .price__sale .price-item--regular {
+  text-decoration: line-through;
+  margin-left: 0.5rem;
+  font-weight: 400;
+  color: var(--color-foreground-subdued);
+  letter-spacing: -0.3px;
+}
+.card__badge {
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  padding: 0.3rem 0.75rem;
+  border-radius: 50px;
+}
+.card__badge .badge {
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.card .media,
+.card__media,
+.card .card__media,
+.media.media--transparent.media--adapt.media--hover-effect,
+.card__inner .card__media,
+div.card__media,
+.card-wrapper .card__media {
+  border-radius: var(--media-radius, 10px) !important;
+  overflow: hidden !important;
+}
+.card__media img,
+.card .media img,
+.card__media .media img {
+  border-radius: var(--media-radius, 10px) !important;
+}
+.product-grid .card__media {
+  border-radius: var(--media-radius, 10px) !important;
+}
+.collection-hero__title {
+  font-family: var(--font-heading-family-override);
+  font-weight: var(--font-weight-bold-override, bold);
+  letter-spacing: var(--letter-spacing-heading, -0.3px);
+}
+.section-template--16469108686961__product-grid-padding .card-information .card__heading {
+  font-weight: var(--font-weight-bold-override, bold);
+  font-size: 15px;
+}
+.section-template--16469108686961__product-grid-padding .card__badge {
+  font-weight: var(--font-weight-bold-override, bold);
+  letter-spacing: var(--letter-spacing-heading, -0.3px);
+}
+.section-template--16469108686961__product-grid-padding .card-information .price__regular .price-item--regular,
+.section-template--16469108686961__product-grid-padding .card-information .price__sale .price-item--sale {
+  font-size: 1.25rem;
+  font-weight: var(--font-body-weight-override, 600);
+  letter-spacing: var(--letter-spacing-body, -0.3px);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-bold-override, bold);
+  letter-spacing: var(--letter-spacing-heading, -0.3px);
+  font-family: var(--font-heading-family-override);
+}
+.title {
+  font-weight: var(--font-weight-bold-override, bold);
+  letter-spacing: var(--letter-spacing-heading, -0.3px);
+  font-family: var(--font-heading-family-override);
+}

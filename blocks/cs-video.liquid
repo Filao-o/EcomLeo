@@ -1,0 +1,182 @@
+{% comment %}
+  Block: CS Video
+  A Shopify-hosted video block for the Content Sidebar section.
+{% endcomment %}
+
+{%- assign this = block.settings -%}
+
+<style>
+  #cs-video-{{ block.id }} .video-block-wrapper {
+    padding-top: {{ this.padding_top }}px;
+    padding-bottom: {{ this.padding_bottom }}px;
+    padding-left: {{ this.padding_left }}px;
+    padding-right: {{ this.padding_right }}px;
+  }
+  #cs-video-{{ block.id }} .video-container {
+    border-radius: {{ this.video_radius }}px;
+    overflow: hidden;
+    {% if this.custom_height %}
+      height: {{ this.video_height }}px;
+    {% else %}
+      height: auto;
+    {% endif %}
+  }
+  #cs-video-{{ block.id }} .video-container video {
+    width: 100%;
+    {% if this.custom_height %}
+      height: {{ this.video_height }}px;
+      object-fit: {{ this.video_fit }};
+    {% else %}
+      height: auto;
+    {% endif %}
+    display: block;
+  }
+</style>
+
+<div
+  class="content-block video-block-wrapper"
+  {{ block.shopify_attributes }}
+  id="cs-video-{{ block.id }}"
+>
+  <div class="video-container">
+    {%- if this.video_shopify -%}
+      <video
+        class="block-video"
+        {% if this.autoplay %}autoplay muted playsinline{% endif %}
+        {% if this.loop %}loop{% endif %}
+        {% if this.show_controls %}controls{% endif %}
+        preload="auto"
+        style="width: 100%; height: 100%; display: block;"
+      >
+        {%- for source in this.video_shopify.sources -%}
+          {%- liquid
+            assign include_source = true
+            if this.video_quality == 'high'
+              if source.width < 1280
+                assign include_source = false
+              endif
+            elsif this.video_quality == 'medium'
+              if source.width < 854 or source.width > 1920
+                assign include_source = false
+              endif
+            elsif this.video_quality == 'low'
+              if source.width > 854
+                assign include_source = false
+              endif
+            endif
+          -%}
+          {%- if include_source -%}
+            <source src="{{ source.url }}" type="{{ source.mime_type }}">
+          {%- endif -%}
+        {%- endfor -%}
+        Your browser does not support the video tag.
+      </video>
+    {%- else -%}
+      <div class="video-placeholder" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; min-height: 200px; color: #666; border-radius: {{ this.video_radius }}px;">
+        <p>Upload a Shopify hosted video</p>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CS Video",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video_shopify",
+      "label": "Shopify Hosted Video"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_controls",
+      "label": "Show Controls",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "video_quality",
+      "label": "Video Quality",
+      "default": "auto",
+      "options": [
+        { "label": "Auto", "value": "auto" },
+        { "label": "High", "value": "high" },
+        { "label": "Medium", "value": "medium" },
+        { "label": "Low", "value": "low" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_height",
+      "label": "Custom height",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "video_height",
+      "label": "Video Height",
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "video_fit",
+      "label": "Video Fit",
+      "default": "cover",
+      "options": [
+        { "label": "Cover", "value": "cover" },
+        { "label": "Contain", "value": "contain" }
+      ]
+    },
+    {
+      "type": "number",
+      "id": "video_radius",
+      "label": "Border Radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "number",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_left",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "padding_right",
+      "label": "Padding right",
+      "default": 0
+    }
+  ],
+  "presets": [
+    { "name": "CS Video" }
+  ]
+}
+{% endschema %}
