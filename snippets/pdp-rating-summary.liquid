@@ -1,0 +1,32 @@
+{%- comment -%}
+  Bloc « Résumé des avis » : étoiles + note + nombre d'avis
+  block.type == 'pdp_rating_summary'
+{%- endcomment -%}
+{%- liquid
+  assign s = block.settings
+  assign stars = s.star_count | default: 5
+-%}
+<div
+  class="pdp-rating"
+  {{ block.shopify_attributes }}
+  style="
+    --rt-star: {{ s.star_color }};
+    --rt-text: {{ s.text_color }};
+    --rt-muted: {{ s.muted_color }};
+    --rt-star-size: {{ s.star_size }}px;
+    --rt-font-size: {{ s.font_size }}px;
+    margin-top: {{ s.margin_top }}px;
+    margin-bottom: {{ s.margin_bottom }}px;
+  "
+>
+  {%- if s.link != blank -%}<a href="{{ s.link }}" class="pdp-rating__inner">{%- else -%}<div class="pdp-rating__inner">{%- endif -%}
+    <span class="pdp-rating__stars" aria-hidden="true">
+      {%- for i in (1..stars) -%}
+        <svg viewBox="0 0 20 20"><path fill="currentColor" d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9z"/></svg>
+      {%- endfor -%}
+    </span>
+    {%- if s.rating_label != blank -%}<strong class="pdp-rating__label">{{ s.rating_label }}</strong>{%- endif -%}
+    {%- if s.rating_label != blank and s.reviews_text != blank -%}<span class="pdp-rating__sep">|</span>{%- endif -%}
+    {%- if s.reviews_text != blank -%}<span class="pdp-rating__count">{{ s.reviews_text }}</span>{%- endif -%}
+  {%- if s.link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+</div>

@@ -1,0 +1,27 @@
+{%- comment -%}
+  Bloc « Sous-titre » (texte en italique sous le titre)
+  block.type == 'pdp_subtitle'
+{%- endcomment -%}
+{%- assign s = block.settings -%}
+{%- if s.text != blank -%}
+  {%- if s.use_custom_font and s.font != blank -%}
+    <style>{{ s.font | font_face: font_display: 'swap' }}</style>
+  {%- endif -%}
+  <p
+    class="pdp-subtitle"
+    {{ block.shopify_attributes }}
+    style="
+      color: {{ s.text_color }};
+      font-size: {{ s.font_size }}px;
+      line-height: {{ s.line_height }};
+      margin: {{ s.margin_top }}px 0 {{ s.margin_bottom }}px;
+      {%- if s.use_custom_font and s.font != blank -%}
+        font-family: {{ s.font.family }}, {{ s.font.fallback_families }};
+        font-weight: {{ s.font.weight }};
+      {%- endif -%}
+      font-style: {% if s.italic %}italic{% else %}normal{% endif %};
+    "
+  >
+    {{- s.text -}}
+  </p>
+{%- endif -%}

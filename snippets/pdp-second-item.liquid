@@ -1,0 +1,72 @@
+{%- comment -%}
+  Bloc « 2e article » : case à cocher qui ouvre un choix de variantes pour un 2e produit
+  ajouté au panier en même temps que le produit principal.
+  block.type == 'pdp_second_item'
+  Le style des cartes reprend celui du bloc « Sélecteur de variantes en cartes » de la section.
+{%- endcomment -%}
+{%- liquid
+  assign s = block.settings
+  assign upsell_product = s.upsell_product | default: product
+  assign form_id = 'product-form-' | append: section.id
+
+  assign picker = nil
+  for b in section.blocks
+    if b.type == 'pdp_variant_cards'
+      assign picker = b
+      break
+    endif
+  endfor
+
+  assign image = s.image | default: upsell_product.featured_image
+-%}
+{%- if picker != blank and upsell_product != blank -%}
+<pdp-second-item
+  class="pdp-si"
+  data-form-id="{{ form_id }}"
+  data-property-label="{{ s.cart_property_label | escape }}"
+  data-property-value="{{ s.cart_property_value | escape }}"
+  {{ block.shopify_attributes }}
+  style="
+    --si-bg: {{ s.background_color }};
+    --si-border: {{ s.border_color }};
+    --si-border-active: {{ s.border_color_active }};
+    --si-border-style: {{ s.border_style }};
+    --si-radius: {{ s.border_radius }}px;
+    --si-title: {{ s.title_color }};
+    --si-text: {{ s.text_color }};
+    --si-badge-bg: {{ s.badge_bg_color }};
+    --si-badge-text: {{ s.badge_text_color }};
+    --si-check: {{ s.checkbox_color }};
+    margin-top: {{ s.margin_top }}px;
+    margin-bottom: {{ s.margin_bottom }}px;
+  "
+>
+  <label class="pdp-si__head">
+    <input type="checkbox" class="pdp-si__check" {% if s.checked_by_default %}checked{% endif %}>
+    <span class="pdp-si__box" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    {%- if image != blank -%}
+      <span class="pdp-si__image">{{ image | image_url: width: 120 | image_tag: loading: 'lazy', alt: upsell_product.title }}</span>
+    {%- endif -%}
+    <span class="pdp-si__content">
+      {%- if s.title != blank -%}<span class="pdp-si__title">{{ s.title }}</span>{%- endif -%}
+      {%- if s.text != blank -%}<span class="pdp-si__text">{{ s.text }}</span>{%- endif -%}
+    </span>
+    {%- if s.badge_text != blank -%}<span class="pdp-si__badge">{{ s.badge_text }}</span>{%- endif -%}
+  </label>
+
+  <div class="pdp-si__panel"{% unless s.checked_by_default %} hidden{% endunless %}>
+    {%- render 'pdp-variant-cards',
+      picker: picker,
+      product: upsell_product,
+      mode: 'upsell',
+      section_id: section.id,
+      form_id: form_id,
+      heading_primary: s.panel_primary_heading,
+      heading_secondary: s.panel_secondary_heading
+    -%}
+    {%- if s.panel_note != blank -%}<p class="pdp-si__note">{{ s.panel_note }}</p>{%- endif -%}
+  </div>
+</pdp-second-item>
+{%- endif -%}

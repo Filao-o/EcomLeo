@@ -1,0 +1,193 @@
+{%- comment -%}
+  Sélecteur de variantes en cartes (taille en cartes + option secondaire en boutons larges).
+  Paramètres :
+  - picker : bloc qui porte les réglages (type 'pdp_variant_cards')
+  - product : produit ciblé
+  - mode : 'main' (pilote le formulaire d'ajout au panier) ou 'upsell' (2e article)
+  - section_id, form_id
+  - heading_primary / heading_secondary : (optionnel) remplace les titres du bloc
+  - preselect_variant : (optionnel) variante présélectionnée
+{%- endcomment -%}
+{%- liquid
+  assign s = picker.settings
+  assign p_index = s.primary_option | default: '1' | plus: 0
+  assign s_index = 0
+  if s.secondary_option != 'none' and s.secondary_option != blank
+    assign s_index = s.secondary_option | plus: 0
+  endif
+  if s_index == p_index
+    assign s_index = 0
+  endif
+
+  assign p_pos = p_index | minus: 1
+  assign p_option = product.options_with_values[p_pos]
+  assign sec_option = nil
+  if s_index > 0
+    assign s_pos = s_index | minus: 1
+    assign sec_option = product.options_with_values[s_pos]
+  endif
+
+  assign p_key = 'option' | append: p_index
+  assign s_key = 'option' | append: s_index
+
+  if preselect_variant != blank
+    assign current = preselect_variant
+  else
+    assign current = product.selected_or_first_available_variant
+  endif
+
+  assign primary_selected = true
+  if mode == 'main' and s.require_selection and product.selected_variant == blank
+    assign primary_selected = false
+  endif
+
+  assign current_primary = current[p_key]
+  assign current_secondary = ''
+  if s_index > 0
+    assign current_secondary = current[s_key]
+  endif
+
+  assign detail_lines = s.value_details | newline_to_br | split: '<br />'
+  assign popular_values = s.popular_values | split: ','
+
+  assign heading_1 = heading_primary | default: s.primary_heading
+  assign heading_2 = heading_secondary | default: s.secondary_heading
+-%}
+
+{%- if p_option != blank and product.has_only_default_variant == false -%}
+<pdp-variant-cards
+  class="pdp-vc pdp-vc--{{ mode }}"
+  data-mode="{{ mode }}"
+  data-section-id="{{ section_id }}"
+  data-form-id="{{ form_id }}"
+  data-primary-index="{{ p_index }}"
+  data-secondary-index="{{ s_index }}"
+  data-require="{% if primary_selected %}false{% else %}true{% endif %}"
+  data-update-url="{% if mode == 'main' and s.update_url %}true{% else %}false{% endif %}"
+  data-select-text="{{ s.select_text | escape }}"
+  data-sold-out-text="{{ 'products.product.sold_out' | t | escape }}"
+  data-delta-prefix="{{ s.delta_prefix | escape }}"
+  data-money-format="{{ shop.money_format | escape }}"
+  data-hide-decimals="{% if s.hide_zero_decimals %}true{% else %}false{% endif %}"
+  {% if primary_selected %}data-selected-id="{{ current.id }}"{% endif %}
+  style="
+    --vc-card-bg: {{ s.card_bg_color }};
+    --vc-card-border: {{ s.card_border_color }};
+    --vc-card-active-bg: {{ s.card_selected_bg_color }};
+    --vc-card-active-border: {{ s.card_selected_border_color }};
+    --vc-text: {{ s.text_color }};
+    --vc-muted: {{ s.muted_color }};
+    --vc-heading: {{ s.heading_color }};
+    --vc-badge-bg: {{ s.badge_bg_color }};
+    --vc-badge-text: {{ s.badge_text_color }};
+    --vc-delta: {{ s.delta_color }};
+    --vc-radius: {{ s.card_radius }}px;
+    --vc-gap: {{ s.card_gap }}px;
+    --vc-value-size: {{ s.value_font_size }}px;
+    {% if mode == 'main' %}margin-top: {{ s.margin_top }}px; margin-bottom: {{ s.margin_bottom }}px;{% endif %}
+  "
+>
+  <script type="application/json" data-pdp-variants>
+    [
+      {%- for v in product.variants -%}
+        {"id":{{ v.id }},"price":{{ v.price }},"compare_at_price":{{ v.compare_at_price | default: 0 }},"available":{{ v.available }},"options":{{ v.options | json }},"featured_media":{% if v.featured_media %}{"id":{{ v.featured_media.id }}}{% else %}null{% endif %}}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  </script>
+
+  {%- if heading_1 != blank -%}
+    <p class="pdp-vc__heading">{{ heading_1 }}</p>
+  {%- endif -%}
+  <div class="pdp-vc__grid pdp-vc__grid--primary" role="radiogroup" aria-label="{{ p_option.name | escape }}" style="--vc-cols: {{ p_option.values.size }};">
+    {%- for value in p_option.values -%}
+      {%- liquid
+        assign value_str = value | append: ''
+        assign candidates = product.variants | where: p_key, value_str
+        if s_index > 0
+          assign combo = candidates | where: s_key, current_secondary | first
+        else
+          assign combo = candidates | first
+        endif
+        if combo == blank
+          assign combo = candidates | first
+        endif
+
+        assign detail = ''
+        for line in detail_lines
+          assign parts = line | split: '|'
+          assign key = parts[0] | strip
+          if key == value_str
+            assign detail = parts[1] | strip
+          endif
+        endfor
+
+        assign is_popular = false
+        for pv in popular_values
+          assign pv_s = pv | strip
+          if pv_s == value_str
+            assign is_popular = true
+          endif
+        endfor
+        assign is_active = false
+        if primary_selected and value_str == current_primary
+          assign is_active = true
+        endif
+      -%}
+      <button
+        type="button"
+        class="pdp-vc__card{% if is_active %} is-active{% endif %}{% if combo.available == false %} is-unavailable{% endif %}"
+        role="radio"
+        aria-checked="{{ is_active }}"
+        data-axis="primary"
+        data-value="{{ value_str | escape }}"
+      >
+        {%- if is_popular and s.badge_text != blank -%}<span class="pdp-vc__badge">{{ s.badge_text }}</span>{%- endif -%}
+        <span class="pdp-vc__value">{{ value_str }}</span>
+        {%- if detail != blank -%}<span class="pdp-vc__detail">{{ detail }}</span>{%- endif -%}
+        {%- if s.show_card_price -%}<span class="pdp-vc__price" data-price>{% if s.hide_zero_decimals %}{{ combo.price | money_without_trailing_zeros }}{% else %}{{ combo.price | money }}{% endif %}</span>{%- endif -%}
+      </button>
+    {%- endfor -%}
+  </div>
+
+  {%- if sec_option != blank -%}
+    {%- if heading_2 != blank -%}
+      <p class="pdp-vc__heading pdp-vc__heading--secondary">{{ heading_2 }}</p>
+    {%- endif -%}
+    {%- liquid
+      assign primary_for_delta = current_primary
+      assign base_candidates = product.variants | where: p_key, primary_for_delta
+      assign base_value = sec_option.values | first | append: ''
+      assign base_variant = base_candidates | where: s_key, base_value | first
+    -%}
+    <div class="pdp-vc__grid pdp-vc__grid--secondary" role="radiogroup" aria-label="{{ sec_option.name | escape }}" style="--vc-cols: {{ sec_option.values.size }};">
+      {%- for value in sec_option.values -%}
+        {%- liquid
+          assign value_str = value | append: ''
+          assign combo = base_candidates | where: s_key, value_str | first
+          assign delta = 0
+          if combo != blank and base_variant != blank
+            assign delta = combo.price | minus: base_variant.price
+          endif
+          assign is_active = false
+          if value_str == current_secondary
+            assign is_active = true
+          endif
+        -%}
+        <button
+          type="button"
+          class="pdp-vc__option{% if is_active %} is-active{% endif %}"
+          role="radio"
+          aria-checked="{{ is_active }}"
+          data-axis="secondary"
+          data-value="{{ value_str | escape }}"
+        >
+          <span class="pdp-vc__option-label">{{ value_str }}</span>
+          {%- if s.show_delta -%}
+            <span class="pdp-vc__delta" data-delta>{% if delta > 0 %}{{ s.delta_prefix }}{% if s.hide_zero_decimals %}{{ delta | money_without_trailing_zeros }}{% else %}{{ delta | money }}{% endif %}{% endif %}</span>
+          {%- endif -%}
+        </button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</pdp-variant-cards>
+{%- endif -%}

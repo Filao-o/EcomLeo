@@ -1,0 +1,29 @@
+{%- comment -%}
+  Bloc « Stock & expédition » : • In stock   Ships out within 24 Hours
+  block.type == 'pdp_stock_shipping'
+{%- endcomment -%}
+{%- liquid
+  assign s = block.settings
+  assign v = product.selected_or_first_available_variant
+-%}
+<div
+  class="pdp-stock{% unless v.available %} is-out{% endunless %}"
+  data-pdp-stock
+  data-in-text="{{ s.in_stock_text | escape }}"
+  data-out-text="{{ s.out_of_stock_text | escape }}"
+  {{ block.shopify_attributes }}
+  style="
+    --st-in: {{ s.in_stock_color }};
+    --st-out: {{ s.out_of_stock_color }};
+    --st-text: {{ s.text_color }};
+    --st-size: {{ s.font_size }}px;
+    margin-top: {{ s.margin_top }}px;
+    margin-bottom: {{ s.margin_bottom }}px;
+  "
+>
+  <span class="pdp-stock__status">
+    <span class="pdp-stock__dot{% if s.pulse %} pdp-stock__dot--pulse{% endif %}"></span>
+    <span class="pdp-stock__label">{% if v.available %}{{ s.in_stock_text }}{% else %}{{ s.out_of_stock_text }}{% endif %}</span>
+  </span>
+  {%- if s.shipping_text != blank -%}<span class="pdp-stock__shipping">{{ s.shipping_text }}</span>{%- endif -%}
+</div>

@@ -1,5 +1,6 @@
 {{ 'shop-product-details.css' | asset_url | stylesheet_tag }}
 {{ 'variant-selector.css' | asset_url | stylesheet_tag }}
+{{ 'pdp-buybox.css' | asset_url | stylesheet_tag }}
 
 {% liquid
   assign show_price_in_button = section.settings.show_price_in_button
@@ -887,6 +888,7 @@
 <script src="{{ 'product-info.js' | asset_url }}" defer></script>
 <script src="{{ 'variant-selector.js' | asset_url }}" defer></script>
 <script src="{{ 'product-form.js' | asset_url }}" defer></script>
+<script src="{{ 'pdp-buybox.js' | asset_url }}" defer></script>
 <script src="{{ 'shop-product-details.js' | asset_url }}" defer></script>
 <script src="{{ 'product-gallery.js' | asset_url }}" defer></script>
 
@@ -1247,6 +1249,1299 @@
     }
   ],
   "blocks": [
+    {
+      "name": "⭐ Badge preuve sociale",
+      "type": "pdp_social_proof",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "The Choice of Professional Chefs"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Lien (optionnel)"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_1",
+          "label": "Avatar 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_2",
+          "label": "Avatar 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_3",
+          "label": "Avatar 3"
+        },
+        {
+          "type": "range",
+          "id": "avatar_size",
+          "label": "Taille des avatars",
+          "min": 16,
+          "max": 40,
+          "step": 1,
+          "default": 24,
+          "unit": "px"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_verified",
+          "label": "Afficher le badge vérifié",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Taille du texte",
+          "min": 10,
+          "max": 20,
+          "step": 1,
+          "default": 14,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "label": "Arrondi",
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "default": 6,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Fond",
+          "default": "#262423"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Bordure",
+          "default": "#3a3836"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Texte",
+          "default": "#e8c9a8"
+        },
+        {
+          "type": "color",
+          "id": "verified_color",
+          "label": "Badge vérifié",
+          "default": "#3897f0"
+        },
+        {
+          "type": "color",
+          "id": "avatar_border_color",
+          "label": "Contour des avatars",
+          "default": "#262423"
+        },
+        {
+          "type": "header",
+          "content": "Espacements"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Marge haute",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Marge basse",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 14,
+          "unit": "px"
+        }
+      ]
+    },
+    {
+      "name": "⭐ Sous-titre",
+      "type": "pdp_subtitle",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Pure titanium, pure performance"
+        },
+        {
+          "type": "checkbox",
+          "id": "italic",
+          "label": "Italique",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "use_custom_font",
+          "label": "Utiliser une police personnalisée",
+          "default": true
+        },
+        {
+          "type": "font_picker",
+          "id": "font",
+          "label": "Police",
+          "default": "playfair_display_i4"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Taille",
+          "min": 12,
+          "max": 30,
+          "step": 1,
+          "default": 17,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "line_height",
+          "label": "Interligne",
+          "min": 1,
+          "max": 2,
+          "step": 0.1,
+          "default": 1.3
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Couleur",
+          "default": "#9c958e"
+        },
+        {
+          "type": "header",
+          "content": "Espacements"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Marge haute",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": -4,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Marge basse",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 12,
+          "unit": "px"
+        }
+      ]
+    },
+    {
+      "name": "⭐ Note et avis",
+      "type": "pdp_rating_summary",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "range",
+          "id": "star_count",
+          "label": "Nombre d'étoiles",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "rating_label",
+          "label": "Texte de la note",
+          "default": "Excellent 4.7"
+        },
+        {
+          "type": "text",
+          "id": "reviews_text",
+          "label": "Nombre d'avis",
+          "default": "(16,000+ Reviews)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Lien (optionnel)",
+          "info": "Ex : vers la section des avis"
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "range",
+          "id": "star_size",
+          "label": "Taille des étoiles",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "default": 14,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Taille du texte",
+          "min": 11,
+          "max": 20,
+          "step": 1,
+          "default": 15,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "star_color",
+          "label": "Étoiles",
+          "default": "#f5b400"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Texte principal",
+          "default": "#f5f4f3"
+        },
+        {
+          "type": "color",
+          "id": "muted_color",
+          "label": "Séparateur",
+          "default": "#9c958e"
+        },
+        {
+          "type": "header",
+          "content": "Espacements"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Marge haute",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Marge basse",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        }
+      ]
+    },
+    {
+      "name": "⭐ Cartes avantages",
+      "type": "pdp_feature_cards",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Carte 1"
+        },
+        {
+          "type": "select",
+          "id": "feature_1_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "check_circle",
+              "label": "Coche (cercle)"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "dishwasher",
+              "label": "Lave-vaisselle"
+            },
+            {
+              "value": "flame",
+              "label": "Flamme"
+            },
+            {
+              "value": "leaf",
+              "label": "Feuille"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            },
+            {
+              "value": "heart",
+              "label": "Cœur"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "medal",
+              "label": "Médaille"
+            },
+            {
+              "value": "snowflake",
+              "label": "Flocon"
+            }
+          ],
+          "default": "check_circle"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_1_image",
+          "label": "Icône personnalisée (remplace l'icône)"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_title",
+          "label": "Titre",
+          "default": "100% Non-Toxic"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_subtitle",
+          "label": "Sous-titre",
+          "default": "PFAS-Free"
+        },
+        {
+          "type": "header",
+          "content": "Carte 2"
+        },
+        {
+          "type": "select",
+          "id": "feature_2_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "check_circle",
+              "label": "Coche (cercle)"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "dishwasher",
+              "label": "Lave-vaisselle"
+            },
+            {
+              "value": "flame",
+              "label": "Flamme"
+            },
+            {
+              "value": "leaf",
+              "label": "Feuille"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            },
+            {
+              "value": "heart",
+              "label": "Cœur"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "medal",
+              "label": "Médaille"
+            },
+            {
+              "value": "snowflake",
+              "label": "Flocon"
+            }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_2_image",
+          "label": "Icône personnalisée (remplace l'icône)"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_title",
+          "label": "Titre",
+          "default": "25-Years Warranty"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_subtitle",
+          "label": "Sous-titre",
+          "default": "Build to last"
+        },
+        {
+          "type": "header",
+          "content": "Carte 3"
+        },
+        {
+          "type": "select",
+          "id": "feature_3_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "check_circle",
+              "label": "Coche (cercle)"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "dishwasher",
+              "label": "Lave-vaisselle"
+            },
+            {
+              "value": "flame",
+              "label": "Flamme"
+            },
+            {
+              "value": "leaf",
+              "label": "Feuille"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            },
+            {
+              "value": "heart",
+              "label": "Cœur"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "medal",
+              "label": "Médaille"
+            },
+            {
+              "value": "snowflake",
+              "label": "Flocon"
+            }
+          ],
+          "default": "dishwasher"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_3_image",
+          "label": "Icône personnalisée (remplace l'icône)"
+        },
+        {
+          "type": "text",
+          "id": "feature_3_title",
+          "label": "Titre",
+          "default": "Dishwasher Safe"
+        },
+        {
+          "type": "text",
+          "id": "feature_3_subtitle",
+          "label": "Sous-titre",
+          "default": "Extremely easy to clean"
+        },
+        {
+          "type": "header",
+          "content": "Carte 4"
+        },
+        {
+          "type": "select",
+          "id": "feature_4_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "check_circle",
+              "label": "Coche (cercle)"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "dishwasher",
+              "label": "Lave-vaisselle"
+            },
+            {
+              "value": "flame",
+              "label": "Flamme"
+            },
+            {
+              "value": "leaf",
+              "label": "Feuille"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            },
+            {
+              "value": "heart",
+              "label": "Cœur"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "medal",
+              "label": "Médaille"
+            },
+            {
+              "value": "snowflake",
+              "label": "Flocon"
+            }
+          ],
+          "default": "flame"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_4_image",
+          "label": "Icône personnalisée (remplace l'icône)"
+        },
+        {
+          "type": "text",
+          "id": "feature_4_title",
+          "label": "Titre",
+          "default": "All Heat Sources"
+        },
+        {
+          "type": "text",
+          "id": "feature_4_subtitle",
+          "label": "Sous-titre",
+          "default": "Gas, induction, oven & grill"
+        },
+        {
+          "type": "header",
+          "content": "Disposition"
+        },
+        {
+          "type": "range",
+          "id": "columns_desktop",
+          "label": "Colonnes (ordinateur)",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "columns_mobile",
+          "label": "Colonnes (mobile)",
+          "min": 1,
+          "max": 2,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "range",
+          "id": "card_radius",
+          "label": "Arrondi des cartes",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "default": 6,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "label": "Taille du titre",
+          "min": 11,
+          "max": 18,
+          "step": 1,
+          "default": 13,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "subtitle_size",
+          "label": "Taille du sous-titre",
+          "min": 9,
+          "max": 16,
+          "step": 1,
+          "default": 11,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Fond des cartes",
+          "default": "#262423"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Bordure des cartes",
+          "default": "#3a3836"
+        },
+        {
+          "type": "color",
+          "id": "icon_bg_color",
+          "label": "Fond de l'icône",
+          "default": "#2f2c2a"
+        },
+        {
+          "type": "color",
+          "id": "icon_border_color",
+          "label": "Bordure de l'icône",
+          "default": "#4a4541"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icône",
+          "default": "#d2a27a"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Titre",
+          "default": "#f5f4f3"
+        },
+        {
+          "type": "color",
+          "id": "subtitle_color",
+          "label": "Sous-titre",
+          "default": "#9c958e"
+        },
+        {
+          "type": "header",
+          "content": "Espacements"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Marge haute",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Marge basse",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 20,
+          "unit": "px"
+        }
+      ]
+    },
+    {
+      "name": "⭐ Sélecteur de variantes en cartes",
+      "type": "pdp_variant_cards",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Affiche l'option principale (ex : Taille) en cartes et l'option secondaire (ex : Couvercle) en boutons. Les prix viennent automatiquement des variantes du produit."
+        },
+        {
+          "type": "header",
+          "content": "Option principale (cartes)"
+        },
+        {
+          "type": "select",
+          "id": "primary_option",
+          "label": "Option affichée en cartes",
+          "options": [
+            {
+              "value": "1",
+              "label": "Option 1"
+            },
+            {
+              "value": "2",
+              "label": "Option 2"
+            },
+            {
+              "value": "3",
+              "label": "Option 3"
+            }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "primary_heading",
+          "label": "Titre",
+          "default": "Choose your size"
+        },
+        {
+          "type": "textarea",
+          "id": "value_details",
+          "label": "Texte sous chaque valeur",
+          "default": "8\" | 1 person\n9\" | 1–2 people\n10\" | 2–3 people",
+          "info": "Une ligne par valeur, format : valeur | texte. La valeur doit être écrite exactement comme dans la variante."
+        },
+        {
+          "type": "text",
+          "id": "popular_values",
+          "label": "Valeur(s) mise(s) en avant",
+          "default": "9\"",
+          "info": "Séparées par des virgules"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Texte du badge",
+          "default": "POPULAR"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_card_price",
+          "label": "Afficher le prix sur les cartes",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "require_selection",
+          "label": "Obliger le client à choisir une taille",
+          "default": true,
+          "info": "Aucune taille présélectionnée : le bouton affiche le texte ci-dessous tant qu'aucune taille n'est choisie."
+        },
+        {
+          "type": "text",
+          "id": "select_text",
+          "label": "Texte du bouton tant qu'aucune taille n'est choisie",
+          "default": "SELECT YOUR SIZE"
+        },
+        {
+          "type": "header",
+          "content": "Option secondaire (boutons)"
+        },
+        {
+          "type": "select",
+          "id": "secondary_option",
+          "label": "Option affichée en boutons",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "1",
+              "label": "Option 1"
+            },
+            {
+              "value": "2",
+              "label": "Option 2"
+            },
+            {
+              "value": "3",
+              "label": "Option 3"
+            }
+          ],
+          "default": "2"
+        },
+        {
+          "type": "text",
+          "id": "secondary_heading",
+          "label": "Titre (optionnel)",
+          "default": ""
+        },
+        {
+          "type": "checkbox",
+          "id": "show_delta",
+          "label": "Afficher le supplément de prix (ex : +$13)",
+          "default": true,
+          "info": "Calculé automatiquement : différence de prix avec la première valeur de l'option."
+        },
+        {
+          "type": "text",
+          "id": "delta_prefix",
+          "label": "Préfixe du supplément",
+          "default": "+"
+        },
+        {
+          "type": "header",
+          "content": "Prix"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_zero_decimals",
+          "label": "Masquer les centimes quand ils valent 0",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "update_url",
+          "label": "Mettre à jour l'URL avec la variante",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "range",
+          "id": "card_radius",
+          "label": "Arrondi",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "default": 6,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "card_gap",
+          "label": "Espace entre les cartes",
+          "min": 4,
+          "max": 20,
+          "step": 1,
+          "default": 8,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "value_font_size",
+          "label": "Taille de la valeur",
+          "min": 12,
+          "max": 26,
+          "step": 1,
+          "default": 17,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Titres",
+          "default": "#9c958e"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Fond des cartes",
+          "default": "#262423"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Bordure des cartes",
+          "default": "#3a3836"
+        },
+        {
+          "type": "color",
+          "id": "card_selected_bg_color",
+          "label": "Fond sélectionné",
+          "default": "#2b2724"
+        },
+        {
+          "type": "color",
+          "id": "card_selected_border_color",
+          "label": "Bordure sélectionnée",
+          "default": "#d2a27a"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Texte",
+          "default": "#f5f4f3"
+        },
+        {
+          "type": "color",
+          "id": "muted_color",
+          "label": "Texte secondaire",
+          "default": "#9c958e"
+        },
+        {
+          "type": "color",
+          "id": "badge_bg_color",
+          "label": "Fond du badge",
+          "default": "#c0392b"
+        },
+        {
+          "type": "color",
+          "id": "badge_text_color",
+          "label": "Texte du badge",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "delta_color",
+          "label": "Supplément de prix",
+          "default": "#d2a27a"
+        },
+        {
+          "type": "header",
+          "content": "Espacements"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Marge haute",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Marge basse",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        }
+      ]
+    },
+    {
+      "name": "⭐ 2e article (upsell)",
+      "type": "pdp_second_item",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Case à cocher qui ajoute un 2e produit au panier. Le style des cartes reprend le bloc « Sélecteur de variantes en cartes ». La remise réelle se configure dans Shopify > Réductions."
+        },
+        {
+          "type": "product",
+          "id": "upsell_product",
+          "label": "Produit proposé",
+          "info": "Laisse vide pour proposer le même produit"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (optionnel)",
+          "info": "Par défaut : image du produit"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Add a second pan with 10% off"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Mix & match any size. 10% off every extra pan."
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge",
+          "default": "-10%"
+        },
+        {
+          "type": "checkbox",
+          "id": "checked_by_default",
+          "label": "Cochée par défaut",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Choix des variantes du 2e article"
+        },
+        {
+          "type": "text",
+          "id": "panel_primary_heading",
+          "label": "Titre de l'option principale",
+          "default": "Second pan size"
+        },
+        {
+          "type": "text",
+          "id": "panel_secondary_heading",
+          "label": "Titre de l'option secondaire",
+          "default": ""
+        },
+        {
+          "type": "text",
+          "id": "panel_note",
+          "label": "Note sous le choix (optionnel)",
+          "default": ""
+        },
+        {
+          "type": "header",
+          "content": "Panier"
+        },
+        {
+          "type": "text",
+          "id": "cart_property_label",
+          "label": "Libellé affiché dans le panier",
+          "default": "Bundle",
+          "info": "Laisse vide pour ne rien afficher. Commence par _ pour le cacher au client."
+        },
+        {
+          "type": "text",
+          "id": "cart_property_value",
+          "label": "Valeur affichée dans le panier",
+          "default": "Second pan"
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "select",
+          "id": "border_style",
+          "label": "Style de bordure",
+          "options": [
+            {
+              "value": "dashed",
+              "label": "Pointillés"
+            },
+            {
+              "value": "solid",
+              "label": "Pleine"
+            }
+          ],
+          "default": "dashed"
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "label": "Arrondi",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "default": 6,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Fond",
+          "default": "#232120"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Bordure",
+          "default": "#4a4541"
+        },
+        {
+          "type": "color",
+          "id": "border_color_active",
+          "label": "Bordure (cochée)",
+          "default": "#d2a27a"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Titre",
+          "default": "#f5f4f3"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Texte",
+          "default": "#9c958e"
+        },
+        {
+          "type": "color",
+          "id": "badge_bg_color",
+          "label": "Fond du badge",
+          "default": "#d2a27a"
+        },
+        {
+          "type": "color",
+          "id": "badge_text_color",
+          "label": "Texte du badge",
+          "default": "#201f1e"
+        },
+        {
+          "type": "color",
+          "id": "checkbox_color",
+          "label": "Case cochée",
+          "default": "#d2a27a"
+        },
+        {
+          "type": "header",
+          "content": "Espacements"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Marge haute",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Marge basse",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 14,
+          "unit": "px"
+        }
+      ]
+    },
+    {
+      "name": "⭐ Stock et expédition",
+      "type": "pdp_stock_shipping",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "in_stock_text",
+          "label": "Texte en stock",
+          "default": "In stock"
+        },
+        {
+          "type": "text",
+          "id": "out_of_stock_text",
+          "label": "Texte en rupture",
+          "default": "Out of stock"
+        },
+        {
+          "type": "text",
+          "id": "shipping_text",
+          "label": "Texte d'expédition",
+          "default": "Ships out within 24 Hours"
+        },
+        {
+          "type": "checkbox",
+          "id": "pulse",
+          "label": "Animer le point",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Taille du texte",
+          "min": 10,
+          "max": 18,
+          "step": 1,
+          "default": 13,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "in_stock_color",
+          "label": "Couleur en stock",
+          "default": "#3ecf6e"
+        },
+        {
+          "type": "color",
+          "id": "out_of_stock_color",
+          "label": "Couleur en rupture",
+          "default": "#e5484d"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Texte d'expédition",
+          "default": "#d6d3d0"
+        },
+        {
+          "type": "header",
+          "content": "Espacements"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Marge haute",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Marge basse",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 12,
+          "unit": "px"
+        }
+      ]
+    },
+
     {
       "name": "Custom Text",
       "type": "custom_text",
@@ -1822,6 +3117,28 @@
           "step": 0.1,
           "default": 1.2,
           "label": "Line height"
+        },
+        {
+          "type": "header",
+          "content": "Police personnalisée"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_custom_font",
+          "label": "Utiliser une police personnalisée",
+          "default": false
+        },
+        {
+          "type": "font_picker",
+          "id": "custom_font",
+          "label": "Police du titre",
+          "default": "playfair_display_n4"
+        },
+        {
+          "type": "checkbox",
+          "id": "override_global_font",
+          "label": "Forcer cette police (priorité sur le thème)",
+          "default": true
         }
       ]
     },
