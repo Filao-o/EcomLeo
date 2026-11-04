@@ -247,6 +247,33 @@
     ]
   },
   {
+    "name": "Mots d'accent (titres)",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Dans un titre, mets un mot en italique (bouton I de l'éditeur) : il s'affiche en Playfair italique de la couleur ci-dessous. Ex : La dernière poêle que vous *achèterez*."
+      },
+      {
+        "type": "checkbox",
+        "id": "heading_accent_enable",
+        "label": "Activer les mots d'accent dans les titres",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "heading_accent_color",
+        "label": "Couleur des mots d'accent",
+        "default": "#c8956a"
+      },
+      {
+        "type": "font_picker",
+        "id": "heading_accent_font",
+        "label": "Police des mots d'accent",
+        "default": "playfair_display_i4"
+      }
+    ]
+  },
+  {
     "name": "Arrière-plans des pages",
     "settings": [
       {

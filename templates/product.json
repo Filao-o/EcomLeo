@@ -132,7 +132,8 @@
             "subtitle_color": "#ffffffcc",
             "margin_top": 0,
             "margin_bottom": 20
-          }
+          },
+          "disabled": true
         },
         "pdp_variant_cards_main": {
           "type": "pdp_variant_cards",
@@ -1615,6 +1616,39 @@
             "margin_top": 4,
             "margin_bottom": 12
           }
+        },
+        "pdp_heat_main": {
+          "type": "pdp_heat_sources",
+          "settings": {
+            "heading": "Ideal for all heat sources",
+            "show_line": true,
+            "tile_1_icon": "gas_stove",
+            "tile_1_label": "Gas stove",
+            "tile_2_icon": "induction",
+            "tile_2_label": "Induction",
+            "tile_3_icon": "oven",
+            "tile_3_label": "Oven",
+            "tile_4_icon": "grill",
+            "tile_4_label": "Grill",
+            "tile_5_icon": "flame",
+            "pill_1": "100% non-toxic",
+            "pill_2": "Dishwasher safe",
+            "pill_3": "25-year warranty",
+            "tile_radius": 10,
+            "icon_size": 28,
+            "label_size": 12,
+            "heading_color": "#ffffffcc",
+            "line_color": "#3a3836",
+            "tile_bg_color": "#262423",
+            "tile_border_color": "#3a3836",
+            "icon_color": "#e8c9a8",
+            "label_color": "#ffffffcc",
+            "pill_text_color": "#ffffff",
+            "check_bg_color": "#c8956a",
+            "check_color": "#201f1e",
+            "margin_top": 0,
+            "margin_bottom": 18
+          }
         }
       },
       "block_order": [
@@ -1623,6 +1657,7 @@
         "pdp_subtitle_main",
         "price_BXHxWM",
         "pdp_rating_main",
+        "pdp_heat_main",
         "pdp_features_main",
         "pdp_variant_cards_main",
         "pdp_second_item_main",

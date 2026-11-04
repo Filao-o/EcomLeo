@@ -279,6 +279,23 @@
       }
     </style>
 
+    {%- comment -%} Mots d'accent : mot en italique dans un titre = Playfair italique cuivré (Paramètres du thème > Mots d'accent) {%- endcomment -%}
+    {%- if settings.heading_accent_enable -%}
+      <style>
+        {{ settings.heading_accent_font | font_face: font_display: 'swap' }}
+        :root { --heading-accent-color: {{ settings.heading_accent_color }}; }
+        h1 em, h2 em, h3 em, h4 em, h1 i, h2 i, h3 i, h4 i,
+        .h0 em, .h1 em, .h2 em, .h3 em, .h1 i, .h2 i, .h3 i,
+        [class*="heading"] em, [class*="title"] em, [class*="heading"] i:not([class]), [class*="title"] i:not([class]) {
+          font-family: "{{ settings.heading_accent_font.family }}", {{ settings.heading_accent_font.fallback_families }} !important;
+          font-style: italic !important;
+          font-weight: {{ settings.heading_accent_font.weight }};
+          color: var(--heading-accent-color) !important;
+          -webkit-text-fill-color: var(--heading-accent-color);
+        }
+      </style>
+    {%- endif -%}
+
     {%- comment -%} Fond de page par template (réglage : Paramètres du thème > Arrière-plans des pages) {%- endcomment -%}
     {%- if template.name == 'product' and settings.product_page_background != blank -%}
       <style>

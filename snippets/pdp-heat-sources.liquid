@@ -1,0 +1,73 @@
+{%- comment -%}
+  Bloc « Sources de chaleur » : titre + tuiles d'icônes sur une ligne + pastilles ✓
+  block.type == 'pdp_heat_sources'
+{%- endcomment -%}
+{%- assign s = block.settings -%}
+<div
+  class="pdp-heat"
+  {{ block.shopify_attributes }}
+  style="
+    --ht-heading: {{ s.heading_color }};
+    --ht-line: {{ s.line_color }};
+    --ht-bg: {{ s.tile_bg_color }};
+    --ht-border: {{ s.tile_border_color }};
+    --ht-radius: {{ s.tile_radius }}px;
+    --ht-icon: {{ s.icon_color }};
+    --ht-icon-size: {{ s.icon_size }}px;
+    --ht-label: {{ s.label_color }};
+    --ht-label-size: {{ s.label_size }}px;
+    --ht-pill-text: {{ s.pill_text_color }};
+    --ht-check-bg: {{ s.check_bg_color }};
+    --ht-check: {{ s.check_color }};
+    margin-top: {{ s.margin_top }}px;
+    margin-bottom: {{ s.margin_bottom }}px;
+  "
+>
+  {%- if s.heading != blank -%}
+    <p class="pdp-heat__heading"><span>{{ s.heading }}</span>{% if s.show_line %}<span class="pdp-heat__line" aria-hidden="true"></span>{% endif %}</p>
+  {%- endif -%}
+  {%- assign tiles = 0 -%}
+  {%- for i in (1..5) -%}
+    {%- assign k = 'tile_' | append: i | append: '_label' -%}
+    {%- if s[k] != blank -%}{%- assign tiles = tiles | plus: 1 -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if tiles > 0 -%}
+    <div class="pdp-heat__tiles" style="--ht-cols: {{ tiles }};">
+      {%- for i in (1..5) -%}
+        {%- liquid
+          assign k_label = 'tile_' | append: i | append: '_label'
+          assign k_icon = 'tile_' | append: i | append: '_icon'
+          assign k_img = 'tile_' | append: i | append: '_image'
+          assign t_label = s[k_label]
+          assign t_icon = s[k_icon]
+          assign t_img = s[k_img]
+        -%}
+        {%- if t_label != blank -%}
+          <div class="pdp-heat__tile">
+            <span class="pdp-heat__icon">
+              {%- if t_img != blank -%}
+                {{ t_img | image_url: width: 96 | image_tag: loading: 'lazy', alt: t_label }}
+              {%- else -%}
+                {% render 'pdp-icon', icon: t_icon %}
+              {%- endif -%}
+            </span>
+            <span class="pdp-heat__label">{{ t_label }}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+  {%- if s.pill_1 != blank or s.pill_2 != blank or s.pill_3 != blank -%}
+    <div class="pdp-heat__pills">
+      {%- for i in (1..3) -%}
+        {%- assign k = 'pill_' | append: i -%}
+        {%- if s[k] != blank -%}
+          <span class="pdp-heat__pill">
+            <span class="pdp-heat__check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            {{ s[k] }}
+          </span>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
