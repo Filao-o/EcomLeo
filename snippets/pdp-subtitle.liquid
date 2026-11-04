@@ -1,27 +1,33 @@
 {%- comment -%}
   Bloc « Sous-titre » (texte en italique sous le titre)
   block.type == 'pdp_subtitle'
+  Styles posés via une règle ciblée sur le bloc (plus robuste que le style inline,
+  notamment si une app de traduction réécrit le contenu).
 {%- endcomment -%}
 {%- assign s = block.settings -%}
 {%- if s.text != blank -%}
-  {%- if s.use_custom_font and s.font != blank -%}
-    <style>{{ s.font | font_face: font_display: 'swap' }}</style>
-  {%- endif -%}
-  <p
-    class="pdp-subtitle"
-    {{ block.shopify_attributes }}
-    style="
-      color: {{ s.text_color }};
-      font-size: {{ s.font_size }}px;
-      line-height: {{ s.line_height }};
-      margin: {{ s.margin_top }}px 0 {{ s.margin_bottom }}px;
-      {%- if s.use_custom_font and s.font != blank -%}
-        font-family: {{ s.font.family }}, {{ s.font.fallback_families }} !important;
-        font-weight: {{ s.font.weight }} !important;
-      {%- endif -%}
+  {%- assign use_font = false -%}
+  {%- if s.use_custom_font and s.font.family != blank -%}{%- assign use_font = true -%}{%- endif -%}
+  <style>
+    {%- if use_font -%}{{ s.font | font_face: font_display: 'swap' }}{%- endif -%}
+    .pdp-subtitle--{{ block.id }},
+    .pdp-subtitle--{{ block.id }} * {
+      color: {{ s.text_color }} !important;
+      font-size: {{ s.font_size }}px !important;
+      line-height: {{ s.line_height }} !important;
       font-style: {% if s.italic %}italic{% else %}normal{% endif %} !important;
-    "
-  >
+      font-synthesis: style;
+      {%- if use_font %}
+      font-family: "{{ s.font.family }}", {{ s.font.fallback_families }} !important;
+      font-weight: {{ s.font.weight }} !important;
+      {%- endif %}
+    }
+    .pdp-subtitle--{{ block.id }} {
+      display: block;
+      margin: {{ s.margin_top }}px 0 {{ s.margin_bottom }}px !important;
+    }
+  </style>
+  <p class="pdp-subtitle pdp-subtitle--{{ block.id }}" {{ block.shopify_attributes }}>
     {{- s.text -}}
   </p>
 {%- endif -%}
