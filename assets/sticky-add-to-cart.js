@@ -182,6 +182,19 @@ function scrollToSection(btn) {
   
   var index = parseInt(btn.getAttribute('data-scroll-to-section')) - 1;
   var sections = document.querySelectorAll('.shopify-section');
+  // Sans numéro de section : on remonte au sélecteur de variantes (ou au bloc produit)
+  if (isNaN(index) || index < 0) {
+    var picker = document.querySelector('pdp-variant-cards[data-mode="main"]');
+    var target = picker || document.querySelector('.shop-product-info');
+    if (target) {
+      var offset = parseInt(btn.getAttribute('data-scroll-offset')) || 100;
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - offset, behavior: 'smooth' });
+      if (picker && picker.needsSelection && typeof picker.requestAttention === 'function') {
+        setTimeout(function () { picker.requestAttention(); }, 500);
+      }
+    }
+    return;
+  }
   if (sections[index]) {
     var headerOffset = parseInt(btn.getAttribute('data-scroll-offset')) || 100;
     var elementPosition = sections[index].getBoundingClientRect().top;

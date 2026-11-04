@@ -562,6 +562,55 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    {%- comment -%} Couleurs et style personnalisés du header (réglages « Style du header ») {%- endcomment -%}
+    {%- liquid
+      assign hdr_bg = section.settings.custom_bg_color
+      assign hdr_fg = section.settings.custom_text_color
+    -%}
+    {%- if hdr_bg != blank -%}
+      .section-header {
+        --color-header: {{ hdr_bg.red }},{{ hdr_bg.green }},{{ hdr_bg.blue }};
+      }
+      .section-header .header-wrapper,
+      .section-header .header {
+        background-color: {{ hdr_bg }} !important;
+        background-image: none !important;
+      }
+    {%- endif -%}
+    {%- if hdr_fg != blank -%}
+      .section-header .header-wrapper {
+        --color-drawer-text: {{ hdr_fg.red }},{{ hdr_fg.green }},{{ hdr_fg.blue }};
+        --color-header-foreground: {{ hdr_fg }};
+        color: {{ hdr_fg }} !important;
+      }
+      .section-header .header__heading-link,
+      .section-header .header__heading-link .h2,
+      .section-header .header > .header__icon,
+      .section-header .header__icons .header__icon,
+      .section-header .header__icon--menu,
+      .section-header .list-menu__item {
+        color: {{ hdr_fg }} !important;
+      }
+    {%- endif -%}
+    .section-header .header__heading-link .h2 {
+      white-space: nowrap;
+      font-size: {{ section.settings.logo_text_size }}px;
+      line-height: 1.1;
+    }
+    {%- if section.settings.floating_header -%}
+      .section-header {
+        {%- if section.settings.floating_outer_color != blank %}
+        background-color: {{ section.settings.floating_outer_color }};
+        {%- endif %}
+        padding: {{ section.settings.floating_gap }}px {{ section.settings.floating_gap }}px 0;
+      }
+      .section-header .header-wrapper {
+        border: 1px solid {{ section.settings.floating_border_color }} !important;
+        border-radius: {{ section.settings.floating_radius }}px;
+        overflow: visible;
+      }
+    {%- endif -%}
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -1252,6 +1301,69 @@
       "label": "t:sections.all.padding.padding_bottom",
       "default": 20,
       "info": "Only used when Header Height Mode is set to 'Auto'. For custom height, use the height settings above."
+    },
+    {
+      "type": "header",
+      "content": "Style du header (personnalisé)"
+    },
+    {
+      "type": "color",
+      "id": "custom_bg_color",
+      "label": "Fond du header",
+      "info": "Laisse vide pour garder la couleur du thème"
+    },
+    {
+      "type": "color",
+      "id": "custom_text_color",
+      "label": "Couleur du logo, du menu et des icônes",
+      "info": "Laisse vide pour garder la couleur du thème"
+    },
+    {
+      "type": "range",
+      "id": "logo_text_size",
+      "label": "Taille du logo texte (sans image)",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "checkbox",
+      "id": "floating_header",
+      "label": "Header flottant (encadré arrondi)",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "floating_gap",
+      "label": "Marge autour du header flottant",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "floating_radius",
+      "label": "Arrondi du header flottant",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "floating_border_color",
+      "label": "Bordure du header flottant",
+      "default": "#3a3836"
+    },
+    {
+      "type": "color",
+      "id": "floating_outer_color",
+      "label": "Fond autour du header flottant"
     }
   ],
   "blocks": [
