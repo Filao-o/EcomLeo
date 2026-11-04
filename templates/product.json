@@ -103,8 +103,43 @@
             "margin_bottom": 18
           }
         },
+        "pdp_heat_main": {
+          "type": "pdp_heat_sources",
+          "settings": {
+            "heading": "Ideal for all heat sources",
+            "show_line": true,
+            "tile_1_icon": "gas_stove",
+            "tile_1_label": "Gas stove",
+            "tile_2_icon": "induction",
+            "tile_2_label": "Induction",
+            "tile_3_icon": "oven",
+            "tile_3_label": "Oven",
+            "tile_4_icon": "grill",
+            "tile_4_label": "Grill",
+            "tile_5_icon": "flame",
+            "tile_5_label": "",
+            "pill_1": "100% non-toxic",
+            "pill_2": "Dishwasher safe",
+            "pill_3": "25-year warranty",
+            "tile_radius": 10,
+            "icon_size": 28,
+            "label_size": 12,
+            "heading_color": "#ffffffcc",
+            "line_color": "#3a3836",
+            "tile_bg_color": "#262423",
+            "tile_border_color": "#3a3836",
+            "icon_color": "#e8c9a8",
+            "label_color": "#ffffffcc",
+            "pill_text_color": "#ffffff",
+            "check_bg_color": "#c8956a",
+            "check_color": "#201f1e",
+            "margin_top": 0,
+            "margin_bottom": 18
+          }
+        },
         "pdp_features_main": {
           "type": "pdp_feature_cards",
+          "disabled": true,
           "settings": {
             "feature_1_icon": "check_circle",
             "feature_1_title": "100% Non-Toxic",
@@ -132,15 +167,14 @@
             "subtitle_color": "#ffffffcc",
             "margin_top": 0,
             "margin_bottom": 20
-          },
-          "disabled": true
+          }
         },
         "pdp_variant_cards_main": {
           "type": "pdp_variant_cards",
           "settings": {
             "primary_option": "1",
             "primary_heading": "Choose your size",
-            "value_details": "9\" | 1 person\n10\" | 1–2 people\n11\" | 2–3 people",
+            "value_details": "26 | 1 person\n28 | 1–2 people\n30 | 2–3 people",
             "popular_values": "10\"",
             "badge_text": "BEST SELLER",
             "show_card_price": true,
@@ -242,6 +276,27 @@
             "icon_spacing": 6,
             "margin_top": 10,
             "margin_bottom": 10
+          }
+        },
+        "pdp_trust_main": {
+          "type": "pdp_trust_line",
+          "settings": {
+            "item_1_icon": "flag_au",
+            "item_1_text": "Free shipping to Australia",
+            "item_2_icon": "return",
+            "item_2_text": "30-day returns",
+            "item_3_icon": "none",
+            "item_3_text": "",
+            "divider_top": true,
+            "divider_bottom": true,
+            "alignment": "center",
+            "font_size": 13,
+            "padding": 12,
+            "text_color": "#ffffffcc",
+            "icon_color": "#ffffff",
+            "divider_color": "#3a3836",
+            "margin_top": 4,
+            "margin_bottom": 12
           }
         },
         "trustpilot_rating_mrtVHq": {
@@ -1596,59 +1651,6 @@
             "margin_bottom": 10,
             "link": "reviews"
           }
-        },
-        "pdp_trust_main": {
-          "type": "pdp_trust_line",
-          "settings": {
-            "item_1_icon": "flag_au",
-            "item_1_text": "Free shipping to Australia",
-            "item_2_icon": "return",
-            "item_2_text": "30-day returns",
-            "item_3_icon": "none",
-            "divider_top": true,
-            "divider_bottom": true,
-            "alignment": "center",
-            "font_size": 13,
-            "padding": 12,
-            "text_color": "#ffffffcc",
-            "icon_color": "#ffffff",
-            "divider_color": "#3a3836",
-            "margin_top": 4,
-            "margin_bottom": 12
-          }
-        },
-        "pdp_heat_main": {
-          "type": "pdp_heat_sources",
-          "settings": {
-            "heading": "Ideal for all heat sources",
-            "show_line": true,
-            "tile_1_icon": "gas_stove",
-            "tile_1_label": "Gas stove",
-            "tile_2_icon": "induction",
-            "tile_2_label": "Induction",
-            "tile_3_icon": "oven",
-            "tile_3_label": "Oven",
-            "tile_4_icon": "grill",
-            "tile_4_label": "Grill",
-            "tile_5_icon": "flame",
-            "pill_1": "100% non-toxic",
-            "pill_2": "Dishwasher safe",
-            "pill_3": "25-year warranty",
-            "tile_radius": 10,
-            "icon_size": 28,
-            "label_size": 12,
-            "heading_color": "#ffffffcc",
-            "line_color": "#3a3836",
-            "tile_bg_color": "#262423",
-            "tile_border_color": "#3a3836",
-            "icon_color": "#e8c9a8",
-            "label_color": "#ffffffcc",
-            "pill_text_color": "#ffffff",
-            "check_bg_color": "#c8956a",
-            "check_color": "#201f1e",
-            "margin_top": 0,
-            "margin_bottom": 18
-          }
         }
       },
       "block_order": [
@@ -1736,12 +1738,12 @@
         "show_mobile_arrows": false,
         "mobile_arrow_placement": "below",
         "mobile_thumbnails_2x2_grid": true,
+        "mobile_thumbnails_per_row": 6.5,
         "hide_thumbnails_mobile": false,
         "thumbnails_left_column_desktop": false,
         "main_image_portrait_adaptation": false,
         "control_app_subscription_preselect": false,
-        "seal_selling_plan_id_preselect": "",
-        "mobile_thumbnails_per_row": 6.5
+        "seal_selling_plan_id_preselect": ""
       }
     },
     "sticky_add_to_cart_NJqgUd": {

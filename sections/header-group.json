@@ -131,15 +131,7 @@
         "cart_icon_type": "bag",
         "margin_bottom": 0,
         "padding_top": 10,
-        "padding_bottom": 10,
-        "custom_bg_color": "#1a1918",
-        "custom_text_color": "#ffffff",
-        "logo_text_size": 24,
-        "floating_header": true,
-        "floating_gap": 8,
-        "floating_radius": 12,
-        "floating_border_color": "#3a3836",
-        "floating_outer_color": "#201f1e"
+        "padding_bottom": 10
       }
     },
     "scrolling_features_bar_J64Pwx": {
