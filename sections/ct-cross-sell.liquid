@@ -1,0 +1,181 @@
+{% render 'ct-sec-open', section: section %}
+<section class="ct-sec ct-xs" data-ct-carousel>
+  <div class="ct-wrap">
+    {% render 'ct-head', s: section.settings %}
+    <div class="ct-track" data-ct-track style="--ct-card-w: 72%; --ct-card-w-desk: 26%;">
+      {%- for block in section.blocks -%}
+        {%- assign p = block.settings.product -%}
+        <article class="ct-card ct-xs__card" {{ block.shopify_attributes }}>
+          <div class="ct-xs__media">
+            {%- if p.featured_image != blank -%}{{ p.featured_image | image_url: width: 600 | image_tag: class: 'ct-img', loading: 'lazy' }}{%- else -%}<div class="ct-ph">{{ "image" | placeholder_svg_tag }}</div>{%- endif -%}
+          </div>
+          <div class="ct-xs__body">
+            <h3>{{ p.title | default: 'Choose a product' }}</h3>
+            {%- if p != blank -%}
+              {%- assign v = p.selected_or_first_available_variant -%}
+              <p class="ct-xs__price"><strong>{{ v.price | money }}</strong>{%- if v.compare_at_price > v.price -%}<s>{{ v.compare_at_price | money }}</s>{%- endif -%}</p>
+              {%- if v.compare_at_price > v.price -%}{%- assign pct = v.compare_at_price | minus: v.price | times: 100 | divided_by: v.compare_at_price -%}<span class="ct-xs__save">{{ section.settings.save_label }} {{ pct }}%</span>{%- endif -%}
+              {%- assign xs_form_id = 'ct-xs-form-' | append: block.id -%}
+              <product-form class="product-form ct-xs__form">
+                {%- form 'product', p, id: xs_form_id, novalidate: 'novalidate' -%}
+                  <input type="hidden" name="id" value="{{ v.id }}">
+                  <button type="submit" name="add" class="ct-btn ct-xs__btn"{% unless v.available %} disabled{% endunless %}>
+                    <span class="button-text">{% if v.available %}+ {{ section.settings.button_label }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
+                    <span class="loading__spinner hidden"></span>
+                  </button>
+                {%- endform -%}
+              </product-form>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+    <div class="ct-progress" data-ct-progress><span></span></div>
+  </div>
+</section>
+<style>
+  .ct-xs__card { background: #1a1917; display: flex; flex-direction: column; }
+  .ct-xs__media { aspect-ratio: 1 / 1; background: #121110; }
+  .ct-xs__body { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .ct-xs__body h3 { margin: 0; font-family: var(--font-heading-family); font-weight: 400; font-size: 18px; color: var(--ct-text); line-height: 1.25; }
+  .ct-xs__price { margin: 0; display: flex; gap: 8px; align-items: baseline; }
+  .ct-xs__price strong { font-size: 18px; }
+  .ct-xs__price s { color: #e5533d; font-size: 13px; }
+  .ct-xs__save { align-self: flex-start; padding: 3px 10px; border-radius: 100px; border: 1px solid rgba(200,149,108,.4); color: var(--ct-copper); font-size: 11px; }
+  .ct-xs__form { margin-top: auto; }
+  .ct-xs__btn { padding: 12px 14px; font-size: 12px; }
+</style>
+
+{% schema %}
+{
+  "name": "⭐ Produits associés",
+  "tag": "section",
+  "class": "ct-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "En-tête"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Sur-titre"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Complete your <em>order</em>",
+      "info": "Mets un mot en italique pour l'afficher en cuivre"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "label": "Alignement",
+      "options": [
+        {
+          "value": "left",
+          "label": "Gauche"
+        },
+        {
+          "value": "center",
+          "label": "Centré"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Libellés"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Bouton",
+      "default": "Add"
+    },
+    {
+      "type": "text",
+      "id": "save_label",
+      "label": "Badge d'économie",
+      "default": "Save"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fond",
+      "default": "#262423"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Couleur d'accent (optionnel)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espace en haut",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espace en bas",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Produit",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Produit"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "⭐ Produits associés",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "product",
+      "index",
+      "page"
+    ]
+  }
+}
+{% endschema %}

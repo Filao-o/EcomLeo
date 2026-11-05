@@ -1,0 +1,15 @@
+{%- comment -%} Ouverture commune d'une section ct- (fond, espacements, CSS/JS) {%- endcomment -%}
+{{ 'ct-sections.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ct-sections.js' | asset_url }}" defer></script>
+{%- assign ss = section.settings -%}
+<style>
+  #shopify-section-{{ section.id }} .ct-sec {
+    --ct-bg: {{ ss.background_color }};
+    --ct-pt: {{ ss.padding_top }}px;
+    --ct-pb: {{ ss.padding_bottom }}px;
+    {%- if ss.accent_color != blank %} --ct-copper: {{ ss.accent_color }};{% endif %}
+  }
+  @media (min-width: 750px) {
+    #shopify-section-{{ section.id }} .ct-sec { --ct-pt: {{ ss.padding_top | times: 1.4 | round }}px; --ct-pb: {{ ss.padding_bottom | times: 1.4 | round }}px; }
+  }
+</style>

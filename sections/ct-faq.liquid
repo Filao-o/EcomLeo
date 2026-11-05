@@ -1,0 +1,197 @@
+{% render 'ct-sec-open', section: section %}
+{%- assign s = section.settings -%}
+<section class="ct-sec ct-faq">
+  <div class="ct-wrap ct-faq__wrap">
+    {% render 'ct-head', s: s %}
+    <div class="ct-faq__list">
+      {%- for block in section.blocks -%}
+        <details class="ct-faq__item" {{ block.shopify_attributes }}>
+          <summary><span>{{ block.settings.question }}</span><span class="ct-faq__plus" aria-hidden="true"></span></summary>
+          <div class="ct-faq__answer">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+    {%- if s.contact_text != blank -%}<p class="ct-faq__contact">{{ s.contact_text }} <a href="{{ s.contact_url | default: '/pages/contact' }}">{{ s.contact_link_label }} →</a></p>{%- endif -%}
+  </div>
+</section>
+<style>
+  .ct-faq__wrap { max-width: 760px; }
+  .ct-faq__list { border-top: 1px solid var(--ct-border); }
+  .ct-faq__item { border-bottom: 1px solid var(--ct-border); }
+  .ct-faq__item summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; cursor: pointer; list-style: none; font-size: 15px; color: var(--ct-text); line-height: 1.4; }
+  .ct-faq__item summary::-webkit-details-marker { display: none; }
+  .ct-faq__plus { flex: none; position: relative; width: 26px; height: 26px; border-radius: 50%; background: rgba(200,149,108,.12); }
+  .ct-faq__plus::before, .ct-faq__plus::after { content: ''; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; background: var(--ct-copper); transform: translate(-50%, -50%); transition: transform .2s; }
+  .ct-faq__plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+  .ct-faq__item[open] .ct-faq__plus::after { transform: translate(-50%, -50%) rotate(0); }
+  .ct-faq__answer { padding: 0 0 20px; color: var(--ct-muted); font-size: 14.5px; line-height: 1.6; }
+  .ct-faq__answer p { margin: 0 0 8px; }
+  .ct-faq__contact { text-align: center; margin: 24px 0 0; color: var(--ct-muted); font-size: 14px; }
+  .ct-faq__contact a { color: var(--ct-copper); font-weight: 600; text-decoration: none; }
+</style>
+
+{% schema %}
+{
+  "name": "⭐ FAQ",
+  "tag": "section",
+  "class": "ct-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "En-tête"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Sur-titre",
+      "default": "FAQ"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Frequently asked <em>questions</em>",
+      "info": "Mets un mot en italique pour l'afficher en cuivre"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Sous-titre",
+      "default": "Everything you need to know about your titanium pan."
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "label": "Alignement",
+      "options": [
+        {
+          "value": "left",
+          "label": "Gauche"
+        },
+        {
+          "value": "center",
+          "label": "Centré"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Contact"
+    },
+    {
+      "type": "text",
+      "id": "contact_text",
+      "label": "Texte",
+      "default": "Still have questions?"
+    },
+    {
+      "type": "text",
+      "id": "contact_link_label",
+      "label": "Lien",
+      "default": "Contact us"
+    },
+    {
+      "type": "url",
+      "id": "contact_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fond",
+      "default": "#1c1b1a"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Couleur d'accent (optionnel)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espace en haut",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espace en bas",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Is titanium safe to cook with?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Réponse",
+          "default": "<p>Write your answer here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "⭐ FAQ",
+      "blocks": [
+        {
+          "type": "question"
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Can I use metal utensils?"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Which heat sources are compatible?"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Is it dishwasher safe?"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "How long does shipping take to Australia?"
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "product",
+      "index",
+      "page"
+    ]
+  }
+}
+{% endschema %}

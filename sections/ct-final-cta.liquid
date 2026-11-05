@@ -1,0 +1,601 @@
+{% render 'ct-sec-open', section: section %}
+{%- assign s = section.settings -%}
+{%- assign p = product -%}
+<section class="ct-sec ct-fin">
+  <div class="ct-wrap">
+    <div class="ct-card ct-fin__card">
+      {% render 'ct-head', s: s %}
+      <div class="ct-fin__features">
+        {%- for i in (1..4) -%}
+          {%- assign kt = 'feature_' | append: i | append: '_text' -%}{%- assign ki = 'feature_' | append: i | append: '_icon' -%}
+          {%- if s[kt] != blank -%}<span>{% render 'pdp-icon', icon: s[ki] %}{{ s[kt] }}</span>{%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if s.button_label != blank -%}
+        {%- if s.button_url != blank -%}<a class="ct-btn" href="{{ s.button_url }}">{{ s.button_label }} →</a>
+        {%- else -%}<button type="button" class="ct-btn" data-ct-scroll-buy>{{ s.button_label }} →</button>{%- endif -%}
+      {%- endif -%}
+      {%- if s.note != blank -%}<p class="ct-fin__note">{% render 'pdp-icon', icon: 'shield' %}{{ s.note }}</p>{%- endif -%}
+      {%- if s.show_product and p != blank -%}
+        {%- assign v = p.selected_or_first_available_variant -%}
+        <div class="ct-fin__product">
+          <div class="ct-fin__row">
+            <span class="ct-fin__img">{{ p.featured_image | image_url: width: 240 | image_tag: class: 'ct-img', alt: p.title }}</span>
+            <div>
+              {%- if s.product_eyebrow != blank -%}<p class="ct-eyebrow">{{ s.product_eyebrow }}</p>{%- endif -%}
+              <p class="ct-fin__title">{{ p.title }}</p>
+              {%- if s.rating_text != blank -%}<p class="ct-fin__rating"><span class="ct-stars">★★★★★</span> {{ s.rating_text }}</p>{%- endif -%}
+              <p class="ct-fin__price"><strong>{{ v.price | money }}</strong>{%- if v.compare_at_price > v.price -%}<s>{{ v.compare_at_price | money }}</s>{%- endif -%}</p>
+              {%- if v.compare_at_price > v.price -%}{%- assign pct = v.compare_at_price | minus: v.price | times: 100 | divided_by: v.compare_at_price -%}<span class="ct-fin__save">{{ s.save_label }} {{ pct }}%</span>{%- endif -%}
+            </div>
+          </div>
+          {%- if s.tags != blank -%}
+            <div class="ct-fin__tags">{%- assign tags = s.tags | split: ',' -%}{%- for t in tags -%}<span>{{ t | strip }}</span>{%- endfor -%}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+<style>
+  .ct-fin__card { padding: 26px 22px; background: linear-gradient(180deg, #1f1e1c, #191817); }
+  .ct-fin__features { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px 14px; margin: 4px 0 22px; }
+  .ct-fin__features span { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ct-text); }
+  .ct-fin__features .pdp-icon { width: 16px; height: 16px; color: var(--ct-text); flex: none; }
+  .ct-fin__note { display: flex; gap: 8px; align-items: flex-start; margin: 14px 0 0; color: var(--ct-muted); font-size: 13px; }
+  .ct-fin__note .pdp-icon { width: 15px; height: 15px; flex: none; margin-top: 2px; }
+  .ct-fin__product { margin-top: 22px; padding: 18px; border: 1px solid var(--ct-border); border-radius: 10px; background: rgba(255,255,255,.015); }
+  .ct-fin__row { display: flex; gap: 14px; align-items: flex-start; }
+  .ct-fin__img { flex: none; width: 96px; height: 96px; border-radius: 8px; overflow: hidden; background: #121110; }
+  .ct-fin__title { margin: 0 0 4px; font-family: var(--font-heading-family); font-size: 18px; }
+  .ct-fin__rating { margin: 0 0 6px; font-size: 12.5px; color: var(--ct-muted); }
+  .ct-fin__price { margin: 0 0 6px; display: flex; gap: 8px; align-items: baseline; }
+  .ct-fin__price strong { font-size: 20px; } .ct-fin__price s { color: #e5533d; font-size: 14px; }
+  .ct-fin__save { display: inline-block; padding: 3px 10px; border-radius: 100px; border: 1px solid rgba(200,149,108,.4); color: var(--ct-copper); font-size: 11px; background: rgba(200,149,108,.08); }
+  .ct-fin__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .ct-fin__tags span { padding: 5px 12px; border-radius: 100px; border: 1px solid var(--ct-border); font-size: 11.5px; color: var(--ct-muted); }
+</style>
+
+{% schema %}
+{
+  "name": "⭐ Appel à l'action final",
+  "tag": "section",
+  "class": "ct-section",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "En-tête"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Sur-titre",
+      "default": "Ready for an upgrade?"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Switch to <em>titanium</em>",
+      "info": "Mets un mot en italique pour l'afficher en cuivre"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Sous-titre",
+      "default": "Join home cooks who have swapped their worn-out pans."
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "label": "Alignement",
+      "options": [
+        {
+          "value": "left",
+          "label": "Gauche"
+        },
+        {
+          "value": "center",
+          "label": "Centré"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Points forts (4)"
+    },
+    {
+      "type": "select",
+      "id": "feature_1_icon",
+      "label": "Icône 1",
+      "options": [
+        {
+          "value": "none",
+          "label": "Aucune"
+        },
+        {
+          "value": "check_circle",
+          "label": "Coche"
+        },
+        {
+          "value": "shield",
+          "label": "Bouclier"
+        },
+        {
+          "value": "truck",
+          "label": "Camion"
+        },
+        {
+          "value": "return",
+          "label": "Retour"
+        },
+        {
+          "value": "lock",
+          "label": "Cadenas"
+        },
+        {
+          "value": "flame",
+          "label": "Flamme"
+        },
+        {
+          "value": "gas_stove",
+          "label": "Gaz"
+        },
+        {
+          "value": "induction",
+          "label": "Induction"
+        },
+        {
+          "value": "oven",
+          "label": "Four"
+        },
+        {
+          "value": "grill",
+          "label": "Grill"
+        },
+        {
+          "value": "electric",
+          "label": "Électrique"
+        },
+        {
+          "value": "ceramic",
+          "label": "Vitrocéramique"
+        },
+        {
+          "value": "star",
+          "label": "Étoile"
+        },
+        {
+          "value": "heart",
+          "label": "Cœur"
+        },
+        {
+          "value": "medal",
+          "label": "Médaille"
+        },
+        {
+          "value": "leaf",
+          "label": "Feuille"
+        },
+        {
+          "value": "drop",
+          "label": "Goutte"
+        },
+        {
+          "value": "box",
+          "label": "Boîte"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "gift",
+          "label": "Cadeau"
+        }
+      ],
+      "default": "truck"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_text",
+      "label": "Texte 1",
+      "default": "Free shipping"
+    },
+    {
+      "type": "select",
+      "id": "feature_2_icon",
+      "label": "Icône 2",
+      "options": [
+        {
+          "value": "none",
+          "label": "Aucune"
+        },
+        {
+          "value": "check_circle",
+          "label": "Coche"
+        },
+        {
+          "value": "shield",
+          "label": "Bouclier"
+        },
+        {
+          "value": "truck",
+          "label": "Camion"
+        },
+        {
+          "value": "return",
+          "label": "Retour"
+        },
+        {
+          "value": "lock",
+          "label": "Cadenas"
+        },
+        {
+          "value": "flame",
+          "label": "Flamme"
+        },
+        {
+          "value": "gas_stove",
+          "label": "Gaz"
+        },
+        {
+          "value": "induction",
+          "label": "Induction"
+        },
+        {
+          "value": "oven",
+          "label": "Four"
+        },
+        {
+          "value": "grill",
+          "label": "Grill"
+        },
+        {
+          "value": "electric",
+          "label": "Électrique"
+        },
+        {
+          "value": "ceramic",
+          "label": "Vitrocéramique"
+        },
+        {
+          "value": "star",
+          "label": "Étoile"
+        },
+        {
+          "value": "heart",
+          "label": "Cœur"
+        },
+        {
+          "value": "medal",
+          "label": "Médaille"
+        },
+        {
+          "value": "leaf",
+          "label": "Feuille"
+        },
+        {
+          "value": "drop",
+          "label": "Goutte"
+        },
+        {
+          "value": "box",
+          "label": "Boîte"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "gift",
+          "label": "Cadeau"
+        }
+      ],
+      "default": "shield"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_text",
+      "label": "Texte 2",
+      "default": "Quality guarantee"
+    },
+    {
+      "type": "select",
+      "id": "feature_3_icon",
+      "label": "Icône 3",
+      "options": [
+        {
+          "value": "none",
+          "label": "Aucune"
+        },
+        {
+          "value": "check_circle",
+          "label": "Coche"
+        },
+        {
+          "value": "shield",
+          "label": "Bouclier"
+        },
+        {
+          "value": "truck",
+          "label": "Camion"
+        },
+        {
+          "value": "return",
+          "label": "Retour"
+        },
+        {
+          "value": "lock",
+          "label": "Cadenas"
+        },
+        {
+          "value": "flame",
+          "label": "Flamme"
+        },
+        {
+          "value": "gas_stove",
+          "label": "Gaz"
+        },
+        {
+          "value": "induction",
+          "label": "Induction"
+        },
+        {
+          "value": "oven",
+          "label": "Four"
+        },
+        {
+          "value": "grill",
+          "label": "Grill"
+        },
+        {
+          "value": "electric",
+          "label": "Électrique"
+        },
+        {
+          "value": "ceramic",
+          "label": "Vitrocéramique"
+        },
+        {
+          "value": "star",
+          "label": "Étoile"
+        },
+        {
+          "value": "heart",
+          "label": "Cœur"
+        },
+        {
+          "value": "medal",
+          "label": "Médaille"
+        },
+        {
+          "value": "leaf",
+          "label": "Feuille"
+        },
+        {
+          "value": "drop",
+          "label": "Goutte"
+        },
+        {
+          "value": "box",
+          "label": "Boîte"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "gift",
+          "label": "Cadeau"
+        }
+      ],
+      "default": "return"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_text",
+      "label": "Texte 3",
+      "default": "30-day returns"
+    },
+    {
+      "type": "select",
+      "id": "feature_4_icon",
+      "label": "Icône 4",
+      "options": [
+        {
+          "value": "none",
+          "label": "Aucune"
+        },
+        {
+          "value": "check_circle",
+          "label": "Coche"
+        },
+        {
+          "value": "shield",
+          "label": "Bouclier"
+        },
+        {
+          "value": "truck",
+          "label": "Camion"
+        },
+        {
+          "value": "return",
+          "label": "Retour"
+        },
+        {
+          "value": "lock",
+          "label": "Cadenas"
+        },
+        {
+          "value": "flame",
+          "label": "Flamme"
+        },
+        {
+          "value": "gas_stove",
+          "label": "Gaz"
+        },
+        {
+          "value": "induction",
+          "label": "Induction"
+        },
+        {
+          "value": "oven",
+          "label": "Four"
+        },
+        {
+          "value": "grill",
+          "label": "Grill"
+        },
+        {
+          "value": "electric",
+          "label": "Électrique"
+        },
+        {
+          "value": "ceramic",
+          "label": "Vitrocéramique"
+        },
+        {
+          "value": "star",
+          "label": "Étoile"
+        },
+        {
+          "value": "heart",
+          "label": "Cœur"
+        },
+        {
+          "value": "medal",
+          "label": "Médaille"
+        },
+        {
+          "value": "leaf",
+          "label": "Feuille"
+        },
+        {
+          "value": "drop",
+          "label": "Goutte"
+        },
+        {
+          "value": "box",
+          "label": "Boîte"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "gift",
+          "label": "Cadeau"
+        }
+      ],
+      "default": "lock"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_text",
+      "label": "Texte 4",
+      "default": "Secure checkout"
+    },
+    {
+      "type": "header",
+      "content": "Bouton"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texte",
+      "default": "Choose your pan"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Lien (vide = remonter au choix de la taille)"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note sous le bouton",
+      "default": "Free shipping · 30-day returns"
+    },
+    {
+      "type": "header",
+      "content": "Récap du produit"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product",
+      "label": "Afficher le récap du produit",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "product_eyebrow",
+      "label": "Sur-titre",
+      "default": "You're viewing"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Texte de note (vrais chiffres)"
+    },
+    {
+      "type": "text",
+      "id": "save_label",
+      "label": "Badge d'économie",
+      "default": "Save"
+    },
+    {
+      "type": "text",
+      "id": "tags",
+      "label": "Pastilles (séparées par des virgules)",
+      "default": "Real titanium surface, PFAS-free"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fond",
+      "default": "#201f1e"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Couleur d'accent (optionnel)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espace en haut",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espace en bas",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "⭐ Appel à l'action final"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,290 @@
+{% render 'ct-sec-open', section: section %}
+<section class="ct-sec ct-mat" data-ct-carousel>
+  <div class="ct-wrap">
+    {% render 'ct-head', s: section.settings %}
+    <div class="ct-mat__tabs" role="tablist">
+      {%- for block in section.blocks -%}
+        <button type="button" class="ct-mat__tab{% if forloop.first %} is-active{% endif %}" data-ct-tab role="tab">
+          {%- if block.settings.thumb != blank -%}{{ block.settings.thumb | image_url: width: 64 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+          {{ block.settings.name }}
+        </button>
+      {%- endfor -%}
+    </div>
+    <div class="ct-track" data-ct-track style="--ct-card-w: 88%; --ct-card-w-desk: 48%;">
+      {%- for block in section.blocks -%}
+        {%- assign b = block.settings -%}
+        <article class="ct-card ct-mat__card" {{ block.shopify_attributes }}>
+          <div class="ct-mat__media">
+            {%- if b.image != blank -%}{{ b.image | image_url: width: 900 | image_tag: class: 'ct-img', loading: 'lazy' }}{%- else -%}<div class="ct-ph">{{ "image" | placeholder_svg_tag }}</div>{%- endif -%}
+            {%- if b.badge != blank -%}<span class="ct-mat__badge">{{ b.badge }}</span>{%- endif -%}
+          </div>
+          <div class="ct-mat__body">
+            {%- if b.title != blank -%}<h3 class="ct-mat__title">{{ b.title }}</h3>{%- endif -%}
+            {%- if b.text != blank -%}<div class="ct-mat__text">{{ b.text }}</div>{%- endif -%}
+            {%- if b.stat_1_label != blank or b.stat_2_label != blank or b.stat_3_label != blank -%}
+              <div class="ct-mat__stats">
+                {%- for i in (1..3) -%}
+                  {%- assign kl = 'stat_' | append: i | append: '_label' -%}{%- assign kv = 'stat_' | append: i | append: '_value' -%}
+                  {%- if b[kl] != blank -%}<div><span>{{ b[kl] }}</span><strong>{{ b[kv] }}</strong></div>{%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+            <ul class="ct-mat__list">
+              {%- for i in (1..3) -%}
+                {%- assign kc = 'point_' | append: i -%}
+                {%- if b[kc] != blank -%}<li>{% if b.positive %}<span class="ct-check"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>{% else %}<span class="ct-x"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg></span>{% endif %}{{ b[kc] }}</li>{%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+    <div class="ct-dots" data-ct-dots>{%- for block in section.blocks -%}<button type="button" aria-label="{{ forloop.index }}"{% if forloop.first %} class="is-active"{% endif %}></button>{%- endfor -%}</div>
+  </div>
+</section>
+<style>
+  .ct-mat__tabs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 calc(var(--ct-gutter) * -1) 16px; padding: 0 var(--ct-gutter); }
+  .ct-mat__tabs::-webkit-scrollbar { display: none; }
+  .ct-mat__tab { flex: none; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 8px; border: 1px solid var(--ct-border); background: rgba(255,255,255,.04); color: var(--ct-muted); font: inherit; font-size: 13px; cursor: pointer; }
+  .ct-mat__tab img { width: 26px; height: 26px; border-radius: 5px; object-fit: cover; }
+  .ct-mat__tab.is-active { border-color: var(--ct-copper); color: var(--ct-text); background: rgba(200,149,108,.08); }
+  .ct-mat__card { background: #1a1917; padding: 12px; }
+  .ct-mat__media { position: relative; aspect-ratio: 16 / 10; border-radius: 8px; overflow: hidden; }
+  .ct-mat__badge { position: absolute; left: 12px; bottom: 12px; padding: 5px 12px; border-radius: 100px; background: rgba(26,20,16,.85); border: 1px solid rgba(200,149,108,.4); color: var(--ct-copper); font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .ct-mat__body { padding: 16px 6px 6px; }
+  .ct-mat__title { margin: 0 0 8px; font-family: var(--font-heading-family); font-weight: 400; font-size: 22px; color: var(--ct-text); }
+  .ct-mat__text { color: var(--ct-muted); font-size: 14px; line-height: 1.55; }
+  .ct-mat__text p { margin: 0; }
+  .ct-mat__stats { display: grid; grid-template-columns: repeat(3, 1fr); margin: 14px 0; border: 1px solid var(--ct-border); border-radius: 8px; background: rgba(255,255,255,.02); }
+  .ct-mat__stats div { padding: 10px; display: flex; flex-direction: column; gap: 4px; }
+  .ct-mat__stats div + div { border-left: 1px solid var(--ct-border); }
+  .ct-mat__stats span { font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ct-muted); }
+  .ct-mat__stats strong { font-size: 13px; color: #e5533d; font-weight: 600; line-height: 1.35; }
+  .ct-mat__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .ct-mat__list li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ct-text); }
+</style>
+
+{% schema %}
+{
+  "name": "⭐ Comparatif matériaux",
+  "tag": "section",
+  "class": "ct-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "En-tête"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Sur-titre"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Not all pans are <em>equal</em>",
+      "info": "Mets un mot en italique pour l'afficher en cuivre"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Sous-titre",
+      "default": "Pick the pan you use today and see how it compares."
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "label": "Alignement",
+      "options": [
+        {
+          "value": "left",
+          "label": "Gauche"
+        },
+        {
+          "value": "center",
+          "label": "Centré"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fond",
+      "default": "#1c1b1a"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Couleur d'accent (optionnel)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espace en haut",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espace en bas",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "material",
+      "name": "Matériau",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nom de l'onglet",
+          "default": "Non-stick"
+        },
+        {
+          "type": "image_picker",
+          "id": "thumb",
+          "label": "Vignette de l'onglet"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge sur l'image",
+          "default": "Coating wears"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Classic non-stick pan"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texte",
+          "default": "<p>Describe how this material behaves over time.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Tableau (3 colonnes)"
+        },
+        {
+          "type": "text",
+          "id": "stat_1_label",
+          "label": "Colonne 1 – titre",
+          "default": "Releases"
+        },
+        {
+          "type": "text",
+          "id": "stat_1_value",
+          "label": "Colonne 1 – valeur",
+          "default": "Coating flakes"
+        },
+        {
+          "type": "text",
+          "id": "stat_2_label",
+          "label": "Colonne 2 – titre",
+          "default": "When"
+        },
+        {
+          "type": "text",
+          "id": "stat_2_value",
+          "label": "Colonne 2 – valeur",
+          "default": "When scratched"
+        },
+        {
+          "type": "text",
+          "id": "stat_3_label",
+          "label": "Colonne 3 – titre",
+          "default": "Risk"
+        },
+        {
+          "type": "text",
+          "id": "stat_3_value",
+          "label": "Colonne 3 – valeur",
+          "default": "High"
+        },
+        {
+          "type": "header",
+          "content": "Liste"
+        },
+        {
+          "type": "checkbox",
+          "id": "positive",
+          "label": "Points positifs (coches) au lieu de croix",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "point_1",
+          "label": "Point 1",
+          "default": "Coated surface"
+        },
+        {
+          "type": "text",
+          "id": "point_2",
+          "label": "Point 2",
+          "default": "Wears with use"
+        },
+        {
+          "type": "text",
+          "id": "point_3",
+          "label": "Point 3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "⭐ Comparatif matériaux",
+      "blocks": [
+        {
+          "type": "material"
+        },
+        {
+          "type": "material",
+          "settings": {
+            "name": "Stainless steel",
+            "title": "Stainless steel pan",
+            "badge": "Sticks easily"
+          }
+        },
+        {
+          "type": "material",
+          "settings": {
+            "name": "Cast iron",
+            "title": "Cast iron pan",
+            "badge": "Heavy upkeep"
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "product",
+      "index",
+      "page"
+    ]
+  }
+}
+{% endschema %}

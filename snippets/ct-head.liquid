@@ -1,0 +1,8 @@
+{%- comment -%} En-tête commun des sections ct- : sur-titre, titre (italique = mot d'accent), sous-titre {%- endcomment -%}
+{%- if s.eyebrow != blank or s.heading != blank or s.subheading != blank -%}
+  <div class="ct-head{% if s.heading_align == 'center' %} ct-head--center{% endif %}">
+    {%- if s.eyebrow != blank -%}<p class="ct-eyebrow">{{ s.eyebrow }}</p>{%- endif -%}
+    {%- if s.heading != blank -%}<h2 class="ct-h2">{{ s.heading }}</h2>{%- endif -%}
+    {%- if s.subheading != blank -%}<div class="ct-sub">{{ s.subheading }}</div>{%- endif -%}
+  </div>
+{%- endif -%}

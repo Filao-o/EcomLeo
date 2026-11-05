@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Sections « ct- » (page produit) : base commune
+   ========================================================================== */
+.ct-sec {
+  --ct-copper: #c8956c; --ct-text: #ffffff; --ct-muted: rgba(255,255,255,.62);
+  --ct-card: #262423; --ct-border: #36332f; --ct-gutter: 20px;
+  background: var(--ct-bg, #201f1e); color: var(--ct-text);
+  padding: var(--ct-pt, 56px) 0 var(--ct-pb, 56px);
+  font-family: var(--font-body-family); overflow: hidden;
+}
+.ct-sec * { box-sizing: border-box; }
+.ct-wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--ct-gutter); }
+.ct-head { margin-bottom: 24px; }
+.ct-head--center { text-align: center; }
+.ct-eyebrow {
+  margin: 0 0 10px; color: var(--ct-copper); font-size: 12px; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase; font-family: var(--font-accent-family, var(--font-body-family));
+}
+.ct-h2 {
+  margin: 0; color: var(--ct-text); font-family: var(--font-heading-family); font-weight: 400;
+  font-size: clamp(28px, 7.4vw, 44px); line-height: 1.12; letter-spacing: -.01em;
+}
+.ct-sub { margin: 12px 0 0; color: var(--ct-muted); font-size: 15px; line-height: 1.55; max-width: 600px; }
+.ct-head--center .ct-sub { margin-left: auto; margin-right: auto; }
+.ct-sub p { margin: 0; }
+
+/* Carrousel horizontal (glisser) */
+.ct-track {
+  display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  margin: 0 calc(var(--ct-gutter) * -1); padding: 4px var(--ct-gutter) 8px; -webkit-overflow-scrolling: touch;
+}
+.ct-track::-webkit-scrollbar { display: none; }
+.ct-track > * { scroll-snap-align: start; flex: 0 0 var(--ct-card-w, 78%); }
+@media (min-width: 750px) { .ct-track > * { flex-basis: var(--ct-card-w-desk, 32%); } }
+.ct-progress { position: relative; height: 2px; width: 120px; margin: 18px auto 0; background: rgba(255,255,255,.12); border-radius: 2px; }
+.ct-progress span { position: absolute; left: 0; top: 0; height: 100%; width: 30%; background: var(--ct-copper); border-radius: 2px; transition: left .15s linear; }
+.ct-dots { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+.ct-dots button { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 6px; background: rgba(255,255,255,.25); transition: width .2s; cursor: pointer; }
+.ct-dots button.is-active { width: 22px; background: var(--ct-copper); }
+
+.ct-card { background: var(--ct-card); border: 1px solid var(--ct-border); border-radius: 10px; overflow: hidden; }
+.ct-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ct-ph { width: 100%; height: 100%; background: #2f2c2a; display: flex; align-items: center; justify-content: center; }
+.ct-ph svg { width: 40%; height: 40%; opacity: .25; fill: #fff; }
+.ct-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+  padding: 16px 20px; border: 0; border-radius: 6px; cursor: pointer; text-decoration: none;
+  background: linear-gradient(135deg, var(--ct-copper), #a67c52); color: #1a1410;
+  font-family: var(--font-accent-family, var(--font-body-family)); font-size: 14px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  box-shadow: 0 8px 24px rgba(200,149,108,.18);
+}
+.ct-btn--ghost { background: transparent; color: var(--ct-text); border: 1px solid rgba(255,255,255,.4); box-shadow: none; }
+.ct-check { flex: none; width: 18px; height: 18px; border-radius: 50%; background: var(--ct-copper); color: #1a1410; display: inline-flex; align-items: center; justify-content: center; }
+.ct-check svg { width: 11px; height: 11px; }
+.ct-x { flex: none; width: 18px; height: 18px; border-radius: 50%; background: rgba(229,83,61,.18); color: #e5533d; display: inline-flex; align-items: center; justify-content: center; }
+.ct-x svg { width: 9px; height: 9px; }
+.ct-stars { color: #f5b400; letter-spacing: 1px; font-size: 14px; }
+.ct-pill {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 100px;
+  border: 1px solid var(--ct-border); background: rgba(255,255,255,.03); font-size: 13px; color: var(--ct-text);
+}
+.ct-pill img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }

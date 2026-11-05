@@ -1,0 +1,122 @@
+{% render 'ct-sec-open', section: section %}
+<section class="ct-sec ct-logos">
+  <div class="ct-wrap">
+    {%- if section.settings.eyebrow != blank -%}<p class="ct-eyebrow ct-logos__title">{{ section.settings.eyebrow }}</p>{%- endif -%}
+    <div class="ct-logos__row">
+      {%- for block in section.blocks -%}
+        <div class="ct-logos__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.logo != blank -%}{{ block.settings.logo | image_url: width: 300 | image_tag: loading: 'lazy', alt: block.settings.logo.alt }}{%- else -%}<span>{{ block.settings.fallback }}</span>{%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+<style>
+  .ct-logos__title { text-align: center; margin-bottom: 18px; letter-spacing: .3em; }
+  .ct-logos__row { display: flex; align-items: center; justify-content: space-around; gap: 20px; flex-wrap: wrap; }
+  .ct-logos__item img { max-height: {{ section.settings.logo_height }}px; width: auto; filter: grayscale(1) brightness(2); opacity: .85; }
+  .ct-logos__item span { color: var(--ct-muted); font-size: 14px; letter-spacing: .1em; text-transform: uppercase; }
+</style>
+
+{% schema %}
+{
+  "name": "⭐ Logos",
+  "tag": "section",
+  "class": "ct-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Titre",
+      "default": "As featured in"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Hauteur des logos",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fond",
+      "default": "#2a2826"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Couleur d'accent (optionnel)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espace en haut",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 28,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espace en bas",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 28,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "fallback",
+          "label": "Texte si pas de logo",
+          "default": "Logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "⭐ Logos",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "product",
+      "index",
+      "page"
+    ]
+  }
+}
+{% endschema %}

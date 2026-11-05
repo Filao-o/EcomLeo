@@ -1,0 +1,301 @@
+{% render 'ct-sec-open', section: section %}
+{%- assign s = section.settings -%}
+<section class="ct-sec ct-res" style="--ct-text: {{ s.text_color }}; --ct-muted: {{ s.muted_color }};">
+  <div class="ct-wrap ct-res__wrap">
+    {%- if s.pill != blank -%}<p class="ct-res__pill-wrap"><span class="ct-res__pill">{% render 'pdp-icon', icon: s.pill_icon %}{{ s.pill }}</span></p>{%- endif -%}
+    {% render 'ct-head', s: s %}
+    <ul class="ct-res__list">
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}><span class="ct-check"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>{{ block.settings.title }}</strong>{% if block.settings.text != blank %} — {{ block.settings.text }}{% endif %}</span></li>
+      {%- endfor -%}
+    </ul>
+    {%- if s.footnote != blank -%}<div class="ct-res__note">{{ s.footnote }}</div>{%- endif -%}
+    {%- if s.button_label != blank -%}<a class="ct-btn ct-btn--ghost ct-res__btn" href="{{ s.button_url | default: '#' }}">{{ s.button_label }} →</a>{%- endif -%}
+  </div>
+</section>
+<style>
+  .ct-res__wrap { max-width: 720px; }
+  .ct-res__pill-wrap { text-align: center; margin: 0 0 16px; }
+  .ct-res__pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 100px; border: 1px solid rgba(166,124,82,.4); color: #a67c52; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+  .ct-res__pill .pdp-icon { width: 14px; height: 14px; }
+  .ct-res .ct-head { text-align: center; } .ct-res .ct-sub { margin-left: auto; margin-right: auto; }
+  .ct-res__list { list-style: none; padding: 0; margin: 22px 0; display: grid; gap: 14px; }
+  .ct-res__list li { display: flex; gap: 12px; align-items: flex-start; color: var(--ct-muted); font-size: 15px; line-height: 1.55; }
+  .ct-res__list .ct-check { margin-top: 3px; color: #fff; }
+  .ct-res__list strong { color: var(--ct-text); }
+  .ct-res__note { padding-top: 18px; border-top: 1px solid rgba(0,0,0,.12); text-align: center; color: var(--ct-muted); font-size: 13.5px; }
+  .ct-res__note p { margin: 0; } .ct-res__note strong { color: var(--ct-text); }
+  .ct-res__btn { margin-top: 18px; color: var(--ct-text); border-color: var(--ct-text); }
+</style>
+
+{% schema %}
+{
+  "name": "⭐ Arguments (fond clair)",
+  "tag": "section",
+  "class": "ct-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Pastille"
+    },
+    {
+      "type": "text",
+      "id": "pill",
+      "label": "Texte de la pastille",
+      "default": "Why titanium"
+    },
+    {
+      "type": "select",
+      "id": "pill_icon",
+      "label": "Icône",
+      "options": [
+        {
+          "value": "none",
+          "label": "Aucune"
+        },
+        {
+          "value": "check_circle",
+          "label": "Coche"
+        },
+        {
+          "value": "shield",
+          "label": "Bouclier"
+        },
+        {
+          "value": "truck",
+          "label": "Camion"
+        },
+        {
+          "value": "return",
+          "label": "Retour"
+        },
+        {
+          "value": "lock",
+          "label": "Cadenas"
+        },
+        {
+          "value": "flame",
+          "label": "Flamme"
+        },
+        {
+          "value": "gas_stove",
+          "label": "Gaz"
+        },
+        {
+          "value": "induction",
+          "label": "Induction"
+        },
+        {
+          "value": "oven",
+          "label": "Four"
+        },
+        {
+          "value": "grill",
+          "label": "Grill"
+        },
+        {
+          "value": "electric",
+          "label": "Électrique"
+        },
+        {
+          "value": "ceramic",
+          "label": "Vitrocéramique"
+        },
+        {
+          "value": "star",
+          "label": "Étoile"
+        },
+        {
+          "value": "heart",
+          "label": "Cœur"
+        },
+        {
+          "value": "medal",
+          "label": "Médaille"
+        },
+        {
+          "value": "leaf",
+          "label": "Feuille"
+        },
+        {
+          "value": "drop",
+          "label": "Goutte"
+        },
+        {
+          "value": "box",
+          "label": "Boîte"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "gift",
+          "label": "Cadeau"
+        }
+      ],
+      "default": "leaf"
+    },
+    {
+      "type": "header",
+      "content": "En-tête"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Sur-titre"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Why titanium is a <em>smart</em> choice",
+      "info": "Mets un mot en italique pour l'afficher en cuivre"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Sous-titre",
+      "default": "Explain what makes your pan different in two or three sentences."
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "label": "Alignement",
+      "options": [
+        {
+          "value": "left",
+          "label": "Gauche"
+        },
+        {
+          "value": "center",
+          "label": "Centré"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Bas de section"
+    },
+    {
+      "type": "richtext",
+      "id": "footnote",
+      "label": "Note"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Bouton",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Lien du bouton"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs du texte"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte principal",
+      "default": "#1a1410"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Texte secondaire",
+      "default": "#57534e"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fond",
+      "default": "#f5f0eb"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Couleur d'accent (optionnel)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espace en haut",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espace en bas",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Argument",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre (gras)",
+          "default": "No coating"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Nothing between your food and the titanium."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "⭐ Arguments (fond clair)",
+      "blocks": [
+        {
+          "type": "point"
+        },
+        {
+          "type": "point",
+          "settings": {
+            "title": "Even heat",
+            "text": "Describe your heat distribution."
+          }
+        },
+        {
+          "type": "point",
+          "settings": {
+            "title": "Built to last",
+            "text": "Describe durability."
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "product",
+      "index",
+      "page"
+    ]
+  }
+}
+{% endschema %}

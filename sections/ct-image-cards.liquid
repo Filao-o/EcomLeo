@@ -1,0 +1,405 @@
+{% render 'ct-sec-open', section: section %}
+<section class="ct-sec ct-ic" data-ct-carousel>
+  <div class="ct-wrap">
+    {% render 'ct-head', s: section.settings %}
+    <div class="ct-track" data-ct-track style="--ct-card-w: 86%; --ct-card-w-desk: 32%;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'card' -%}
+          <article class="ct-card ct-ic__card" {{ block.shopify_attributes }}>
+            <div class="ct-ic__media">
+              {%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 800 | image_tag: class: 'ct-img', loading: 'lazy' }}{%- else -%}<div class="ct-ph">{{ "image" | placeholder_svg_tag }}</div>{%- endif -%}
+              <span class="ct-ic__icon">{% render 'pdp-icon', icon: block.settings.icon %}</span>
+            </div>
+            <div class="ct-ic__body">
+              {%- if block.settings.title != blank -%}<h3>{{ block.settings.title }}</h3>{%- endif -%}
+              {%- if block.settings.text != blank -%}<p>{{ block.settings.text }}</p>{%- endif -%}
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="ct-progress" data-ct-progress><span></span></div>
+    {%- assign has_icons = false -%}
+    {%- for block in section.blocks -%}{%- if block.type == 'heat_icon' -%}{%- assign has_icons = true -%}{%- endif -%}{%- endfor -%}
+    {%- if has_icons -%}
+      <div class="ct-ic__row">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'heat_icon' -%}
+            <div {{ block.shopify_attributes }}>{% render 'pdp-icon', icon: block.settings.icon %}<span>{{ block.settings.label }}</span></div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+<style>
+  .ct-ic__card { background: #1a1917; }
+  .ct-ic__media { position: relative; aspect-ratio: 4 / 3.4; }
+  .ct-ic__icon { position: absolute; left: 16px; bottom: -18px; width: 40px; height: 40px; border-radius: 50%; background: #1a1917; border: 1px solid var(--ct-border); color: var(--ct-copper); display: flex; align-items: center; justify-content: center; }
+  .ct-ic__icon .pdp-icon { width: 18px; height: 18px; }
+  .ct-ic__body { padding: 28px 18px 20px; }
+  .ct-ic__body h3 { margin: 0 0 6px; font-family: var(--font-heading-family); font-weight: 400; font-size: 21px; color: var(--ct-text); }
+  .ct-ic__body p { margin: 0; color: var(--ct-muted); font-size: 14px; line-height: 1.5; }
+  .ct-ic__row { display: flex; justify-content: space-around; gap: 8px; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--ct-border); }
+  .ct-ic__row div { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; color: var(--ct-muted); }
+  .ct-ic__row .pdp-icon { width: 20px; height: 20px; color: var(--ct-copper); }
+</style>
+
+{% schema %}
+{
+  "name": "⭐ Cartes photos + icônes",
+  "tag": "section",
+  "class": "ct-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "En-tête"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Sur-titre"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Cook freely. Without <em>compromise.</em>",
+      "info": "Mets un mot en italique pour l'afficher en cuivre"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Sous-titre",
+      "default": "The performance of titanium, made for the way you cook."
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "label": "Alignement",
+      "options": [
+        {
+          "value": "left",
+          "label": "Gauche"
+        },
+        {
+          "value": "center",
+          "label": "Centré"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fond",
+      "default": "#201f1e"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Couleur d'accent (optionnel)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espace en haut",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espace en bas",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Carte photo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "check_circle",
+              "label": "Coche"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "flame",
+              "label": "Flamme"
+            },
+            {
+              "value": "gas_stove",
+              "label": "Gaz"
+            },
+            {
+              "value": "induction",
+              "label": "Induction"
+            },
+            {
+              "value": "oven",
+              "label": "Four"
+            },
+            {
+              "value": "grill",
+              "label": "Grill"
+            },
+            {
+              "value": "electric",
+              "label": "Électrique"
+            },
+            {
+              "value": "ceramic",
+              "label": "Vitrocéramique"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            },
+            {
+              "value": "heart",
+              "label": "Cœur"
+            },
+            {
+              "value": "medal",
+              "label": "Médaille"
+            },
+            {
+              "value": "leaf",
+              "label": "Feuille"
+            },
+            {
+              "value": "drop",
+              "label": "Goutte"
+            },
+            {
+              "value": "box",
+              "label": "Boîte"
+            },
+            {
+              "value": "document",
+              "label": "Document"
+            },
+            {
+              "value": "gift",
+              "label": "Cadeau"
+            }
+          ],
+          "default": "flame"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Use metal utensils"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Describe the benefit here."
+        }
+      ]
+    },
+    {
+      "type": "heat_icon",
+      "name": "Icône (rangée du bas)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "check_circle",
+              "label": "Coche"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "flame",
+              "label": "Flamme"
+            },
+            {
+              "value": "gas_stove",
+              "label": "Gaz"
+            },
+            {
+              "value": "induction",
+              "label": "Induction"
+            },
+            {
+              "value": "oven",
+              "label": "Four"
+            },
+            {
+              "value": "grill",
+              "label": "Grill"
+            },
+            {
+              "value": "electric",
+              "label": "Électrique"
+            },
+            {
+              "value": "ceramic",
+              "label": "Vitrocéramique"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            },
+            {
+              "value": "heart",
+              "label": "Cœur"
+            },
+            {
+              "value": "medal",
+              "label": "Médaille"
+            },
+            {
+              "value": "leaf",
+              "label": "Feuille"
+            },
+            {
+              "value": "drop",
+              "label": "Goutte"
+            },
+            {
+              "value": "box",
+              "label": "Boîte"
+            },
+            {
+              "value": "document",
+              "label": "Document"
+            },
+            {
+              "value": "gift",
+              "label": "Cadeau"
+            }
+          ],
+          "default": "gas_stove"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Texte",
+          "default": "Gas"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "⭐ Cartes photos + icônes",
+      "blocks": [
+        {
+          "type": "card"
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "flame",
+            "title": "High heat, no worries"
+          }
+        },
+        {
+          "type": "heat_icon"
+        },
+        {
+          "type": "heat_icon",
+          "settings": {
+            "icon": "induction",
+            "label": "Induction"
+          }
+        },
+        {
+          "type": "heat_icon",
+          "settings": {
+            "icon": "electric",
+            "label": "Electric"
+          }
+        },
+        {
+          "type": "heat_icon",
+          "settings": {
+            "icon": "ceramic",
+            "label": "Ceramic"
+          }
+        },
+        {
+          "type": "heat_icon",
+          "settings": {
+            "icon": "oven",
+            "label": "Oven"
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "product",
+      "index",
+      "page"
+    ]
+  }
+}
+{% endschema %}
