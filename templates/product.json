@@ -1728,18 +1728,21 @@
         "video_1": {
           "type": "video",
           "settings": {
+            "video": "shopify://files/videos/0f0386543d9d41f3956607f491e764d7.HD-1080p-2.5Mbps-98064806.mp4",
             "caption": ""
           }
         },
         "video_2": {
           "type": "video",
           "settings": {
+            "video": "shopify://files/videos/40870a5a52f649e6b4489853f0f78580.HD-1080p-2.5Mbps-98065342 (1).mp4",
             "caption": ""
           }
         },
         "video_3": {
           "type": "video",
           "settings": {
+            "video": "shopify://files/videos/8d213ea8882d4fef953343fd2a6d70dc.HD-1080p-7.2Mbps-90369938.mp4",
             "caption": ""
           }
         },
@@ -1923,6 +1926,7 @@
         "step_1": {
           "type": "step",
           "settings": {
+            "image": "shopify://shop_images/okx-chef-gregory-step-1-v2.avif",
             "title": "Preheat on medium for 1–2 minutes",
             "text": "Flick in a drop of water. When it beads and dances, the pan is ready."
           }
@@ -2066,6 +2070,7 @@
         "review_6": {
           "type": "review",
           "settings": {
+            "image": "shopify://shop_images/Scherm_afbeelding_2026-05-27_om_19-33-10.png",
             "verified_label": "Verified",
             "stars": 5,
             "date": "",
