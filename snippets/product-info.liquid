@@ -34,6 +34,12 @@
     {% when 'pdp_heat_sources' %}
       {% render 'pdp-heat-sources', block: block %}
 
+    {% when 'pdp_gifts' %}
+      {% render 'pdp-gifts', block: block %}
+
+    {% when 'pdp_accordions' %}
+      {% render 'pdp-accordions', block: block, product: product %}
+
     {% when 'pdp_trust_line' %}
       {% render 'pdp-trust-line', block: block %}
 

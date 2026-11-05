@@ -281,7 +281,7 @@
         "pdp_trust_main": {
           "type": "pdp_trust_line",
           "settings": {
-            "item_1_icon": "flag_au",
+            "item_1_icon": "truck",
             "item_1_text": "Free shipping to Australia",
             "item_2_icon": "return",
             "item_2_text": "30-day returns",
@@ -294,9 +294,10 @@
             "padding": 12,
             "text_color": "#ffffffcc",
             "icon_color": "#ffffff",
-            "divider_color": "#3a3836",
+            "divider_color": "#5a4636",
             "margin_top": 4,
-            "margin_bottom": 12
+            "margin_bottom": 12,
+            "uppercase": true
           }
         },
         "trustpilot_rating_mrtVHq": {
@@ -1651,6 +1652,58 @@
             "margin_bottom": 10,
             "link": "reviews"
           }
+        },
+        "pdp_gifts_main": {
+          "type": "pdp_gifts",
+          "settings": {
+            "pill_text": "Limited time only",
+            "text": "<p>Free gifts with <strong>every pan</strong> this week</p>",
+            "gift_1_name": "Cleaning cloth",
+            "gift_1_value": "$20",
+            "gift_2_name": "Pan protector",
+            "gift_2_value": "$20",
+            "gift_3_name": "Recipe guide",
+            "gift_3_value": "$10",
+            "gift_4_name": "Surprise gift",
+            "free_label": "FREE",
+            "show_check": true,
+            "accent_color": "#c0392b",
+            "text_color": "#ffffff",
+            "muted_color": "#9c958e",
+            "card_bg_color": "#262423",
+            "card_border_color": "#3a3836",
+            "check_color": "#2fbf71",
+            "margin_top": 8,
+            "margin_bottom": 20
+          }
+        },
+        "pdp_accordions_main": {
+          "type": "pdp_accordions",
+          "settings": {
+            "item_1_title": "Details",
+            "item_1_icon": "document",
+            "item_1_use_description": true,
+            "item_2_title": "Shipping & returns",
+            "item_2_icon": "truck",
+            "item_2_use_description": false,
+            "item_2_content": "<p>Free shipping across Australia. Orders ship within 24 hours. 30-day returns.</p>",
+            "item_3_title": "Care instructions",
+            "item_3_icon": "drop",
+            "item_3_use_description": false,
+            "item_3_content": "<p>Add your care instructions here.</p>",
+            "item_4_title": "Size guide",
+            "item_4_icon": "box",
+            "item_4_use_description": false,
+            "item_4_content": "<p>26 cm – 1 person<br>28 cm – 1–2 people<br>30 cm – 2–3 people</p>",
+            "item_5_icon": "none",
+            "item_5_use_description": false,
+            "title_color": "#ffffff",
+            "body_color": "#d2d2d2",
+            "icon_color": "#c8956a",
+            "border_color": "#3a3836",
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
         }
       },
       "block_order": [
@@ -1667,6 +1720,8 @@
         "add_to_cart_hnegaC",
         "payment_icons_ekNyqU",
         "pdp_trust_main",
+        "pdp_gifts_main",
+        "pdp_accordions_main",
         "trustpilot_rating_mrtVHq",
         "custom_text_pdQQkk",
         "custom_text_Fm3qaa",
@@ -1743,7 +1798,16 @@
         "thumbnails_left_column_desktop": false,
         "main_image_portrait_adaptation": false,
         "control_app_subscription_preselect": false,
-        "seal_selling_plan_id_preselect": ""
+        "seal_selling_plan_id_preselect": "",
+        "image_badge_enable": true,
+        "image_badge_top": "Limited offer",
+        "image_badge_dot": true,
+        "image_badge_bottom": "Free shipping in Australia",
+        "image_badge_icon": "shield",
+        "image_badge_position": "right",
+        "image_badge_color": "#c0392b",
+        "image_badge_text_color": "#ffffff",
+        "image_badge_bottom_bg": "#201f1e"
       }
     },
     "sticky_add_to_cart_NJqgUd": {

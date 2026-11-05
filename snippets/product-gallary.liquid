@@ -110,6 +110,7 @@
         
         <!-- Main image container -->
         <div class="shop-image-container shop-square-container{% if section.settings.main_image_portrait_adaptation %} portrait-adapted{% endif %}">
+          {% render 'pdp-image-badge', section: section %}
     {% else %}
       <div class="shop-main-image-wrapper">
         
@@ -147,6 +148,7 @@
         {% endfor %}
        
         <div class="shop-image-container shop-square-container{% if section.settings.main_image_portrait_adaptation %} portrait-adapted{% endif %}">
+          {% render 'pdp-image-badge', section: section %}
           
           {% endif %}
           {% for media in product.media %}

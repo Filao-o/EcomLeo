@@ -4,7 +4,7 @@
 {%- endcomment -%}
 {%- assign s = block.settings -%}
 <div
-  class="pdp-trust{% if s.divider_top %} pdp-trust--top{% endif %}{% if s.divider_bottom %} pdp-trust--bottom{% endif %}"
+  class="pdp-trust{% if s.uppercase %} pdp-trust--upper{% endif %}{% if s.divider_top %} pdp-trust--top{% endif %}{% if s.divider_bottom %} pdp-trust--bottom{% endif %}"
   {{ block.shopify_attributes }}
   style="
     --tr-text: {{ s.text_color }};

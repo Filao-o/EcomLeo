@@ -1272,6 +1272,17 @@
       "placeholder": "Selling plan ID",
       "visible_if": "{{ section.settings.control_app_subscription_preselect == true }}"
     }
+,
+    {"type": "header", "content": "Badge sur la photo"},
+    {"type": "checkbox", "id": "image_badge_enable", "label": "Afficher le badge sur la photo principale", "default": false},
+    {"type": "text", "id": "image_badge_top", "label": "Ligne du haut", "default": "Limited offer"},
+    {"type": "checkbox", "id": "image_badge_dot", "label": "Point devant le texte", "default": true},
+    {"type": "text", "id": "image_badge_bottom", "label": "Ligne du bas", "default": "Free shipping in Australia"},
+    {"type": "select", "id": "image_badge_icon", "label": "Icône (ligne du bas)", "options": [{"value": "none", "label": "Aucune"}, {"value": "shield", "label": "Bouclier"}, {"value": "truck", "label": "Camion"}, {"value": "star", "label": "Étoile"}, {"value": "return", "label": "Retour"}], "default": "shield"},
+    {"type": "select", "id": "image_badge_position", "label": "Position", "options": [{"value": "right", "label": "En haut à droite"}, {"value": "left", "label": "En haut à gauche"}], "default": "right"},
+    {"type": "color", "id": "image_badge_color", "label": "Couleur d'accent", "default": "#c0392b"},
+    {"type": "color", "id": "image_badge_text_color", "label": "Texte", "default": "#ffffff"},
+    {"type": "color", "id": "image_badge_bottom_bg", "label": "Fond de la ligne du bas", "default": "#201f1e"}
   ],
   "blocks": [
     {
@@ -2895,6 +2906,564 @@
       ]
     },
     {
+      "name": "⭐ Cadeaux offerts",
+      "type": "pdp_gifts",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "pill_text",
+          "label": "Pastille",
+          "default": "Limited time only"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texte",
+          "default": "<p>Free gifts with <strong>every pan</strong> this week</p>"
+        },
+        {
+          "type": "header",
+          "content": "Cadeau 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_1_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "gift_1_name",
+          "label": "Nom",
+          "default": "Cleaning cloth"
+        },
+        {
+          "type": "text",
+          "id": "gift_1_value",
+          "label": "Valeur barrée (ex : $20)"
+        },
+        {
+          "type": "header",
+          "content": "Cadeau 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_2_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "gift_2_name",
+          "label": "Nom",
+          "default": "Pan protector"
+        },
+        {
+          "type": "text",
+          "id": "gift_2_value",
+          "label": "Valeur barrée (ex : $20)"
+        },
+        {
+          "type": "header",
+          "content": "Cadeau 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_3_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "gift_3_name",
+          "label": "Nom",
+          "default": "Recipe guide"
+        },
+        {
+          "type": "text",
+          "id": "gift_3_value",
+          "label": "Valeur barrée (ex : $20)"
+        },
+        {
+          "type": "header",
+          "content": "Cadeau 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_4_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "gift_4_name",
+          "label": "Nom",
+          "default": "Surprise gift"
+        },
+        {
+          "type": "text",
+          "id": "gift_4_value",
+          "label": "Valeur barrée (ex : $20)"
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "text",
+          "id": "free_label",
+          "label": "Libellé gratuit",
+          "default": "FREE"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_check",
+          "label": "Coche sur les cartes",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Couleur d'accent (pastille, GRATUIT)",
+          "default": "#c0392b"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Texte",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "muted_color",
+          "label": "Prix barré",
+          "default": "#9c958e"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Fond des cartes",
+          "default": "#262423"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Bordure des cartes",
+          "default": "#3a3836"
+        },
+        {
+          "type": "color",
+          "id": "check_color",
+          "label": "Coche",
+          "default": "#2fbf71"
+        },
+        {
+          "type": "header",
+          "content": "Espacements"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Marge haute",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Marge basse",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        }
+      ]
+    },
+    {
+      "name": "⭐ Accordéons",
+      "type": "pdp_accordions",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Ligne 1"
+        },
+        {
+          "type": "text",
+          "id": "item_1_title",
+          "label": "Titre",
+          "default": "Details"
+        },
+        {
+          "type": "select",
+          "id": "item_1_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "document",
+              "label": "Document"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "drop",
+              "label": "Goutte"
+            },
+            {
+              "value": "box",
+              "label": "Boîte"
+            },
+            {
+              "value": "ruler",
+              "label": "Règle"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            }
+          ],
+          "default": "document"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_1_use_description",
+          "label": "Afficher la description du produit",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "item_1_content",
+          "label": "Contenu"
+        },
+        {
+          "type": "header",
+          "content": "Ligne 2"
+        },
+        {
+          "type": "text",
+          "id": "item_2_title",
+          "label": "Titre",
+          "default": "Shipping & returns"
+        },
+        {
+          "type": "select",
+          "id": "item_2_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "document",
+              "label": "Document"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "drop",
+              "label": "Goutte"
+            },
+            {
+              "value": "box",
+              "label": "Boîte"
+            },
+            {
+              "value": "ruler",
+              "label": "Règle"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_2_use_description",
+          "label": "Afficher la description du produit",
+          "default": false
+        },
+        {
+          "type": "richtext",
+          "id": "item_2_content",
+          "label": "Contenu"
+        },
+        {
+          "type": "header",
+          "content": "Ligne 3"
+        },
+        {
+          "type": "text",
+          "id": "item_3_title",
+          "label": "Titre",
+          "default": "Care instructions"
+        },
+        {
+          "type": "select",
+          "id": "item_3_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "document",
+              "label": "Document"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "drop",
+              "label": "Goutte"
+            },
+            {
+              "value": "box",
+              "label": "Boîte"
+            },
+            {
+              "value": "ruler",
+              "label": "Règle"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            }
+          ],
+          "default": "drop"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_3_use_description",
+          "label": "Afficher la description du produit",
+          "default": false
+        },
+        {
+          "type": "richtext",
+          "id": "item_3_content",
+          "label": "Contenu"
+        },
+        {
+          "type": "header",
+          "content": "Ligne 4"
+        },
+        {
+          "type": "text",
+          "id": "item_4_title",
+          "label": "Titre",
+          "default": "Size guide"
+        },
+        {
+          "type": "select",
+          "id": "item_4_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "document",
+              "label": "Document"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "drop",
+              "label": "Goutte"
+            },
+            {
+              "value": "box",
+              "label": "Boîte"
+            },
+            {
+              "value": "ruler",
+              "label": "Règle"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            }
+          ],
+          "default": "box"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_4_use_description",
+          "label": "Afficher la description du produit",
+          "default": false
+        },
+        {
+          "type": "richtext",
+          "id": "item_4_content",
+          "label": "Contenu"
+        },
+        {
+          "type": "header",
+          "content": "Ligne 5"
+        },
+        {
+          "type": "text",
+          "id": "item_5_title",
+          "label": "Titre"
+        },
+        {
+          "type": "select",
+          "id": "item_5_icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "document",
+              "label": "Document"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "drop",
+              "label": "Goutte"
+            },
+            {
+              "value": "box",
+              "label": "Boîte"
+            },
+            {
+              "value": "ruler",
+              "label": "Règle"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_5_use_description",
+          "label": "Afficher la description du produit",
+          "default": false
+        },
+        {
+          "type": "richtext",
+          "id": "item_5_content",
+          "label": "Contenu"
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Titres",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "body_color",
+          "label": "Texte",
+          "default": "#d2d2d2"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icônes",
+          "default": "#c8956a"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Séparateurs",
+          "default": "#3a3836"
+        },
+        {
+          "type": "header",
+          "content": "Espacements"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Marge haute",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Marge basse",
+          "min": -20,
+          "max": 40,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        }
+      ]
+    },
+    {
       "name": "⭐ Ligne de réassurance",
       "type": "pdp_trust_line",
       "limit": 2,
@@ -3091,6 +3660,7 @@
           "type": "header",
           "content": "Style"
         },
+        {"type": "checkbox", "id": "uppercase", "label": "Texte en majuscules", "default": false},
         {
           "type": "checkbox",
           "id": "divider_top",

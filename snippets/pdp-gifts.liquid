@@ -1,0 +1,49 @@
+{%- comment -%}
+  Bloc « Cadeaux offerts » : pastille + texte + cartes cadeaux (image, nom, prix barré, GRATUIT)
+  block.type == 'pdp_gifts'
+{%- endcomment -%}
+{%- assign s = block.settings -%}
+<div
+  class="pdp-gifts"
+  {{ block.shopify_attributes }}
+  style="
+    --gf-accent: {{ s.accent_color }};
+    --gf-text: {{ s.text_color }};
+    --gf-muted: {{ s.muted_color }};
+    --gf-card-bg: {{ s.card_bg_color }};
+    --gf-card-border: {{ s.card_border_color }};
+    --gf-check: {{ s.check_color }};
+    margin-top: {{ s.margin_top }}px;
+    margin-bottom: {{ s.margin_bottom }}px;
+  "
+>
+  {%- if s.pill_text != blank -%}<p class="pdp-gifts__pill-wrap"><span class="pdp-gifts__pill">{{ s.pill_text }}</span></p>{%- endif -%}
+  {%- if s.text != blank -%}<div class="pdp-gifts__text">{{ s.text }}</div>{%- endif -%}
+  {%- assign count = 0 -%}
+  {%- for i in (1..4) -%}{%- assign k = 'gift_' | append: i | append: '_name' -%}{%- if s[k] != blank -%}{%- assign count = count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+  <div class="pdp-gifts__grid" style="--gf-cols: {{ count }};">
+    {%- for i in (1..4) -%}
+      {%- liquid
+        assign k_name = 'gift_' | append: i | append: '_name'
+        assign k_img = 'gift_' | append: i | append: '_image'
+        assign k_price = 'gift_' | append: i | append: '_value'
+        assign g_name = s[k_name]
+        assign g_img = s[k_img]
+        assign g_value = s[k_price]
+      -%}
+      {%- if g_name != blank -%}
+        <div class="pdp-gifts__card">
+          {%- if s.show_check -%}<span class="pdp-gifts__check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>{%- endif -%}
+          <span class="pdp-gifts__img">
+            {%- if g_img != blank -%}{{ g_img | image_url: width: 160 | image_tag: loading: 'lazy', alt: g_name }}{%- else -%}{% render 'pdp-icon', icon: 'gift' %}{%- endif -%}
+          </span>
+          <span class="pdp-gifts__name">{{ g_name }}</span>
+          <span class="pdp-gifts__price">
+            {%- if g_value != blank -%}<s>{{ g_value }}</s>{%- endif -%}
+            <span class="pdp-gifts__free">{{ s.free_label }}</span>
+          </span>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>

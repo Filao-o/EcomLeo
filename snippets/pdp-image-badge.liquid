@@ -1,0 +1,18 @@
+{%- comment -%}
+  Badge posé sur la photo principale (réglages de la section : « Badge sur la photo »)
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+{%- if s.image_badge_enable and s.image_badge_top != blank -%}
+  <div
+    class="pdp-img-badge pdp-img-badge--{{ s.image_badge_position }}"
+    style="--ib-accent: {{ s.image_badge_color }}; --ib-text: {{ s.image_badge_text_color }}; --ib-bottom-bg: {{ s.image_badge_bottom_bg }};"
+  >
+    <span class="pdp-img-badge__top">{% if s.image_badge_dot %}<span class="pdp-img-badge__dot"></span>{% endif %}{{ s.image_badge_top }}</span>
+    {%- if s.image_badge_bottom != blank -%}
+      <span class="pdp-img-badge__bottom">
+        {%- if s.image_badge_icon != 'none' -%}{% render 'pdp-icon', icon: s.image_badge_icon %}{%- endif -%}
+        {{ s.image_badge_bottom }}
+      </span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

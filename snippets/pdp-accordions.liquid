@@ -1,0 +1,42 @@
+{%- comment -%}
+  Bloc « Accordéons » : jusqu'à 5 lignes dépliables avec icône
+  block.type == 'pdp_accordions'
+{%- endcomment -%}
+{%- assign s = block.settings -%}
+<div
+  class="pdp-acc"
+  {{ block.shopify_attributes }}
+  style="
+    --ac-text: {{ s.title_color }};
+    --ac-body: {{ s.body_color }};
+    --ac-icon: {{ s.icon_color }};
+    --ac-border: {{ s.border_color }};
+    margin-top: {{ s.margin_top }}px;
+    margin-bottom: {{ s.margin_bottom }}px;
+  "
+>
+  {%- for i in (1..5) -%}
+    {%- liquid
+      assign k_title = 'item_' | append: i | append: '_title'
+      assign k_icon = 'item_' | append: i | append: '_icon'
+      assign k_body = 'item_' | append: i | append: '_content'
+      assign k_desc = 'item_' | append: i | append: '_use_description'
+      assign it_title = s[k_title]
+      assign it_icon = s[k_icon]
+      assign it_body = s[k_body]
+      assign it_desc = s[k_desc]
+    -%}
+    {%- if it_title != blank -%}
+      <details class="pdp-acc__item">
+        <summary class="pdp-acc__summary">
+          {%- if it_icon != 'none' -%}<span class="pdp-acc__icon">{% render 'pdp-icon', icon: it_icon %}</span>{%- endif -%}
+          <span class="pdp-acc__title">{{ it_title }}</span>
+          <span class="pdp-acc__plus" aria-hidden="true"></span>
+        </summary>
+        <div class="pdp-acc__body">
+          {%- if it_desc -%}{{ product.description }}{%- else -%}{{ it_body }}{%- endif -%}
+        </div>
+      </details>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
