@@ -1749,12 +1749,14 @@
         "video_4": {
           "type": "video",
           "settings": {
+            "video": "shopify://files/videos/e05996722a834ee88f631f5e54e66fca.HD-1080p-7.2Mbps-90369939.mp4",
             "caption": ""
           }
         },
         "video_5": {
           "type": "video",
           "settings": {
+            "video": "shopify://files/videos/331a8ecc15804e56b5c428b803921a92.HD-1080p-7.2Mbps-90369940.mp4",
             "caption": ""
           }
         }
