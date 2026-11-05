@@ -9,22 +9,239 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "hero": {
+      "type": "ct-page-hero",
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
+        "eyebrow": "Support",
+        "heading": "Let's <em>talk</em>",
+        "subheading": "Questions about your order, your pan or anything else? We're here to help.",
+        "heading_align": "center",
+        "background_color": "#201f1e",
+        "padding_top": 56,
+        "padding_bottom": 24
       }
     },
-    "form": {
-      "type": "contact-form",
+    "contact": {
+      "type": "ct-contact",
       "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "info_heading": "Get in touch",
+        "reply_note": "We usually reply within 24 hours",
+        "form_heading": "Send us a message",
+        "name_label": "Name",
+        "name_placeholder": "Your name",
+        "email_label": "Email",
+        "email_placeholder": "you@email.com",
+        "subject_label": "Subject",
+        "subject_placeholder": "Choose a topic",
+        "subjects": "Product question, Order status, Returns & exchanges, Wholesale, Other",
+        "message_label": "Message",
+        "message_placeholder": "How can we help?",
+        "button_label": "Send message",
+        "success_text": "Thanks! We'll get back to you shortly.",
+        "background_color": "#201f1e",
+        "padding_top": 24,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "info_1": {
+          "type": "info",
+          "settings": {
+            "icon": "mail",
+            "label": "Email",
+            "value": "support@cookingtitan.com",
+            "link": "mailto:support@cookingtitan.com"
+          }
+        },
+        "info_2": {
+          "type": "info",
+          "settings": {
+            "icon": "pin",
+            "label": "Location",
+            "value": "Australia"
+          }
+        }
+      },
+      "block_order": [
+        "info_1",
+        "info_2"
+      ]
+    },
+    "faq": {
+      "type": "ct-faq",
+      "settings": {
+        "eyebrow": "Quick answers",
+        "heading": "Before you <em>reach out</em>",
+        "subheading": "",
+        "heading_align": "center",
+        "contact_text": "",
+        "contact_link_label": "Contact us",
+        "background_color": "#1c1b1a",
+        "padding_top": 24,
+        "padding_bottom": 56
+      },
+      "blocks": {
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Orders leave our warehouse within 24 hours. Your delivery estimate is shown at checkout.</p>"
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "question": "What is your returns policy?",
+            "answer": "<p>You have 30 days to return your pan. Send us a message and we'll walk you through it.</p>"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "Do you offer wholesale pricing?",
+            "answer": "<p>Yes. Pick \"Wholesale\" as the subject in the form above and tell us about your business.</p>"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": "<p>You'll receive a tracking link by email as soon as your order ships.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_1",
+        "question_2",
+        "question_3",
+        "question_4"
+      ]
+    },
+    "badges": {
+      "type": "ct-trust-badges",
+      "settings": {
+        "heading_align": "center",
+        "background_color": "#201f1e",
+        "padding_top": 24,
+        "padding_bottom": 40
+      },
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "icon": "truck",
+            "title": "Free shipping",
+            "text": "Free delivery across Australia."
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "icon": "return",
+            "title": "30-day returns",
+            "text": "Not happy? Send it back."
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure checkout",
+            "text": "Encrypted, trusted payments."
+          }
+        },
+        "badge_4": {
+          "type": "badge",
+          "settings": {
+            "icon": "chat",
+            "title": "Real support",
+            "text": "Real people, quick replies."
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "badge_4"
+      ]
+    },
+    "social": {
+      "type": "ct-social",
+      "settings": {
+        "eyebrow": "Connect with us",
+        "heading": "Follow the <em>journey</em>",
+        "heading_align": "center",
+        "background_color": "#201f1e",
+        "padding_top": 40,
+        "padding_bottom": 40
+      },
+      "blocks": {
+        "network_1": {
+          "type": "network",
+          "settings": {
+            "icon": "instagram",
+            "name": "Instagram",
+            "handle": "@cookingtitan"
+          }
+        },
+        "network_2": {
+          "type": "network",
+          "settings": {
+            "icon": "facebook",
+            "name": "Facebook",
+            "handle": "@cookingtitan"
+          }
+        },
+        "network_3": {
+          "type": "network",
+          "settings": {
+            "icon": "tiktok",
+            "name": "TikTok",
+            "handle": "@cookingtitan"
+          }
+        },
+        "network_4": {
+          "type": "network",
+          "settings": {
+            "icon": "pinterest",
+            "name": "Pinterest",
+            "handle": "@cookingtitan"
+          }
+        }
+      },
+      "block_order": [
+        "network_1",
+        "network_2",
+        "network_3",
+        "network_4"
+      ]
+    },
+    "newsletter": {
+      "type": "ct-newsletter",
+      "settings": {
+        "pill": "Newsletter",
+        "heading": "Stay in the <em>loop</em>",
+        "subheading": "New releases, recipes and members-only offers, straight to your inbox.",
+        "heading_align": "center",
+        "placeholder": "Your email address",
+        "button_label": "Subscribe",
+        "success_text": "Thanks! You're on the list.",
+        "point_1": "First access to new releases",
+        "point_2": "Recipes and cooking tips",
+        "point_3": "No spam, unsubscribe anytime",
+        "legal": "<p>By subscribing you agree to our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>",
+        "background_color": "#201f1e",
+        "padding_top": 48,
+        "padding_bottom": 56
       }
     }
   },
-  "order": ["main", "form"]
+  "order": [
+    "hero",
+    "contact",
+    "faq",
+    "badges",
+    "social",
+    "newsletter"
+  ]
 }
