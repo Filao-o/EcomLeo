@@ -165,57 +165,6 @@
         "badge_4"
       ]
     },
-    "social": {
-      "type": "ct-social",
-      "settings": {
-        "eyebrow": "Connect with us",
-        "heading": "Follow the <em>journey</em>",
-        "heading_align": "center",
-        "background_color": "#201f1e",
-        "padding_top": 40,
-        "padding_bottom": 40
-      },
-      "blocks": {
-        "network_1": {
-          "type": "network",
-          "settings": {
-            "icon": "instagram",
-            "name": "Instagram",
-            "handle": "@cookingtitan"
-          }
-        },
-        "network_2": {
-          "type": "network",
-          "settings": {
-            "icon": "facebook",
-            "name": "Facebook",
-            "handle": "@cookingtitan"
-          }
-        },
-        "network_3": {
-          "type": "network",
-          "settings": {
-            "icon": "tiktok",
-            "name": "TikTok",
-            "handle": "@cookingtitan"
-          }
-        },
-        "network_4": {
-          "type": "network",
-          "settings": {
-            "icon": "pinterest",
-            "name": "Pinterest",
-            "handle": "@cookingtitan"
-          }
-        }
-      },
-      "block_order": [
-        "network_1",
-        "network_2",
-        "network_3",
-        "network_4"
-      ]
-    },
     "newsletter": {
       "type": "ct-newsletter",
       "settings": {
@@ -241,7 +190,6 @@
     "contact",
     "faq",
     "badges",
-    "social",
     "newsletter"
   ]
 }
