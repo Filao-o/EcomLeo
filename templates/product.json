@@ -1369,91 +1369,6 @@
             "margin_bottom": 0
           }
         },
-        "video_carousel_standalone_rdTALU": {
-          "type": "video_carousel_standalone",
-          "settings": {
-            "heading": "50,000+ Happy Customers",
-            "heading_size": 16,
-            "heading_color": "#f5f4f3",
-            "scrollbar_color": "#000000",
-            "disable_sound_controls": false,
-            "enable_autoplay": false,
-            "show_sound_controls_autoplay": false,
-            "play_button_size": 30,
-            "sound_button_size": 30,
-            "play_button_bg_color": "#000000",
-            "play_button_bg_opacity": 35,
-            "sound_button_bg_color": "#000000",
-            "sound_button_bg_opacity": 35,
-            "hide_scrollbar": false,
-            "video_size": 180,
-            "show_social_badge": false,
-            "social_platform": "tiktok",
-            "view_count": 56,
-            "badge_text": "Over",
-            "badge_suffix": "M Views On TikTok",
-            "use_gradient_text": false,
-            "badge_background_color": "#262524",
-            "badge_text_color": "#d6d5d4",
-            "remove_badge_background": false,
-            "show_divider_above_views": false,
-            "divider_color": "#3b3a39",
-            "divider_width": 50,
-            "divider_thickness": 1,
-            "divider_margin": 10,
-            "custom_badge_text": "",
-            "margin_top": 10,
-            "margin_bottom": 10
-          }
-        },
-        "carousel_default_video_bRVwgE": {
-          "type": "carousel_default_video",
-          "settings": {
-            "enable_autoplay": false,
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "carousel_default_video_qWtJWV": {
-          "type": "carousel_default_video",
-          "settings": {
-            "enable_autoplay": false,
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "carousel_default_video_MX6PwN": {
-          "type": "carousel_default_video",
-          "settings": {
-            "enable_autoplay": false,
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "carousel_default_video_BehTLM": {
-          "type": "carousel_default_video",
-          "settings": {
-            "enable_autoplay": false,
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "carousel_default_video_7UNVXK": {
-          "type": "carousel_default_video",
-          "settings": {
-            "enable_autoplay": false,
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "carousel_default_video_YPWNtF": {
-          "type": "carousel_default_video",
-          "settings": {
-            "enable_autoplay": false,
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
         "custom_text_e7xkQT": {
           "type": "custom_text",
           "settings": {
@@ -1739,13 +1654,6 @@
         "divider_hEdBUa",
         "product_labels_J49GfR",
         "divider_gB9G3C",
-        "video_carousel_standalone_rdTALU",
-        "carousel_default_video_bRVwgE",
-        "carousel_default_video_qWtJWV",
-        "carousel_default_video_MX6PwN",
-        "carousel_default_video_BehTLM",
-        "carousel_default_video_7UNVXK",
-        "carousel_default_video_YPWNtF",
         "custom_text_e7xkQT",
         "product_upsell_yrximR",
         "customer_review_yxw8Rw",
@@ -2226,1334 +2134,10 @@
         "mobile_gap": 20
       }
     },
-    "product_comparison_pw7jpT": {
-      "type": "product-comparison",
-      "blocks": {
-        "product_column_8bXFrG": {
-          "type": "product_column",
-          "settings": {
-            "product_name": "AirVacuum Kit",
-            "product_subtitle": "",
-            "product_image_size": 150,
-            "product_image_size_mobile": 50,
-            "subtitle_custom_icon": "",
-            "show_subtitle_icon": false,
-            "use_subtitle_background": false,
-            "subtitle_border_color": "#ffffff",
-            "highlight_column": true,
-            "highlight_color": "#282726",
-            "use_highlight_gradient": false,
-            "highlight_gradient_start_color": "#ef4a65",
-            "highlight_gradient_end_color": "#ff6b9d",
-            "highlight_gradient_angle": 45,
-            "subtitle_glass_color": "#ffffff",
-            "subtitle_icon_color": "#f6f5f4"
-          }
-        },
-        "product_column_Xtnt3D": {
-          "type": "product_column",
-          "settings": {
-            "product_name": "Packing Bags",
-            "product_subtitle": "",
-            "product_image_size": 150,
-            "product_image_size_mobile": 50,
-            "subtitle_custom_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\" viewbox=\"0 0 400 400\" fill=\"currentColor\"><path d=\"M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z\"></path></svg>",
-            "show_subtitle_icon": true,
-            "use_subtitle_background": true,
-            "subtitle_border_color": "#ffffff",
-            "highlight_column": false,
-            "highlight_color": "#ef4a65",
-            "use_highlight_gradient": false,
-            "highlight_gradient_start_color": "#ef4a65",
-            "highlight_gradient_end_color": "#ff6b9d",
-            "highlight_gradient_angle": 45,
-            "subtitle_glass_color": "#ffffff",
-            "subtitle_icon_color": "#f6f5f4"
-          }
-        },
-        "feature_row_6EhdRW": {
-          "type": "feature_row",
-          "settings": {
-            "feature_name": "Space-Saving Design",
-            "show_icon": false,
-            "feature_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M12 8v8\"></path><path d=\"M8 12h8\"></path></svg>",
-            "value_type": "checkmark",
-            "value_1": "yes",
-            "text_value_1": "Yes",
-            "value_2": "yes",
-            "text_value_2": "No",
-            "value_3": "no",
-            "text_value_3": "No"
-          }
-        },
-        "feature_row_iTTVym": {
-          "type": "feature_row",
-          "settings": {
-            "feature_name": "Pack 15+ Items",
-            "show_icon": false,
-            "feature_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"></polygon></svg>",
-            "value_type": "checkmark",
-            "value_1": "yes",
-            "text_value_1": "Yes",
-            "value_2": "no",
-            "text_value_2": "No",
-            "value_3": "no",
-            "text_value_3": "No"
-          }
-        },
-        "feature_row_zAPxLG": {
-          "type": "feature_row",
-          "settings": {
-            "feature_name": "Wireless Pump",
-            "show_icon": false,
-            "feature_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5\"></path></svg>",
-            "value_type": "checkmark",
-            "value_1": "yes",
-            "text_value_1": "Yes",
-            "value_2": "no",
-            "text_value_2": "No",
-            "value_3": "no",
-            "text_value_3": "No"
-          }
-        },
-        "feature_row_cJNayb": {
-          "type": "feature_row",
-          "settings": {
-            "feature_name": "Scent-Proof",
-            "show_icon": false,
-            "feature_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M12 8v8\"></path><path d=\"M8 12h8\"></path></svg>",
-            "value_type": "checkmark",
-            "value_1": "yes",
-            "text_value_1": "Yes",
-            "value_2": "no",
-            "text_value_2": "No",
-            "value_3": "no",
-            "text_value_3": "No"
-          }
-        },
-        "feature_row_rMpcLn": {
-          "type": "feature_row",
-          "settings": {
-            "feature_name": "Tough & Waterproof",
-            "show_icon": false,
-            "feature_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M12 8v8\"></path><path d=\"M8 12h8\"></path></svg>",
-            "value_type": "checkmark",
-            "value_1": "yes",
-            "text_value_1": "Yes",
-            "value_2": "no",
-            "text_value_2": "No",
-            "value_3": "no",
-            "text_value_3": "No"
-          }
-        },
-        "feature_row_NB4A9y": {
-          "type": "feature_row",
-          "settings": {
-            "feature_name": "100-Day Trial",
-            "show_icon": false,
-            "feature_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M12 8v8\"></path><path d=\"M8 12h8\"></path></svg>",
-            "value_type": "checkmark",
-            "value_1": "yes",
-            "text_value_1": "Yes",
-            "value_2": "no",
-            "text_value_2": "No",
-            "value_3": "no",
-            "text_value_3": "No"
-          }
-        }
-      },
-      "block_order": [
-        "product_column_8bXFrG",
-        "product_column_Xtnt3D",
-        "feature_row_6EhdRW",
-        "feature_row_iTTVym",
-        "feature_row_zAPxLG",
-        "feature_row_cJNayb",
-        "feature_row_rMpcLn",
-        "feature_row_NB4A9y"
-      ],
-      "name": "Product Comparison",
-      "settings": {
-        "use_theme_colors": false,
-        "column_count": "2",
-        "show_heading": true,
-        "title_part_1": "Why Smart Travelers Choose AirVacuum",
-        "title_part_2": "",
-        "title_part_1_color": "#f5f4f3",
-        "title_part_2_color": "#ef4a65",
-        "subheading": "<p>Discover how our advanced vacuum technology sets the gold standard for travel compression.</p>",
-        "desktop_description": "",
-        "show_description_on_mobile": false,
-        "heading_size_mobile": 28,
-        "heading_size_desktop": 44,
-        "subheading_size": 14,
-        "heading_line_height": 1.2,
-        "subheading_color": "#f5f4f3",
-        "desktop_description_size_mobile": 14,
-        "desktop_description_size_desktop": 16,
-        "override_global_accent": false,
-        "accent_text_margin_left": 0,
-        "use_accent_gradient": false,
-        "accent_text_gradient": "linear-gradient(45deg, rgba(239, 74, 101, 1), rgba(255, 107, 157, 1) 100%)",
-        "accent_font_family": "inherit",
-        "accent_font_style": "normal",
-        "accent_font_weight": "inherit",
-        "table_column_width": 50,
-        "center_text_column_desktop": true,
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "padding_horizontal": 20,
-        "mobile_padding_top": 32,
-        "mobile_padding_bottom": 32,
-        "mobile_padding_horizontal": 16,
-        "container_padding_vertical_desktop": 0,
-        "container_padding_horizontal_desktop": 0,
-        "container_padding_vertical_mobile": 0,
-        "container_padding_horizontal_mobile": 16,
-        "table_width": 1200,
-        "text_column_padding_mobile": 20,
-        "text_column_padding_desktop": 20,
-        "product_title_size": 20,
-        "subtitle_size": 11,
-        "feature_name_size": 15,
-        "text_value_size": 13,
-        "product_title_size_mobile": 15,
-        "subtitle_size_mobile": 10,
-        "feature_name_size_mobile": 13,
-        "text_value_size_mobile": 11,
-        "icon_size_desktop": 24,
-        "icon_size_mobile": 20,
-        "use_custom_check_icons": false,
-        "use_gradient_background": false,
-        "background_color": "#201f1e",
-        "background_gradient": "linear-gradient(180deg, rgba(32, 31, 30, 1), rgba(32, 31, 30, 1) 100%)",
-        "use_background_image": false,
-        "background_image_size": "cover",
-        "background_image_position": "center center",
-        "background_image_repeat": "no-repeat",
-        "background_overlay_enable": false,
-        "background_overlay_color": "#000000",
-        "background_overlay_opacity": 30,
-        "text_color": "#f6f5f4",
-        "subtitle_color": "#f6f5f4",
-        "highlighted_text_color": "#000000",
-        "highlighted_subtitle_color": "#000000",
-        "highlighted_check_color": "#ff5801",
-        "highlighted_x_color": "#ff0000",
-        "border_color": "#2f2e2d",
-        "icon_color": "#ffffff",
-        "check_color": "#ff5801",
-        "x_color": "#141720",
-        "highlight_border_radius": 8,
-        "use_highlight_border": false,
-        "highlight_border_color": "#71e293",
-        "enable_highlight_shadow": false,
-        "highlight_border_width": 1,
-        "unhighlighted_text_color": "#e0dfde",
-        "unhighlighted_subtitle_color": "#ffffff",
-        "unhighlighted_icon_color": "#ff5801",
-        "unhighlighted_check_color": "#ff5801",
-        "unhighlighted_x_color": "#141720",
-        "enable_section_top_border": false,
-        "section_top_border_width": 1,
-        "section_top_border_style": "solid",
-        "section_top_border_color": "#373635",
-        "enable_section_bottom_border": false,
-        "section_bottom_border_width": 1,
-        "section_bottom_border_style": "solid",
-        "section_bottom_border_color": "#373635"
-      }
-    },
-    "statistics_column_y9eLJy": {
-      "type": "statistics-column",
-      "blocks": {
-        "statistic_UcmtBQ": {
-          "type": "statistic",
-          "settings": {
-            "number": "96%",
-            "title": "Expanded Capacity",
-            "description": ""
-          }
-        },
-        "statistic_QH6Nyb": {
-          "type": "statistic",
-          "settings": {
-            "number": "$250",
-            "title": "Savings that add up every single flight",
-            "description": ""
-          }
-        },
-        "statistic_daWmzY": {
-          "type": "statistic",
-          "settings": {
-            "number": "+5",
-            "title": "Save hours by avoiding bag drops and pick-ups",
-            "description": ""
-          }
-        }
-      },
-      "block_order": [
-        "statistic_UcmtBQ",
-        "statistic_QH6Nyb",
-        "statistic_daWmzY"
-      ],
-      "name": "Statistics Column",
-      "settings": {
-        "use_theme_colors": false,
-        "override_theme_section_background": false,
-        "heading": "Always Improved. Freshness Guaranteed.",
-        "heading_accent": "",
-        "subtitle": "",
-        "heading_vertical_alignment": "center",
-        "heading_color": "#f5f4f3",
-        "heading_size_mobile": 28,
-        "heading_size_desktop": 44,
-        "heading_line_height": 1.2,
-        "heading_tag": "h2",
-        "heading_text_alignment": "left",
-        "subtitle_color": "#f5f4f3",
-        "subtitle_size_mobile": 14,
-        "subtitle_size_desktop": 14,
-        "override_global_accent": false,
-        "accent_color": "#ef4a65",
-        "use_accent_gradient": false,
-        "accent_text_gradient": "linear-gradient(45deg, rgba(239, 74, 101, 1), rgba(255, 107, 157, 1) 100%)",
-        "accent_text_margin_left": 0,
-        "accent_font_family": "inherit",
-        "accent_font_style": "normal",
-        "accent_font_weight": "inherit",
-        "number_color": "#bdbcbb",
-        "number_gradient": "",
-        "number_size_mobile": 40,
-        "number_size_desktop": 48,
-        "stat_text_vertical_alignment": "flex-start",
-        "move_text_below_number": true,
-        "title_color": "#f5f4f3",
-        "title_size_mobile": 18,
-        "title_size_desktop": 16,
-        "description_color": "#a1a09f",
-        "description_size_mobile": 13,
-        "description_size_desktop": 16,
-        "enable_two_column_layout": false,
-        "center_text_vertically": false,
-        "enable_counter_animation": true,
-        "contain_section": true,
-        "section_max_width": 1200,
-        "container_padding_top": 40,
-        "container_padding_right": 40,
-        "container_padding_bottom": 40,
-        "container_padding_left": 40,
-        "container_padding_top_mobile": 20,
-        "container_padding_right_mobile": 10,
-        "container_padding_bottom_mobile": 20,
-        "container_padding_left_mobile": 10,
-        "container_border_radius": 12,
-        "container_background": "linear-gradient(180deg, rgba(32, 31, 30, 1), rgba(32, 31, 30, 1) 100%)",
-        "enable_border": false,
-        "border_width": 1,
-        "border_style": "solid",
-        "border_color": "#343332",
-        "enable_shadow": false,
-        "section_padding_top_desktop": 0,
-        "section_padding_bottom_desktop": 0,
-        "section_padding_left_desktop": 15,
-        "section_padding_right_desktop": 15,
-        "section_padding_top_mobile": 0,
-        "section_padding_bottom_mobile": 0,
-        "section_padding_left_mobile": 10,
-        "section_padding_right_mobile": 10,
-        "image_border_radius": 8,
-        "image_position_desktop": "above",
-        "image_position_mobile": "above",
-        "image_column_width": 50,
-        "show_disclaimer": true,
-        "disclaimer_text": "<em>Pack 60% more with the space-saving AirVacuum Kit. Save your money by packing more luggage in It doubles as a laundry bag, keeping your clothes hygienic and odor-free.</em>",
-        "disclaimer_color": "#747372",
-        "disclaimer_icon_color": "#ffffff",
-        "disclaimer_background_color": "#201f1e",
-        "disclaimer_size_mobile": 13,
-        "disclaimer_size_desktop": 14,
-        "disclaimer_line_height": 1.4,
-        "disclaimer_padding_top": 0,
-        "disclaimer_padding_bottom": 0,
-        "disclaimer_padding_left": 0,
-        "disclaimer_padding_right": 0,
-        "disclaimer_border_radius": 8,
-        "disclaimer_border_style": "none",
-        "disclaimer_border_width": 1,
-        "disclaimer_border_color": "#3b3a39",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "enable_top_border": false,
-        "top_border_width": 1,
-        "top_border_color": "#3b3a39",
-        "enable_bottom_border": false,
-        "bottom_border_width": 1,
-        "bottom_border_color": "#3b3a39",
-        "section_background": "linear-gradient(180deg, rgba(32, 31, 30, 1), rgba(32, 31, 30, 1) 100%)",
-        "divider_color": "#3b3a39"
-      }
-    },
-    "store_features_QmUYDi": {
-      "type": "store-features",
-      "blocks": {
-        "feature_CLAyzH": {
-          "type": "feature",
-          "settings": {
-            "title": "Expanded Capacity",
-            "description": ""
-          }
-        },
-        "feature_Cab9wT": {
-          "type": "feature",
-          "settings": {
-            "title": "Savings that add up every single flight",
-            "description": ""
-          }
-        },
-        "feature_NnKFn8": {
-          "type": "feature",
-          "settings": {
-            "title": "Save hours by avoiding bag drops and pick-ups",
-            "description": ""
-          }
-        }
-      },
-      "block_order": [
-        "feature_CLAyzH",
-        "feature_Cab9wT",
-        "feature_NnKFn8"
-      ],
-      "disabled": true,
-      "name": "Features",
-      "settings": {
-        "padding_top": 10,
-        "padding_bottom": 0,
-        "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
-        "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_section_padding_left": 0,
-        "mobile_section_padding_right": 0,
-        "max_width": 1200,
-        "section_background_color": "#201f1e",
-        "gap": 30,
-        "desktop_layout_gap": 40,
-        "mobile_layout_gap": 20,
-        "icon_size": 100,
-        "desktop_icon_margin_bottom": 0,
-        "mobile_icon_size": 90,
-        "mobile_icon_gap": 0,
-        "container_background_type": "color",
-        "container_background_color_desktop": "linear-gradient(135deg, rgba(32, 31, 30, 1) 100%, rgba(118, 75, 162, 1) 100%)",
-        "container_background_color_mobile": "linear-gradient(135deg, rgba(32, 31, 30, 1) 100%, rgba(32, 31, 30, 1) 100%)",
-        "border_radius": 2,
-        "enable_container_border": false,
-        "container_border_width": 1,
-        "container_border_style": "solid",
-        "container_border_color": "#3b3a39",
-        "container_padding_top": 35,
-        "container_padding_bottom": 35,
-        "container_padding_left": 20,
-        "container_padding_right": 20,
-        "heading": "Always Improved. Freshness Guaranteed.",
-        "heading_size_desktop": 44,
-        "heading_size_mobile": 28,
-        "feature_title_size_desktop": 16,
-        "feature_title_size_mobile": 14,
-        "feature_desc_size_desktop": 13,
-        "feature_desc_size_mobile": 12,
-        "heading_line_height": 1.2,
-        "sub_line_height": 1.2,
-        "body_line_height": 1.5,
-        "heading_alignment": "left",
-        "text_alignment": "left",
-        "icon_alignment": "left",
-        "heading_color": "#f5f4f3",
-        "title_color": "#f5f4f3",
-        "desc_color": "#444444",
-        "desktop_columns": 3,
-        "tablet_columns": 2,
-        "mobile_columns": "1",
-        "tablet_breakpoint": 1024,
-        "mobile_breakpoint": 768
-      }
-    },
-    "image_with_text_WPzJcE": {
-      "type": "image-with-text",
-      "blocks": {
-        "heading_LtRw9A": {
-          "type": "heading",
-          "settings": {
-            "heading_text": "Experience the Freedom of Carry-On Only",
-            "heading_accent": "",
-            "override_global_accent": false,
-            "font_size_mobile": 2.7,
-            "font_size_desktop": 3.8,
-            "line_height_mobile": 1.2,
-            "line_height_desktop": 1.1,
-            "override_global_letter_spacing": false,
-            "custom_letter_spacing": 0,
-            "margin_top": 0,
-            "margin_bottom": 20
-          }
-        },
-        "paragraph_J7Rzi7": {
-          "type": "paragraph",
-          "settings": {
-            "paragraph_text": "<p>With the <strong>AirVacuum Kit</strong>, you can condense 15+ garments into a single carry-on—eliminating the need for checked bags without leaving a single outfit behind. Keep your wardrobe fresh, dry, and scent-free while you bypass the airport crowds and skip those expensive baggage fees. Pack more, spend less, and travel with total confidence.</p>",
-            "font_size_mobile": 1.3,
-            "font_size_desktop": 1.4,
-            "margin_top": 0,
-            "margin_bottom": -20,
-            "paragraph_color": "#cbcac9"
-          }
-        }
-      },
-      "block_order": [
-        "heading_LtRw9A",
-        "paragraph_J7Rzi7"
-      ],
-      "name": "Image with Text",
-      "settings": {
-        "use_theme_colors": false,
-        "inverse_theme_colors": false,
-        "image_position": "left",
-        "image_position_mobile": "top",
-        "heading_above_image_mobile": false,
-        "text_align": "left",
-        "center_align_with_media": true,
-        "text_column_width": 50,
-        "margin_top_mobile": 0,
-        "margin_bottom_mobile": 0,
-        "margin_top_desktop": 0,
-        "margin_bottom_desktop": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0,
-        "container_padding_mobile": 20,
-        "padding_top_desktop": 50,
-        "padding_bottom_desktop": 50,
-        "container_padding_desktop": 30,
-        "content_spacing": 40,
-        "mobile_full_width_gap": 0,
-        "desktop_content_spacing": 0,
-        "section_border_radius": 0,
-        "section_max_width": 1200,
-        "contain_section": true,
-        "container_max_width": 1200,
-        "container_bg_color": "#2c2b2a",
-        "enable_container_gradient": false,
-        "container_gradient_background": "linear-gradient(135deg, rgba(32, 31, 30, 1), rgba(39, 38, 37, 1) 100%)",
-        "container_padding_vertical": 65,
-        "container_padding_horizontal": 40,
-        "container_padding_vertical_mobile": 30,
-        "container_padding_horizontal_mobile": 20,
-        "container_margin_top": 0,
-        "container_margin_bottom": 0,
-        "container_margin_left": 0,
-        "container_margin_right": 0,
-        "container_margin_top_mobile": 0,
-        "container_margin_bottom_mobile": 20,
-        "container_margin_left_mobile": 0,
-        "container_margin_right_mobile": 0,
-        "enable_border": false,
-        "border_width": 1,
-        "border_style": "solid",
-        "border_color": "#343332",
-        "border_radius": 8,
-        "enable_shadow": false,
-        "heading": "",
-        "heading_accent": "",
-        "enable_image_fade_mask": false,
-        "video_autoplay": true,
-        "video_loop": true,
-        "video_muted": true,
-        "video_controls": false,
-        "text_font_size_mobile": 1.1,
-        "text_font_size_desktop": 1.2,
-        "content_elements_spacing": 15,
-        "desktop_content_elements_spacing": 35,
-        "mobile_heading_bottom_margin": 20,
-        "desktop_heading_bottom_margin": 25,
-        "text_bottom_margin": 25,
-        "desktop_text_bottom_margin": 25,
-        "text_padding_vertical": 0,
-        "text_padding_left": 40,
-        "text_padding_right": 40,
-        "mobile_text_padding_vertical": 0,
-        "mobile_text_padding_horizontal": 0,
-        "button_padding_vertical": 12,
-        "button_padding_horizontal": 24,
-        "button_border_radius": 4,
-        "background_color": "#201f1e",
-        "background_gradient": "",
-        "heading_color": "#f5f4f3",
-        "accent_color": "#ef4a65",
-        "text_color": "#bdbcbb",
-        "button_bg_color": "#ef4a65",
-        "button_text_color": "#ffffff",
-        "image_max_width": 700,
-        "image_max_height": 0,
-        "image_border_radius": 8,
-        "image_padding": 0,
-        "mobile_image_full_width": true,
-        "desktop_image_full_height": false,
-        "full_height_section_height": 0,
-        "use_background_image": false,
-        "background_image_position": "center center",
-        "background_image_size": "cover",
-        "enable_top_border": false,
-        "top_border_width": 1,
-        "top_border_color": "#000000",
-        "enable_bottom_border": false,
-        "bottom_border_width": 1,
-        "bottom_border_color": "#000000",
-        "heading_size_desktop": 48,
-        "subtitle_size_mobile": 18,
-        "override_global_accent": false,
-        "accent_font_family": "inherit",
-        "accent_font_style": "inherit",
-        "accent_font_weight": "inherit",
-        "use_accent_gradient": false,
-        "accent_text_gradient": "linear-gradient(45deg, rgba(239, 74, 101, 1), rgba(255, 107, 157, 1) 100%)",
-        "accent_text_margin_left": 0
-      }
-    },
-    "rich_text_YkP6Md": {
-      "type": "rich-text",
-      "blocks": {
-        "subtitle_8qc4L4": {
-          "type": "subtitle",
-          "settings": {
-            "subtitle": "<p>Meet the AirVacuum Kit</p>"
-          }
-        },
-        "title_zzmwg9": {
-          "type": "title",
-          "settings": {
-            "title": "The End of Overpacking Stress",
-            "accent_text": ""
-          }
-        },
-        "subtitle_RfBfeD": {
-          "type": "subtitle",
-          "settings": {
-            "subtitle": "<p>Stop wrestling with your zippers. With the ability to triple your packing volume, you can carry everything you need in a single bag—keeping every garment clean, dry, and ready to wear.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "subtitle_8qc4L4",
-        "title_zzmwg9",
-        "subtitle_RfBfeD"
-      ],
-      "name": "Rich Text",
-      "settings": {
-        "use_theme_colors": false,
-        "text_alignment": "center",
-        "mobile_text_alignment": "center",
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "padding_horizontal": 20,
-        "title_font_size": 44,
-        "title_font_size_mobile": 28,
-        "title_line_height": 1.3,
-        "title_margin_bottom": 20,
-        "title_color": "#f5f4f3",
-        "use_accent_gradient": false,
-        "accent_color": "#ef4a65",
-        "accent_gradient_start": "#ef4a65",
-        "accent_gradient_end": "#ff6b35",
-        "accent_gradient_angle": 45,
-        "subtitle_font_size": 16,
-        "subtitle_font_size_mobile": 14,
-        "subtitle_line_height": 1.6,
-        "subtitle_margin_bottom": 32,
-        "subtitle_max_width": 750,
-        "subtitle_color": "#f5f4f3",
-        "bold_font_weight": "700",
-        "use_global_button_styling": true,
-        "button_font_size": 16,
-        "button_font_size_mobile": 14,
-        "button_padding_vertical": 14,
-        "button_padding_horizontal": 28,
-        "button_border_radius": 4,
-        "button_border_width": 0,
-        "button_margin_top": 24,
-        "button_bg_color": "#f6f5f4",
-        "button_text_color": "#201f1e",
-        "button_border_color": "#000000",
-        "button_hover_bg_color": "#cbcac9",
-        "button_hover_text_color": "#201f1e",
-        "section_bg_color": "#201f1e",
-        "section_border_radius": 0,
-        "enable_top_border": false,
-        "top_border_width": 1,
-        "top_border_style": "solid",
-        "top_border_color": "#3b3a39",
-        "enable_bottom_border": true,
-        "bottom_border_width": 10,
-        "bottom_border_style": "solid",
-        "bottom_border_color": "#201f1e"
-      }
-    },
-    "roadmap_MP3fN8": {
-      "type": "roadmap",
-      "blocks": {
-        "roadmap_step_i4zagW": {
-          "type": "roadmap_step",
-          "settings": {
-            "badge_text": "1",
-            "title": "Prep the Seal",
-            "description": "<p>Unzip the heavy-duty, anti-leak closure on your AirVacuum Kit.</p>",
-            "custom_icon": "",
-            "bullet_icon_size": 16
-          }
-        },
-        "roadmap_step_LXiLrH": {
-          "type": "roadmap_step",
-          "settings": {
-            "badge_text": "2",
-            "title": "Arrange Your Wardrobe",
-            "description": "<p>Neatly place your folded garments inside the compression chamber.</p>",
-            "custom_icon": "",
-            "bullet_icon_size": 16
-          }
-        },
-        "roadmap_step_yCYrkN": {
-          "type": "roadmap_step",
-          "settings": {
-            "badge_text": "3",
-            "title": "Secure & Shrink",
-            "description": "<p>Seal the zipper and lock the Kit onto the integrated nozzle to begin extraction.</p>",
-            "custom_icon": "",
-            "bullet_icon_size": 16
-          }
-        }
-      },
-      "block_order": [
-        "roadmap_step_i4zagW",
-        "roadmap_step_LXiLrH",
-        "roadmap_step_yCYrkN"
-      ],
-      "name": "Roadmap",
-      "settings": {
-        "use_theme_colors": false,
-        "contained_section": true,
-        "max_container_width": 800,
-        "max_section_width": 900,
-        "enable_background_image": false,
-        "background_size_desktop": "cover",
-        "background_position_desktop": "center center",
-        "background_size_mobile": "cover",
-        "background_position_mobile": "center center",
-        "enable_background_overlay": false,
-        "background_overlay_color": "#000000",
-        "background_overlay_opacity": 50,
-        "heading": "How to Travel Smarter",
-        "subheading": "",
-        "heading_size": 44,
-        "heading_line_height": 1.3,
-        "heading_size_mobile": 28,
-        "heading_line_height_mobile": 1.3,
-        "subheading_size": 16,
-        "subheading_size_mobile": 14,
-        "step_title_size": 16,
-        "step_title_size_mobile": 14,
-        "step_description_size": 12,
-        "step_description_size_mobile": 12,
-        "accent_text": "",
-        "override_global_accent": false,
-        "use_accent_gradient": false,
-        "accent_text_gradient": "linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(248, 248, 248, 1) 100%)",
-        "accent_color": "#007bff",
-        "accent_font_family": "inherit",
-        "accent_font_style": "normal",
-        "accent_font_weight": 700,
-        "image_position": "right",
-        "image_column_width": 50,
-        "image_column_full_height": false,
-        "full_height_min_height": 400,
-        "mobile_image_above_timeline": true,
-        "text_column_width": 50,
-        "image_border_radius": 8,
-        "timeline_width": 2,
-        "timeline_border_radius": 2,
-        "timeline_max_width": 85,
-        "show_badges": true,
-        "desktop_badge_font_size": 12,
-        "badge_font_size_mobile": 11,
-        "badge_font_weight": "600",
-        "badge_border_radius": 50,
-        "badge_border_width": 1,
-        "badge_border_style": "solid",
-        "badge_border_color": "#ff5801",
-        "desktop_content_alignment": "center",
-        "mobile_content_alignment": "center",
-        "roadmap_item_spacing_desktop": 40,
-        "roadmap_item_spacing_mobile": 30,
-        "enable_spacing": true,
-        "section_spacing_top_desktop": 72,
-        "section_spacing_bottom_desktop": 72,
-        "section_spacing_left_desktop": 80,
-        "section_spacing_right_desktop": 80,
-        "section_spacing_top_mobile": 36,
-        "section_spacing_bottom_mobile": 36,
-        "section_spacing_left_mobile": 24,
-        "section_spacing_right_mobile": 24,
-        "enable_placeholder_space_desktop": false,
-        "placeholder_min_height_desktop": 600,
-        "enable_placeholder_space_mobile": false,
-        "placeholder_height_mobile": 300,
-        "section_background": "linear-gradient(180deg, rgba(32, 31, 30, 1), rgba(32, 31, 30, 1) 100%)",
-        "heading_color": "#f5f4f3",
-        "subheading_color": "#f5f4f3",
-        "step_title_color": "#f5f4f3",
-        "step_description_color": "#a1a09f",
-        "timeline_color": "#3b3a39",
-        "active_timeline_color": "#ff5801",
-        "circle_color": "#ffdac7",
-        "circle_icon_color": "#ff5801",
-        "badge_background": "#ff5801",
-        "badge_text_color": "#ffffff",
-        "show_button": false,
-        "button_text": "GET STARTED",
-        "button_action_type": "scroll_top",
-        "redirect_product": "",
-        "custom_url": "",
-        "use_global_button_style": false,
-        "button_border_radius": 8,
-        "button_background_color": "#ff5801",
-        "button_text_color": "#ffffff",
-        "button_hover_background_color": "#201f1e",
-        "button_hover_text_color": "#f6f5f4"
-      }
-    },
-    "product_benefits_trbtD8": {
-      "type": "product-benefits",
-      "blocks": {
-        "benefit_jWYT7F": {
-          "type": "benefit",
-          "settings": {
-            "title": "Prep the Seal",
-            "description": "Unzip the heavy-duty, anti-leak closure on your AirVacuum Kit.",
-            "benefit_color": "",
-            "benefit_description_color": "",
-            "icon_size": 60,
-            "use_image": true,
-            "preset_icon": "check",
-            "use_custom_icon": false,
-            "custom_icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z\"></path></svg>"
-          }
-        },
-        "benefit_6Eyx9d": {
-          "type": "benefit",
-          "settings": {
-            "title": "Arrange Your Wardrobe",
-            "description": "Neatly place your folded garments inside the compression chamber.",
-            "benefit_color": "",
-            "benefit_description_color": "",
-            "icon_size": 60,
-            "use_image": true,
-            "preset_icon": "clock",
-            "use_custom_icon": false,
-            "custom_icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z\"></path></svg>"
-          }
-        },
-        "benefit_PC6YKt": {
-          "type": "benefit",
-          "settings": {
-            "title": "Secure & Shrink",
-            "description": "Seal the zipper and lock the Kit onto the integrated nozzle to begin extraction.",
-            "benefit_color": "",
-            "benefit_description_color": "",
-            "icon_size": 60,
-            "use_image": true,
-            "preset_icon": "sparkle",
-            "use_custom_icon": false,
-            "custom_icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z\"></path></svg>"
-          }
-        }
-      },
-      "block_order": [
-        "benefit_jWYT7F",
-        "benefit_6Eyx9d",
-        "benefit_PC6YKt"
-      ],
-      "disabled": true,
-      "name": "Product Benefits",
-      "settings": {
-        "padding_top": 35,
-        "padding_bottom": 0,
-        "padding_left": 25,
-        "padding_right": 25,
-        "image_position_desktop": "right",
-        "heading_size_mobile": 28,
-        "heading_size_desktop": 44,
-        "subtitle_size_mobile": 13,
-        "subtitle_size_desktop": 13,
-        "benefit_title_size_mobile": 14,
-        "benefit_title_size_desktop": 16,
-        "benefit_description_size_mobile": 14,
-        "benefit_description_size_desktop": 16,
-        "accent_color": "#444444",
-        "use_theme_colors": false,
-        "title_below_icon": false,
-        "override_global_accent": false,
-        "accent_font_family": "inherit",
-        "accent_font_style": "normal",
-        "accent_font_weight": "inherit",
-        "use_accent_gradient": false,
-        "accent_text_gradient": "linear-gradient(45deg, rgba(239, 74, 101, 1), rgba(255, 107, 157, 1) 100%)",
-        "accent_text_margin_left": 0,
-        "list_background": "linear-gradient(57deg, rgba(41, 40, 39, 1) 100%, rgba(43, 252, 135, 1) 100%, rgba(36, 35, 34, 1) 100%)",
-        "list_border_radius": 20,
-        "benefits_list_max_width": 450,
-        "border_color": "rgba(0,0,0,0)",
-        "heading_accent": "",
-        "heading_regular": "How To Travel Smarter",
-        "subtitle": "",
-        "show_image": true,
-        "media_type": "image",
-        "image_alt": "",
-        "video_autoplay": true,
-        "video_muted": true,
-        "video_loop": true,
-        "video_controls": false,
-        "mobile_image_full_width": false,
-        "hide_media_on_desktop": false,
-        "image_column_full_height": false,
-        "image_margin_top": 0,
-        "image_margin_bottom": 0,
-        "heading_color": "#f5f4f3",
-        "subtitle_color": "#f6f5f4",
-        "description_color": "#f6f5f4",
-        "section_background": "linear-gradient(180deg, rgba(32, 31, 30, 1), rgba(32, 31, 30, 1) 100%)",
-        "use_background_image": false,
-        "background_image_size": "cover",
-        "background_image_position_mode": "preset",
-        "background_image_position": "center center",
-        "background_focal_point_x": 50,
-        "background_focal_point_y": 50,
-        "background_image_attachment": "scroll",
-        "background_overlay_enable": false,
-        "background_overlay_color": "#0000004d",
-        "background_overlay_opacity": 30,
-        "enable_top_border": true,
-        "top_border_width": 10,
-        "top_border_style": "solid",
-        "top_border_color": "#201f1e",
-        "enable_bottom_border": false,
-        "bottom_border_width": 1,
-        "bottom_border_style": "solid",
-        "bottom_border_color": "#373635"
-      }
-    },
-    "image_with_text_yU6dxk": {
-      "type": "image-with-text",
-      "blocks": {
-        "heading_dkXYwA": {
-          "type": "heading",
-          "settings": {
-            "heading_text": "More than a bag,",
-            "heading_accent": "it’s peace of mind when you travel.",
-            "override_global_accent": false,
-            "font_size_mobile": 2.7,
-            "font_size_desktop": 3.8,
-            "line_height_mobile": 1.1,
-            "line_height_desktop": 1.1,
-            "override_global_letter_spacing": false,
-            "custom_letter_spacing": 0,
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "paragraph_EdK7mL": {
-          "type": "paragraph",
-          "settings": {
-            "paragraph_text": "<p>Use our vacuum kit with any bag you already have to enjoy more space, better organization, and less travel stress.</p>",
-            "font_size_mobile": 1.3,
-            "font_size_desktop": 1.4,
-            "margin_top": -20,
-            "margin_bottom": -20,
-            "paragraph_color": "#cbcac9"
-          }
-        },
-        "bullet_list_UUcUa9": {
-          "type": "bullet_list",
-          "settings": {
-            "two_columns": true,
-            "list_title": "",
-            "list_item_1": "Up to 60% More Packing Space",
-            "list_item_1_svg": "<svg viewbox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" fill=\"currentColor\" opacity=\"0.1\"></circle><path d=\"M9 12l2 2 4-4\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"></path></svg>",
-            "list_item_2": "Durable, Premium Protection",
-            "list_item_2_svg": "<svg viewbox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" fill=\"currentColor\" opacity=\"0.1\"></circle><path d=\"M9 12l2 2 4-4\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"></path></svg>",
-            "list_item_3": "USB-C Rechargeable Power",
-            "list_item_3_svg": "<svg viewbox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" fill=\"currentColor\" opacity=\"0.1\"></circle><path d=\"M9 12l2 2 4-4\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"></path></svg>",
-            "list_item_4": "Save Up to $200 Per Trip",
-            "list_item_4_svg": "<svg viewbox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" fill=\"currentColor\" opacity=\"0.1\"></circle><path d=\"M9 12l2 2 4-4\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"></path></svg>",
-            "list_item_5": "",
-            "list_item_5_svg": "<svg viewbox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" fill=\"currentColor\" opacity=\"0.1\"></circle><path d=\"M9 12l2 2 4-4\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"></path></svg>",
-            "list_item_6": "",
-            "list_item_6_svg": "<svg viewbox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" fill=\"currentColor\" opacity=\"0.1\"></circle><path d=\"M9 12l2 2 4-4\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"></path></svg>",
-            "list_color": "#cbcac9",
-            "list_title_color": "#f5f4f3",
-            "pill_style": true,
-            "pill_bg_color": "",
-            "pill_text_color": "#bdbcbb",
-            "pill_border_color": "rgba(0,0,0,0)",
-            "pill_border_width": 1,
-            "pill_border_radius": 20,
-            "pill_padding_vertical": 8,
-            "pill_padding_horizontal": 9,
-            "pill_spacing": 8,
-            "margin_top": 20,
-            "margin_bottom": 0,
-            "font_size_mobile": 1.3,
-            "font_size_desktop": 1.4
-          }
-        },
-        "button_4t7bRj": {
-          "type": "button",
-          "settings": {
-            "button_label": "Discover now",
-            "button_redirect_type": "scroll_to_top",
-            "button_link": "",
-            "redirect_product": "",
-            "redirect_collection": "",
-            "redirect_page": "",
-            "custom_url": "",
-            "scroll_to_products": false,
-            "button_bg_color": "#ff5801",
-            "button_text_color": "#ffffff",
-            "margin_top": 0,
-            "margin_bottom": 0,
-            "button_text_size": 14,
-            "button_border_radius": 50,
-            "full_width_mobile": true,
-            "disable_global_button_styling": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_dkXYwA",
-        "paragraph_EdK7mL",
-        "bullet_list_UUcUa9",
-        "button_4t7bRj"
-      ],
-      "name": "Image with Text",
-      "settings": {
-        "use_theme_colors": false,
-        "inverse_theme_colors": false,
-        "image_position": "left",
-        "image_position_mobile": "bottom",
-        "heading_above_image_mobile": false,
-        "text_align": "left",
-        "center_align_with_media": true,
-        "text_column_width": 50,
-        "margin_top_mobile": 20,
-        "margin_bottom_mobile": 0,
-        "margin_top_desktop": 0,
-        "margin_bottom_desktop": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0,
-        "container_padding_mobile": 15,
-        "padding_top_desktop": 50,
-        "padding_bottom_desktop": 50,
-        "container_padding_desktop": 30,
-        "content_spacing": 40,
-        "mobile_full_width_gap": 0,
-        "desktop_content_spacing": 0,
-        "section_border_radius": 0,
-        "section_max_width": 1200,
-        "contain_section": true,
-        "container_max_width": 1200,
-        "container_bg_color": "#2c2b2a",
-        "enable_container_gradient": false,
-        "container_gradient_background": "linear-gradient(135deg, rgba(32, 31, 30, 1), rgba(39, 38, 37, 1) 100%)",
-        "container_padding_vertical": 65,
-        "container_padding_horizontal": 40,
-        "container_padding_vertical_mobile": 30,
-        "container_padding_horizontal_mobile": 20,
-        "container_margin_top": 0,
-        "container_margin_bottom": 0,
-        "container_margin_left": 0,
-        "container_margin_right": 0,
-        "container_margin_top_mobile": 0,
-        "container_margin_bottom_mobile": 0,
-        "container_margin_left_mobile": 0,
-        "container_margin_right_mobile": 0,
-        "enable_border": false,
-        "border_width": 1,
-        "border_style": "solid",
-        "border_color": "#343332",
-        "border_radius": 8,
-        "enable_shadow": false,
-        "heading": "",
-        "heading_accent": "",
-        "enable_image_fade_mask": false,
-        "video_autoplay": true,
-        "video_loop": true,
-        "video_muted": true,
-        "video_controls": false,
-        "text_font_size_mobile": 1.1,
-        "text_font_size_desktop": 1.2,
-        "content_elements_spacing": 15,
-        "desktop_content_elements_spacing": 35,
-        "mobile_heading_bottom_margin": 20,
-        "desktop_heading_bottom_margin": 25,
-        "text_bottom_margin": 25,
-        "desktop_text_bottom_margin": 25,
-        "text_padding_vertical": 0,
-        "text_padding_left": 40,
-        "text_padding_right": 40,
-        "mobile_text_padding_vertical": 0,
-        "mobile_text_padding_horizontal": 0,
-        "button_padding_vertical": 5,
-        "button_padding_horizontal": 10,
-        "button_border_radius": 0,
-        "background_color": "#201f1e",
-        "background_gradient": "",
-        "heading_color": "#f5f4f3",
-        "accent_color": "#ff5801",
-        "text_color": "#bdbcbb",
-        "button_bg_color": "#ff5801",
-        "button_text_color": "#ff5801",
-        "image_max_width": 700,
-        "image_max_height": 0,
-        "image_border_radius": 8,
-        "image_padding": 0,
-        "mobile_image_full_width": true,
-        "desktop_image_full_height": false,
-        "full_height_section_height": 0,
-        "use_background_image": false,
-        "background_image_position": "center center",
-        "background_image_size": "cover",
-        "enable_top_border": false,
-        "top_border_width": 1,
-        "top_border_color": "#000000",
-        "enable_bottom_border": false,
-        "bottom_border_width": 1,
-        "bottom_border_color": "#000000",
-        "heading_size_desktop": 48,
-        "subtitle_size_mobile": 18,
-        "override_global_accent": true,
-        "accent_font_family": "inherit",
-        "accent_font_style": "inherit",
-        "accent_font_weight": "600",
-        "use_accent_gradient": false,
-        "accent_text_gradient": "linear-gradient(45deg, rgba(239, 74, 101, 1), rgba(255, 107, 157, 1) 100%)",
-        "accent_text_margin_left": 0
-      }
-    },
-    "store_faq_pV3P8w": {
-      "type": "store-faq",
-      "blocks": {
-        "faq_item_Hk8qQm": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Do you ship internationally?",
-            "answer": "<p>Yes! We ship worldwide. Orders over $100 qualify for free shipping, while smaller orders will have a shipping fee calculated at checkout.</p><p>We also offer hassle-free returns from anywhere in the world within 100 days—no questions asked. Our goal is to make sure you’re completely happy with your purchase and confident shopping with us again.</p>"
-          }
-        },
-        "faq_item_dK7ng8": {
-          "type": "faq_item",
-          "settings": {
-            "question": "How long will it take to receive my order?",
-            "answer": "<p>Delivery times depend on your location:</p><ul><li><strong>Domestic orders:</strong> typically arrive within 3–10 business days<br/></li><li><strong>International orders:</strong> usually arrive within 7–13 business days<br/></li></ul><p>Once your order ships, you’ll receive a tracking link via email so you can follow its progress every step of the way.</p>"
-          }
-        },
-        "faq_item_mcXW6A": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Where is my order?",
-            "answer": "<p>You can easily track your order by visiting our <strong>“Track Your Order”</strong> page using the tracking link provided in your confirmation email.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "faq_item_Hk8qQm",
-        "faq_item_dK7ng8",
-        "faq_item_mcXW6A"
-      ],
-      "name": "Store FAQ",
-      "settings": {
-        "use_theme_colors": false,
-        "heading": "Frequently Asked Questions",
-        "subtitle": "",
-        "heading_color": "#f5f4f3",
-        "subtitle_color": "#f5f4f3",
-        "section_padding": 30,
-        "container_padding_mobile": 15,
-        "container_padding_desktop": 15,
-        "section_bg_color": "#201f1e",
-        "border_radius": 8,
-        "border_color": "#201f1e",
-        "divider_color": "#373635",
-        "border_style": "bottom_only",
-        "question_color": "#f5f4f3",
-        "question_bg_color": "#292827",
-        "answer_color": "#bdbcbb",
-        "answer_bg_color": "#201f1e",
-        "accordion_mode": true,
-        "image_border_radius": 8,
-        "image_full_height": false,
-        "full_height_min_height": 600,
-        "use_background_image": false,
-        "background_image_size": "cover",
-        "background_image_position": "center center",
-        "background_image_attachment": "scroll",
-        "background_overlay_enable": false,
-        "background_overlay_color": "#0000004d",
-        "background_overlay_opacity": 30,
-        "center_when_no_image": true,
-        "center_max_width": 600,
-        "two_column_desktop": false,
-        "column_gap": 30,
-        "faq_item_spacing": 0,
-        "individual_item_borders": true,
-        "question_padding_top": 20,
-        "question_padding_bottom": 20,
-        "question_padding_left": 20,
-        "question_padding_right": 20,
-        "answer_padding_top": 15,
-        "answer_padding_bottom": 15,
-        "answer_padding_left": 20,
-        "answer_padding_right": 20,
-        "heading_font_size": 44,
-        "heading_font_size_mobile": 28,
-        "heading_line_height": 1.2,
-        "subtitle_font_size": 16,
-        "subtitle_font_size_mobile": 14,
-        "subtitle_line_height": 1.5,
-        "question_font_size": 16,
-        "question_font_size_mobile": 14,
-        "answer_font_size": 14,
-        "answer_font_size_mobile": 13,
-        "enable_section_top_border": false,
-        "section_top_border_width": 1,
-        "section_top_border_style": "solid",
-        "section_top_border_color": "#373635",
-        "enable_section_bottom_border": false,
-        "section_bottom_border_width": 1,
-        "section_bottom_border_style": "solid",
-        "section_bottom_border_color": "#373635"
-      }
-    },
-    "store_faq_9hjxMb": {
-      "type": "store-faq",
-      "blocks": {
-        "faq_item_WdmGLK": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Initial Unzipping Instructions",
-            "answer": "<p>If the zipper feels resistant during your first use, don't be alarmed—this is expected! Because our bags feature specialized airtight, leak-proof seals, they are tightly locked upon arrival.</p><p><strong>Pro-tips for opening:</strong></p><ul><li>Use steady, firm pressure to break the initial seal.</li><li>Lift the zipper pull vertically (rather than pulling it flat) to maximize your grip.</li><li>After this first opening, the mechanism will glide much more smoothly.</li></ul>"
-          }
-        },
-        "faq_item_Grx8Be": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Travel Safety & The Orange Label",
-            "answer": "<p>Absolutely! Your pump is completely flight-safe.</p><p>We engineered the Aerless™ Vacuum Kit to meet all TSA standards for a hassle-free travel experience. While you may see an \"Orange Cargo Aircraft\" sticker on the box, this is purely a logistical labeling requirement for shipping. It does not affect your ability to carry the pump on a commercial flight.</p>"
-          }
-        },
-        "faq_item_EH7W3X": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Packing Capacity",
-            "answer": "<p>Typically, a single bag can shrink down roughly 15 pieces of apparel. While the specific number varies based on the thickness of your fabrics, the vacuum technology ensures you maximize every inch of your luggage by removing excess air.</p>"
-          }
-        },
-        "faq_item_7pFqHL": {
-          "type": "faq_item",
-          "settings": {
-            "question": "How to Seal Your Bag Correctly",
-            "answer": "<p>To ensure a permanent airtight hold, follow these steps:</p><ol><li>Arrange your garments flat and centered within the bag.</li><li>Ensure the zipper grooves are perfectly aligned.</li><li>Slide the sealing clip firmly from end to end. Listen for a \"click\" or feel for a smooth transition to confirm a total seal.</li><li>Press down on the bag briefly to verify that no air is escaping.</li></ol>"
-          }
-        },
-        "faq_item_NMREDE": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Bag Measurements",
-            "answer": "<p>All bags in the kit are uniform in size, measuring 12 x 19 x 4 inches (equivalent to 30cm x 48cm x 10cm).</p>"
-          }
-        }
-      },
-      "block_order": [
-        "faq_item_WdmGLK",
-        "faq_item_Grx8Be",
-        "faq_item_EH7W3X",
-        "faq_item_7pFqHL",
-        "faq_item_NMREDE"
-      ],
-      "name": "Store FAQ",
-      "settings": {
-        "use_theme_colors": false,
-        "heading": "Aero Vacuum Questions",
-        "subtitle": "",
-        "heading_color": "#f5f4f3",
-        "subtitle_color": "#f5f4f3",
-        "section_padding": 20,
-        "container_padding_mobile": 15,
-        "container_padding_desktop": 15,
-        "section_bg_color": "#201f1e",
-        "border_radius": 8,
-        "border_color": "#201f1e",
-        "divider_color": "#373635",
-        "border_style": "bottom_only",
-        "question_color": "#f5f4f3",
-        "question_bg_color": "#292827",
-        "answer_color": "#bdbcbb",
-        "answer_bg_color": "#201f1e",
-        "accordion_mode": true,
-        "image_border_radius": 8,
-        "image_full_height": false,
-        "full_height_min_height": 600,
-        "use_background_image": false,
-        "background_image_size": "cover",
-        "background_image_position": "center center",
-        "background_image_attachment": "scroll",
-        "background_overlay_enable": false,
-        "background_overlay_color": "#0000004d",
-        "background_overlay_opacity": 30,
-        "center_when_no_image": true,
-        "center_max_width": 600,
-        "two_column_desktop": false,
-        "column_gap": 20,
-        "faq_item_spacing": 8,
-        "individual_item_borders": true,
-        "question_padding_top": 25,
-        "question_padding_bottom": 20,
-        "question_padding_left": 20,
-        "question_padding_right": 20,
-        "answer_padding_top": 15,
-        "answer_padding_bottom": 15,
-        "answer_padding_left": 20,
-        "answer_padding_right": 20,
-        "heading_font_size": 44,
-        "heading_font_size_mobile": 28,
-        "heading_line_height": 1.2,
-        "subtitle_font_size": 16,
-        "subtitle_font_size_mobile": 14,
-        "subtitle_line_height": 1.5,
-        "question_font_size": 16,
-        "question_font_size_mobile": 14,
-        "answer_font_size": 14,
-        "answer_font_size_mobile": 13,
-        "enable_section_top_border": false,
-        "section_top_border_width": 1,
-        "section_top_border_style": "solid",
-        "section_top_border_color": "#373635",
-        "enable_section_bottom_border": false,
-        "section_bottom_border_width": 1,
-        "section_bottom_border_style": "solid",
-        "section_bottom_border_color": "#373635"
-      }
-    },
     "ct_video_reviews_main": {
       "type": "ct-video-reviews",
       "settings": {
-        "eyebrow": "Real cooks, real results",
+        "eyebrow": "From our customers' kitchens",
         "heading_align": "left",
         "background_color": "#201f1e",
         "padding_top": 40,
@@ -3571,19 +2155,29 @@
         "video_3": {
           "type": "video",
           "settings": {}
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {}
+        },
+        "video_5": {
+          "type": "video",
+          "settings": {}
         }
       },
       "block_order": [
         "video_1",
         "video_2",
-        "video_3"
+        "video_3",
+        "video_4",
+        "video_5"
       ]
     },
     "ct_materials_main": {
       "type": "ct-materials",
       "settings": {
-        "heading": "Not all pans are <em>equal</em>",
-        "subheading": "Pick the pan you use today and see how it compares.",
+        "heading": "Your pan matters more than you <em>think</em>",
+        "subheading": "Choose the pan you cook with today and see how it holds up.",
         "heading_align": "left",
         "background_color": "#1c1b1a",
         "padding_top": 56,
@@ -3594,68 +2188,131 @@
           "type": "material",
           "settings": {
             "name": "Non-stick",
-            "badge": "Coating wears",
-            "title": "Classic non-stick pan",
-            "text": "<p>Describe how this material behaves over time.</p>",
+            "badge": "Coated",
+            "title": "Standard non-stick pan",
+            "text": "<p>A synthetic coating does all the non-stick work. Overheating and metal utensils wear it down, and once it's scratched it keeps breaking down over time.</p>",
             "stat_1_label": "Releases",
-            "stat_1_value": "Coating flakes",
+            "stat_1_value": "Coating",
             "stat_2_label": "When",
-            "stat_2_value": "When scratched",
+            "stat_2_value": "High heat or scratches",
             "stat_3_label": "Risk",
             "stat_3_value": "High",
             "positive": false,
-            "point_1": "Coated surface",
-            "point_2": "Wears with use"
+            "point_1": "Synthetic coating",
+            "point_2": "Sensitive to high heat",
+            "point_3": "Replaced every few years"
           }
         },
         "material_2": {
           "type": "material",
           "settings": {
             "name": "Stainless steel",
-            "badge": "Sticks easily",
+            "badge": "Sticky",
             "title": "Stainless steel pan",
-            "text": "<p>Describe how this material behaves over time.</p>",
+            "text": "<p>Tough and coating-free, but food grips the surface unless you master heat and oil. Long simmers of acidic sauces can also react with the metal.</p>",
             "stat_1_label": "Releases",
-            "stat_1_value": "Coating flakes",
+            "stat_1_value": "Metal traces",
             "stat_2_label": "When",
-            "stat_2_value": "When scratched",
+            "stat_2_value": "Acidic, long cooks",
             "stat_3_label": "Risk",
-            "stat_3_value": "High",
+            "stat_3_value": "Medium",
             "positive": false,
-            "point_1": "Coated surface",
-            "point_2": "Wears with use"
+            "point_1": "Food sticks easily",
+            "point_2": "Takes practice",
+            "point_3": "Reacts with acidic food"
           }
         },
         "material_3": {
           "type": "material",
           "settings": {
             "name": "Cast iron",
-            "badge": "Heavy upkeep",
+            "badge": "High upkeep",
             "title": "Cast iron pan",
-            "text": "<p>Describe how this material behaves over time.</p>",
+            "text": "<p>Great for searing, but heavy and dependent on seasoning. Skip a step and it rusts or reacts with acidic dishes.</p>",
             "stat_1_label": "Releases",
-            "stat_1_value": "Coating flakes",
+            "stat_1_value": "Iron & rust",
             "stat_2_label": "When",
-            "stat_2_value": "When scratched",
+            "stat_2_value": "Worn seasoning",
+            "stat_3_label": "Risk",
+            "stat_3_value": "Medium",
+            "positive": false,
+            "point_1": "Heavy to handle",
+            "point_2": "Needs regular seasoning",
+            "point_3": "Rusts if left wet"
+          }
+        },
+        "material_4": {
+          "type": "material",
+          "settings": {
+            "name": "Ceramic",
+            "badge": "Short-lived",
+            "title": "Ceramic-coated pan",
+            "text": "<p>A thin ceramic-style layer sits on an aluminium base. It feels slick at first, then gradually loses its release with heat and wear.</p>",
+            "stat_1_label": "Releases",
+            "stat_1_value": "Coating chips",
+            "stat_2_label": "When",
+            "stat_2_value": "After months of use",
+            "stat_3_label": "Risk",
+            "stat_3_value": "Medium",
+            "positive": false,
+            "point_1": "Non-stick fades quickly",
+            "point_2": "Coating can chip",
+            "point_3": "Short lifespan"
+          }
+        },
+        "material_5": {
+          "type": "material",
+          "settings": {
+            "name": "Hybrid",
+            "badge": "Still coated",
+            "title": "Hybrid pan",
+            "text": "<p>A steel pattern laid over a non-stick coating. It looks like bare metal, but you're still cooking on a coating that wears like any other.</p>",
+            "stat_1_label": "Releases",
+            "stat_1_value": "Coating",
+            "stat_2_label": "When",
+            "stat_2_value": "As it wears",
             "stat_3_label": "Risk",
             "stat_3_value": "High",
             "positive": false,
-            "point_1": "Coated surface",
-            "point_2": "Wears with use"
+            "point_1": "Still relies on a coating",
+            "point_2": "Coating wears off",
+            "point_3": "Premium price"
+          }
+        },
+        "material_6": {
+          "type": "material",
+          "settings": {
+            "name": "CookingTitan",
+            "badge": "Coating-free",
+            "title": "CookingTitan titanium pan",
+            "text": "<p>A hand-hammered titanium cooking surface with no coating at all. Nothing to peel, chip or wear away, whatever the heat or the utensil.</p>",
+            "stat_1_label": "Releases",
+            "stat_1_value": "Nothing",
+            "stat_2_label": "When",
+            "stat_2_value": "Any heat",
+            "stat_3_label": "Risk",
+            "stat_3_value": "None",
+            "positive": true,
+            "point_1": "Titanium cooking surface",
+            "point_2": "No coating to wear off",
+            "point_3": "Metal-utensil friendly"
           }
         }
       },
       "block_order": [
         "material_1",
         "material_2",
-        "material_3"
+        "material_3",
+        "material_4",
+        "material_5",
+        "material_6"
       ]
     },
     "ct_steps_main": {
       "type": "ct-steps",
       "settings": {
-        "pill_text": "Cooking tip from <strong>our chef</strong>",
-        "heading": "How to get the <em>perfect</em> sear",
+        "pill_text": "Cooking tip from <strong>our kitchen</strong>",
+        "heading": "How to get the perfect <em>sear</em>",
         "heading_align": "center",
         "background_color": "#201f1e",
         "padding_top": 56,
@@ -3665,22 +2322,22 @@
         "step_1": {
           "type": "step",
           "settings": {
-            "title": "Preheat on medium heat",
-            "text": "Give the pan 1–2 minutes to heat evenly."
+            "title": "Preheat on medium for 1–2 minutes",
+            "text": "Flick in a drop of water. When it beads and dances, the pan is ready."
           }
         },
         "step_2": {
           "type": "step",
           "settings": {
-            "title": "Add a thin layer of oil",
-            "text": "It should shimmer when the pan is ready."
+            "title": "Add a thin film of oil",
+            "text": "Wait until it ripples before the food goes in."
           }
         },
         "step_3": {
           "type": "step",
           "settings": {
-            "title": "Let it release",
-            "text": "Wait until the food lifts on its own before flipping."
+            "title": "Let the crust form",
+            "text": "Leave it alone. Once it's seared, it lifts off by itself."
           }
         }
       },
@@ -3693,28 +2350,29 @@
     "ct_showcase_main": {
       "type": "ct-showcase",
       "settings": {
-        "heading": "Built to be the last pan you <em>buy</em>",
-        "subheading": "Hand-hammered titanium. No coating to wear off.",
+        "heading": "The last pan you'll ever <em>need</em>",
+        "subheading": "Hand-hammered titanium. Nothing to wear off, nothing to replace.",
         "heading_align": "center",
         "background_color": "#141312",
         "padding_top": 56,
-        "padding_bottom": 56
+        "padding_bottom": 56,
+        "link_label": ""
       },
       "blocks": {
         "card_1": {
           "type": "card",
           "settings": {
             "icon": "shield",
-            "title": "Long-lasting build",
-            "text": "Describe what makes it last."
+            "title": "Built for decades",
+            "text": "Made to outlast every other pan in your cupboard."
           }
         },
         "card_2": {
           "type": "card",
           "settings": {
             "icon": "shield",
-            "title": "Real titanium",
-            "text": "Describe your material here.",
+            "title": "Real titanium surface",
+            "text": "A pure titanium cooking surface, with nothing added.",
             "icon_text": "Ti"
           }
         }
@@ -3728,8 +2386,10 @@
       "type": "ct-reviews",
       "settings": {
         "eyebrow": "Loved by home cooks",
-        "heading": "The faces behind the <em>five stars</em>",
+        "heading": "Real kitchens, real <em>reviews</em>",
         "heading_align": "left",
+        "show_stats": true,
+        "stat_1_star": true,
         "stat_1_label": "Average rating",
         "stat_2_label": "Verified reviews",
         "stat_3_label": "4–5 star ratings",
@@ -3764,19 +2424,69 @@
             "quote": "Paste a real customer review here.",
             "name": "Customer name"
           }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "verified_label": "Verified",
+            "stars": 5,
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name"
+          }
+        },
+        "review_5": {
+          "type": "review",
+          "settings": {
+            "verified_label": "Verified",
+            "stars": 5,
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name"
+          }
+        },
+        "review_6": {
+          "type": "review",
+          "settings": {
+            "verified_label": "Verified",
+            "stars": 5,
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name"
+          }
+        },
+        "review_7": {
+          "type": "review",
+          "settings": {
+            "verified_label": "Verified",
+            "stars": 5,
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name"
+          }
+        },
+        "review_8": {
+          "type": "review",
+          "settings": {
+            "verified_label": "Verified",
+            "stars": 5,
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name"
+          }
         }
       },
       "block_order": [
         "review_1",
         "review_2",
-        "review_3"
+        "review_3",
+        "review_4",
+        "review_5",
+        "review_6",
+        "review_7",
+        "review_8"
       ]
     },
     "ct_image_cards_main": {
       "type": "ct-image-cards",
       "settings": {
-        "heading": "Cook freely. Without <em>compromise.</em>",
-        "subheading": "The performance of titanium, made for the way you cook.",
+        "heading": "Cook your way, <em>every</em> day",
+        "subheading": "Titanium that keeps up with how you really cook.",
         "heading_align": "left",
         "background_color": "#201f1e",
         "padding_top": 56,
@@ -3786,48 +2496,72 @@
         "card_1": {
           "type": "card",
           "settings": {
-            "icon": "flame",
-            "title": "Use metal utensils",
-            "text": "Describe the benefit here."
+            "icon": "check_circle",
+            "title": "Metal utensils welcome",
+            "text": "Spatulas, tongs and whisks. There's no coating to scratch."
           }
         },
         "card_2": {
           "type": "card",
           "settings": {
             "icon": "flame",
-            "title": "High heat, no worries",
-            "text": "Describe the benefit here."
+            "title": "Sear on high heat",
+            "text": "Turn it up for a proper crust, with no coating to worry about."
           }
         },
-        "heat_icon_3": {
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "icon": "drop",
+            "title": "Dishwasher friendly",
+            "text": "Done cooking? It can go straight in the dishwasher."
+          }
+        },
+        "card_4": {
+          "type": "card",
+          "settings": {
+            "icon": "heart",
+            "title": "One pan, every meal",
+            "text": "Eggs, vegetables, fish, steak and full one-pan dinners."
+          }
+        },
+        "card_5": {
+          "type": "card",
+          "settings": {
+            "icon": "oven",
+            "title": "Cooktop to oven",
+            "text": "Start on the cooktop, finish in the oven, serve at the table."
+          }
+        },
+        "heat_icon_6": {
           "type": "heat_icon",
           "settings": {
             "icon": "gas_stove",
             "label": "Gas"
           }
         },
-        "heat_icon_4": {
+        "heat_icon_7": {
           "type": "heat_icon",
           "settings": {
             "icon": "induction",
             "label": "Induction"
           }
         },
-        "heat_icon_5": {
+        "heat_icon_8": {
           "type": "heat_icon",
           "settings": {
             "icon": "electric",
             "label": "Electric"
           }
         },
-        "heat_icon_6": {
+        "heat_icon_9": {
           "type": "heat_icon",
           "settings": {
             "icon": "ceramic",
             "label": "Ceramic"
           }
         },
-        "heat_icon_7": {
+        "heat_icon_10": {
           "type": "heat_icon",
           "settings": {
             "icon": "oven",
@@ -3838,54 +2572,84 @@
       "block_order": [
         "card_1",
         "card_2",
-        "heat_icon_3",
-        "heat_icon_4",
-        "heat_icon_5",
+        "card_3",
+        "card_4",
+        "card_5",
         "heat_icon_6",
-        "heat_icon_7"
+        "heat_icon_7",
+        "heat_icon_8",
+        "heat_icon_9",
+        "heat_icon_10"
       ]
     },
     "ct_compare_main": {
       "type": "ct-compare",
       "settings": {
         "eyebrow": "Why titanium?",
-        "heading": "Titanium vs the <em>rest</em>",
-        "subheading": "A cleaner, longer-lasting way to cook.",
+        "heading": "How titanium <em>compares</em>",
+        "subheading": "Cleaner, tougher and easier to live with, without giving up performance.",
         "heading_align": "center",
         "col_1": "CookingTitan",
         "col_2": "Non-stick",
         "col_3": "Steel",
         "col_4": "Cast iron",
-        "col_5": "Ceramic",
-        "footnote": "<p>Add your warranty or guarantee here.</p>",
+        "col_5": "Hybrid",
+        "footnote": "<p>Every CookingTitan pan comes with <strong>30-day returns</strong>.</p>",
         "background_color": "#201f1e",
         "padding_top": 56,
-        "padding_bottom": 56
+        "padding_bottom": 56,
+        "col_6": "Ceramic"
       },
       "blocks": {
         "row_1": {
           "type": "row",
           "settings": {
-            "label": "Non-toxic surface",
+            "label": "Coating-free surface",
             "val_1": "yes",
             "val_2": "no",
             "val_3": "yes",
             "val_4": "yes",
-            "val_5": "no"
+            "val_5": "no",
+            "val_6": "no"
           }
         },
         "row_2": {
           "type": "row",
           "settings": {
-            "label": "Easy to clean",
+            "label": "High-heat safe",
             "val_1": "yes",
             "val_2": "no",
-            "val_3": "no",
+            "val_3": "yes",
             "val_4": "yes",
-            "val_5": "no"
+            "val_5": "no",
+            "val_6": "no"
           }
         },
         "row_3": {
+          "type": "row",
+          "settings": {
+            "label": "Easy to clean",
+            "val_1": "yes",
+            "val_2": "yes",
+            "val_3": "no",
+            "val_4": "no",
+            "val_5": "yes",
+            "val_6": "yes"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "label": "Warp-resistant",
+            "val_1": "yes",
+            "val_2": "no",
+            "val_3": "yes",
+            "val_4": "yes",
+            "val_5": "no",
+            "val_6": "no"
+          }
+        },
+        "row_5": {
           "type": "row",
           "settings": {
             "label": "Dishwasher safe",
@@ -3893,14 +2657,56 @@
             "val_2": "no",
             "val_3": "yes",
             "val_4": "no",
-            "val_5": "no"
+            "val_5": "no",
+            "val_6": "no"
+          }
+        },
+        "row_6": {
+          "type": "row",
+          "settings": {
+            "label": "Metal-utensil safe",
+            "val_1": "yes",
+            "val_2": "no",
+            "val_3": "yes",
+            "val_4": "yes",
+            "val_5": "no",
+            "val_6": "no"
+          }
+        },
+        "row_7": {
+          "type": "row",
+          "settings": {
+            "label": "Low maintenance",
+            "val_1": "yes",
+            "val_2": "yes",
+            "val_3": "no",
+            "val_4": "no",
+            "val_5": "yes",
+            "val_6": "yes"
+          }
+        },
+        "row_8": {
+          "type": "row",
+          "settings": {
+            "label": "Weight",
+            "val_1": "Light",
+            "val_2": "Light",
+            "val_3": "Medium",
+            "val_4": "Heavy",
+            "val_5": "Medium",
+            "val_6": "Light"
           }
         }
       },
       "block_order": [
         "row_1",
         "row_2",
-        "row_3"
+        "row_3",
+        "row_4",
+        "row_5",
+        "row_6",
+        "row_7",
+        "row_8"
       ]
     },
     "ct_cross_sell_main": {
@@ -3939,10 +2745,10 @@
       "settings": {
         "pill": "Why titanium",
         "pill_icon": "leaf",
-        "heading": "Why titanium is a <em>smart</em> choice",
-        "subheading": "Explain what makes your pan different in two or three sentences.",
+        "heading": "Why titanium makes <em>sense</em> in the kitchen",
+        "subheading": "Titanium is strong, light and resistant to corrosion. Here's what that means when you cook.",
         "heading_align": "center",
-        "button_label": "Learn more",
+        "button_label": "",
         "text_color": "#1a1410",
         "muted_color": "#57534e",
         "background_color": "#f5f0eb",
@@ -3954,21 +2760,21 @@
           "type": "point",
           "settings": {
             "title": "No coating",
-            "text": "Nothing between your food and the titanium."
+            "text": "nothing sits between your food and the metal."
           }
         },
         "point_2": {
           "type": "point",
           "settings": {
-            "title": "Even heat",
-            "text": "Describe your heat distribution."
+            "title": "Corrosion-resistant",
+            "text": "it won't rust or react with acidic dishes."
           }
         },
         "point_3": {
           "type": "point",
           "settings": {
             "title": "Built to last",
-            "text": "Describe durability."
+            "text": "a cooking surface that stays the same, meal after meal."
           }
         }
       },
@@ -3982,8 +2788,8 @@
       "type": "ct-faq",
       "settings": {
         "eyebrow": "FAQ",
-        "heading": "Frequently asked <em>questions</em>",
-        "subheading": "Everything you need to know about your titanium pan.",
+        "heading": "Your questions, <em>answered</em>",
+        "subheading": "Everything you need to know about cooking with titanium.",
         "heading_align": "center",
         "contact_text": "Still have questions?",
         "contact_link_label": "Contact us",
@@ -3995,36 +2801,57 @@
         "question_1": {
           "type": "question",
           "settings": {
-            "question": "Is titanium safe to cook with?",
-            "answer": "<p>Write your answer here.</p>"
+            "question": "How is CookingTitan different from a regular non-stick pan?",
+            "answer": "<p>Regular non-stick pans rely on a synthetic coating that wears out. CookingTitan pans have a titanium cooking surface with no coating, so there's nothing to peel or flake off.</p>"
           }
         },
         "question_2": {
           "type": "question",
           "settings": {
-            "question": "Can I use metal utensils?",
-            "answer": "<p>Write your answer here.</p>"
+            "question": "Is titanium safe to cook with?",
+            "answer": "<p>Titanium is a very stable metal that doesn't react with food. Our pans are made without PFAS or PTFE coatings.</p>"
           }
         },
         "question_3": {
           "type": "question",
           "settings": {
-            "question": "Which heat sources are compatible?",
-            "answer": "<p>Write your answer here.</p>"
+            "question": "Can I use metal utensils?",
+            "answer": "<p>Yes. The hammered titanium surface handles metal spatulas, tongs and whisks.</p>"
           }
         },
         "question_4": {
           "type": "question",
           "settings": {
-            "question": "Is it dishwasher safe?",
-            "answer": "<p>Write your answer here.</p>"
+            "question": "Which heat sources does it work on?",
+            "answer": "<p>Gas, electric, ceramic, induction and the oven.</p>"
           }
         },
         "question_5": {
           "type": "question",
           "settings": {
-            "question": "How long does shipping take to Australia?",
-            "answer": "<p>Write your answer here.</p>"
+            "question": "Is it dishwasher safe?",
+            "answer": "<p>Yes. A quick wash with warm soapy water is usually all it needs, though.</p>"
+          }
+        },
+        "question_6": {
+          "type": "question",
+          "settings": {
+            "question": "Which size should I choose?",
+            "answer": "<p>26 cm for 1 person, 28 cm for 1–2 people and 30 cm for 2–3 people. Each size comes with or without a glass lid.</p>"
+          }
+        },
+        "question_7": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery to Australia take?",
+            "answer": "<p>Orders ship within 24 hours and shipping across Australia is free. Your delivery estimate is shown at checkout.</p>"
+          }
+        },
+        "question_8": {
+          "type": "question",
+          "settings": {
+            "question": "What is your returns policy?",
+            "answer": "<p>You have 30 days to return your pan. Get in touch and we'll walk you through it.</p>"
           }
         }
       },
@@ -4033,32 +2860,149 @@
         "question_2",
         "question_3",
         "question_4",
-        "question_5"
+        "question_5",
+        "question_6",
+        "question_7",
+        "question_8"
       ]
     },
     "ct_final_cta_main": {
       "type": "ct-final-cta",
       "settings": {
-        "eyebrow": "Ready for an upgrade?",
-        "heading": "Switch to <em>titanium</em>",
-        "subheading": "Join home cooks who have swapped their worn-out pans.",
+        "eyebrow": "Ready to upgrade?",
+        "heading": "Make the switch to <em>titanium</em>",
+        "subheading": "Swap worn-out coated pans for one that's built to last.",
         "heading_align": "left",
         "feature_1_icon": "truck",
-        "feature_1_text": "Free shipping",
-        "feature_2_icon": "shield",
-        "feature_2_text": "Quality guarantee",
-        "feature_3_icon": "return",
-        "feature_3_text": "30-day returns",
-        "feature_4_icon": "lock",
-        "feature_4_text": "Secure checkout",
+        "feature_1_text": "Free shipping in Australia",
+        "feature_2_icon": "return",
+        "feature_2_text": "30-day returns",
+        "feature_3_icon": "lock",
+        "feature_3_text": "Secure checkout",
+        "feature_4_icon": "shield",
+        "feature_4_text": "Coating-free titanium",
         "button_label": "Choose your pan",
-        "note": "Free shipping · 30-day returns",
+        "note": "Free shipping · 30-day returns · Secure checkout",
         "show_product": true,
         "product_eyebrow": "You're viewing",
         "save_label": "Save",
-        "tags": "Real titanium surface, PFAS-free",
+        "tags": "Titanium surface, PFAS-free, Induction ready",
         "background_color": "#201f1e",
         "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "ct_logos_main": {
+      "type": "ct-logos",
+      "settings": {
+        "eyebrow": "As featured in",
+        "logo_height": 36,
+        "background_color": "#2a2826",
+        "padding_top": 28,
+        "padding_bottom": 28
+      },
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "fallback": "Logo"
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "fallback": "Logo"
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "fallback": "Logo"
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3"
+      ]
+    },
+    "ct_instagram_main": {
+      "type": "ct-instagram",
+      "settings": {
+        "eyebrow": "Follow us",
+        "name": "cookingtitan",
+        "verified": false,
+        "bio": "Titanium cookware for everyday cooks. Share your dishes with #CookingTitan.",
+        "stat_1_label": "Posts",
+        "stat_2_label": "Followers",
+        "stat_3_label": "Following",
+        "button_label": "Follow us on Instagram",
+        "background_color": "#262423",
+        "padding_top": 56,
+        "padding_bottom": 56
+      },
+      "blocks": {
+        "post_1": {
+          "type": "post",
+          "settings": {}
+        },
+        "post_2": {
+          "type": "post",
+          "settings": {}
+        },
+        "post_3": {
+          "type": "post",
+          "settings": {}
+        },
+        "post_4": {
+          "type": "post",
+          "settings": {}
+        },
+        "post_5": {
+          "type": "post",
+          "settings": {}
+        },
+        "post_6": {
+          "type": "post",
+          "settings": {}
+        },
+        "post_7": {
+          "type": "post",
+          "settings": {}
+        },
+        "post_8": {
+          "type": "post",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "post_1",
+        "post_2",
+        "post_3",
+        "post_4",
+        "post_5",
+        "post_6",
+        "post_7",
+        "post_8"
+      ]
+    },
+    "ct_newsletter_main": {
+      "type": "ct-newsletter",
+      "settings": {
+        "pill": "Newsletter",
+        "heading": "Stay in the <em>loop</em>",
+        "subheading": "New releases, recipes and members-only offers, straight to your inbox.",
+        "heading_align": "center",
+        "placeholder": "Your email address",
+        "button_label": "Subscribe",
+        "success_text": "Thanks! You're on the list.",
+        "point_1": "First access to new releases",
+        "point_2": "Recipes and cooking tips",
+        "point_3": "No spam, unsubscribe anytime",
+        "legal": "<p>By subscribing you agree to our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>",
+        "background_color": "#201f1e",
+        "padding_top": 48,
         "padding_bottom": 56
       }
     }
@@ -4071,23 +3015,16 @@
     "ct_showcase_main",
     "ct_reviews_main",
     "ct_image_cards_main",
+    "ct_logos_main",
     "ct_compare_main",
     "ct_cross_sell_main",
     "ct_research_main",
+    "ct_instagram_main",
     "ct_faq_main",
     "ct_final_cta_main",
+    "ct_newsletter_main",
     "sticky_add_to_cart_NJqgUd",
     "testimonials_44W6N3",
-    "as_seen_in_logos_byrbEG",
-    "product_comparison_pw7jpT",
-    "statistics_column_y9eLJy",
-    "store_features_QmUYDi",
-    "image_with_text_WPzJcE",
-    "rich_text_YkP6Md",
-    "roadmap_MP3fN8",
-    "product_benefits_trbtD8",
-    "image_with_text_yU6dxk",
-    "store_faq_pV3P8w",
-    "store_faq_9hjxMb"
+    "as_seen_in_logos_byrbEG"
   ]
 }

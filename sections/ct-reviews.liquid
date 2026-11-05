@@ -3,13 +3,15 @@
 <section class="ct-sec ct-rev" data-ct-carousel>
   <div class="ct-wrap">
     {% render 'ct-head', s: s %}
-    {%- if s.stat_1_value != blank or s.stat_2_value != blank or s.stat_3_value != blank -%}
-      <div class="ct-rev__stats">
-        {%- for i in (1..3) -%}
-          {%- assign kv = 'stat_' | append: i | append: '_value' -%}{%- assign kl = 'stat_' | append: i | append: '_label' -%}
-          {%- if s[kv] != blank -%}<div><strong>{{ s[kv] }}</strong><span>{{ s[kl] }}</span></div>{%- endif -%}
-        {%- endfor -%}
-      </div>
+    {%- if s.show_stats -%}
+      {%- if s.stat_1_value != blank or s.stat_2_value != blank or s.stat_3_value != blank or request.design_mode -%}
+        <div class="ct-rev__stats">
+          {%- for i in (1..3) -%}
+            {%- assign kv = 'stat_' | append: i | append: '_value' -%}{%- assign kl = 'stat_' | append: i | append: '_label' -%}
+            {%- if s[kv] != blank or request.design_mode -%}<div><strong>{{ s[kv] | default: '—' }}{% if i == 1 and s.stat_1_star and s[kv] != blank %} <span class="ct-rev__star">★</span>{% endif %}</strong><span>{{ s[kl] }}</span></div>{%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
     {%- endif -%}
     <div class="ct-track" data-ct-track style="--ct-card-w: 84%; --ct-card-w-desk: 32%;">
       {%- for block in section.blocks -%}
@@ -35,6 +37,7 @@
   .ct-rev__stats div { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; padding: 0 6px; }
   .ct-rev__stats div + div { border-left: 1px solid var(--ct-border); }
   .ct-rev__stats strong { font-family: var(--font-heading-family); font-weight: 400; font-size: 22px; color: var(--ct-text); }
+  .ct-rev__star { color: #f5b400; font-size: 16px; letter-spacing: 0; text-transform: none; }
   .ct-rev__stats span { font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ct-muted); }
   .ct-rev__card { background: #161514; }
   .ct-rev__media { position: relative; aspect-ratio: 4 / 4.2; }
@@ -94,6 +97,18 @@
     {
       "type": "header",
       "content": "Statistiques (utilise tes vrais chiffres)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Afficher la barre de statistiques",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "stat_1_star",
+      "label": "Étoile après la stat 1",
+      "default": true
     },
     {
       "type": "text",

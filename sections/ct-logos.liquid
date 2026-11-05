@@ -5,7 +5,7 @@
     <div class="ct-logos__row">
       {%- for block in section.blocks -%}
         <div class="ct-logos__item" {{ block.shopify_attributes }}>
-          {%- if block.settings.logo != blank -%}{{ block.settings.logo | image_url: width: 300 | image_tag: loading: 'lazy', alt: block.settings.logo.alt }}{%- else -%}<span>{{ block.settings.fallback }}</span>{%- endif -%}
+          {%- if block.settings.logo != blank -%}{{ block.settings.logo | image_url: width: 300 | image_tag: loading: 'lazy', alt: block.settings.logo.alt }}{%- elsif request.design_mode -%}<span>{{ block.settings.fallback }}</span>{%- endif -%}
         </div>
       {%- endfor -%}
     </div>

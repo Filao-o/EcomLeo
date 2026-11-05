@@ -13,7 +13,7 @@
     <div class="ct-track" data-ct-track style="--ct-card-w: 88%; --ct-card-w-desk: 48%;">
       {%- for block in section.blocks -%}
         {%- assign b = block.settings -%}
-        <article class="ct-card ct-mat__card" {{ block.shopify_attributes }}>
+        <article class="ct-card ct-mat__card{% if b.positive %} is-positive{% endif %}" {{ block.shopify_attributes }}>
           <div class="ct-mat__media">
             {%- if b.image != blank -%}{{ b.image | image_url: width: 900 | image_tag: class: 'ct-img', loading: 'lazy' }}{%- else -%}<div class="ct-ph">{{ "image" | placeholder_svg_tag }}</div>{%- endif -%}
             {%- if b.badge != blank -%}<span class="ct-mat__badge">{{ b.badge }}</span>{%- endif -%}
@@ -60,6 +60,8 @@
   .ct-mat__stats div + div { border-left: 1px solid var(--ct-border); }
   .ct-mat__stats span { font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ct-muted); }
   .ct-mat__stats strong { font-size: 13px; color: #e5533d; font-weight: 600; line-height: 1.35; }
+  .ct-mat__card.is-positive { border-color: rgba(200,149,108,.5); }
+  .ct-mat__card.is-positive .ct-mat__stats strong { color: #4ade80; }
   .ct-mat__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
   .ct-mat__list li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ct-text); }
 </style>
