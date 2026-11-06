@@ -47,7 +47,7 @@
         "video_5"
       ],
       "settings": {
-        "eyebrow": "From our customers' kitchens",
+        "eyebrow": "Straight from our customers' kitchens",
         "heading": "",
         "subheading": "",
         "heading_align": "left",
@@ -65,19 +65,19 @@
           "settings": {
             "name": "Non-stick",
             "image": "shopify://shop_images/okx-pan-nonstick-real.webp",
-            "badge": "Coated",
-            "title": "Standard non-stick pan",
-            "text": "<p>A synthetic coating does all the non-stick work. Overheating and metal utensils wear it down, and once it's scratched it keeps breaking down over time.</p>",
+            "badge": "PFAS coating",
+            "title": "Non-stick pan",
+            "text": "<p>Great on day one. But that coating is PTFE, and it doesn't like heat or forks. Once it's damaged, you're cooking on something that slowly comes apart.</p>",
             "stat_1_label": "Releases",
-            "stat_1_value": "Coating",
+            "stat_1_value": "PFAS fumes, flakes",
             "stat_2_label": "When",
             "stat_2_value": "High heat or scratches",
             "stat_3_label": "Risk",
             "stat_3_value": "High",
             "positive": false,
-            "point_1": "Synthetic coating",
-            "point_2": "Sensitive to high heat",
-            "point_3": "Replaced every few years"
+            "point_1": "PTFE/PFAS chemical coating",
+            "point_2": "Damaged by high heat",
+            "point_3": "Gets into your food once scratched"
           }
         },
         "material_2": {
@@ -85,19 +85,19 @@
           "settings": {
             "name": "Stainless steel",
             "image": "shopify://shop_images/okx-pan-stainless-real.webp",
-            "badge": "Sticky",
+            "badge": "Leaches metals",
             "title": "Stainless steel pan",
-            "text": "<p>Tough and coating-free, but food grips the surface unless you master heat and oil. Long simmers of acidic sauces can also react with the metal.</p>",
+            "text": "<p>A kitchen workhorse with a catch: your bolognese and lemon chicken can pull small amounts of nickel and chromium out of it. Add sticky eggs and a steep learning curve.</p>",
             "stat_1_label": "Releases",
-            "stat_1_value": "Metal traces",
+            "stat_1_value": "Nickel & chromium",
             "stat_2_label": "When",
-            "stat_2_value": "Acidic, long cooks",
+            "stat_2_value": "Acidic food, long simmers",
             "stat_3_label": "Risk",
             "stat_3_value": "Medium",
             "positive": false,
-            "point_1": "Food sticks easily",
-            "point_2": "Takes practice",
-            "point_3": "Reacts with acidic food"
+            "point_1": "Can release nickel & chromium",
+            "point_2": "Eggs and fish stick",
+            "point_3": "Needs practice"
           }
         },
         "material_3": {
@@ -107,17 +107,17 @@
             "image": "shopify://shop_images/okx-pan-castiron-real.jpg",
             "badge": "High upkeep",
             "title": "Cast iron pan",
-            "text": "<p>Great for searing, but heavy and dependent on seasoning. Skip a step and it rusts or reacts with acidic dishes.</p>",
+            "text": "<p>Loved for searing, but it asks a lot: seasoning, drying, oiling, no soap. Miss a step and you're scraping rust, and acidic dishes take on a metallic taste.</p>",
             "stat_1_label": "Releases",
             "stat_1_value": "Iron & rust",
             "stat_2_label": "When",
-            "stat_2_value": "Worn seasoning",
+            "stat_2_value": "Acidic food, worn seasoning",
             "stat_3_label": "Risk",
             "stat_3_value": "Medium",
             "positive": false,
-            "point_1": "Heavy to handle",
-            "point_2": "Needs regular seasoning",
-            "point_3": "Rusts if left wet"
+            "point_1": "Constant seasoning",
+            "point_2": "Rust if left wet",
+            "point_3": "Heavy on the wrist"
           }
         },
         "material_4": {
@@ -125,18 +125,18 @@
           "settings": {
             "name": "Ceramic",
             "image": "shopify://shop_images/okx-pan-ceramic-real.jpg",
-            "badge": "Short-lived",
-            "title": "Ceramic-coated pan",
-            "text": "<p>A thin ceramic-style layer sits on an aluminium base. It feels slick at first, then gradually loses its release with heat and wear.</p>",
+            "badge": "Wears out fast",
+            "title": "Ceramic pan",
+            "text": "<p>Marketed as the clean choice, yet the slick layer is thin and short-lived. A few months of real cooking and it starts losing grip, chipping and exposing the metal below.</p>",
             "stat_1_label": "Releases",
             "stat_1_value": "Coating chips",
             "stat_2_label": "When",
-            "stat_2_value": "After months of use",
+            "stat_2_value": "Within months",
             "stat_3_label": "Risk",
             "stat_3_value": "Medium",
             "positive": false,
-            "point_1": "Non-stick fades quickly",
-            "point_2": "Coating can chip",
+            "point_1": "Non-stick fades in months",
+            "point_2": "Surface can chip",
             "point_3": "Short lifespan"
           }
         },
@@ -147,17 +147,17 @@
             "image": "shopify://shop_images/okx-pan-hybrid-real.jpg",
             "badge": "Still coated",
             "title": "Hybrid pan",
-            "text": "<p>A steel pattern laid over a non-stick coating. It looks like bare metal, but you're still cooking on a coating that wears like any other.</p>",
+            "text": "<p>The steel grid on top looks reassuring. The non-stick underneath is the same PTFE you were trying to get away from, and it ages exactly the same way.</p>",
             "stat_1_label": "Releases",
-            "stat_1_value": "Coating",
+            "stat_1_value": "PFAS fumes, flakes",
             "stat_2_label": "When",
-            "stat_2_value": "As it wears",
+            "stat_2_value": "As the coating wears",
             "stat_3_label": "Risk",
             "stat_3_value": "High",
             "positive": false,
-            "point_1": "Still relies on a coating",
-            "point_2": "Coating wears off",
-            "point_3": "Premium price"
+            "point_1": "PTFE hidden under the grid",
+            "point_2": "Coating still wears",
+            "point_3": "Premium price, same issue"
           }
         },
         "material_6": {
@@ -167,17 +167,17 @@
             "image": "shopify://shop_images/okura-hand-hammered-titanium-pan-01-hero_b39de0b9-8d90-4371-8208-13d68b6c9638.webp",
             "badge": "Coating-free",
             "title": "CookingTitan titanium pan",
-            "text": "<p>A hand-hammered titanium cooking surface with no coating at all. Nothing to peel, chip or wear away, whatever the heat or the utensil.</p>",
+            "text": "<p>No coating, no seasoning, no compromise. Just a hammered titanium surface that stays the same, whatever you cook, however hot you go, whatever utensil you grab.</p>",
             "stat_1_label": "Releases",
             "stat_1_value": "Nothing",
             "stat_2_label": "When",
-            "stat_2_value": "Any heat",
+            "stat_2_value": "At any heat",
             "stat_3_label": "Risk",
             "stat_3_value": "None",
             "positive": true,
             "point_1": "Titanium cooking surface",
-            "point_2": "No coating to wear off",
-            "point_3": "Metal-utensil friendly"
+            "point_2": "Nothing to wear thin",
+            "point_3": "Nothing added to your food"
           }
         }
       },
@@ -191,8 +191,8 @@
       ],
       "settings": {
         "eyebrow": "",
-        "heading": "Your pan matters more than you <em>think</em>",
-        "subheading": "Choose the pan you cook with today and see how it holds up.",
+        "heading": "What's in your pan ends up on your <em>plate</em>",
+        "subheading": "Every pan gives something back to the food you cook. Tap yours to see what.",
         "heading_align": "left",
         "background_color": "#1c1b1a",
         "accent_color": "",
@@ -207,24 +207,24 @@
           "type": "step",
           "settings": {
             "image": "shopify://shop_images/okx-chef-gregory-step-1-v2.avif",
-            "title": "Preheat on medium for 1–2 minutes",
-            "text": "Flick in a drop of water. When it beads and dances, the pan is ready."
+            "title": "Warm it up gently",
+            "text": "Medium heat, one or two minutes. A splash of water should form little rolling beads."
           }
         },
         "step_2": {
           "type": "step",
           "settings": {
             "image": "shopify://shop_images/okx-chef-gregory-step-2-v2.avif",
-            "title": "Add a thin film of oil",
-            "text": "Wait until it ripples before the food goes in."
+            "title": "Oil goes in second",
+            "text": "A teaspoon is plenty. You're ready when it looks glossy and moves freely."
           }
         },
         "step_3": {
           "type": "step",
           "settings": {
             "image": "shopify://shop_images/okx-chef-gregory-step-3-v2.webp",
-            "title": "Let the crust form",
-            "text": "Leave it alone. Once it's seared, it lifts off by itself."
+            "title": "Be patient, then turn",
+            "text": "Resist the urge to move it. When the crust is set, the food comes away cleanly."
           }
         }
       },
@@ -235,9 +235,9 @@
       ],
       "disabled": true,
       "settings": {
-        "pill_text": "Cooking tip from <strong>our kitchen</strong>",
+        "pill_text": "Chef's tip from <strong>our kitchen</strong>",
         "eyebrow": "",
-        "heading": "How to get the perfect <em>sear</em>",
+        "heading": "Three steps to a flawless <em>sear</em>",
         "subheading": "",
         "heading_align": "center",
         "background_color": "#201f1e",
@@ -254,8 +254,8 @@
           "settings": {
             "icon": "shield",
             "icon_text": "",
-            "title": "Built for decades",
-            "text": "Made to outlast every other pan in your cupboard."
+            "title": "Nothing to wear out",
+            "text": "No coating means no peeling, no flaking, no replacing every couple of years."
           }
         },
         "card_2": {
@@ -263,8 +263,8 @@
           "settings": {
             "icon": "shield",
             "icon_text": "Ti",
-            "title": "Real titanium surface",
-            "text": "A pure titanium cooking surface, with nothing added."
+            "title": "Titanium surface",
+            "text": "Titanium where you cook, an aluminium core for fast, even heat."
           }
         }
       },
@@ -274,8 +274,8 @@
       ],
       "settings": {
         "eyebrow": "",
-        "heading": "The last pan you'll ever <em>need</em>",
-        "subheading": "Hand-hammered titanium. Nothing to wear off, nothing to replace.",
+        "heading": "Buy it once. Cook with it for <em>years</em>.",
+        "subheading": "One pan, hammered from titanium, to replace the stack of worn-out ones in your cupboard.",
         "heading_align": "center",
         "link_label": "",
         "link_url": "",
@@ -422,8 +422,8 @@
           "settings": {
             "image": "shopify://shop_images/okx-cook-metal-utensils-v6.webp",
             "icon": "check_circle",
-            "title": "Metal utensils welcome",
-            "text": "Spatulas, tongs and whisks. There's no coating to scratch."
+            "title": "Bring your metal spatula",
+            "text": "Scrape, stir and whisk without babying the pan."
           }
         },
         "card_2": {
@@ -431,8 +431,8 @@
           "settings": {
             "image": "shopify://shop_images/okx-cook-high-heat-v7.webp",
             "icon": "flame",
-            "title": "Sear on high heat",
-            "text": "Turn it up for a proper crust, with no coating to worry about."
+            "title": "Built for real heat",
+            "text": "High heat is where titanium shines: deep, even browning, no coating involved."
           }
         },
         "card_3": {
@@ -440,8 +440,8 @@
           "settings": {
             "image": "shopify://shop_images/okx-cook-dishwasher-v6.webp",
             "icon": "drop",
-            "title": "Dishwasher friendly",
-            "text": "Done cooking? It can go straight in the dishwasher."
+            "title": "Into the dishwasher",
+            "text": "No hand-washing rules. Load it with the plates and move on."
           }
         },
         "card_4": {
@@ -449,8 +449,8 @@
           "settings": {
             "image": "shopify://shop_images/okx-cook-one-pan-v2.webp",
             "icon": "heart",
-            "title": "One pan, every meal",
-            "text": "Eggs, vegetables, fish, steak and full one-pan dinners."
+            "title": "Breakfast to dinner",
+            "text": "Fried eggs at 7, stir-fry at 7 pm. Same pan, same results."
           }
         },
         "card_5": {
@@ -458,8 +458,8 @@
           "settings": {
             "image": "shopify://shop_images/okx-cook-oven-v8.webp",
             "icon": "oven",
-            "title": "Cooktop to oven",
-            "text": "Start on the cooktop, finish in the oven, serve at the table."
+            "title": "Finish it in the oven",
+            "text": "Handles up to 540°C, so frittatas and roasts can go from flame to oven."
           }
         },
         "heat_icon_6": {
@@ -512,8 +512,8 @@
       ],
       "settings": {
         "eyebrow": "",
-        "heading": "Cook your way, <em>every</em> day",
-        "subheading": "Titanium that keeps up with how you really cook.",
+        "heading": "Cook without <em>limits</em>",
+        "subheading": "Titanium that keeps up with the way you really cook.",
         "heading_align": "left",
         "background_color": "#201f1e",
         "accent_color": "",
@@ -670,8 +670,8 @@
       ],
       "settings": {
         "eyebrow": "Why titanium?",
-        "heading": "How titanium <em>compares</em>",
-        "subheading": "Cleaner, tougher and easier to live with, without giving up performance.",
+        "heading": "Titanium, side by <em>side</em>",
+        "subheading": "Cleaner, tougher and easier to live with, with no trade-off on performance.",
         "heading_align": "center",
         "col_1": "CookingTitan",
         "col_2": "Non-stick",
@@ -679,7 +679,7 @@
         "col_4": "Cast iron",
         "col_5": "Hybrid",
         "col_6": "Ceramic",
-        "footnote": "<p>Every CookingTitan pan comes with <strong>30-day returns</strong>.</p>",
+        "footnote": "<p>Try it at home: every CookingTitan pan comes with <strong>30-day returns</strong>.</p>",
         "background_color": "#201f1e",
         "accent_color": "",
         "padding_top": 56,
@@ -715,7 +715,7 @@
       ],
       "settings": {
         "eyebrow": "",
-        "heading": "Complete your <em>order</em>",
+        "heading": "Complete your <em>kitchen</em>",
         "subheading": "",
         "heading_align": "left",
         "button_label": "Add",
@@ -733,21 +733,21 @@
           "type": "point",
           "settings": {
             "title": "No coating",
-            "text": "nothing sits between your food and the metal."
+            "text": "the surface you cook on is the metal itself, free of PFAS and PTFE."
           }
         },
         "point_2": {
           "type": "point",
           "settings": {
-            "title": "Corrosion-resistant",
-            "text": "it won't rust or react with acidic dishes."
+            "title": "Even heat",
+            "text": "an aluminium core inside carries heat across the whole base, so there are no cold spots."
           }
         },
         "point_3": {
           "type": "point",
           "settings": {
-            "title": "Built to last",
-            "text": "a cooking surface that stays the same, meal after meal."
+            "title": "Corrosion-proof",
+            "text": "titanium shrugs off acids, salt and water. No rust, no pitting."
           }
         }
       },
@@ -760,8 +760,8 @@
         "pill": "Why titanium",
         "pill_icon": "leaf",
         "eyebrow": "",
-        "heading": "Why titanium makes <em>sense</em> in the kitchen",
-        "subheading": "Titanium is strong, light and resistant to corrosion. Here's what that means when you cook.",
+        "heading": "Why cooks are switching to <em>titanium</em>",
+        "subheading": "Titanium is strong, light and doesn't corrode. Paired with an aluminium core, it cooks as well as it lasts.",
         "heading_align": "center",
         "footnote": "",
         "button_label": "",
@@ -862,57 +862,57 @@
         "question_1": {
           "type": "question",
           "settings": {
-            "question": "How is CookingTitan different from a regular non-stick pan?",
-            "answer": "<p>Regular non-stick pans rely on a synthetic coating that wears out. CookingTitan pans have a titanium cooking surface with no coating, so there's nothing to peel or flake off.</p>"
+            "question": "How is it different from a regular non-stick pan?",
+            "answer": "<p>Regular non-stick pans depend on a chemical coating (PTFE) that wears out. CookingTitan pans have a titanium cooking surface with no coating, so there is nothing to peel, flake or replace.</p>"
           }
         },
         "question_2": {
           "type": "question",
           "settings": {
             "question": "Is titanium safe to cook with?",
-            "answer": "<p>Titanium is a very stable metal that doesn't react with food. Our pans are made without PFAS or PTFE coatings.</p>"
+            "answer": "<p>Yes. Titanium is extremely stable and doesn't react with food, even acidic sauces. And there's no PFAS or PTFE anywhere on the pan.</p>"
           }
         },
         "question_3": {
           "type": "question",
           "settings": {
             "question": "Can I use metal utensils?",
-            "answer": "<p>Yes. The hammered titanium surface handles metal spatulas, tongs and whisks.</p>"
+            "answer": "<p>Absolutely. Metal spatulas, whisks and tongs won't damage the hammered titanium surface.</p>"
           }
         },
         "question_4": {
           "type": "question",
           "settings": {
             "question": "Which heat sources does it work on?",
-            "answer": "<p>Gas, electric, ceramic, induction and the oven.</p>"
+            "answer": "<p>Gas, electric, ceramic, induction, the oven (up to 540°C) and the grill.</p>"
           }
         },
         "question_5": {
           "type": "question",
           "settings": {
             "question": "Is it dishwasher safe?",
-            "answer": "<p>Yes. A quick wash with warm soapy water is usually all it needs, though.</p>"
+            "answer": "<p>Yes. Most of the time a rinse with warm soapy water is all it needs, because food slides off titanium.</p>"
           }
         },
         "question_6": {
           "type": "question",
           "settings": {
             "question": "Which size should I choose?",
-            "answer": "<p>26 cm for 1 person, 28 cm for 1–2 people and 30 cm for 2–3 people. Each size comes with or without a glass lid.</p>"
+            "answer": "<p>26 cm for 1 person, 28 cm for 1–2 people, 30 cm for 2–3 people. Each comes with or without a glass lid.</p>"
           }
         },
         "question_7": {
           "type": "question",
           "settings": {
-            "question": "How long does delivery to Australia take?",
-            "answer": "<p>Orders ship within 24 hours and shipping across Australia is free. Your delivery estimate is shown at checkout.</p>"
+            "question": "How fast is delivery to Australia?",
+            "answer": "<p>Orders are dispatched within 24 hours and shipping is free across Australia. Your delivery estimate is shown at checkout.</p>"
           }
         },
         "question_8": {
           "type": "question",
           "settings": {
-            "question": "What is your returns policy?",
-            "answer": "<p>You have 30 days to return your pan. Get in touch and we'll walk you through it.</p>"
+            "question": "What if it's not for me?",
+            "answer": "<p>You have 30 days to send it back. Reach out and we'll take care of the rest.</p>"
           }
         }
       },
@@ -929,7 +929,7 @@
       "settings": {
         "eyebrow": "FAQ",
         "heading": "Your questions, <em>answered</em>",
-        "subheading": "Everything you need to know about cooking with titanium.",
+        "subheading": "Everything you need to know before cooking with titanium.",
         "heading_align": "center",
         "contact_text": "Still have questions?",
         "contact_link_label": "Contact us",
@@ -944,17 +944,17 @@
       "type": "ct-final-cta",
       "settings": {
         "eyebrow": "Ready to upgrade?",
-        "heading": "Make the switch to <em>titanium</em>",
-        "subheading": "Swap worn-out coated pans for one that's built to last.",
+        "heading": "Cook on <em>titanium</em> from tonight",
+        "subheading": "Swap your worn-out coated pans for one that's made to last.",
         "heading_align": "left",
         "feature_1_icon": "truck",
-        "feature_1_text": "Free shipping in Australia",
+        "feature_1_text": "Free shipping to Australia",
         "feature_2_icon": "return",
         "feature_2_text": "30-day returns",
         "feature_3_icon": "lock",
         "feature_3_text": "Secure checkout",
         "feature_4_icon": "shield",
-        "feature_4_text": "Coating-free titanium",
+        "feature_4_text": "PFAS & PTFE-free",
         "button_label": "Choose your pan",
         "button_url": "/products/titanium-frying-pan",
         "note": "Free shipping · 30-day returns · Secure checkout",
@@ -962,7 +962,7 @@
         "product_eyebrow": "You're viewing",
         "rating_text": "",
         "save_label": "Save",
-        "tags": "Titanium surface, PFAS-free, Induction ready",
+        "tags": "Titanium surface, PFAS-free, Induction ready, Oven-safe 540°C",
         "background_color": "#201f1e",
         "accent_color": "",
         "padding_top": 56,
