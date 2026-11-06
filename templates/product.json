@@ -1293,6 +1293,7 @@
         },
         "guarantee_badges_kkndyb": {
           "type": "guarantee_badges",
+          "disabled": true,
           "settings": {
             "use_theme_colors": true,
             "badge_1_show": true,
@@ -1331,6 +1332,7 @@
         },
         "product_labels_J49GfR": {
           "type": "product_labels",
+          "disabled": true,
           "settings": {
             "label_1_show": true,
             "label_1_icon": "",
@@ -1414,6 +1416,7 @@
         },
         "divider_gB9G3C": {
           "type": "divider",
+          "disabled": true,
           "settings": {
             "color": "#3b3a39",
             "style": "solid",
@@ -1427,6 +1430,7 @@
         },
         "custom_text_e7xkQT": {
           "type": "custom_text",
+          "disabled": true,
           "settings": {
             "text": "<p><strong>Frequently bought together:</strong></p>",
             "show_description": false,
@@ -1487,6 +1491,7 @@
         },
         "product_upsell_yrximR": {
           "type": "product_upsell",
+          "disabled": true,
           "settings": {
             "upsell_product": "bag-tracker",
             "make_title_clickable": false,
@@ -1529,6 +1534,7 @@
         },
         "customer_review_yxw8Rw": {
           "type": "customer_review",
+          "disabled": true,
           "settings": {
             "reviewer_name": "Lauren J.",
             "review_text": "This product exceeded my expectations. The quality is outstanding and I would highly recommend it to anyone.",
@@ -1562,6 +1568,7 @@
         },
         "product_faq_T6WHNi": {
           "type": "product_faq",
+          "disabled": true,
           "settings": {
             "use_theme_colors": false,
             "items_limit": 10,
@@ -1607,6 +1614,7 @@
         },
         "image_rating_Pc9yqk": {
           "type": "image_rating",
+          "disabled": true,
           "settings": {
             "star_color": "#ffffff",
             "empty_star_color": "#ffffff",
@@ -1955,6 +1963,7 @@
         "step_2",
         "step_3"
       ],
+      "disabled": true,
       "settings": {
         "pill_text": "Cooking tip from <strong>our kitchen</strong>",
         "eyebrow": "",
@@ -2269,6 +2278,7 @@
         "logo_2",
         "logo_3"
       ],
+      "disabled": true,
       "settings": {
         "eyebrow": "As featured in",
         "logo_height": 36,
@@ -2556,6 +2566,7 @@
         "post_7",
         "post_8"
       ],
+      "disabled": true,
       "settings": {
         "eyebrow": "Follow us",
         "name": "cookingtitan",
@@ -3141,9 +3152,9 @@
     "ct_instagram_main",
     "ct_faq_main",
     "ct_final_cta_main",
+    "testimonials_44W6N3",
     "ct_newsletter_main",
     "sticky_add_to_cart_NJqgUd",
-    "testimonials_44W6N3",
     "as_seen_in_logos_byrbEG"
   ]
 }

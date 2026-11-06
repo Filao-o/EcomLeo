@@ -66,6 +66,7 @@
         "custom_links_1",
         "social_column_1"
       ],
+      "disabled": true,
       "settings": {
         "use_theme_colors": false,
         "show_newsletter": true,
