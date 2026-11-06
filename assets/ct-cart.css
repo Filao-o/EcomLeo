@@ -58,3 +58,19 @@
 cart-drawer .drawer__heading { font-family: var(--font-heading-family); font-weight: 400; }
 cart-drawer span.cart-item__name { text-decoration: none; cursor: default; }
 cart-drawer #CartDrawer-Checkout { background: linear-gradient(135deg, #c8956c, #a67c52) !important; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
+
+/* Priorité sur les styles du tiroir du thème */
+cart-drawer .ct-cu .ct-cu__heading, .ct-cu .ct-cu__heading { color: #c8956c !important; }
+cart-drawer .ct-cu .ct-cu__title { color: #ffffff !important; }
+cart-drawer .ct-cu .ct-cu__sub { color: rgba(255,255,255,.55) !important; }
+cart-drawer .ct-cu .ct-cu__now { color: #c8956c !important; }
+cart-drawer .ct-cu .ct-cu__was { color: rgba(255,255,255,.4) !important; }
+cart-drawer .ct-cu .ct-cu__off { color: #4cc38a !important; }
+cart-drawer .ct-cu .ct-cu__media { background: #2b2927 !important; }
+cart-drawer .ct-ce .ct-ce__box { color: #1a1410 !important; background: transparent !important; }
+cart-drawer .ct-ce .ct-ce__box svg { opacity: 0; transition: opacity .15s; }
+cart-drawer .ct-ce .ct-ce__lid-input:checked + .ct-ce__box { background: #c8956c !important; }
+cart-drawer .ct-ce .ct-ce__lid-input:checked + .ct-ce__box svg { opacity: 1; }
+cart-drawer .ct-ce .ct-ce__label, cart-drawer .ct-ce .ct-ce__has-lid { color: rgba(255,255,255,.62) !important; }
+cart-drawer .ct-ce .ct-ce__lid span { color: rgba(255,255,255,.88) !important; }
+cart-drawer .ct-ce .ct-ce__lid strong { color: #c8956c !important; }
