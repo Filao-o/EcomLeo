@@ -100,7 +100,7 @@
           "type": "question",
           "settings": {
             "question": "What if my order arrives damaged?",
-            "answer": "<p>Email us at <a href=\"mailto:support@cookingtitan.com\">support@cookingtitan.com</a> with your order number and clear photos of the damaged item and its packaging. Once we've reviewed them, we'll send you a replacement.</p>"
+            "answer": "<p>Email us at <a href=\"mailto:support@cookingtitan.com\">support@cookingtitan.com</a> within 48 hours of delivery, with your order number and clear photos of the damaged item and its packaging. Once we've reviewed them, we'll send you a replacement.</p>"
           }
         },
         "q_3_3": {
