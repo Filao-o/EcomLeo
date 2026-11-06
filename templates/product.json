@@ -287,6 +287,7 @@
             "item_2_text": "30-day returns",
             "item_3_icon": "none",
             "item_3_text": "",
+            "uppercase": true,
             "divider_top": true,
             "divider_bottom": true,
             "alignment": "center",
@@ -296,8 +297,63 @@
             "icon_color": "#ffffff",
             "divider_color": "#5a4636",
             "margin_top": 4,
-            "margin_bottom": 12,
-            "uppercase": true
+            "margin_bottom": 12
+          }
+        },
+        "pdp_gifts_main": {
+          "type": "pdp_gifts",
+          "settings": {
+            "pill_text": "Limited time only",
+            "text": "<p>Free gifts with <strong>every pan</strong> this week</p>",
+            "gift_1_name": "Cleaning cloth",
+            "gift_1_value": "$20",
+            "gift_2_name": "Pan protector",
+            "gift_2_value": "$20",
+            "gift_3_name": "Recipe guide",
+            "gift_3_value": "$10",
+            "gift_4_name": "Surprise gift",
+            "gift_4_value": "",
+            "free_label": "FREE",
+            "show_check": true,
+            "accent_color": "#c0392b",
+            "text_color": "#ffffff",
+            "muted_color": "#9c958e",
+            "card_bg_color": "#262423",
+            "card_border_color": "#3a3836",
+            "check_color": "#2fbf71",
+            "margin_top": 8,
+            "margin_bottom": 20
+          }
+        },
+        "pdp_accordions_main": {
+          "type": "pdp_accordions",
+          "settings": {
+            "item_1_title": "Details",
+            "item_1_icon": "document",
+            "item_1_use_description": true,
+            "item_1_content": "",
+            "item_2_title": "Shipping & returns",
+            "item_2_icon": "truck",
+            "item_2_use_description": false,
+            "item_2_content": "<p>Free shipping across Australia. Orders ship within 24 hours. 30-day returns.</p>",
+            "item_3_title": "Care instructions",
+            "item_3_icon": "drop",
+            "item_3_use_description": false,
+            "item_3_content": "<p>Add your care instructions here.</p>",
+            "item_4_title": "Size guide",
+            "item_4_icon": "box",
+            "item_4_use_description": false,
+            "item_4_content": "<p>26 cm – 1 person<br>28 cm – 1–2 people<br>30 cm – 2–3 people</p>",
+            "item_5_title": "",
+            "item_5_icon": "none",
+            "item_5_use_description": false,
+            "item_5_content": "",
+            "title_color": "#ffffff",
+            "body_color": "#d2d2d2",
+            "icon_color": "#c8956a",
+            "border_color": "#3a3836",
+            "margin_top": 0,
+            "margin_bottom": 16
           }
         },
         "trustpilot_rating_mrtVHq": {
@@ -1237,6 +1293,7 @@
         },
         "guarantee_badges_kkndyb": {
           "type": "guarantee_badges",
+          "disabled": true,
           "settings": {
             "use_theme_colors": true,
             "badge_1_show": true,
@@ -1275,6 +1332,7 @@
         },
         "product_labels_J49GfR": {
           "type": "product_labels",
+          "disabled": true,
           "settings": {
             "label_1_show": true,
             "label_1_icon": "",
@@ -1358,6 +1416,7 @@
         },
         "divider_gB9G3C": {
           "type": "divider",
+          "disabled": true,
           "settings": {
             "color": "#3b3a39",
             "style": "solid",
@@ -1371,6 +1430,7 @@
         },
         "custom_text_e7xkQT": {
           "type": "custom_text",
+          "disabled": true,
           "settings": {
             "text": "<p><strong>Frequently bought together:</strong></p>",
             "show_description": false,
@@ -1431,6 +1491,7 @@
         },
         "product_upsell_yrximR": {
           "type": "product_upsell",
+          "disabled": true,
           "settings": {
             "upsell_product": "bag-tracker",
             "make_title_clickable": false,
@@ -1473,6 +1534,7 @@
         },
         "customer_review_yxw8Rw": {
           "type": "customer_review",
+          "disabled": true,
           "settings": {
             "reviewer_name": "Lauren J.",
             "review_text": "This product exceeded my expectations. The quality is outstanding and I would highly recommend it to anyone.",
@@ -1506,6 +1568,7 @@
         },
         "product_faq_T6WHNi": {
           "type": "product_faq",
+          "disabled": true,
           "settings": {
             "use_theme_colors": false,
             "items_limit": 10,
@@ -1551,6 +1614,7 @@
         },
         "image_rating_Pc9yqk": {
           "type": "image_rating",
+          "disabled": true,
           "settings": {
             "star_color": "#ffffff",
             "empty_star_color": "#ffffff",
@@ -1566,58 +1630,6 @@
             "margin_top": 10,
             "margin_bottom": 10,
             "link": "reviews"
-          }
-        },
-        "pdp_gifts_main": {
-          "type": "pdp_gifts",
-          "settings": {
-            "pill_text": "Limited time only",
-            "text": "<p>Free gifts with <strong>every pan</strong> this week</p>",
-            "gift_1_name": "Cleaning cloth",
-            "gift_1_value": "$20",
-            "gift_2_name": "Pan protector",
-            "gift_2_value": "$20",
-            "gift_3_name": "Recipe guide",
-            "gift_3_value": "$10",
-            "gift_4_name": "Surprise gift",
-            "free_label": "FREE",
-            "show_check": true,
-            "accent_color": "#c0392b",
-            "text_color": "#ffffff",
-            "muted_color": "#9c958e",
-            "card_bg_color": "#262423",
-            "card_border_color": "#3a3836",
-            "check_color": "#2fbf71",
-            "margin_top": 8,
-            "margin_bottom": 20
-          }
-        },
-        "pdp_accordions_main": {
-          "type": "pdp_accordions",
-          "settings": {
-            "item_1_title": "Details",
-            "item_1_icon": "document",
-            "item_1_use_description": true,
-            "item_2_title": "Shipping & returns",
-            "item_2_icon": "truck",
-            "item_2_use_description": false,
-            "item_2_content": "<p>Free shipping across Australia. Orders ship within 24 hours. 30-day returns.</p>",
-            "item_3_title": "Care instructions",
-            "item_3_icon": "drop",
-            "item_3_use_description": false,
-            "item_3_content": "<p>Add your care instructions here.</p>",
-            "item_4_title": "Size guide",
-            "item_4_icon": "box",
-            "item_4_use_description": false,
-            "item_4_content": "<p>26 cm – 1 person<br>28 cm – 1–2 people<br>30 cm – 2–3 people</p>",
-            "item_5_icon": "none",
-            "item_5_use_description": false,
-            "title_color": "#ffffff",
-            "body_color": "#d2d2d2",
-            "icon_color": "#c8956a",
-            "border_color": "#3a3836",
-            "margin_top": 0,
-            "margin_bottom": 16
           }
         }
       },
@@ -1718,47 +1730,973 @@
         "image_badge_bottom_bg": "#201f1e"
       }
     },
-    "sticky_add_to_cart_NJqgUd": {
-      "type": "sticky-add-to-cart",
+    "ct_video_reviews_main": {
+      "type": "ct-video-reviews",
+      "blocks": {
+        "video_1": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/0f0386543d9d41f3956607f491e764d7.HD-1080p-2.5Mbps-98064806.mp4",
+            "caption": ""
+          }
+        },
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/40870a5a52f649e6b4489853f0f78580.HD-1080p-2.5Mbps-98065342 (1).mp4",
+            "caption": ""
+          }
+        },
+        "video_3": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/8d213ea8882d4fef953343fd2a6d70dc.HD-1080p-7.2Mbps-90369938.mp4",
+            "caption": ""
+          }
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/e05996722a834ee88f631f5e54e66fca.HD-1080p-7.2Mbps-90369939.mp4",
+            "caption": ""
+          }
+        },
+        "video_5": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/331a8ecc15804e56b5c428b803921a92.HD-1080p-7.2Mbps-90369940.mp4",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4",
+        "video_5"
+      ],
       "settings": {
-        "trigger_behavior": "atc_button",
-        "scroll_percentage_trigger": 25,
-        "select_button_behavior": "scroll_to_section",
-        "show_section_numbers": false,
-        "scroll_offset": 120,
-        "scroll_to_percentage": 50,
-        "button_link": "",
-        "button_text": "SHOP NOW",
-        "satc_toggle_variant": false,
-        "delivery_days": 5,
-        "title_color": "#f5f4f3",
-        "title_desktop_font_size": 16,
-        "title_letter_spacing": 0,
-        "rating_text": "Excellent 4.9 | 1,422",
-        "use_theme_colors": false,
-        "use_global_button_styling": false,
-        "custom_button_padding_y": 15,
-        "custom_button_font_size": 15,
-        "button_bg_color": "#c8956a",
-        "button_hover_color": "#d6a77c",
-        "button_text_color": "#201f1e",
-        "star_color": "#444444",
+        "eyebrow": "From our customers' kitchens",
+        "heading": "",
+        "subheading": "",
+        "heading_align": "left",
         "background_color": "#201f1e",
-        "border_radius": 6,
-        "transparent_background": true,
-        "z_index": 9900,
-        "rating_text_color": "#bdbcbb",
-        "rating_text_font_weight": "var(--font-weight-regular)",
-        "rating_text_desktop_font_size": 14,
-        "rating_text_letter_spacing": 0,
-        "delivery_text_color": "#1d3a1d",
-        "delivery_text_font_weight": "var(--font-weight-bold)",
-        "delivery_text_desktop_font_size": 14,
-        "delivery_text_mobile_font_size": 12,
-        "delivery_text_letter_spacing": 0,
-        "delivery_date_display_format": "weekday_month_day",
-        "turn_off_delivery_date": true,
-        "delivery_text_prefix": "Get It By"
+        "accent_color": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "ct_materials_main": {
+      "type": "ct-materials",
+      "blocks": {
+        "material_1": {
+          "type": "material",
+          "settings": {
+            "name": "Non-stick",
+            "image": "shopify://shop_images/okx-pan-nonstick-real.webp",
+            "badge": "Coated",
+            "title": "Standard non-stick pan",
+            "text": "<p>A synthetic coating does all the non-stick work. Overheating and metal utensils wear it down, and once it's scratched it keeps breaking down over time.</p>",
+            "stat_1_label": "Releases",
+            "stat_1_value": "Coating",
+            "stat_2_label": "When",
+            "stat_2_value": "High heat or scratches",
+            "stat_3_label": "Risk",
+            "stat_3_value": "High",
+            "positive": false,
+            "point_1": "Synthetic coating",
+            "point_2": "Sensitive to high heat",
+            "point_3": "Replaced every few years"
+          }
+        },
+        "material_2": {
+          "type": "material",
+          "settings": {
+            "name": "Stainless steel",
+            "image": "shopify://shop_images/okx-pan-stainless-real.webp",
+            "badge": "Sticky",
+            "title": "Stainless steel pan",
+            "text": "<p>Tough and coating-free, but food grips the surface unless you master heat and oil. Long simmers of acidic sauces can also react with the metal.</p>",
+            "stat_1_label": "Releases",
+            "stat_1_value": "Metal traces",
+            "stat_2_label": "When",
+            "stat_2_value": "Acidic, long cooks",
+            "stat_3_label": "Risk",
+            "stat_3_value": "Medium",
+            "positive": false,
+            "point_1": "Food sticks easily",
+            "point_2": "Takes practice",
+            "point_3": "Reacts with acidic food"
+          }
+        },
+        "material_3": {
+          "type": "material",
+          "settings": {
+            "name": "Cast iron",
+            "image": "shopify://shop_images/okx-pan-castiron-real.jpg",
+            "badge": "High upkeep",
+            "title": "Cast iron pan",
+            "text": "<p>Great for searing, but heavy and dependent on seasoning. Skip a step and it rusts or reacts with acidic dishes.</p>",
+            "stat_1_label": "Releases",
+            "stat_1_value": "Iron & rust",
+            "stat_2_label": "When",
+            "stat_2_value": "Worn seasoning",
+            "stat_3_label": "Risk",
+            "stat_3_value": "Medium",
+            "positive": false,
+            "point_1": "Heavy to handle",
+            "point_2": "Needs regular seasoning",
+            "point_3": "Rusts if left wet"
+          }
+        },
+        "material_4": {
+          "type": "material",
+          "settings": {
+            "name": "Ceramic",
+            "image": "shopify://shop_images/okx-pan-ceramic-real.jpg",
+            "badge": "Short-lived",
+            "title": "Ceramic-coated pan",
+            "text": "<p>A thin ceramic-style layer sits on an aluminium base. It feels slick at first, then gradually loses its release with heat and wear.</p>",
+            "stat_1_label": "Releases",
+            "stat_1_value": "Coating chips",
+            "stat_2_label": "When",
+            "stat_2_value": "After months of use",
+            "stat_3_label": "Risk",
+            "stat_3_value": "Medium",
+            "positive": false,
+            "point_1": "Non-stick fades quickly",
+            "point_2": "Coating can chip",
+            "point_3": "Short lifespan"
+          }
+        },
+        "material_5": {
+          "type": "material",
+          "settings": {
+            "name": "Hybrid",
+            "image": "shopify://shop_images/okx-pan-hybrid-real.jpg",
+            "badge": "Still coated",
+            "title": "Hybrid pan",
+            "text": "<p>A steel pattern laid over a non-stick coating. It looks like bare metal, but you're still cooking on a coating that wears like any other.</p>",
+            "stat_1_label": "Releases",
+            "stat_1_value": "Coating",
+            "stat_2_label": "When",
+            "stat_2_value": "As it wears",
+            "stat_3_label": "Risk",
+            "stat_3_value": "High",
+            "positive": false,
+            "point_1": "Still relies on a coating",
+            "point_2": "Coating wears off",
+            "point_3": "Premium price"
+          }
+        },
+        "material_6": {
+          "type": "material",
+          "settings": {
+            "name": "CookingTitan",
+            "image": "shopify://shop_images/okura-hand-hammered-titanium-pan-01-hero_b39de0b9-8d90-4371-8208-13d68b6c9638.webp",
+            "badge": "Coating-free",
+            "title": "CookingTitan titanium pan",
+            "text": "<p>A hand-hammered titanium cooking surface with no coating at all. Nothing to peel, chip or wear away, whatever the heat or the utensil.</p>",
+            "stat_1_label": "Releases",
+            "stat_1_value": "Nothing",
+            "stat_2_label": "When",
+            "stat_2_value": "Any heat",
+            "stat_3_label": "Risk",
+            "stat_3_value": "None",
+            "positive": true,
+            "point_1": "Titanium cooking surface",
+            "point_2": "No coating to wear off",
+            "point_3": "Metal-utensil friendly"
+          }
+        }
+      },
+      "block_order": [
+        "material_1",
+        "material_2",
+        "material_3",
+        "material_4",
+        "material_5",
+        "material_6"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Your pan matters more than you <em>think</em>",
+        "subheading": "Choose the pan you cook with today and see how it holds up.",
+        "heading_align": "left",
+        "background_color": "#1c1b1a",
+        "accent_color": "",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "ct_steps_main": {
+      "type": "ct-steps",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/okx-chef-gregory-step-1-v2.avif",
+            "title": "Preheat on medium for 1–2 minutes",
+            "text": "Flick in a drop of water. When it beads and dances, the pan is ready."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/okx-chef-gregory-step-2-v2.avif",
+            "title": "Add a thin film of oil",
+            "text": "Wait until it ripples before the food goes in."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/okx-chef-gregory-step-3-v2.webp",
+            "title": "Let the crust form",
+            "text": "Leave it alone. Once it's seared, it lifts off by itself."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "disabled": true,
+      "settings": {
+        "pill_text": "Cooking tip from <strong>our kitchen</strong>",
+        "eyebrow": "",
+        "heading": "How to get the perfect <em>sear</em>",
+        "subheading": "",
+        "heading_align": "center",
+        "background_color": "#201f1e",
+        "accent_color": "",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "ct_showcase_main": {
+      "type": "ct-showcase",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "icon": "shield",
+            "icon_text": "",
+            "title": "Built for decades",
+            "text": "Made to outlast every other pan in your cupboard."
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "icon": "shield",
+            "icon_text": "Ti",
+            "title": "Real titanium surface",
+            "text": "A pure titanium cooking surface, with nothing added."
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "The last pan you'll ever <em>need</em>",
+        "subheading": "Hand-hammered titanium. Nothing to wear off, nothing to replace.",
+        "heading_align": "center",
+        "link_label": "",
+        "link_url": "",
+        "background_color": "#141312",
+        "accent_color": "",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "ct_reviews_main": {
+      "type": "ct-reviews",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/okx-review-michael.webp",
+            "verified_label": "Verified",
+            "stars": 5,
+            "date": "",
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name",
+            "location": ""
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/openart-image_2Ug2lyLB_1774353311898_raw_f4262ff8-b3fa-43e5-be77-30ba1a5056c4.webp",
+            "verified_label": "Verified",
+            "stars": 5,
+            "date": "",
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name",
+            "location": ""
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/openart-image_c7iQmDjt_1774353335121_raw.webp",
+            "verified_label": "Verified",
+            "stars": 5,
+            "date": "",
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name",
+            "location": ""
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Scherm_afbeelding_2026-05-27_om_19.33.36.webp",
+            "verified_label": "Verified",
+            "stars": 5,
+            "date": "",
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name",
+            "location": ""
+          }
+        },
+        "review_5": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Scherm_afbeelding_2026-04-08_om_14.49.01.webp",
+            "verified_label": "Verified",
+            "stars": 5,
+            "date": "",
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name",
+            "location": ""
+          }
+        },
+        "review_6": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Scherm_afbeelding_2026-05-27_om_19-33-10.png",
+            "verified_label": "Verified",
+            "stars": 5,
+            "date": "",
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name",
+            "location": ""
+          }
+        },
+        "review_7": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3037_3c8c968a-87f2-4180-8b68-bba9339a1013.webp",
+            "verified_label": "Verified",
+            "stars": 5,
+            "date": "",
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name",
+            "location": ""
+          }
+        },
+        "review_8": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/image_1776242245_fc1989cf-6caa-4490-8250-fe1b88d37354.webp",
+            "verified_label": "Verified",
+            "stars": 5,
+            "date": "",
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name",
+            "location": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4",
+        "review_5",
+        "review_6",
+        "review_7",
+        "review_8"
+      ],
+      "settings": {
+        "eyebrow": "Loved by home cooks",
+        "heading": "Real kitchens, real <em>reviews</em>",
+        "subheading": "",
+        "heading_align": "left",
+        "show_stats": true,
+        "stat_1_star": true,
+        "stat_1_value": "",
+        "stat_1_label": "Average rating",
+        "stat_2_value": "",
+        "stat_2_label": "Verified reviews",
+        "stat_3_value": "",
+        "stat_3_label": "4–5 star ratings",
+        "background_color": "#262423",
+        "accent_color": "",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "ct_image_cards_main": {
+      "type": "ct-image-cards",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/okx-cook-metal-utensils-v6.webp",
+            "icon": "check_circle",
+            "title": "Metal utensils welcome",
+            "text": "Spatulas, tongs and whisks. There's no coating to scratch."
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/okx-cook-high-heat-v7.webp",
+            "icon": "flame",
+            "title": "Sear on high heat",
+            "text": "Turn it up for a proper crust, with no coating to worry about."
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/okx-cook-dishwasher-v6.webp",
+            "icon": "drop",
+            "title": "Dishwasher friendly",
+            "text": "Done cooking? It can go straight in the dishwasher."
+          }
+        },
+        "card_4": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/okx-cook-one-pan-v2.webp",
+            "icon": "heart",
+            "title": "One pan, every meal",
+            "text": "Eggs, vegetables, fish, steak and full one-pan dinners."
+          }
+        },
+        "card_5": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/okx-cook-oven-v8.webp",
+            "icon": "oven",
+            "title": "Cooktop to oven",
+            "text": "Start on the cooktop, finish in the oven, serve at the table."
+          }
+        },
+        "heat_icon_6": {
+          "type": "heat_icon",
+          "settings": {
+            "icon": "gas_stove",
+            "label": "Gas"
+          }
+        },
+        "heat_icon_7": {
+          "type": "heat_icon",
+          "settings": {
+            "icon": "induction",
+            "label": "Induction"
+          }
+        },
+        "heat_icon_8": {
+          "type": "heat_icon",
+          "settings": {
+            "icon": "electric",
+            "label": "Electric"
+          }
+        },
+        "heat_icon_9": {
+          "type": "heat_icon",
+          "settings": {
+            "icon": "ceramic",
+            "label": "Ceramic"
+          }
+        },
+        "heat_icon_10": {
+          "type": "heat_icon",
+          "settings": {
+            "icon": "oven",
+            "label": "Oven"
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3",
+        "card_4",
+        "card_5",
+        "heat_icon_6",
+        "heat_icon_7",
+        "heat_icon_8",
+        "heat_icon_9",
+        "heat_icon_10"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Cook your way, <em>every</em> day",
+        "subheading": "Titanium that keeps up with how you really cook.",
+        "heading_align": "left",
+        "background_color": "#201f1e",
+        "accent_color": "",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "ct_logos_main": {
+      "type": "ct-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "fallback": "Logo"
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "fallback": "Logo"
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "fallback": "Logo"
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "As featured in",
+        "logo_height": 36,
+        "background_color": "#2a2826",
+        "accent_color": "",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "ct_compare_main": {
+      "type": "ct-compare",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "label": "Coating-free surface",
+            "val_1": "yes",
+            "val_2": "no",
+            "val_3": "yes",
+            "val_4": "yes",
+            "val_5": "no",
+            "val_6": "no"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "label": "High-heat safe",
+            "val_1": "yes",
+            "val_2": "no",
+            "val_3": "yes",
+            "val_4": "yes",
+            "val_5": "no",
+            "val_6": "no"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "label": "Easy to clean",
+            "val_1": "yes",
+            "val_2": "yes",
+            "val_3": "no",
+            "val_4": "no",
+            "val_5": "yes",
+            "val_6": "yes"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "label": "Warp-resistant",
+            "val_1": "yes",
+            "val_2": "no",
+            "val_3": "yes",
+            "val_4": "yes",
+            "val_5": "no",
+            "val_6": "no"
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "label": "Dishwasher safe",
+            "val_1": "yes",
+            "val_2": "no",
+            "val_3": "yes",
+            "val_4": "no",
+            "val_5": "no",
+            "val_6": "no"
+          }
+        },
+        "row_6": {
+          "type": "row",
+          "settings": {
+            "label": "Metal-utensil safe",
+            "val_1": "yes",
+            "val_2": "no",
+            "val_3": "yes",
+            "val_4": "yes",
+            "val_5": "no",
+            "val_6": "no"
+          }
+        },
+        "row_7": {
+          "type": "row",
+          "settings": {
+            "label": "Low maintenance",
+            "val_1": "yes",
+            "val_2": "yes",
+            "val_3": "no",
+            "val_4": "no",
+            "val_5": "yes",
+            "val_6": "yes"
+          }
+        },
+        "row_8": {
+          "type": "row",
+          "settings": {
+            "label": "Weight",
+            "val_1": "Light",
+            "val_2": "Light",
+            "val_3": "Medium",
+            "val_4": "Heavy",
+            "val_5": "Medium",
+            "val_6": "Light"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5",
+        "row_6",
+        "row_7",
+        "row_8"
+      ],
+      "settings": {
+        "eyebrow": "Why titanium?",
+        "heading": "How titanium <em>compares</em>",
+        "subheading": "Cleaner, tougher and easier to live with, without giving up performance.",
+        "heading_align": "center",
+        "col_1": "CookingTitan",
+        "col_2": "Non-stick",
+        "col_3": "Steel",
+        "col_4": "Cast iron",
+        "col_5": "Hybrid",
+        "col_6": "Ceramic",
+        "footnote": "<p>Every CookingTitan pan comes with <strong>30-day returns</strong>.</p>",
+        "background_color": "#201f1e",
+        "accent_color": "",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "ct_cross_sell_main": {
+      "type": "ct-cross-sell",
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_3": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_3"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Complete your <em>order</em>",
+        "subheading": "",
+        "heading_align": "left",
+        "button_label": "Add",
+        "save_label": "Save",
+        "background_color": "#262423",
+        "accent_color": "",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "ct_research_main": {
+      "type": "ct-research",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "title": "No coating",
+            "text": "nothing sits between your food and the metal."
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "title": "Corrosion-resistant",
+            "text": "it won't rust or react with acidic dishes."
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "title": "Built to last",
+            "text": "a cooking surface that stays the same, meal after meal."
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3"
+      ],
+      "settings": {
+        "pill": "Why titanium",
+        "pill_icon": "leaf",
+        "eyebrow": "",
+        "heading": "Why titanium makes <em>sense</em> in the kitchen",
+        "subheading": "Titanium is strong, light and resistant to corrosion. Here's what that means when you cook.",
+        "heading_align": "center",
+        "footnote": "",
+        "button_label": "",
+        "button_url": "",
+        "text_color": "#1a1410",
+        "muted_color": "#57534e",
+        "background_color": "#f5f0eb",
+        "accent_color": "",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "ct_instagram_main": {
+      "type": "ct-instagram",
+      "blocks": {
+        "post_1": {
+          "type": "post",
+          "settings": {
+            "link": ""
+          }
+        },
+        "post_2": {
+          "type": "post",
+          "settings": {
+            "link": ""
+          }
+        },
+        "post_3": {
+          "type": "post",
+          "settings": {
+            "link": ""
+          }
+        },
+        "post_4": {
+          "type": "post",
+          "settings": {
+            "link": ""
+          }
+        },
+        "post_5": {
+          "type": "post",
+          "settings": {
+            "link": ""
+          }
+        },
+        "post_6": {
+          "type": "post",
+          "settings": {
+            "link": ""
+          }
+        },
+        "post_7": {
+          "type": "post",
+          "settings": {
+            "link": ""
+          }
+        },
+        "post_8": {
+          "type": "post",
+          "settings": {
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "post_1",
+        "post_2",
+        "post_3",
+        "post_4",
+        "post_5",
+        "post_6",
+        "post_7",
+        "post_8"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Follow us",
+        "name": "cookingtitan",
+        "verified": false,
+        "bio": "Titanium cookware for everyday cooks. Share your dishes with #CookingTitan.",
+        "stat_1_value": "",
+        "stat_1_label": "Posts",
+        "stat_2_value": "",
+        "stat_2_label": "Followers",
+        "stat_3_value": "",
+        "stat_3_label": "Following",
+        "button_label": "Follow us on Instagram",
+        "button_url": "",
+        "background_color": "#262423",
+        "accent_color": "",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "ct_faq_main": {
+      "type": "ct-faq",
+      "blocks": {
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "How is CookingTitan different from a regular non-stick pan?",
+            "answer": "<p>Regular non-stick pans rely on a synthetic coating that wears out. CookingTitan pans have a titanium cooking surface with no coating, so there's nothing to peel or flake off.</p>"
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "question": "Is titanium safe to cook with?",
+            "answer": "<p>Titanium is a very stable metal that doesn't react with food. Our pans are made without PFAS or PTFE coatings.</p>"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use metal utensils?",
+            "answer": "<p>Yes. The hammered titanium surface handles metal spatulas, tongs and whisks.</p>"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "Which heat sources does it work on?",
+            "answer": "<p>Gas, electric, ceramic, induction and the oven.</p>"
+          }
+        },
+        "question_5": {
+          "type": "question",
+          "settings": {
+            "question": "Is it dishwasher safe?",
+            "answer": "<p>Yes. A quick wash with warm soapy water is usually all it needs, though.</p>"
+          }
+        },
+        "question_6": {
+          "type": "question",
+          "settings": {
+            "question": "Which size should I choose?",
+            "answer": "<p>26 cm for 1 person, 28 cm for 1–2 people and 30 cm for 2–3 people. Each size comes with or without a glass lid.</p>"
+          }
+        },
+        "question_7": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery to Australia take?",
+            "answer": "<p>Orders ship within 24 hours and shipping across Australia is free. Your delivery estimate is shown at checkout.</p>"
+          }
+        },
+        "question_8": {
+          "type": "question",
+          "settings": {
+            "question": "What is your returns policy?",
+            "answer": "<p>You have 30 days to return your pan. Get in touch and we'll walk you through it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_1",
+        "question_2",
+        "question_3",
+        "question_4",
+        "question_5",
+        "question_6",
+        "question_7",
+        "question_8"
+      ],
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "Your questions, <em>answered</em>",
+        "subheading": "Everything you need to know about cooking with titanium.",
+        "heading_align": "center",
+        "contact_text": "Still have questions?",
+        "contact_link_label": "Contact us",
+        "contact_url": "",
+        "background_color": "#1c1b1a",
+        "accent_color": "",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "ct_final_cta_main": {
+      "type": "ct-final-cta",
+      "settings": {
+        "eyebrow": "Ready to upgrade?",
+        "heading": "Make the switch to <em>titanium</em>",
+        "subheading": "Swap worn-out coated pans for one that's built to last.",
+        "heading_align": "left",
+        "feature_1_icon": "truck",
+        "feature_1_text": "Free shipping in Australia",
+        "feature_2_icon": "return",
+        "feature_2_text": "30-day returns",
+        "feature_3_icon": "lock",
+        "feature_3_text": "Secure checkout",
+        "feature_4_icon": "shield",
+        "feature_4_text": "Coating-free titanium",
+        "button_label": "Choose your pan",
+        "button_url": "",
+        "note": "Free shipping · 30-day returns · Secure checkout",
+        "show_product": true,
+        "product_eyebrow": "You're viewing",
+        "rating_text": "",
+        "save_label": "Save",
+        "tags": "Titanium surface, PFAS-free, Induction ready",
+        "background_color": "#201f1e",
+        "accent_color": "",
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "testimonials_44W6N3": {
@@ -1984,6 +2922,70 @@
         "anchor_id": ""
       }
     },
+    "ct_newsletter_main": {
+      "type": "ct-newsletter",
+      "settings": {
+        "pill": "Newsletter",
+        "eyebrow": "",
+        "heading": "Stay in the <em>loop</em>",
+        "subheading": "New releases, recipes and members-only offers, straight to your inbox.",
+        "heading_align": "center",
+        "placeholder": "Your email address",
+        "button_label": "Subscribe",
+        "success_text": "Thanks! You're on the list.",
+        "point_1": "First access to new releases",
+        "point_2": "Recipes and cooking tips",
+        "point_3": "No spam, unsubscribe anytime",
+        "legal": "<p>By subscribing you agree to our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>",
+        "background_color": "#201f1e",
+        "accent_color": "",
+        "padding_top": 48,
+        "padding_bottom": 56
+      }
+    },
+    "sticky_add_to_cart_NJqgUd": {
+      "type": "sticky-add-to-cart",
+      "settings": {
+        "trigger_behavior": "atc_button",
+        "scroll_percentage_trigger": 25,
+        "select_button_behavior": "scroll_to_section",
+        "show_section_numbers": false,
+        "scroll_offset": 120,
+        "scroll_to_percentage": 50,
+        "button_link": "",
+        "button_text": "SHOP NOW",
+        "satc_toggle_variant": false,
+        "delivery_days": 5,
+        "title_color": "#f5f4f3",
+        "title_desktop_font_size": 16,
+        "title_letter_spacing": 0,
+        "rating_text": "Excellent 4.9 | 1,422",
+        "use_theme_colors": false,
+        "use_global_button_styling": false,
+        "custom_button_padding_y": 15,
+        "custom_button_font_size": 15,
+        "button_bg_color": "#c8956a",
+        "button_hover_color": "#d6a77c",
+        "button_text_color": "#201f1e",
+        "star_color": "#444444",
+        "background_color": "#201f1e",
+        "border_radius": 6,
+        "transparent_background": true,
+        "z_index": 9900,
+        "rating_text_color": "#bdbcbb",
+        "rating_text_font_weight": "var(--font-weight-regular)",
+        "rating_text_desktop_font_size": 14,
+        "rating_text_letter_spacing": 0,
+        "delivery_text_color": "#1d3a1d",
+        "delivery_text_font_weight": "var(--font-weight-bold)",
+        "delivery_text_desktop_font_size": 14,
+        "delivery_text_mobile_font_size": 12,
+        "delivery_text_letter_spacing": 0,
+        "delivery_date_display_format": "weekday_month_day",
+        "turn_off_delivery_date": true,
+        "delivery_text_prefix": "Get It By"
+      }
+    },
     "as_seen_in_logos_byrbEG": {
       "type": "as-seen-in-logos",
       "blocks": {
@@ -2100,6 +3102,7 @@
         "logo_FiCD8A",
         "logo_jDcENP"
       ],
+      "disabled": true,
       "name": "As Seen In Logos",
       "settings": {
         "use_theme_colors": false,
@@ -2133,878 +3136,6 @@
         "mobile_logo_height": 30,
         "mobile_gap": 20
       }
-    },
-    "ct_video_reviews_main": {
-      "type": "ct-video-reviews",
-      "settings": {
-        "eyebrow": "From our customers' kitchens",
-        "heading_align": "left",
-        "background_color": "#201f1e",
-        "padding_top": 40,
-        "padding_bottom": 40
-      },
-      "blocks": {
-        "video_1": {
-          "type": "video",
-          "settings": {}
-        },
-        "video_2": {
-          "type": "video",
-          "settings": {}
-        },
-        "video_3": {
-          "type": "video",
-          "settings": {}
-        },
-        "video_4": {
-          "type": "video",
-          "settings": {}
-        },
-        "video_5": {
-          "type": "video",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "video_1",
-        "video_2",
-        "video_3",
-        "video_4",
-        "video_5"
-      ]
-    },
-    "ct_materials_main": {
-      "type": "ct-materials",
-      "settings": {
-        "heading": "Your pan matters more than you <em>think</em>",
-        "subheading": "Choose the pan you cook with today and see how it holds up.",
-        "heading_align": "left",
-        "background_color": "#1c1b1a",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
-      "blocks": {
-        "material_1": {
-          "type": "material",
-          "settings": {
-            "name": "Non-stick",
-            "badge": "Coated",
-            "title": "Standard non-stick pan",
-            "text": "<p>A synthetic coating does all the non-stick work. Overheating and metal utensils wear it down, and once it's scratched it keeps breaking down over time.</p>",
-            "stat_1_label": "Releases",
-            "stat_1_value": "Coating",
-            "stat_2_label": "When",
-            "stat_2_value": "High heat or scratches",
-            "stat_3_label": "Risk",
-            "stat_3_value": "High",
-            "positive": false,
-            "point_1": "Synthetic coating",
-            "point_2": "Sensitive to high heat",
-            "point_3": "Replaced every few years"
-          }
-        },
-        "material_2": {
-          "type": "material",
-          "settings": {
-            "name": "Stainless steel",
-            "badge": "Sticky",
-            "title": "Stainless steel pan",
-            "text": "<p>Tough and coating-free, but food grips the surface unless you master heat and oil. Long simmers of acidic sauces can also react with the metal.</p>",
-            "stat_1_label": "Releases",
-            "stat_1_value": "Metal traces",
-            "stat_2_label": "When",
-            "stat_2_value": "Acidic, long cooks",
-            "stat_3_label": "Risk",
-            "stat_3_value": "Medium",
-            "positive": false,
-            "point_1": "Food sticks easily",
-            "point_2": "Takes practice",
-            "point_3": "Reacts with acidic food"
-          }
-        },
-        "material_3": {
-          "type": "material",
-          "settings": {
-            "name": "Cast iron",
-            "badge": "High upkeep",
-            "title": "Cast iron pan",
-            "text": "<p>Great for searing, but heavy and dependent on seasoning. Skip a step and it rusts or reacts with acidic dishes.</p>",
-            "stat_1_label": "Releases",
-            "stat_1_value": "Iron & rust",
-            "stat_2_label": "When",
-            "stat_2_value": "Worn seasoning",
-            "stat_3_label": "Risk",
-            "stat_3_value": "Medium",
-            "positive": false,
-            "point_1": "Heavy to handle",
-            "point_2": "Needs regular seasoning",
-            "point_3": "Rusts if left wet"
-          }
-        },
-        "material_4": {
-          "type": "material",
-          "settings": {
-            "name": "Ceramic",
-            "badge": "Short-lived",
-            "title": "Ceramic-coated pan",
-            "text": "<p>A thin ceramic-style layer sits on an aluminium base. It feels slick at first, then gradually loses its release with heat and wear.</p>",
-            "stat_1_label": "Releases",
-            "stat_1_value": "Coating chips",
-            "stat_2_label": "When",
-            "stat_2_value": "After months of use",
-            "stat_3_label": "Risk",
-            "stat_3_value": "Medium",
-            "positive": false,
-            "point_1": "Non-stick fades quickly",
-            "point_2": "Coating can chip",
-            "point_3": "Short lifespan"
-          }
-        },
-        "material_5": {
-          "type": "material",
-          "settings": {
-            "name": "Hybrid",
-            "badge": "Still coated",
-            "title": "Hybrid pan",
-            "text": "<p>A steel pattern laid over a non-stick coating. It looks like bare metal, but you're still cooking on a coating that wears like any other.</p>",
-            "stat_1_label": "Releases",
-            "stat_1_value": "Coating",
-            "stat_2_label": "When",
-            "stat_2_value": "As it wears",
-            "stat_3_label": "Risk",
-            "stat_3_value": "High",
-            "positive": false,
-            "point_1": "Still relies on a coating",
-            "point_2": "Coating wears off",
-            "point_3": "Premium price"
-          }
-        },
-        "material_6": {
-          "type": "material",
-          "settings": {
-            "name": "CookingTitan",
-            "badge": "Coating-free",
-            "title": "CookingTitan titanium pan",
-            "text": "<p>A hand-hammered titanium cooking surface with no coating at all. Nothing to peel, chip or wear away, whatever the heat or the utensil.</p>",
-            "stat_1_label": "Releases",
-            "stat_1_value": "Nothing",
-            "stat_2_label": "When",
-            "stat_2_value": "Any heat",
-            "stat_3_label": "Risk",
-            "stat_3_value": "None",
-            "positive": true,
-            "point_1": "Titanium cooking surface",
-            "point_2": "No coating to wear off",
-            "point_3": "Metal-utensil friendly"
-          }
-        }
-      },
-      "block_order": [
-        "material_1",
-        "material_2",
-        "material_3",
-        "material_4",
-        "material_5",
-        "material_6"
-      ]
-    },
-    "ct_steps_main": {
-      "type": "ct-steps",
-      "settings": {
-        "pill_text": "Cooking tip from <strong>our kitchen</strong>",
-        "heading": "How to get the perfect <em>sear</em>",
-        "heading_align": "center",
-        "background_color": "#201f1e",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
-      "blocks": {
-        "step_1": {
-          "type": "step",
-          "settings": {
-            "title": "Preheat on medium for 1–2 minutes",
-            "text": "Flick in a drop of water. When it beads and dances, the pan is ready."
-          }
-        },
-        "step_2": {
-          "type": "step",
-          "settings": {
-            "title": "Add a thin film of oil",
-            "text": "Wait until it ripples before the food goes in."
-          }
-        },
-        "step_3": {
-          "type": "step",
-          "settings": {
-            "title": "Let the crust form",
-            "text": "Leave it alone. Once it's seared, it lifts off by itself."
-          }
-        }
-      },
-      "block_order": [
-        "step_1",
-        "step_2",
-        "step_3"
-      ]
-    },
-    "ct_showcase_main": {
-      "type": "ct-showcase",
-      "settings": {
-        "heading": "The last pan you'll ever <em>need</em>",
-        "subheading": "Hand-hammered titanium. Nothing to wear off, nothing to replace.",
-        "heading_align": "center",
-        "background_color": "#141312",
-        "padding_top": 56,
-        "padding_bottom": 56,
-        "link_label": ""
-      },
-      "blocks": {
-        "card_1": {
-          "type": "card",
-          "settings": {
-            "icon": "shield",
-            "title": "Built for decades",
-            "text": "Made to outlast every other pan in your cupboard."
-          }
-        },
-        "card_2": {
-          "type": "card",
-          "settings": {
-            "icon": "shield",
-            "title": "Real titanium surface",
-            "text": "A pure titanium cooking surface, with nothing added.",
-            "icon_text": "Ti"
-          }
-        }
-      },
-      "block_order": [
-        "card_1",
-        "card_2"
-      ]
-    },
-    "ct_reviews_main": {
-      "type": "ct-reviews",
-      "settings": {
-        "eyebrow": "Loved by home cooks",
-        "heading": "Real kitchens, real <em>reviews</em>",
-        "heading_align": "left",
-        "show_stats": true,
-        "stat_1_star": true,
-        "stat_1_label": "Average rating",
-        "stat_2_label": "Verified reviews",
-        "stat_3_label": "4–5 star ratings",
-        "background_color": "#262423",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
-      "blocks": {
-        "review_1": {
-          "type": "review",
-          "settings": {
-            "verified_label": "Verified",
-            "stars": 5,
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name"
-          }
-        },
-        "review_2": {
-          "type": "review",
-          "settings": {
-            "verified_label": "Verified",
-            "stars": 5,
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name"
-          }
-        },
-        "review_3": {
-          "type": "review",
-          "settings": {
-            "verified_label": "Verified",
-            "stars": 5,
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name"
-          }
-        },
-        "review_4": {
-          "type": "review",
-          "settings": {
-            "verified_label": "Verified",
-            "stars": 5,
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name"
-          }
-        },
-        "review_5": {
-          "type": "review",
-          "settings": {
-            "verified_label": "Verified",
-            "stars": 5,
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name"
-          }
-        },
-        "review_6": {
-          "type": "review",
-          "settings": {
-            "verified_label": "Verified",
-            "stars": 5,
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name"
-          }
-        },
-        "review_7": {
-          "type": "review",
-          "settings": {
-            "verified_label": "Verified",
-            "stars": 5,
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name"
-          }
-        },
-        "review_8": {
-          "type": "review",
-          "settings": {
-            "verified_label": "Verified",
-            "stars": 5,
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name"
-          }
-        }
-      },
-      "block_order": [
-        "review_1",
-        "review_2",
-        "review_3",
-        "review_4",
-        "review_5",
-        "review_6",
-        "review_7",
-        "review_8"
-      ]
-    },
-    "ct_image_cards_main": {
-      "type": "ct-image-cards",
-      "settings": {
-        "heading": "Cook your way, <em>every</em> day",
-        "subheading": "Titanium that keeps up with how you really cook.",
-        "heading_align": "left",
-        "background_color": "#201f1e",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
-      "blocks": {
-        "card_1": {
-          "type": "card",
-          "settings": {
-            "icon": "check_circle",
-            "title": "Metal utensils welcome",
-            "text": "Spatulas, tongs and whisks. There's no coating to scratch."
-          }
-        },
-        "card_2": {
-          "type": "card",
-          "settings": {
-            "icon": "flame",
-            "title": "Sear on high heat",
-            "text": "Turn it up for a proper crust, with no coating to worry about."
-          }
-        },
-        "card_3": {
-          "type": "card",
-          "settings": {
-            "icon": "drop",
-            "title": "Dishwasher friendly",
-            "text": "Done cooking? It can go straight in the dishwasher."
-          }
-        },
-        "card_4": {
-          "type": "card",
-          "settings": {
-            "icon": "heart",
-            "title": "One pan, every meal",
-            "text": "Eggs, vegetables, fish, steak and full one-pan dinners."
-          }
-        },
-        "card_5": {
-          "type": "card",
-          "settings": {
-            "icon": "oven",
-            "title": "Cooktop to oven",
-            "text": "Start on the cooktop, finish in the oven, serve at the table."
-          }
-        },
-        "heat_icon_6": {
-          "type": "heat_icon",
-          "settings": {
-            "icon": "gas_stove",
-            "label": "Gas"
-          }
-        },
-        "heat_icon_7": {
-          "type": "heat_icon",
-          "settings": {
-            "icon": "induction",
-            "label": "Induction"
-          }
-        },
-        "heat_icon_8": {
-          "type": "heat_icon",
-          "settings": {
-            "icon": "electric",
-            "label": "Electric"
-          }
-        },
-        "heat_icon_9": {
-          "type": "heat_icon",
-          "settings": {
-            "icon": "ceramic",
-            "label": "Ceramic"
-          }
-        },
-        "heat_icon_10": {
-          "type": "heat_icon",
-          "settings": {
-            "icon": "oven",
-            "label": "Oven"
-          }
-        }
-      },
-      "block_order": [
-        "card_1",
-        "card_2",
-        "card_3",
-        "card_4",
-        "card_5",
-        "heat_icon_6",
-        "heat_icon_7",
-        "heat_icon_8",
-        "heat_icon_9",
-        "heat_icon_10"
-      ]
-    },
-    "ct_compare_main": {
-      "type": "ct-compare",
-      "settings": {
-        "eyebrow": "Why titanium?",
-        "heading": "How titanium <em>compares</em>",
-        "subheading": "Cleaner, tougher and easier to live with, without giving up performance.",
-        "heading_align": "center",
-        "col_1": "CookingTitan",
-        "col_2": "Non-stick",
-        "col_3": "Steel",
-        "col_4": "Cast iron",
-        "col_5": "Hybrid",
-        "footnote": "<p>Every CookingTitan pan comes with <strong>30-day returns</strong>.</p>",
-        "background_color": "#201f1e",
-        "padding_top": 56,
-        "padding_bottom": 56,
-        "col_6": "Ceramic"
-      },
-      "blocks": {
-        "row_1": {
-          "type": "row",
-          "settings": {
-            "label": "Coating-free surface",
-            "val_1": "yes",
-            "val_2": "no",
-            "val_3": "yes",
-            "val_4": "yes",
-            "val_5": "no",
-            "val_6": "no"
-          }
-        },
-        "row_2": {
-          "type": "row",
-          "settings": {
-            "label": "High-heat safe",
-            "val_1": "yes",
-            "val_2": "no",
-            "val_3": "yes",
-            "val_4": "yes",
-            "val_5": "no",
-            "val_6": "no"
-          }
-        },
-        "row_3": {
-          "type": "row",
-          "settings": {
-            "label": "Easy to clean",
-            "val_1": "yes",
-            "val_2": "yes",
-            "val_3": "no",
-            "val_4": "no",
-            "val_5": "yes",
-            "val_6": "yes"
-          }
-        },
-        "row_4": {
-          "type": "row",
-          "settings": {
-            "label": "Warp-resistant",
-            "val_1": "yes",
-            "val_2": "no",
-            "val_3": "yes",
-            "val_4": "yes",
-            "val_5": "no",
-            "val_6": "no"
-          }
-        },
-        "row_5": {
-          "type": "row",
-          "settings": {
-            "label": "Dishwasher safe",
-            "val_1": "yes",
-            "val_2": "no",
-            "val_3": "yes",
-            "val_4": "no",
-            "val_5": "no",
-            "val_6": "no"
-          }
-        },
-        "row_6": {
-          "type": "row",
-          "settings": {
-            "label": "Metal-utensil safe",
-            "val_1": "yes",
-            "val_2": "no",
-            "val_3": "yes",
-            "val_4": "yes",
-            "val_5": "no",
-            "val_6": "no"
-          }
-        },
-        "row_7": {
-          "type": "row",
-          "settings": {
-            "label": "Low maintenance",
-            "val_1": "yes",
-            "val_2": "yes",
-            "val_3": "no",
-            "val_4": "no",
-            "val_5": "yes",
-            "val_6": "yes"
-          }
-        },
-        "row_8": {
-          "type": "row",
-          "settings": {
-            "label": "Weight",
-            "val_1": "Light",
-            "val_2": "Light",
-            "val_3": "Medium",
-            "val_4": "Heavy",
-            "val_5": "Medium",
-            "val_6": "Light"
-          }
-        }
-      },
-      "block_order": [
-        "row_1",
-        "row_2",
-        "row_3",
-        "row_4",
-        "row_5",
-        "row_6",
-        "row_7",
-        "row_8"
-      ]
-    },
-    "ct_cross_sell_main": {
-      "type": "ct-cross-sell",
-      "settings": {
-        "heading": "Complete your <em>order</em>",
-        "heading_align": "left",
-        "button_label": "Add",
-        "save_label": "Save",
-        "background_color": "#262423",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
-      "blocks": {
-        "product_1": {
-          "type": "product",
-          "settings": {}
-        },
-        "product_2": {
-          "type": "product",
-          "settings": {}
-        },
-        "product_3": {
-          "type": "product",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "product_1",
-        "product_2",
-        "product_3"
-      ]
-    },
-    "ct_research_main": {
-      "type": "ct-research",
-      "settings": {
-        "pill": "Why titanium",
-        "pill_icon": "leaf",
-        "heading": "Why titanium makes <em>sense</em> in the kitchen",
-        "subheading": "Titanium is strong, light and resistant to corrosion. Here's what that means when you cook.",
-        "heading_align": "center",
-        "button_label": "",
-        "text_color": "#1a1410",
-        "muted_color": "#57534e",
-        "background_color": "#f5f0eb",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
-      "blocks": {
-        "point_1": {
-          "type": "point",
-          "settings": {
-            "title": "No coating",
-            "text": "nothing sits between your food and the metal."
-          }
-        },
-        "point_2": {
-          "type": "point",
-          "settings": {
-            "title": "Corrosion-resistant",
-            "text": "it won't rust or react with acidic dishes."
-          }
-        },
-        "point_3": {
-          "type": "point",
-          "settings": {
-            "title": "Built to last",
-            "text": "a cooking surface that stays the same, meal after meal."
-          }
-        }
-      },
-      "block_order": [
-        "point_1",
-        "point_2",
-        "point_3"
-      ]
-    },
-    "ct_faq_main": {
-      "type": "ct-faq",
-      "settings": {
-        "eyebrow": "FAQ",
-        "heading": "Your questions, <em>answered</em>",
-        "subheading": "Everything you need to know about cooking with titanium.",
-        "heading_align": "center",
-        "contact_text": "Still have questions?",
-        "contact_link_label": "Contact us",
-        "background_color": "#1c1b1a",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
-      "blocks": {
-        "question_1": {
-          "type": "question",
-          "settings": {
-            "question": "How is CookingTitan different from a regular non-stick pan?",
-            "answer": "<p>Regular non-stick pans rely on a synthetic coating that wears out. CookingTitan pans have a titanium cooking surface with no coating, so there's nothing to peel or flake off.</p>"
-          }
-        },
-        "question_2": {
-          "type": "question",
-          "settings": {
-            "question": "Is titanium safe to cook with?",
-            "answer": "<p>Titanium is a very stable metal that doesn't react with food. Our pans are made without PFAS or PTFE coatings.</p>"
-          }
-        },
-        "question_3": {
-          "type": "question",
-          "settings": {
-            "question": "Can I use metal utensils?",
-            "answer": "<p>Yes. The hammered titanium surface handles metal spatulas, tongs and whisks.</p>"
-          }
-        },
-        "question_4": {
-          "type": "question",
-          "settings": {
-            "question": "Which heat sources does it work on?",
-            "answer": "<p>Gas, electric, ceramic, induction and the oven.</p>"
-          }
-        },
-        "question_5": {
-          "type": "question",
-          "settings": {
-            "question": "Is it dishwasher safe?",
-            "answer": "<p>Yes. A quick wash with warm soapy water is usually all it needs, though.</p>"
-          }
-        },
-        "question_6": {
-          "type": "question",
-          "settings": {
-            "question": "Which size should I choose?",
-            "answer": "<p>26 cm for 1 person, 28 cm for 1–2 people and 30 cm for 2–3 people. Each size comes with or without a glass lid.</p>"
-          }
-        },
-        "question_7": {
-          "type": "question",
-          "settings": {
-            "question": "How long does delivery to Australia take?",
-            "answer": "<p>Orders ship within 24 hours and shipping across Australia is free. Your delivery estimate is shown at checkout.</p>"
-          }
-        },
-        "question_8": {
-          "type": "question",
-          "settings": {
-            "question": "What is your returns policy?",
-            "answer": "<p>You have 30 days to return your pan. Get in touch and we'll walk you through it.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "question_1",
-        "question_2",
-        "question_3",
-        "question_4",
-        "question_5",
-        "question_6",
-        "question_7",
-        "question_8"
-      ]
-    },
-    "ct_final_cta_main": {
-      "type": "ct-final-cta",
-      "settings": {
-        "eyebrow": "Ready to upgrade?",
-        "heading": "Make the switch to <em>titanium</em>",
-        "subheading": "Swap worn-out coated pans for one that's built to last.",
-        "heading_align": "left",
-        "feature_1_icon": "truck",
-        "feature_1_text": "Free shipping in Australia",
-        "feature_2_icon": "return",
-        "feature_2_text": "30-day returns",
-        "feature_3_icon": "lock",
-        "feature_3_text": "Secure checkout",
-        "feature_4_icon": "shield",
-        "feature_4_text": "Coating-free titanium",
-        "button_label": "Choose your pan",
-        "note": "Free shipping · 30-day returns · Secure checkout",
-        "show_product": true,
-        "product_eyebrow": "You're viewing",
-        "save_label": "Save",
-        "tags": "Titanium surface, PFAS-free, Induction ready",
-        "background_color": "#201f1e",
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
-    "ct_logos_main": {
-      "type": "ct-logos",
-      "settings": {
-        "eyebrow": "As featured in",
-        "logo_height": 36,
-        "background_color": "#2a2826",
-        "padding_top": 28,
-        "padding_bottom": 28
-      },
-      "blocks": {
-        "logo_1": {
-          "type": "logo",
-          "settings": {
-            "fallback": "Logo"
-          }
-        },
-        "logo_2": {
-          "type": "logo",
-          "settings": {
-            "fallback": "Logo"
-          }
-        },
-        "logo_3": {
-          "type": "logo",
-          "settings": {
-            "fallback": "Logo"
-          }
-        }
-      },
-      "block_order": [
-        "logo_1",
-        "logo_2",
-        "logo_3"
-      ]
-    },
-    "ct_instagram_main": {
-      "type": "ct-instagram",
-      "settings": {
-        "eyebrow": "Follow us",
-        "name": "cookingtitan",
-        "verified": false,
-        "bio": "Titanium cookware for everyday cooks. Share your dishes with #CookingTitan.",
-        "stat_1_label": "Posts",
-        "stat_2_label": "Followers",
-        "stat_3_label": "Following",
-        "button_label": "Follow us on Instagram",
-        "background_color": "#262423",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
-      "blocks": {
-        "post_1": {
-          "type": "post",
-          "settings": {}
-        },
-        "post_2": {
-          "type": "post",
-          "settings": {}
-        },
-        "post_3": {
-          "type": "post",
-          "settings": {}
-        },
-        "post_4": {
-          "type": "post",
-          "settings": {}
-        },
-        "post_5": {
-          "type": "post",
-          "settings": {}
-        },
-        "post_6": {
-          "type": "post",
-          "settings": {}
-        },
-        "post_7": {
-          "type": "post",
-          "settings": {}
-        },
-        "post_8": {
-          "type": "post",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "post_1",
-        "post_2",
-        "post_3",
-        "post_4",
-        "post_5",
-        "post_6",
-        "post_7",
-        "post_8"
-      ]
-    },
-    "ct_newsletter_main": {
-      "type": "ct-newsletter",
-      "settings": {
-        "pill": "Newsletter",
-        "heading": "Stay in the <em>loop</em>",
-        "subheading": "New releases, recipes and members-only offers, straight to your inbox.",
-        "heading_align": "center",
-        "placeholder": "Your email address",
-        "button_label": "Subscribe",
-        "success_text": "Thanks! You're on the list.",
-        "point_1": "First access to new releases",
-        "point_2": "Recipes and cooking tips",
-        "point_3": "No spam, unsubscribe anytime",
-        "legal": "<p>By subscribing you agree to our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>",
-        "background_color": "#201f1e",
-        "padding_top": 48,
-        "padding_bottom": 56
-      }
     }
   },
   "order": [
@@ -3022,9 +3153,9 @@
     "ct_instagram_main",
     "ct_faq_main",
     "ct_final_cta_main",
+    "testimonials_44W6N3",
     "ct_newsletter_main",
     "sticky_add_to_cart_NJqgUd",
-    "testimonials_44W6N3",
     "as_seen_in_logos_byrbEG"
   ]
 }
