@@ -3,8 +3,20 @@
 <section class="ct-sec ct-show">
   <div class="ct-wrap">
     {% render 'ct-head', s: s %}
-    <div class="ct-show__media">
-      {%- if s.image != blank -%}{{ s.image | image_url: width: 1400 | image_tag: class: 'ct-img', loading: 'lazy', sizes: '100vw' }}{%- else -%}<div class="ct-ph">{{ "image" | placeholder_svg_tag }}</div>{%- endif -%}
+    <div class="ct-show__media{% if s.media_ratio != blank %} ct-show__media--{{ s.media_ratio }}{% endif %}">
+      {%- if s.video != blank -%}
+        {%- if s.video_autoplay -%}
+          {{ s.video | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, controls: false, preload: 'metadata', class: 'ct-img ct-show__video', image_size: '1400x' }}
+        {%- else -%}
+          {{ s.video | video_tag: controls: true, playsinline: true, preload: 'metadata', class: 'ct-img ct-show__video', image_size: '1400x' }}
+        {%- endif -%}
+      {%- elsif s.video_url != blank -%}
+        {%- if s.video_autoplay -%}
+          {{ s.video_url | external_video_url: autoplay: 1, mute: 1, loop: 1, playsinline: 1, controls: 0 | external_video_tag: class: 'ct-show__embed' }}
+        {%- else -%}
+          {{ s.video_url | external_video_tag: class: 'ct-show__embed' }}
+        {%- endif -%}
+      {%- elsif s.image != blank -%}{{ s.image | image_url: width: 1400 | image_tag: class: 'ct-img', loading: 'lazy', sizes: '100vw' }}{%- else -%}<div class="ct-ph">{{ "image" | placeholder_svg_tag }}</div>{%- endif -%}
     </div>
     {%- if section.blocks.size > 0 -%}
       <div class="ct-show__cards">
@@ -23,6 +35,12 @@
 <style>
   .ct-show__media { aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: radial-gradient(circle at 50% 40%, #2a2722, #0f0e0d); }
   @media (min-width: 750px) { .ct-show__media { aspect-ratio: 16 / 9; } }
+  .ct-show__media--square { aspect-ratio: 1 / 1 !important; }
+  .ct-show__media--landscape { aspect-ratio: 16 / 9 !important; }
+  .ct-show__media--portrait { aspect-ratio: 4 / 5 !important; }
+  .ct-show__media { position: relative; }
+  .ct-show__video { object-fit: cover; }
+  .ct-show__embed { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .ct-show__cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 12px; }
   .ct-show__card { padding: 18px 12px; text-align: center; background: #1a1917; }
   .ct-show__icon { width: 40px; height: 40px; margin: 0 auto 10px; border-radius: 8px; border: 1px solid rgba(200,149,108,.4); background: rgba(200,149,108,.1); color: var(--ct-copper); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading-family); }
@@ -81,12 +99,58 @@
     },
     {
       "type": "header",
-      "content": "Visuel"
+      "content": "Visuel (image ou vidéo)"
     },
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image principale"
+      "label": "Image principale",
+      "info": "Affichée si aucune vidéo n'est choisie (et comme aperçu)"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Vidéo (hébergée sur Shopify)",
+      "info": "Remplace l'image si elle est renseignée"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Ou vidéo YouTube / Vimeo",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Lecture automatique en boucle (sans son)",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "media_ratio",
+      "label": "Format du visuel",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Automatique (portrait mobile, paysage ordinateur)"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait 4:5"
+        },
+        {
+          "value": "square",
+          "label": "Carré"
+        },
+        {
+          "value": "landscape",
+          "label": "Paysage 16:9"
+        }
+      ],
+      "default": "auto"
     },
     {
       "type": "header",

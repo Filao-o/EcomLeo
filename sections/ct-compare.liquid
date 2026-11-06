@@ -7,6 +7,7 @@
     {% render 'ct-head', s: s %}
     <div class="ct-cmp__scroll">
       <table class="ct-cmp__table" style="--cmp-cols: {{ ncols }};">
+        <colgroup><col class="c-lbl"><col class="c-brand">{%- for i in (2..ncols) -%}<col>{%- endfor -%}</colgroup>
         <thead><tr><th></th>
           {%- for i in (1..ncols) -%}{%- assign k = 'col_' | append: i -%}<th class="{% if i == 1 %}is-hl{% endif %}">{% if i == 1 %}<span class="ct-cmp__brand">{{ s[k] }}</span>{% else %}{{ s[k] }}{% endif %}</th>{%- endfor -%}
         </tr></thead>
@@ -31,24 +32,44 @@
   </div>
 </section>
 <style>
+  /* Ordinateur : colonnes larges, défilement si besoin */
   .ct-cmp__scroll { overflow-x: auto; margin: 0 calc(var(--ct-gutter) * -1); padding: 0 var(--ct-gutter); scrollbar-width: none; }
-  .ct-cmp__table { width: 100%; min-width: calc(110px + var(--cmp-cols) * 58px); border-collapse: separate; border-spacing: 4px 0; font-size: 12px; }
-  .ct-cmp__table th { padding: 14px 4px; font-weight: 600; font-size: 10.5px; color: var(--ct-text); background: rgba(255,255,255,.03); border-radius: 8px 8px 0 0; }
-  .ct-cmp__table td { padding: 12px 4px; text-align: center; background: rgba(255,255,255,.03); border-top: 1px solid var(--ct-border); }
+  .ct-cmp__scroll::-webkit-scrollbar { display: none; }
+  .ct-cmp__table { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 8px 0; font-size: 13px; }
+  .ct-cmp__table col.c-lbl { width: 22%; } .ct-cmp__table col.c-brand { width: 15%; }
+  .ct-cmp__table th { padding: 14px 6px; font-weight: 600; font-size: 12px; line-height: 1.2; color: var(--ct-text); background: rgba(255,255,255,.03); border-radius: 8px 8px 0 0; overflow-wrap: normal; word-break: normal; hyphens: none; }
+  .ct-cmp__table td { height: 54px; padding: 8px 6px; text-align: center; vertical-align: middle; background: rgba(255,255,255,.03); border-top: 1px solid var(--ct-border); }
   .ct-cmp__table th:first-child, .ct-cmp__table td.ct-cmp__label { background: none; text-align: left; padding-left: 0; }
-  .ct-cmp__label { color: var(--ct-text); font-size: 12.5px; line-height: 1.3; width: 110px; }
+  .ct-cmp__label { color: var(--ct-text); font-size: 14px; font-weight: 500; line-height: 1.3; }
   .ct-cmp__table .is-hl { background: rgba(200,149,108,.1); border-left: 1px solid rgba(200,149,108,.45); border-right: 1px solid rgba(200,149,108,.45); }
   .ct-cmp__table th.is-hl { border-top: 1px solid rgba(200,149,108,.45); }
   .ct-cmp__table tr:last-child td.is-hl { border-bottom: 1px solid rgba(200,149,108,.45); border-radius: 0 0 8px 8px; }
-  .ct-cmp__brand { font-family: var(--font-heading-family); font-size: 13px; font-weight: 400; letter-spacing: .06em; }
+  .ct-cmp__brand { font-family: var(--font-heading-family); font-size: 15px; font-weight: 400; letter-spacing: .04em; }
   .ct-cmp__tick { color: var(--ct-text); display: inline-flex; }
-  .ct-cmp__tick svg { width: 12px; height: 12px; }
+  .ct-cmp__tick svg { width: 13px; height: 13px; }
   .ct-cmp__table .ct-check, .ct-cmp__table .ct-x { margin: 0 auto; }
-  .ct-cmp__txt { color: var(--ct-muted); font-size: 11px; }
+  .ct-cmp__txt { color: var(--ct-muted); font-size: 12px; line-height: 1.2; }
   .is-hl .ct-cmp__txt { color: var(--ct-copper); font-weight: 600; }
-  .ct-cmp__note { display: flex; gap: 10px; align-items: flex-start; justify-content: center; margin-top: 20px; color: var(--ct-muted); font-size: 13.5px; text-align: center; }
+  .ct-cmp__note { display: flex; gap: 10px; align-items: flex-start; justify-content: center; margin-top: 28px; color: var(--ct-muted); font-size: 14px; text-align: center; }
   .ct-cmp__note .pdp-icon { flex: none; width: 18px; height: 18px; color: var(--ct-copper); }
   .ct-cmp__note p { margin: 0; } .ct-cmp__note strong { color: var(--ct-copper); }
+
+  /* Mobile : tout tient dans la largeur de l'écran, sans défilement */
+  @media (max-width: 749px) {
+    .ct-cmp__scroll { overflow: visible; margin: 0; padding: 0; }
+    .ct-cmp__table { border-spacing: 3px 0; font-size: 10px; }
+    .ct-cmp__table col.c-lbl { width: 27%; } .ct-cmp__table col.c-brand { width: 16%; }
+    .ct-cmp__table th { padding: 8px 0; font-size: 8.5px; letter-spacing: -.01em; }
+    .ct-cmp__table td { height: 42px; padding: 4px 1px; }
+    .ct-cmp__label { font-size: 11px; line-height: 1.25; padding-right: 4px !important; }
+    .ct-cmp__brand { display: block; font-size: 8.5px; letter-spacing: -.02em; white-space: nowrap; line-height: 1.15; }
+    .ct-cmp__table col.c-brand { width: 17%; }
+    .ct-cmp__table .ct-check { width: 18px; height: 18px; } .ct-cmp__table .ct-check svg { width: 9px; height: 9px; }
+    .ct-cmp__table .ct-x { width: 15px; height: 15px; } .ct-cmp__table .ct-x svg { width: 6px; height: 6px; }
+    .ct-cmp__tick svg { width: 10px; height: 10px; }
+    .ct-cmp__txt { font-size: 9.5px; line-height: 1.15; }
+    .ct-cmp__note { font-size: 12.5px; margin-top: 22px; }
+  }
 </style>
 
 {% schema %}
