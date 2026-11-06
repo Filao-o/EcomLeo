@@ -1,0 +1,205 @@
+{
+  "sections": {
+    "hero": {
+      "type": "ct-page-hero",
+      "settings": {
+        "eyebrow": "Support",
+        "heading": "How can we <em>help</em>?",
+        "subheading": "Answers to the most common questions about your pan, shipping, returns and more.",
+        "heading_align": "center",
+        "background_color": "#201f1e",
+        "padding_top": 56,
+        "padding_bottom": 24
+      }
+    },
+    "faq": {
+      "type": "ct-faq-page",
+      "blocks": {
+        "cat_1": {
+          "type": "category",
+          "settings": {
+            "title": "General"
+          }
+        },
+        "q_1_1": {
+          "type": "question",
+          "settings": {
+            "question": "Who is CookingTitan made for?",
+            "answer": "<p>For anyone who loves to cook with care: from home cooks preparing everyday meals to food lovers who enjoy experimenting in the kitchen. Our pan is designed to make cooking easier, more consistent and more enjoyable, day after day.</p>"
+          }
+        },
+        "q_1_2": {
+          "type": "question",
+          "settings": {
+            "question": "What is CookingTitan exactly?",
+            "answer": "<p>CookingTitan makes titanium cookware for everyday use. Each pan pairs a clean design with smart function: even heat, more control while you cook and reliable performance over time, whatever your level in the kitchen.</p>"
+          }
+        },
+        "q_1_3": {
+          "type": "question",
+          "settings": {
+            "question": "Which payment methods do you accept?",
+            "answer": "<p>We accept all major credit and debit cards and PayPal. Depending on your device, express options such as Apple Pay or Google Pay may also appear at checkout. Every payment is encrypted and processed securely.</p>"
+          }
+        },
+        "cat_2": {
+          "type": "category",
+          "settings": {
+            "title": "Product"
+          }
+        },
+        "q_2_1": {
+          "type": "question",
+          "settings": {
+            "question": "How is it different from a regular non-stick pan?",
+            "answer": "<p>Traditional non-stick pans rely on chemical coatings like PTFE (Teflon). Our pan is made from solid titanium: the surface is naturally non-stick and actually gets better with use. No chemicals, no coating, no compromise.</p>"
+          }
+        },
+        "q_2_2": {
+          "type": "question",
+          "settings": {
+            "question": "Is it really safe to cook with?",
+            "answer": "<p>Absolutely. Titanium is biocompatible and is even used in medical implants. There are zero chemicals, no PFAS, no PFOA and no synthetic coating. Just pure titanium.</p>"
+          }
+        },
+        "q_2_3": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use metal utensils?",
+            "answer": "<p>Yes. Titanium is extremely durable and scratch-resistant, so you can use metal spatulas, spoons and whisks without damaging the surface.</p>"
+          }
+        },
+        "q_2_4": {
+          "type": "question",
+          "settings": {
+            "question": "Which cooktops does it work on?",
+            "answer": "<p>All of them: induction, gas, electric, ceramic and halogen. The pan is also oven-safe up to 260°C. The glass lid is oven-safe up to 180°C.</p>"
+          }
+        },
+        "q_2_5": {
+          "type": "question",
+          "settings": {
+            "question": "Where can I find my eBook?",
+            "answer": "<p>Every pan order comes with our free eBook, <em>The Titanium Book: Your First 30 Days</em>. You'll find the download link in your order confirmation email. Can't find it? Check your spam folder or email us and we'll send it again.</p>"
+          }
+        },
+        "cat_3": {
+          "type": "category",
+          "settings": {
+            "title": "Care & Guarantees"
+          }
+        },
+        "q_3_1": {
+          "type": "question",
+          "settings": {
+            "question": "Is it dishwasher safe?",
+            "answer": "<p>Technically yes, but we recommend washing by hand with warm, soapy water for the best long-term results. The natural patina that builds up over time improves the non-stick performance.</p>"
+          }
+        },
+        "q_3_2": {
+          "type": "question",
+          "settings": {
+            "question": "What if my order arrives damaged?",
+            "answer": "<p>Email us at <a href=\"mailto:support@cookingtitan.com\">support@cookingtitan.com</a> with your order number and clear photos of the damaged item and its packaging. Once we've reviewed them, we'll send you a replacement.</p>"
+          }
+        },
+        "q_3_3": {
+          "type": "question",
+          "settings": {
+            "question": "Is my pan covered by a guarantee?",
+            "answer": "<p>Yes. Our products come with guarantees that cannot be excluded under the Australian Consumer Law. You are entitled to a replacement or refund for a major failure, and to have the product repaired or replaced if it fails to be of acceptable quality and the failure does not amount to a major failure.</p>"
+          }
+        },
+        "q_3_4": {
+          "type": "question",
+          "settings": {
+            "question": "How can I contact you?",
+            "answer": "<p>Email our team at <a href=\"mailto:support@cookingtitan.com\">support@cookingtitan.com</a> or use our <a href=\"/pages/contact\">contact form</a>. We reply within 24 hours.</p>"
+          }
+        },
+        "cat_4": {
+          "type": "category",
+          "settings": {
+            "title": "Shipping & Returns"
+          }
+        },
+        "q_4_1": {
+          "type": "question",
+          "settings": {
+            "question": "Where do you ship?",
+            "answer": "<p>We currently ship within Australia only.</p>"
+          }
+        },
+        "q_4_2": {
+          "type": "question",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Orders are dispatched within 24 hours and usually arrive within 7 to 12 business days. Shipping is free on every pan order.</p>"
+          }
+        },
+        "q_4_3": {
+          "type": "question",
+          "settings": {
+            "question": "How do I track my order?",
+            "answer": "<p>As soon as your order ships, we'll email you a tracking number and a link to follow your parcel all the way to your door.</p>"
+          }
+        },
+        "q_4_4": {
+          "type": "question",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>You have 30 days from delivery to return your order. Items must be unused and in their original packaging. Return shipping costs are paid by the customer.</p>"
+          }
+        },
+        "q_4_5": {
+          "type": "question",
+          "settings": {
+            "question": "How do I start a return?",
+            "answer": "<p>Email us at <a href=\"mailto:support@cookingtitan.com\">support@cookingtitan.com</a> with your order number and we'll send you the return instructions.</p>"
+          }
+        },
+        "q_4_6": {
+          "type": "question",
+          "settings": {
+            "question": "How long does a refund take?",
+            "answer": "<p>Once your return arrives, we inspect it and process your refund within 14 days, to your original payment method.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "cat_1",
+        "q_1_1",
+        "q_1_2",
+        "q_1_3",
+        "cat_2",
+        "q_2_1",
+        "q_2_2",
+        "q_2_3",
+        "q_2_4",
+        "q_2_5",
+        "cat_3",
+        "q_3_1",
+        "q_3_2",
+        "q_3_3",
+        "q_3_4",
+        "cat_4",
+        "q_4_1",
+        "q_4_2",
+        "q_4_3",
+        "q_4_4",
+        "q_4_5",
+        "q_4_6"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "subheading": "",
+        "contact_url": "/pages/contact"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "faq"
+  ]
+}
