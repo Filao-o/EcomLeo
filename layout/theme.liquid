@@ -230,6 +230,12 @@
     </script>
 
     {{ content_for_header }}
+    {%- if template.name == 'product' and settings.ct_redirect_other_products and settings.ct_main_product != blank and request.design_mode == false -%}
+      {%- if product.handle != settings.ct_main_product.handle -%}
+        <meta name="robots" content="noindex">
+        <script>window.location.replace({{ settings.ct_main_product.url | json }});</script>
+      {%- endif -%}
+    {%- endif -%}
 
     {% comment %} Theme Variables {% endcomment %}
     {% render 'theme-variables', is_rtl_locale: is_rtl_locale %}
