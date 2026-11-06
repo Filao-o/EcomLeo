@@ -60,3 +60,10 @@
   border: 1px solid var(--ct-border); background: rgba(255,255,255,.03); font-size: 13px; color: var(--ct-text);
 }
 .ct-pill img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+
+/* Titres des sections : blanc à 92 % (prioritaire sur les couleurs du thème) */
+.ct-sec .ct-h2,
+.ct-sec h2.ct-h2,
+.ct-sec h3,
+.ct-faq__item summary { color: rgba(255, 255, 255, .92) !important; }
+.ct-res .ct-h2, .ct-res h3 { color: var(--ct-text) !important; }
