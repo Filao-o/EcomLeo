@@ -17,58 +17,25 @@
         "menu_column_1": {
           "type": "menu_column",
           "settings": {
-            "heading": "Products",
-            "menu": ""
+            "heading": "Company",
+            "menu": "footer"
           }
         },
         "menu_column_2": {
           "type": "menu_column",
           "settings": {
-            "heading": "Company",
-            "menu": ""
-          }
-        },
-        "custom_links_1": {
-          "type": "custom_links",
-          "settings": {
-            "heading": "Support",
-            "link_1_text": "Help Center",
-            "link_1_url": "/pages/help",
-            "link_2_text": "Track Your Order",
-            "link_2_url": "/account/login",
-            "link_3_text": "Contact Us",
-            "link_3_url": "/pages/contact",
-            "link_4_text": "FAQs",
-            "link_4_url": "/pages/faq",
-            "link_5_text": "Shipping Info",
-            "link_5_url": "/pages/shipping",
-            "link_6_text": "Returns",
-            "link_6_url": "/pages/returns"
-          }
-        },
-        "social_column_1": {
-          "type": "social_column",
-          "settings": {
-            "heading": "Follow Us",
-            "icon_color": "#ffffff",
-            "icon_hover_color": "#cccccc",
-            "icon_size": 24,
-            "icon_spacing": 16,
-            "heading_color": "",
-            "heading_font_size": 16,
-            "heading_margin_bottom": 12
+            "heading": "Links",
+            "menu": "main-menu"
           }
         }
       },
       "block_order": [
         "menu_column_1",
-        "menu_column_2",
-        "custom_links_1",
-        "social_column_1"
+        "menu_column_2"
       ],
       "settings": {
         "use_theme_colors": false,
-        "show_newsletter": true,
+        "show_newsletter": false,
         "newsletter_title": "Subscribe to our emails",
         "newsletter_title_alignment": "center",
         "newsletter_title_color": "",
@@ -88,7 +55,7 @@
         "logo_description": "",
         "brand_description": "",
         "footer_columns": "4",
-        "mobile_columns": "2",
+        "mobile_columns": "1",
         "show_footer_bottom": true,
         "copyright_text": "",
         "show_payment_icons": true,
