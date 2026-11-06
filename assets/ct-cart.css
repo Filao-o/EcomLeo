@@ -1,0 +1,79 @@
+/* CookingTitan : tiroir panier (modification de la poêle + upsells) */
+.ct-ce { margin-top: 8px; display: grid; gap: 8px; max-width: 240px; }
+.ct-ce.is-loading { opacity: .5; pointer-events: none; }
+.ct-ce__row { display: flex; align-items: center; gap: 10px; margin: 0; }
+.ct-ce__label { font-size: 12px; color: rgba(255,255,255,.62); min-width: 30px; }
+.ct-ce__select-wrap { position: relative; flex: 1; display: block; }
+.ct-ce__select-wrap::after {
+  content: ""; position: absolute; right: 10px; top: 50%; width: 6px; height: 6px; margin-top: -5px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg);
+  color: rgba(255,255,255,.7); pointer-events: none;
+}
+.ct-ce__size, .ct-cu__select {
+  -webkit-appearance: none; appearance: none; width: 100%; min-height: 32px; padding: 5px 28px 5px 10px; margin: 0;
+  background: #1a1918; color: #fff; border: 1px solid #3a3836; border-radius: 6px;
+  font: inherit; font-size: 12.5px; cursor: pointer; color-scheme: dark;
+}
+.ct-ce__size option, .ct-cu__select option { background: #1a1918; color: #fff; }
+.ct-ce__size:focus-visible, .ct-cu__select:focus-visible { outline: 1px solid #c8956c; outline-offset: 1px; }
+.ct-ce__lid { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 12.5px; color: rgba(255,255,255,.88); cursor: pointer; }
+.ct-ce__lid strong { color: #c8956c; font-weight: 600; }
+.ct-ce__lid-input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.ct-ce__box {
+  flex: none; width: 18px; height: 18px; border-radius: 4px; border: 1px solid #c8956c; color: transparent;
+  display: inline-flex; align-items: center; justify-content: center; transition: background .15s;
+}
+.ct-ce__box svg { width: 11px; height: 11px; }
+.ct-ce__lid-input:checked + .ct-ce__box { background: #c8956c; color: #1a1410; }
+.ct-ce__lid-input:focus-visible + .ct-ce__box { outline: 1px solid #c8956c; outline-offset: 2px; }
+.ct-ce__has-lid { margin: 0; font-size: 12px; color: rgba(255,255,255,.62); }
+
+/* Upsells */
+.ct-cu { margin: 6px 0 16px; padding: 16px 14px 6px; background: #232120; border: 1px solid #34312e; border-radius: 12px; }
+.ct-cu__heading {
+  display: flex; align-items: center; gap: 8px; margin: 0 0 6px; color: #c8956c;
+  font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+}
+.ct-cu__list { list-style: none; margin: 0; padding: 0; }
+.ct-cu__item { display: grid; grid-template-columns: 58px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; }
+.ct-cu__item + .ct-cu__item { border-top: 1px solid #34312e; }
+.ct-cu__media { width: 58px; height: 58px; border-radius: 8px; overflow: hidden; background: #2b2927; }
+.ct-cu__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ct-cu__info { min-width: 0; display: grid; gap: 4px; }
+.ct-cu__title { margin: 0; color: #fff; font-size: 13.5px; font-weight: 600; line-height: 1.3; }
+.ct-cu__sub { margin: 0; color: rgba(255,255,255,.55); font-size: 11.5px; line-height: 1.35; }
+.ct-cu__select-wrap { max-width: 100%; }
+.ct-cu__price { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; font-size: 13px; }
+.ct-cu__now { color: #c8956c; font-weight: 600; }
+.ct-cu__was { color: rgba(255,255,255,.4); font-size: 11.5px; }
+.ct-cu__off { color: #4cc38a; font-size: 11px; font-weight: 600; }
+.ct-cu__add {
+  min-width: 64px; padding: 11px 14px; border: 0; border-radius: 6px; cursor: pointer;
+  background: linear-gradient(135deg, #c8956c, #a67c52); color: #1a1410;
+  font: inherit; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+}
+.ct-cu__add.is-loading { opacity: .55; pointer-events: none; }
+
+/* Habillage sombre du tiroir */
+cart-drawer .drawer__heading { font-family: var(--font-heading-family); font-weight: 400; }
+cart-drawer span.cart-item__name { text-decoration: none; cursor: default; }
+cart-drawer #CartDrawer-Checkout { background: linear-gradient(135deg, #c8956c, #a67c52) !important; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
+
+/* Priorité sur les styles du tiroir du thème */
+cart-drawer .ct-cu .ct-cu__heading, .ct-cu .ct-cu__heading { color: #c8956c !important; }
+cart-drawer .ct-cu .ct-cu__title { color: #ffffff !important; }
+cart-drawer .ct-cu .ct-cu__sub { color: rgba(255,255,255,.55) !important; }
+cart-drawer .ct-cu .ct-cu__now { color: #c8956c !important; }
+cart-drawer .ct-cu .ct-cu__was { color: rgba(255,255,255,.4) !important; }
+cart-drawer .ct-cu .ct-cu__off { color: #4cc38a !important; }
+cart-drawer .ct-cu .ct-cu__media { background: #2b2927 !important; }
+cart-drawer .ct-ce .ct-ce__box { color: #1a1410 !important; background: transparent !important; }
+cart-drawer .ct-ce .ct-ce__box svg { opacity: 0; transition: opacity .15s; }
+cart-drawer .ct-ce .ct-ce__lid-input:checked + .ct-ce__box { background: #c8956c !important; }
+cart-drawer .ct-ce .ct-ce__lid-input:checked + .ct-ce__box svg { opacity: 1; }
+cart-drawer .ct-ce .ct-ce__label, cart-drawer .ct-ce .ct-ce__has-lid { color: rgba(255,255,255,.62) !important; }
+cart-drawer .ct-ce .ct-ce__lid span { color: rgba(255,255,255,.88) !important; }
+cart-drawer .ct-ce .ct-ce__lid strong { color: #c8956c !important; }
+cart-drawer span.cart-item__name { color: #ffffff !important; }
+cart-drawer .drawer__footer .totals__total-value { color: #ffffff !important; font-weight: 600; font-size: 18px; }
+cart-drawer .drawer__footer .total_count { color: rgba(255,255,255,.8) !important; }

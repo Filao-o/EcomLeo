@@ -152,6 +152,8 @@
   {% endif %}
 {% endfor %}
 
+{{ 'ct-cart.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ct-cart.js' | asset_url }}" defer></script>
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}{% if section.settings.cart_customization_mode %} customization-mode{% endif %}">
   <div id="CartDrawer" class="gb-cart-drawer-lb cart-drawer">
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
@@ -481,6 +483,12 @@
                 </button>
               </div>
             {%- endif -%}
+          {%- endif -%}
+
+          {%- if cart != empty -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'ct_upsells' -%}{% render 'ct-cart-upsells', block: block %}{%- endif -%}
+            {%- endfor -%}
           {%- endif -%}
         </div>
       </cart-drawer-items>
@@ -1720,6 +1728,25 @@
           ],
           "default": "solid"
         }
+      ]
+    },
+    {
+      "type": "ct_upsells",
+      "name": "⭐ Upsells (carte)",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Titre", "default": "Complete your kitchen" },
+        { "type": "product", "id": "required_product", "label": "Afficher seulement si ce produit est au panier" },
+        { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Add" },
+        { "type": "paragraph", "content": "Un produit déjà au panier, épuisé ou à 0 $ n'est pas affiché." },
+        { "type": "product", "id": "product_1", "label": "Produit 1" },
+        { "type": "text", "id": "subtitle_1", "label": "Sous-titre 1" },
+        { "type": "product", "id": "product_2", "label": "Produit 2" },
+        { "type": "text", "id": "subtitle_2", "label": "Sous-titre 2" },
+        { "type": "product", "id": "product_3", "label": "Produit 3" },
+        { "type": "text", "id": "subtitle_3", "label": "Sous-titre 3" },
+        { "type": "product", "id": "product_4", "label": "Produit 4" },
+        { "type": "text", "id": "subtitle_4", "label": "Sous-titre 4" }
       ]
     },
     {

@@ -1,6 +1,9 @@
 /* ==========================================================================
    Sections « ct- » (page produit) : base commune
    ========================================================================== */
+/* Variables partagées aussi par le hero (hors .ct-sec) */
+.ct-hero { --ct-copper: #c8956c; --ct-text: #ffffff; }
+.ct-hero h1.ct-hero__title { color: #f5f0eb !important; }
 .ct-sec {
   --ct-copper: #c8956c; --ct-text: #ffffff; --ct-muted: rgba(255,255,255,.62);
   --ct-card: #262423; --ct-border: #36332f; --ct-gutter: 20px;

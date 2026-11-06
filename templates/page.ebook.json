@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "ebook": {
+      "type": "ct-ebook",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "text": "The first-use ritual for a perfect start"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "text": "Master the heat: the 3-minute rule & which oil to use"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "text": "11 easy recipes, from breakfast to one-pan dinners"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "text": "Cleaning in 60 seconds, plus do's & don'ts"
+          }
+        },
+        "point_5": {
+          "type": "point",
+          "settings": {
+            "text": "Your 7-day titanium challenge"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4",
+        "point_5"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "ebook"
+  ]
+}

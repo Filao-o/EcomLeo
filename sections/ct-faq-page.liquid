@@ -1,0 +1,214 @@
+{%- comment -%}
+  Page FAQ : onglets de catégories, recherche, accordéons, bloc « Still need help? ».
+  Blocs « Catégorie » puis « Question » : chaque question appartient à la catégorie qui la précède.
+{%- endcomment -%}
+{% render 'ct-sec-open', section: section %}
+{%- assign s = section.settings -%}
+<section class="ct-sec ct-fp" data-ct-fp>
+  <div class="ct-wrap ct-fp__wrap">
+    {% render 'ct-head', s: s %}
+
+    <div class="ct-fp__search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input type="search" class="ct-fp__input" placeholder="{{ s.search_placeholder | escape }}" aria-label="{{ s.search_placeholder | escape }}">
+    </div>
+
+    <div class="ct-fp__tabs" role="tablist">
+      <button type="button" class="ct-fp__tab is-active" data-cat="all" role="tab" aria-selected="true">{{ s.all_label }}</button>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'category' -%}
+          <button type="button" class="ct-fp__tab" data-cat="{{ block.id }}" role="tab" aria-selected="false">{{ block.settings.title }}</button>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="ct-fp__groups">
+      {%- assign open_group = false -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'category' -%}
+          {%- if open_group -%}</div></div>{%- endif -%}
+          <div class="ct-fp__group" data-cat="{{ block.id }}" {{ block.shopify_attributes }}>
+            <h2 class="ct-fp__cat">{{ block.settings.title }}</h2>
+            <div class="ct-fp__list">
+          {%- assign open_group = true -%}
+        {%- else -%}
+          {%- unless open_group -%}
+            <div class="ct-fp__group" data-cat="none"><div class="ct-fp__list">
+            {%- assign open_group = true -%}
+          {%- endunless -%}
+          <details class="ct-fp__item" {{ block.shopify_attributes }}>
+            <summary><span>{{ block.settings.question }}</span><span class="ct-fp__plus" aria-hidden="true"></span></summary>
+            <div class="ct-fp__answer">{{ block.settings.answer }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if open_group -%}</div></div>{%- endif -%}
+      <p class="ct-fp__empty" hidden>{{ s.empty_text }}</p>
+    </div>
+
+    {%- if s.contact_text != blank -%}
+      <p class="ct-fp__more">{{ s.contact_text }} <a href="{{ s.contact_url | default: '/pages/contact' }}">{{ s.contact_link_label }} →</a></p>
+    {%- endif -%}
+
+    {%- if s.help_heading != blank -%}
+      <div class="ct-fp__help">
+        {%- if s.help_eyebrow != blank -%}<p class="ct-eyebrow">{{ s.help_eyebrow }}</p>{%- endif -%}
+        <h2 class="ct-h2 ct-fp__help-title">{{ s.help_heading }}</h2>
+        {%- if s.help_text != blank -%}<p class="ct-fp__help-text">{{ s.help_text }}</p>{%- endif -%}
+        <div class="ct-fp__cards">
+          {%- if s.email != blank -%}
+            <a class="ct-fp__card" href="mailto:{{ s.email }}">
+              <span class="ct-fp__icon">{% render 'pdp-icon', icon: 'mail' %}</span>
+              <span class="ct-fp__card-title">{{ s.email_title }}</span>
+              <span class="ct-fp__card-text">{{ s.email_text }}</span>
+              <span class="ct-fp__card-link">{{ s.email }}</span>
+            </a>
+          {%- endif -%}
+          {%- if s.form_title != blank -%}
+            <a class="ct-fp__card" href="{{ s.contact_url | default: '/pages/contact' }}">
+              <span class="ct-fp__icon">{% render 'pdp-icon', icon: 'chat' %}</span>
+              <span class="ct-fp__card-title">{{ s.form_title }}</span>
+              <span class="ct-fp__card-text">{{ s.form_text }}</span>
+              <span class="ct-fp__card-link">{{ s.form_link_label }} →</span>
+            </a>
+          {%- endif -%}
+        </div>
+        {%- if s.response_note != blank -%}<p class="ct-fp__note">{{ s.response_note }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .ct-fp__wrap { max-width: 800px; }
+  #shopify-section-{{ section.id }} .ct-fp__search { position: relative; margin: 0 0 18px; color: rgba(255,255,255,.5); }
+  #shopify-section-{{ section.id }} .ct-fp__search svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); }
+  #shopify-section-{{ section.id }} .ct-fp__input { width: 100%; padding: 15px 16px 15px 46px; background: var(--ct-card); border: 1px solid var(--ct-border); border-radius: 10px; color: #fff; font: inherit; font-size: 15px; -webkit-appearance: none; appearance: none; }
+  #shopify-section-{{ section.id }} .ct-fp__input::placeholder { color: rgba(255,255,255,.45); }
+  #shopify-section-{{ section.id }} .ct-fp__input:focus { outline: none; border-color: var(--ct-copper); }
+  #shopify-section-{{ section.id }} .ct-fp__tabs { display: flex; gap: 8px; overflow-x: auto; margin: 0 calc(var(--ct-gutter) * -1) 26px; padding: 0 var(--ct-gutter) 4px; scrollbar-width: none; }
+  #shopify-section-{{ section.id }} .ct-fp__tabs::-webkit-scrollbar { display: none; }
+  #shopify-section-{{ section.id }} .ct-fp__tab { flex: none; padding: 9px 16px; border-radius: 100px; border: 1px solid var(--ct-border); background: transparent; color: rgba(255,255,255,.8); font: inherit; font-size: 13px; cursor: pointer; white-space: nowrap; }
+  #shopify-section-{{ section.id }} .ct-fp__tab.is-active { background: var(--ct-copper); border-color: var(--ct-copper); color: #1a1410; font-weight: 600; }
+  #shopify-section-{{ section.id }} .ct-fp__group { margin-bottom: 30px; }
+  #shopify-section-{{ section.id }} .ct-fp__group[hidden] { display: none; }
+  #shopify-section-{{ section.id }} .ct-fp__cat { margin: 0 0 6px; color: var(--ct-copper); font-family: var(--font-accent-family, var(--font-body-family)); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+  #shopify-section-{{ section.id }} .ct-fp__list { border-top: 1px solid var(--ct-border); }
+  #shopify-section-{{ section.id }} .ct-fp__item { border-bottom: 1px solid var(--ct-border); }
+  #shopify-section-{{ section.id }} .ct-fp__item[hidden] { display: none; }
+  #shopify-section-{{ section.id }} .ct-fp__item summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 19px 0; cursor: pointer; list-style: none; font-size: 15.5px; color: rgba(255,255,255,.92); line-height: 1.4; }
+  #shopify-section-{{ section.id }} .ct-fp__item summary::-webkit-details-marker { display: none; }
+  #shopify-section-{{ section.id }} .ct-fp__plus { flex: none; position: relative; width: 26px; height: 26px; border-radius: 50%; background: rgba(200,149,108,.12); }
+  #shopify-section-{{ section.id }} .ct-fp__plus::before, #shopify-section-{{ section.id }} .ct-fp__plus::after { content: ''; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; background: var(--ct-copper); transform: translate(-50%, -50%); transition: transform .2s; }
+  #shopify-section-{{ section.id }} .ct-fp__plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+  #shopify-section-{{ section.id }} .ct-fp__item[open] .ct-fp__plus::after { transform: translate(-50%, -50%) rotate(0); }
+  #shopify-section-{{ section.id }} .ct-fp__answer { padding: 0 0 20px; color: rgba(255,255,255,.72); font-size: 14.5px; line-height: 1.65; }
+  #shopify-section-{{ section.id }} .ct-fp__answer p { margin: 0 0 8px; }
+  #shopify-section-{{ section.id }} .ct-fp__answer a { color: var(--ct-copper); }
+  #shopify-section-{{ section.id }} .ct-fp__empty { text-align: center; color: var(--ct-muted); padding: 20px 0; }
+  #shopify-section-{{ section.id }} .ct-fp__more { text-align: center; margin: 4px 0 0; color: var(--ct-muted); font-size: 14px; }
+  #shopify-section-{{ section.id }} .ct-fp__more a, #shopify-section-{{ section.id }} .ct-fp__card-link { color: var(--ct-copper); font-weight: 600; text-decoration: none; }
+  #shopify-section-{{ section.id }} .ct-fp__help { margin-top: 64px; text-align: center; }
+  #shopify-section-{{ section.id }} .ct-fp__help-title { margin: 0 0 10px; }
+  #shopify-section-{{ section.id }} .ct-fp__help-text { margin: 0 auto 26px; max-width: 520px; color: rgba(255,255,255,.72); font-size: 15px; line-height: 1.6; }
+  #shopify-section-{{ section.id }} .ct-fp__cards { display: grid; gap: 14px; }
+  #shopify-section-{{ section.id }} .ct-fp__card { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 26px 20px; background: var(--ct-card); border: 1px solid var(--ct-border); border-radius: 12px; text-decoration: none; transition: border-color .2s; }
+  #shopify-section-{{ section.id }} .ct-fp__card:hover { border-color: var(--ct-copper); }
+  #shopify-section-{{ section.id }} .ct-fp__icon { width: 46px; height: 46px; margin-bottom: 6px; border-radius: 50%; background: rgba(200,149,108,.12); color: var(--ct-copper); display: inline-flex; align-items: center; justify-content: center; }
+  #shopify-section-{{ section.id }} .ct-fp__icon svg { width: 20px; height: 20px; }
+  #shopify-section-{{ section.id }} .ct-fp__card-title { color: #fff; font-size: 16px; font-weight: 600; }
+  #shopify-section-{{ section.id }} .ct-fp__card-text { color: rgba(255,255,255,.65); font-size: 14px; line-height: 1.5; }
+  #shopify-section-{{ section.id }} .ct-fp__note { margin: 18px 0 0; color: var(--ct-muted); font-size: 13px; }
+  #shopify-section-{{ section.id }} .ct-fp .ct-fp__card-title { color: #ffffff !important; }
+  #shopify-section-{{ section.id }} .ct-fp .ct-fp__card-text { color: rgba(255,255,255,.65) !important; }
+  #shopify-section-{{ section.id }} .ct-fp h2.ct-fp__cat { color: var(--ct-copper) !important; font-family: var(--font-body-family) !important; }
+  @media (min-width: 750px) {
+    #shopify-section-{{ section.id }} .ct-fp__cards { grid-template-columns: 1fr 1fr; }
+    #shopify-section-{{ section.id }} .ct-fp__tabs { justify-content: center; margin-left: 0; margin-right: 0; padding: 0; }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.querySelector('#shopify-section-{{ section.id }} [data-ct-fp]');
+    if (!root) return;
+    var tabs = root.querySelectorAll('.ct-fp__tab');
+    var groups = root.querySelectorAll('.ct-fp__group');
+    var input = root.querySelector('.ct-fp__input');
+    var empty = root.querySelector('.ct-fp__empty');
+    var current = 'all';
+    function apply() {
+      var q = (input.value || '').trim().toLowerCase();
+      var shown = 0;
+      groups.forEach(function (g) {
+        var inCat = current === 'all' || g.dataset.cat === current;
+        var visible = 0;
+        g.querySelectorAll('.ct-fp__item').forEach(function (it) {
+          var match = !q || it.textContent.toLowerCase().indexOf(q) !== -1;
+          it.hidden = !(inCat && match);
+          if (!it.hidden) visible++;
+          if (q && match && inCat) it.open = true;
+        });
+        g.hidden = visible === 0;
+        shown += visible;
+      });
+      empty.hidden = shown !== 0;
+    }
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        tabs.forEach(function (x) { x.classList.remove('is-active'); x.setAttribute('aria-selected', 'false'); });
+        t.classList.add('is-active'); t.setAttribute('aria-selected', 'true');
+        current = t.dataset.cat;
+        apply();
+      });
+    });
+    input.addEventListener('input', apply);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "⭐ FAQ (page complète)",
+  "tag": "section",
+  "class": "ct-section",
+  "enabled_on": { "templates": ["page"] },
+  "settings": [
+    { "type": "header", "content": "En-tête" },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "FAQ" },
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "default": "Frequently asked <em>questions</em>" },
+    { "type": "inline_richtext", "id": "subheading", "label": "Sous-titre", "default": "Everything you need to know about your titanium pan." },
+    { "type": "select", "id": "heading_align", "label": "Alignement", "options": [ { "value": "left", "label": "Gauche" }, { "value": "center", "label": "Centré" } ], "default": "center" },
+    { "type": "text", "id": "search_placeholder", "label": "Texte de la recherche", "default": "Search a question…" },
+    { "type": "text", "id": "all_label", "label": "Onglet « Tout »", "default": "All" },
+    { "type": "text", "id": "empty_text", "label": "Aucun résultat", "default": "No matching questions found. Try another word or contact us." },
+    { "type": "header", "content": "Lien contact" },
+    { "type": "text", "id": "contact_text", "label": "Texte", "default": "Still have questions?" },
+    { "type": "text", "id": "contact_link_label", "label": "Lien", "default": "Contact us" },
+    { "type": "url", "id": "contact_url", "label": "URL de la page contact" },
+    { "type": "header", "content": "Bloc « Still need help? »" },
+    { "type": "text", "id": "help_eyebrow", "label": "Sur-titre", "default": "Still need help?" },
+    { "type": "inline_richtext", "id": "help_heading", "label": "Titre", "default": "We're <em>here</em> for you" },
+    { "type": "text", "id": "help_text", "label": "Texte", "default": "Can't find what you're looking for? Our team is happy to help." },
+    { "type": "text", "id": "email", "label": "E-mail", "default": "support@cookingtitan.com" },
+    { "type": "text", "id": "email_title", "label": "Carte e-mail : titre", "default": "Email us" },
+    { "type": "text", "id": "email_text", "label": "Carte e-mail : texte", "default": "We reply within 24 hours." },
+    { "type": "text", "id": "form_title", "label": "Carte formulaire : titre", "default": "Send a message" },
+    { "type": "text", "id": "form_text", "label": "Carte formulaire : texte", "default": "Use our contact form and we'll get back to you." },
+    { "type": "text", "id": "form_link_label", "label": "Carte formulaire : lien", "default": "Contact form" },
+    { "type": "text", "id": "response_note", "label": "Note", "default": "Average response time: under 24 hours" },
+    { "type": "header", "content": "Style" },
+    { "type": "color", "id": "background_color", "label": "Fond", "default": "#201f1e" },
+    { "type": "color", "id": "accent_color", "label": "Couleur d'accent", "default": "#c8956c" },
+    { "type": "range", "id": "padding_top", "label": "Marge haute", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding_bottom", "label": "Marge basse", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "blocks": [
+    { "type": "category", "name": "Catégorie", "settings": [ { "type": "text", "id": "title", "label": "Nom", "default": "General" } ] },
+    { "type": "question", "name": "Question", "settings": [
+      { "type": "text", "id": "question", "label": "Question", "default": "Your question" },
+      { "type": "richtext", "id": "answer", "label": "Réponse", "default": "<p>Your answer.</p>" }
+    ] }
+  ],
+  "presets": [ { "name": "⭐ FAQ (page complète)" } ]
+}
+{% endschema %}
