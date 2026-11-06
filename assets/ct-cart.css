@@ -74,3 +74,6 @@ cart-drawer .ct-ce .ct-ce__lid-input:checked + .ct-ce__box svg { opacity: 1; }
 cart-drawer .ct-ce .ct-ce__label, cart-drawer .ct-ce .ct-ce__has-lid { color: rgba(255,255,255,.62) !important; }
 cart-drawer .ct-ce .ct-ce__lid span { color: rgba(255,255,255,.88) !important; }
 cart-drawer .ct-ce .ct-ce__lid strong { color: #c8956c !important; }
+cart-drawer span.cart-item__name { color: #ffffff !important; }
+cart-drawer .drawer__footer .totals__total-value { color: #ffffff !important; font-weight: 600; font-size: 18px; }
+cart-drawer .drawer__footer .total_count { color: rgba(255,255,255,.8) !important; }
