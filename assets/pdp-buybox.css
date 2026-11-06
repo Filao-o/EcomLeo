@@ -287,3 +287,10 @@
 
 /* Ligne de réassurance en majuscules */
 .pdp-trust--upper { text-transform: uppercase; letter-spacing: .08em; font-size: calc(var(--tr-size) - 1px); }
+
+/* ---------- Titres de la buy box : blanc à 92 % (prioritaire sur les couleurs du thème) ---------- */
+.pdp-heat__heading,
+.pdp-vc__heading,
+.pdp-si__title,
+.pdp-acc__summary,
+.pdp-acc__title { color: rgba(255, 255, 255, .92) !important; }

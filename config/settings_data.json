@@ -9,10 +9,9 @@
  */
 {
   "current": {
-    "product_page_background": "#201f1e",
-    "license_key": "",
-    "logo": "shopify://shop_images/1f071a83-ca60-4c4c-90b0-700d6e088e30.png",
+    "logo": "shopify://shop_images/CookingTtan.png",
     "logo_width": 100,
+    "favicon": "shopify://shop_images/CookingTtan.png",
     "global_section_background_color": "#ffffff",
     "global_section_text_color": "#444444",
     "global_section_use_gradient_background": false,
@@ -31,6 +30,7 @@
     "global_drawer_color": "#141720",
     "global_drawer_text_color": "#0c0c0d",
     "global_dropdown_color": "#ffffff",
+    "product_page_background": "#201f1e",
     "type_header_font": "playfair_display_n4",
     "heading_scale": 100,
     "heading_letter_spacing": -0.9,
@@ -185,6 +185,7 @@
     "show_cart_note": false,
     "cart_drawer_collection": "skin-harmony",
     "pages_without_header_footer": "advertorial",
+    "license_key": "",
     "spacing_grid_horizontal": 8,
     "spacing_grid_vertical": 8,
     "accent_scale": 125,
@@ -434,7 +435,6 @@
               "progress_bar_border_width": 1,
               "progress_bar_border_radius": 10,
               "free_shipping_icon_type": "custom",
-              "free_shipping_custom_icon": "shopify://shop_images/box_2.svg",
               "free_shipping_circle_icon_color": "#000000",
               "free_shipping_icon_border_radius": 5,
               "free_shipping_icon_enable_border": false,
@@ -467,7 +467,6 @@
               "show_money_back_guarantee": true,
               "money_back_guarantee_text": "30 Day Money Back Guarantee",
               "money_back_guarantee_icon": "custom",
-              "money_back_guarantee_custom_icon": "shopify://shop_images/return_1.svg",
               "money_back_guarantee_color": "#0c0c0d"
             }
           },
@@ -574,7 +573,15 @@
           "cart_drawer_discount_icon_color": "#141720",
           "cart_drawer_discount_border_radius": 4,
           "cart_drawer_checkout_button_label": "",
-          "cart_drawer_checkout_button_border_radius": 20
+          "cart_drawer_checkout_button_border_radius": 20,
+          "enable_subscribe_cta": false,
+          "subscribe_cta_text": "Subscribe & Save",
+          "subscribe_cta_frequency_label": "Delivers every",
+          "subscribe_cta_text_color": "#000000",
+          "subscribe_cta_background_color": "#ffffff",
+          "subscribe_cta_border_color": "#000000",
+          "subscribe_cta_frequency_label_color": "#6e6e6e",
+          "subscribe_cta_frequency_select_color": "#0374a5"
         }
       }
     },

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "ct_video_reviews_main": {
@@ -277,6 +286,10 @@
         "heading": "Buy it once. Cook with it for <em>years</em>.",
         "subheading": "One pan, hammered from titanium, to replace the stack of worn-out ones in your cupboard.",
         "heading_align": "center",
+        "video": "shopify://files/videos/f65e96afd1ae4ad19472f969dd98fac8.HD-1080p-2.5Mbps-98136489.mp4",
+        "video_url": "",
+        "video_autoplay": true,
+        "media_ratio": "auto",
         "link_label": "",
         "link_url": "",
         "background_color": "#141312",
