@@ -1,0 +1,380 @@
+{% render 'ct-sec-open', section: section %}
+{%- assign s = section.settings -%}
+{%- assign cf_id = 'ct-contact-form-' | append: section.id -%}
+<section class="ct-sec ct-ct">
+  <div class="ct-wrap ct-ct__grid">
+    <div class="ct-ct__info">
+      {%- if s.info_heading != blank -%}<h2 class="ct-ct__h">{{ s.info_heading }}</h2>{%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- assign b = block.settings -%}
+        <div class="ct-card ct-ct__item" {{ block.shopify_attributes }}>
+          <span class="ct-ct__icon">{% render 'pdp-icon', icon: b.icon %}</span>
+          <span><span class="ct-ct__label">{{ b.label }}</span>
+            {%- if b.link != blank -%}<a class="ct-ct__value" href="{{ b.link }}">{{ b.value }}</a>{%- else -%}<span class="ct-ct__value">{{ b.value }}</span>{%- endif -%}
+          </span>
+        </div>
+      {%- endfor -%}
+      {%- if s.reply_note != blank -%}<p class="ct-ct__note"><span class="ct-ct__dot"></span>{{ s.reply_note }}</p>{%- endif -%}
+    </div>
+    <div class="ct-card ct-ct__form-card">
+      {%- if s.form_heading != blank -%}<h2 class="ct-ct__h">{{ s.form_heading }}</h2>{%- endif -%}
+      {%- form 'contact', id: cf_id, class: 'ct-ct__form' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="ct-ct__ok">{{ s.success_text }}</p>
+        {%- else -%}
+          {%- if form.errors -%}<p class="ct-ct__err">{{ form.errors | default_errors }}</p>{%- endif -%}
+          <label class="ct-ct__label" for="{{ cf_id }}-name">{{ s.name_label }}</label>
+          <input class="ct-ct__input" id="{{ cf_id }}-name" type="text" name="contact[name]" autocomplete="name" placeholder="{{ s.name_placeholder }}" value="{{ form.name }}">
+          <label class="ct-ct__label" for="{{ cf_id }}-email">{{ s.email_label }} *</label>
+          <input class="ct-ct__input" id="{{ cf_id }}-email" type="email" name="contact[email]" autocomplete="email" required placeholder="{{ s.email_placeholder }}" value="{{ form.email }}">
+          {%- if s.subjects != blank -%}
+            <label class="ct-ct__label" for="{{ cf_id }}-subject">{{ s.subject_label }}</label>
+            <select class="ct-ct__input" id="{{ cf_id }}-subject" name="contact[subject]">
+              <option value="">{{ s.subject_placeholder }}</option>
+              {%- assign subjects = s.subjects | split: ',' -%}
+              {%- for sub in subjects -%}<option value="{{ sub | strip | escape }}">{{ sub | strip }}</option>{%- endfor -%}
+            </select>
+          {%- endif -%}
+          <label class="ct-ct__label" for="{{ cf_id }}-body">{{ s.message_label }}</label>
+          <textarea class="ct-ct__input" id="{{ cf_id }}-body" name="contact[body]" rows="5" placeholder="{{ s.message_placeholder }}">{{ form.body }}</textarea>
+          <button type="submit" class="ct-btn">{{ s.button_label }}</button>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+<style>
+  .ct-ct__grid { display: grid; gap: 16px; }
+  @media (min-width: 900px) { .ct-ct__grid { grid-template-columns: 1fr 1.3fr; gap: 28px; align-items: start; } }
+  .ct-ct__h { margin: 0 0 14px; font-family: var(--font-heading-family); font-weight: 400; font-size: 24px; color: var(--ct-text); }
+  .ct-ct__item { display: flex; align-items: center; gap: 14px; padding: 14px 16px; margin-bottom: 10px; background: #1a1917; }
+  .ct-ct__icon { flex: none; width: 40px; height: 40px; border-radius: 10px; background: rgba(200,149,108,.1); border: 1px solid rgba(200,149,108,.35); color: var(--ct-copper); display: flex; align-items: center; justify-content: center; }
+  .ct-ct__icon .pdp-icon { width: 18px; height: 18px; }
+  .ct-ct__item .ct-ct__label { display: block; margin: 0 0 2px; }
+  .ct-ct__value { color: var(--ct-text); font-size: 15px; font-weight: 600; text-decoration: none; word-break: break-word; }
+  .ct-ct__note { display: flex; align-items: center; gap: 8px; margin: 6px 0 0; color: var(--ct-muted); font-size: 13px; }
+  .ct-ct__dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 4px rgba(74,222,128,.15); }
+  .ct-ct__form-card { padding: 22px 18px; background: #1a1917; }
+  .ct-ct__form { display: flex; flex-direction: column; }
+  .ct-ct__label { margin: 12px 0 6px; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ct-muted); }
+  .ct-ct__input { width: 100%; padding: 13px 14px; border-radius: 6px; border: 1px solid var(--ct-border); background: #121110; color: var(--ct-text); font: inherit; font-size: 15px; }
+  .ct-ct__input:focus { outline: none; border-color: var(--ct-copper); }
+  select.ct-ct__input { color-scheme: dark; background-color: #121110; appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ct-muted) 50%), linear-gradient(135deg, var(--ct-muted) 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+  select.ct-ct__input option { background-color: #1a1917; color: #ffffff; }
+  select.ct-ct__input option:checked, select.ct-ct__input option:hover { background-color: #2b2724; color: #ffffff; }
+  select.ct-ct__input:invalid, select.ct-ct__input option[value=""] { color: rgba(255,255,255,.62); }
+  textarea.ct-ct__input { resize: vertical; min-height: 120px; }
+  .ct-ct__form .ct-btn { margin-top: 18px; }
+  .ct-ct__ok { color: #4ade80; margin: 0; }
+  .ct-ct__err { color: #e5533d; font-size: 14px; }
+</style>
+
+{% schema %}
+{
+  "name": "⭐ Contact",
+  "tag": "section",
+  "class": "ct-section",
+  "enabled_on": {
+    "templates": [
+      "*"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colonne infos"
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Titre",
+      "default": "Get in touch"
+    },
+    {
+      "type": "text",
+      "id": "reply_note",
+      "label": "Délai de réponse",
+      "default": "We usually reply within 24 hours"
+    },
+    {
+      "type": "header",
+      "content": "Formulaire"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Titre",
+      "default": "Send us a message"
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Libellé nom",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "Exemple nom",
+      "default": "Your name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Libellé email",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Exemple email",
+      "default": "you@email.com"
+    },
+    {
+      "type": "text",
+      "id": "subject_label",
+      "label": "Libellé sujet",
+      "default": "Subject"
+    },
+    {
+      "type": "text",
+      "id": "subject_placeholder",
+      "label": "Texte par défaut du sujet",
+      "default": "Choose a topic"
+    },
+    {
+      "type": "text",
+      "id": "subjects",
+      "label": "Sujets (séparés par des virgules)",
+      "default": "Product question, Order status, Returns & exchanges, Wholesale, Other",
+      "info": "Laisse vide pour masquer le champ"
+    },
+    {
+      "type": "text",
+      "id": "message_label",
+      "label": "Libellé message",
+      "default": "Message"
+    },
+    {
+      "type": "text",
+      "id": "message_placeholder",
+      "label": "Exemple message",
+      "default": "How can we help?"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Bouton",
+      "default": "Send message"
+    },
+    {
+      "type": "text",
+      "id": "success_text",
+      "label": "Message envoyé",
+      "default": "Thanks! We'll get back to you shortly."
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fond",
+      "default": "#201f1e"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Couleur d'accent (optionnel)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espace en haut",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espace en bas",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 48,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Info de contact",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "check_circle",
+              "label": "Coche"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "truck",
+              "label": "Camion"
+            },
+            {
+              "value": "return",
+              "label": "Retour"
+            },
+            {
+              "value": "lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "flame",
+              "label": "Flamme"
+            },
+            {
+              "value": "gas_stove",
+              "label": "Gaz"
+            },
+            {
+              "value": "induction",
+              "label": "Induction"
+            },
+            {
+              "value": "oven",
+              "label": "Four"
+            },
+            {
+              "value": "grill",
+              "label": "Grill"
+            },
+            {
+              "value": "electric",
+              "label": "Électrique"
+            },
+            {
+              "value": "ceramic",
+              "label": "Vitrocéramique"
+            },
+            {
+              "value": "star",
+              "label": "Étoile"
+            },
+            {
+              "value": "heart",
+              "label": "Cœur"
+            },
+            {
+              "value": "medal",
+              "label": "Médaille"
+            },
+            {
+              "value": "leaf",
+              "label": "Feuille"
+            },
+            {
+              "value": "drop",
+              "label": "Goutte"
+            },
+            {
+              "value": "box",
+              "label": "Boîte"
+            },
+            {
+              "value": "document",
+              "label": "Document"
+            },
+            {
+              "value": "gift",
+              "label": "Cadeau"
+            },
+            {
+              "value": "mail",
+              "label": "Email"
+            },
+            {
+              "value": "chat",
+              "label": "Bulle"
+            },
+            {
+              "value": "clock",
+              "label": "Horloge"
+            },
+            {
+              "value": "pin",
+              "label": "Localisation"
+            },
+            {
+              "value": "instagram",
+              "label": "Instagram"
+            },
+            {
+              "value": "facebook",
+              "label": "Facebook"
+            },
+            {
+              "value": "tiktok",
+              "label": "TikTok"
+            },
+            {
+              "value": "pinterest",
+              "label": "Pinterest"
+            }
+          ],
+          "default": "mail"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Libellé",
+          "default": "Email"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Valeur",
+          "default": "support@cookingtitan.com"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Lien (ex : mailto:…)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "⭐ Contact",
+      "blocks": [
+        {
+          "type": "info"
+        },
+        {
+          "type": "info",
+          "settings": {
+            "icon": "pin",
+            "label": "Location",
+            "value": "Australia"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
