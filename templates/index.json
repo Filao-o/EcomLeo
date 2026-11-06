@@ -1363,9 +1363,28 @@
         "mobile_logo_height": 30,
         "mobile_gap": 20
       }
+    },
+    "ct_hero_main": {
+      "type": "ct-hero",
+      "settings": {
+        "overlay_opacity": 45,
+        "grain": true,
+        "tag": "Free shipping across Australia",
+        "heading": "Cook clean. Cook <em>titanium</em>.",
+        "subheading": "Hand-hammered titanium pans with no coating to flake, chip or wear away. One pan for every meal, for years to come.",
+        "button_label": "Shop the pan",
+        "show_scroll": true,
+        "scroll_label": "Scroll",
+        "height_desktop": 750,
+        "height_mobile": 560,
+        "button_url": "/products/titanium-frying-pan",
+        "button2_label": "",
+        "button2_url": "#shopify-section-template--ct-materials"
+      }
     }
   },
   "order": [
+    "ct_hero_main",
     "ct_video_reviews_main",
     "ct_materials_main",
     "ct_steps_main",
