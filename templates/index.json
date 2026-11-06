@@ -9,6 +9,26 @@
  */
 {
   "sections": {
+    "ct_hero_main": {
+      "type": "ct-hero",
+      "settings": {
+        "video": "shopify://files/videos/11ebdbdf6d414dffa56df45aae3bdbda.HD-720p-1.6Mbps-96026770.mp4",
+        "overlay_opacity": 45,
+        "grain": true,
+        "tag": "Free shipping across Australia",
+        "heading": "Cook clean. Cook <em>titanium</em>.",
+        "subheading": "Hand-hammered titanium pans with no coating to flake, chip or wear away. One pan for every meal, for years to come.",
+        "button_label": "Shop the pan",
+        "button_url": "/products/titanium-frying-pan",
+        "button2_label": "",
+        "button2_url": "#shopify-section-template--ct-materials",
+        "rating_text": "",
+        "show_scroll": true,
+        "scroll_label": "Scroll",
+        "height_desktop": 750,
+        "height_mobile": 560
+      }
+    },
     "ct_video_reviews_main": {
       "type": "ct-video-reviews",
       "blocks": {
@@ -1375,24 +1395,6 @@
         "mobile_logo_max_width": 140,
         "mobile_logo_height": 30,
         "mobile_gap": 20
-      }
-    },
-    "ct_hero_main": {
-      "type": "ct-hero",
-      "settings": {
-        "overlay_opacity": 45,
-        "grain": true,
-        "tag": "Free shipping across Australia",
-        "heading": "Cook clean. Cook <em>titanium</em>.",
-        "subheading": "Hand-hammered titanium pans with no coating to flake, chip or wear away. One pan for every meal, for years to come.",
-        "button_label": "Shop the pan",
-        "show_scroll": true,
-        "scroll_label": "Scroll",
-        "height_desktop": 750,
-        "height_mobile": 560,
-        "button_url": "/products/titanium-frying-pan",
-        "button2_label": "",
-        "button2_url": "#shopify-section-template--ct-materials"
       }
     }
   },
