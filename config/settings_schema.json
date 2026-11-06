@@ -2494,5 +2494,25 @@
         "placeholder": "advertorial-page\nlanding-page\nspecial-offer"
       }
     ]
+  },
+  {
+    "name": "Boutique CookingTitan",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Produit principal du site. Dans le panier, seul ce produit garde un lien vers sa page : les autres (upsells, cadeaux) ne sont pas cliquables."
+      },
+      {
+        "type": "product",
+        "id": "ct_main_product",
+        "label": "Produit principal (poêle)"
+      },
+      {
+        "type": "checkbox",
+        "id": "ct_redirect_other_products",
+        "label": "Rediriger les autres pages produit vers le produit principal",
+        "default": false
+      }
+    ]
   }
 ]

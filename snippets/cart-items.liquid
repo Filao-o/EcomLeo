@@ -334,6 +334,19 @@
     <tbody role="rowgroup">
       {%- for item in cart.items -%}
         {%- liquid
+          assign ct_linkable = true
+          if settings.ct_main_product != blank and item.product.handle != settings.ct_main_product.handle
+            assign ct_linkable = false
+          endif
+          assign ct_editable = false
+          if item.product.options.size == 2
+            for ct_opt in item.product.options_with_values
+              assign ct_opts = ct_opt.values | join: '|' | downcase
+              if ct_opts contains 'lid'
+                assign ct_editable = true
+              endif
+            endfor
+          endif
           assign has_selling_plans = false
           if item.product.selling_plan_groups.size > 0
             assign has_selling_plans = true
@@ -352,7 +365,7 @@
           <td class="cart-item__media" role="cell" headers="CartDrawer-ColumnProductImage">
             {% if item.image %}
               {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
-              <a href="{{ item.url }}" class="cart-item__link" tabindex="-1" aria-hidden="true"> </a>
+              {%- if ct_linkable -%}<a href="{{ item.url }}" class="cart-item__link" tabindex="-1" aria-hidden="true"> </a>{%- endif -%}
               <img
                 class="cart-item__image"
                 src="{{ item.image | image_url: width: 300 }}"
@@ -373,20 +386,20 @@
             {%- endif -%}
             <div class="cart-details-wrapper">
               <div class="cart-items-wrapper">
-                <a href="{{ item.url }}" class="cart-item__name h4 break">
+                {%- if ct_linkable -%}<a href="{{ item.url }}" class="cart-item__name h4 break">{%- else -%}<span class="cart-item__name h4 break">{%- endif -%}
                   {% if item.id == progress_bar_free_id %}
                     {{- progress_bar_free_title | default: item.product.title -}}
                   {% else %}
                     {{- item.product.title | escape -}}
                   {% endif %}
-                </a>
+                {%- if ct_linkable -%}</a>{%- else -%}</span>{%- endif -%}
 
                 {%- if item.product.has_only_default_variant == false
                   or item.properties.size != 0
                   or item.selling_plan_allocation != blank
                 -%}
                   <dl>
-                    {%- if item.product.has_only_default_variant == false -%}
+                    {%- if item.product.has_only_default_variant == false and ct_editable == false -%}
                       {%- for option in item.options_with_values -%}
                         <div class="product-option">
                           <dt>{{ option.name }}:</dt>
@@ -421,6 +434,7 @@
                       {%- endif -%}
                     {%- endfor -%}
                   </dl>
+                  {%- if ct_editable -%}{% render 'ct-cart-edit', item: item %}{%- endif -%}
 
                   {%- comment -%} Calculate subscription options count for conditional display {%- endcomment -%}
                   {%- if enable_subscribe_cta and item.selling_plan_allocation != blank -%}

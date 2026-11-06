@@ -1,0 +1,84 @@
+{%- comment -%}
+  Upsells du tiroir panier (style carte « Complete your kitchen »).
+  Affichés seulement si le produit requis est dans le panier ; chaque produit
+  disparaît une fois ajouté. Aucun lien vers les pages produit.
+  Paramètre : block
+{%- endcomment -%}
+{%- liquid
+  assign b = block.settings
+  assign show = true
+  if b.required_product != blank
+    assign req_in_cart = cart.items | where: 'product_id', b.required_product.id | first
+    unless req_in_cart
+      assign show = false
+    endunless
+  endif
+  assign count = 0
+  if show
+    for i in (1..4)
+      assign key = 'product_' | append: i
+      assign p = b[key]
+      if p != blank and p.available and p.price > 0
+        assign in_cart = cart.items | where: 'product_id', p.id | first
+        unless in_cart
+          assign count = count | plus: 1
+        endunless
+      endif
+    endfor
+  endif
+-%}
+{%- if show and count > 0 -%}
+  <div class="ct-cu" {{ block.shopify_attributes }}>
+    {%- if b.heading != blank -%}
+      <p class="ct-cu__heading">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+        {{ b.heading }}
+      </p>
+    {%- endif -%}
+    <ul class="ct-cu__list">
+      {%- for i in (1..4) -%}
+        {%- liquid
+          assign key = 'product_' | append: i
+          assign p = b[key]
+          if p == blank or p.available == false or p.price == 0
+            continue
+          endif
+          assign in_cart = cart.items | where: 'product_id', p.id | first
+          if in_cart
+            continue
+          endif
+          assign sub_key = 'subtitle_' | append: i
+          assign v = p.selected_or_first_available_variant
+        -%}
+        <li class="ct-cu__item">
+          <div class="ct-cu__media">
+            {%- if p.featured_image != blank -%}
+              {{ p.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: p.title, class: 'ct-cu__img' }}
+            {%- endif -%}
+          </div>
+          <div class="ct-cu__info">
+            <p class="ct-cu__title">{{ p.title }}</p>
+            {%- if b[sub_key] != blank -%}<p class="ct-cu__sub">{{ b[sub_key] }}</p>{%- endif -%}
+            {%- if p.has_only_default_variant == false -%}
+              <span class="ct-ce__select-wrap ct-cu__select-wrap">
+                <select class="ct-cu__select" aria-label="{{ p.options.first | escape }}">
+                  {%- for pv in p.variants -%}
+                    {%- if pv.available -%}<option value="{{ pv.id }}" data-price="{{ pv.price | money }}">{{ pv.title }}</option>{%- endif -%}
+                  {%- endfor -%}
+                </select>
+              </span>
+            {%- endif -%}
+            <p class="ct-cu__price">
+              <span class="ct-cu__now">{{ v.price | money }}</span>
+              {%- if v.compare_at_price > v.price -%}
+                <s class="ct-cu__was">{{ v.compare_at_price | money }}</s>
+                <span class="ct-cu__off">-{{ v.compare_at_price | minus: v.price | times: 100 | divided_by: v.compare_at_price }}%</span>
+              {%- endif -%}
+            </p>
+          </div>
+          <button type="button" class="ct-cu__add" data-variant-id="{{ v.id }}">{{ b.button_label | default: 'Add' }}</button>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
