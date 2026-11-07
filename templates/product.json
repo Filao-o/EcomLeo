@@ -223,8 +223,8 @@
             "border_color_active": "#d2a27a",
             "title_color": "#ffffffeb",
             "text_color": "#ffffffcc",
-            "badge_bg_color": "#9E3B34",
-            "badge_text_color": "#FFFFFF",
+            "badge_bg_color": "#9e3b34",
+            "badge_text_color": "#ffffff",
             "checkbox_color": "#d2a27a",
             "margin_top": 0,
             "margin_bottom": 14
@@ -2950,6 +2950,21 @@
         "padding_bottom": 56
       }
     },
+    "1794032029c56b76ab": {
+      "type": "apps",
+      "blocks": {
+        "rivyo_reviews_loyalty_wc_review_media_carousel_section_6e6ymQ": {
+          "type": "shopify://apps/rivyo-reviews-loyalty/blocks/wc-review-media-carousel-section/f1860e84-309f-40ca-a2df-188435a622f3",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "rivyo_reviews_loyalty_wc_review_media_carousel_section_6e6ymQ"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "sticky_add_to_cart_NJqgUd": {
       "type": "sticky-add-to-cart",
       "settings": {
@@ -3146,20 +3161,6 @@
     },
     "17940187419ef006ff": {
       "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_UUkFty": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_UUkFty"
-      ],
       "settings": {
         "include_margins": true
       }
@@ -3182,6 +3183,7 @@
     "ct_final_cta_main",
     "testimonials_44W6N3",
     "ct_newsletter_main",
+    "1794032029c56b76ab",
     "sticky_add_to_cart_NJqgUd",
     "as_seen_in_logos_byrbEG",
     "17940187419ef006ff"
