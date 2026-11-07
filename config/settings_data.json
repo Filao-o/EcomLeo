@@ -378,6 +378,7 @@
           },
           "cart_progress_bar_MdnXLU": {
             "type": "cart_progress_bar",
+            "disabled": true,
             "settings": {
               "progress_bar_free_product": "",
               "shipping_away_text": "Spend [missingAmount] More For Free Shipping",
@@ -424,8 +425,7 @@
               "free_gift_icon_border_width": 2,
               "free_gift_icon_border_color": "#c8956c",
               "free_gift_icon_border_style": "solid"
-            },
-            "disabled": true
+            }
           },
           "cart_social_proof_bar_rMkH4F": {
             "type": "cart-social_proof_bar",
@@ -440,16 +440,17 @@
           },
           "cart_money_back_guarantee_LgTUC6": {
             "type": "cart_money_back_guarantee",
+            "disabled": true,
             "settings": {
               "show_money_back_guarantee": true,
               "money_back_guarantee_text": "30 Day Money Back Guarantee",
               "money_back_guarantee_icon": "custom",
               "money_back_guarantee_color": "#b3aea8"
-            },
-            "disabled": true
+            }
           },
           "cart_payment_icon_LNm8HV": {
             "type": "cart_payment_icon",
+            "disabled": true,
             "settings": {
               "custom_payment_icons": "visa, afterpay, american_express, apple_pay, paypal, google_pay, mastercard, shopify_pay,  maestro, sofort",
               "icon_height": 16,
@@ -457,8 +458,7 @@
               "alignment": "center",
               "margin_top": 18,
               "margin_bottom": 8
-            },
-            "disabled": true
+            }
           },
           "cart_shipping_protection_mXGeTd": {
             "type": "cart_shipping_protection",
@@ -511,6 +511,12 @@
         ],
         "custom_css": [],
         "settings": {
+          "ct_footer": true,
+          "ct_shipping_text": "Free shipping to 🇦🇺 Australia",
+          "ct_savings_label": "Your savings",
+          "ct_subtotal_label": "Subtotal",
+          "ct_rating_text": "Rated 4.7/5 by our customers",
+          "ct_trust_text": "Ships within 24h · 30-day returns",
           "cart_customization_mode": false,
           "use_theme_colors_cart_drawer": false,
           "upsell_carousel_mode": false,
@@ -577,13 +583,7 @@
           "subscribe_cta_background_color": "#ffffff",
           "subscribe_cta_border_color": "#000000",
           "subscribe_cta_frequency_label_color": "#6e6e6e",
-          "subscribe_cta_frequency_select_color": "#0374a5",
-          "ct_footer": true,
-          "ct_shipping_text": "Free shipping to 🇦🇺 Australia",
-          "ct_savings_label": "Your savings",
-          "ct_subtotal_label": "Subtotal",
-          "ct_rating_text": "Rated 4.7/5 by our customers",
-          "ct_trust_text": "Ships within 24h · 30-day returns"
+          "subscribe_cta_frequency_select_color": "#0374a5"
         }
       }
     },
@@ -608,6 +608,11 @@
       },
       "2567389343055140935": {
         "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "16789939927838974014": {
+        "type": "shopify://apps/rivyo-reviews-loyalty/blocks/app-embed/f1860e84-309f-40ca-a2df-188435a622f3",
         "disabled": false,
         "settings": {}
       }
