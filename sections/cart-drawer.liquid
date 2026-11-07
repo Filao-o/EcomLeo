@@ -487,6 +487,9 @@
 
           {%- if cart != empty -%}
             {%- for block in section.blocks -%}
+              {%- if block.type == 'ct_gifts' -%}{% render 'ct-cart-gifts', block: block %}{%- endif -%}
+            {%- endfor -%}
+            {%- for block in section.blocks -%}
               {%- if block.type == 'ct_upsells' -%}{% render 'ct-cart-upsells', block: block %}{%- endif -%}
             {%- endfor -%}
           {%- endif -%}
@@ -755,6 +758,26 @@
           {% endcase %}
         {% endfor %}
 
+        {%- if section.settings.ct_footer -%}
+          {%- liquid
+            assign ct_base_total = 0
+            for it in cart.items
+              assign ct_unit = it.original_price
+              if it.variant.compare_at_price > ct_unit
+                assign ct_unit = it.variant.compare_at_price
+              endif
+              assign ct_base_total = ct_unit | times: it.quantity | plus: ct_base_total
+            endfor
+            assign ct_savings = ct_base_total | minus: cart.total_price
+          -%}
+          <div class="ct-cf">
+            {%- if section.settings.ct_shipping_text != blank -%}<p class="ct-cf__ship">{{ section.settings.ct_shipping_text }}</p>{%- endif -%}
+            {%- if ct_savings > 0 and section.settings.ct_savings_label != blank -%}
+              <div class="ct-cf__row ct-cf__save"><span>{{ section.settings.ct_savings_label }}</span><span>{{ ct_savings | money }}</span></div>
+            {%- endif -%}
+            <div class="ct-cf__row ct-cf__total"><span>{{ section.settings.ct_subtotal_label | default: 'Subtotal' }}</span><span>{{ cart.total_price | money }}</span></div>
+          </div>
+        {%- else -%}
         <div
           class="totals gb-discounts-cart-values"
           role="status"
@@ -803,6 +826,7 @@
           </div>
           <p class="gb-totals-total-value" style="display:none;">{{ cart.total_price }}</p>
         </div>
+        {%- endif -%}
         <div class="cart__ctas" {{ block.shopify_attributes }}>
           <button
             type="submit"
@@ -832,9 +856,16 @@
             </svg>
             <span class="button-text">
               {{- section.settings.cart_drawer_checkout_button_label | default: 'SECURE CHECKOUT' | escape -}}
+              {%- if section.settings.ct_footer and cart != empty %} · {{ cart.total_price | money }}{% endif -%}
             </span>
           </button>
         </div>
+        {%- if section.settings.ct_footer -%}
+          <div class="ct-cf__trust">
+            {%- if section.settings.ct_rating_text != blank -%}<p class="ct-cf__rating"><span class="ct-cf__stars" aria-hidden="true">★★★★★</span> {{ section.settings.ct_rating_text }}</p>{%- endif -%}
+            {%- if section.settings.ct_trust_text != blank -%}<p class="ct-cf__small">{{ section.settings.ct_trust_text }}</p>{%- endif -%}
+          </div>
+        {%- endif -%}
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'cart_money_back_guarantee' %}
@@ -870,6 +901,13 @@
   "name": "Cart Drawer",
   "tag": "section",
   "settings": [
+    { "type": "header", "content": "⭐ Pied de panier CookingTitan" },
+    { "type": "checkbox", "id": "ct_footer", "label": "Activer le pied de panier CookingTitan", "default": true },
+    { "type": "text", "id": "ct_shipping_text", "label": "Ligne livraison", "default": "Free shipping to 🇦🇺 Australia" },
+    { "type": "text", "id": "ct_savings_label", "label": "Libellé des économies", "default": "Your savings", "info": "Somme des prix barrés et des réductions. Masqué s'il n'y a aucune économie." },
+    { "type": "text", "id": "ct_subtotal_label", "label": "Libellé du sous-total", "default": "Subtotal" },
+    { "type": "text", "id": "ct_rating_text", "label": "Ligne avis (sous le bouton)", "default": "Rated 4.7/5 by our customers" },
+    { "type": "text", "id": "ct_trust_text", "label": "Ligne de confiance", "default": "Ships within 24h · 30-day returns" },
     {
       "type": "checkbox",
       "id": "cart_customization_mode",
@@ -1728,6 +1766,30 @@
           ],
           "default": "solid"
         }
+      ]
+    },
+    {
+      "type": "ct_gifts",
+      "name": "⭐ Cadeaux offerts",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Titre", "default": "[count] free gifts added", "info": "[count] = nombre de cadeaux" },
+        { "type": "text", "id": "badge", "label": "Badge", "default": "Free" },
+        { "type": "text", "id": "free_label", "label": "Libellé sous chaque cadeau", "default": "Free" },
+        { "type": "checkbox", "id": "open_by_default", "label": "Ouvert par défaut", "default": true },
+        { "type": "product", "id": "required_product", "label": "Afficher seulement si ce produit est au panier" },
+        { "type": "text", "id": "gift_1_name", "label": "Cadeau 1 : nom" },
+        { "type": "image_picker", "id": "gift_1_image", "label": "Cadeau 1 : image" },
+        { "type": "product", "id": "gift_1_product", "label": "Cadeau 1 : produit (image de secours)" },
+        { "type": "text", "id": "gift_2_name", "label": "Cadeau 2 : nom" },
+        { "type": "image_picker", "id": "gift_2_image", "label": "Cadeau 2 : image" },
+        { "type": "product", "id": "gift_2_product", "label": "Cadeau 2 : produit (image de secours)" },
+        { "type": "text", "id": "gift_3_name", "label": "Cadeau 3 : nom" },
+        { "type": "image_picker", "id": "gift_3_image", "label": "Cadeau 3 : image" },
+        { "type": "product", "id": "gift_3_product", "label": "Cadeau 3 : produit (image de secours)" },
+        { "type": "text", "id": "gift_4_name", "label": "Cadeau 4 : nom" },
+        { "type": "image_picker", "id": "gift_4_image", "label": "Cadeau 4 : image" },
+        { "type": "product", "id": "gift_4_product", "label": "Cadeau 4 : produit (image de secours)" }
       ]
     },
     {

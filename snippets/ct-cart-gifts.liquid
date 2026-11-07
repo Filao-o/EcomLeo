@@ -1,0 +1,67 @@
+{%- comment -%}
+  Cadeaux offerts dans le tiroir panier (affichage seulement, pas d'articles ajoutés).
+  Visible quand le produit requis est au panier. Paramètre : block
+{%- endcomment -%}
+{%- liquid
+  assign b = block.settings
+  assign show = true
+  if b.required_product != blank
+    assign req = cart.items | where: 'product_id', b.required_product.id | first
+    unless req
+      assign show = false
+    endunless
+  endif
+  assign count = 0
+  for i in (1..4)
+    assign nk = 'gift_' | append: i | append: '_name'
+    if b[nk] != blank
+      assign count = count | plus: 1
+    endif
+  endfor
+-%}
+{%- if show and count > 0 -%}
+  <details class="ct-cg"{% if b.open_by_default %} open{% endif %} {{ block.shopify_attributes }}>
+    <summary class="ct-cg__sum">
+      <span class="ct-cg__avatars" aria-hidden="true">
+        {%- for i in (1..4) -%}
+          {%- liquid
+            assign nk = 'gift_' | append: i | append: '_name'
+            assign ik = 'gift_' | append: i | append: '_image'
+            assign pk = 'gift_' | append: i | append: '_product'
+            assign img = b[ik]
+            if img == blank and b[pk] != blank
+              assign img = b[pk].featured_image
+            endif
+          -%}
+          {%- if b[nk] != blank -%}
+            <span class="ct-cg__av">{%- if img != blank -%}{{ img | image_url: width: 60 | image_tag: loading: 'lazy', alt: '' }}{%- else -%}{% render 'pdp-icon', icon: 'gift' %}{%- endif -%}</span>
+          {%- endif -%}
+        {%- endfor -%}
+      </span>
+      <span class="ct-cg__tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
+      <span class="ct-cg__label">{{ b.heading | replace: '[count]', count }}</span>
+      {%- if b.badge != blank -%}<span class="ct-cg__badge">{{ b.badge }}</span>{%- endif -%}
+      <span class="ct-cg__chev" aria-hidden="true"></span>
+    </summary>
+    <ul class="ct-cg__grid">
+      {%- for i in (1..4) -%}
+        {%- liquid
+          assign nk = 'gift_' | append: i | append: '_name'
+          assign ik = 'gift_' | append: i | append: '_image'
+          assign pk = 'gift_' | append: i | append: '_product'
+          assign img = b[ik]
+          if img == blank and b[pk] != blank
+            assign img = b[pk].featured_image
+          endif
+        -%}
+        {%- if b[nk] != blank -%}
+          <li class="ct-cg__item">
+            <span class="ct-cg__img">{%- if img != blank -%}{{ img | image_url: width: 200 | image_tag: loading: 'lazy', alt: b[nk] }}{%- else -%}{% render 'pdp-icon', icon: 'gift' %}{%- endif -%}</span>
+            <span class="ct-cg__name">{{ b[nk] }}</span>
+            <span class="ct-cg__free">{{ b.free_label }}</span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </details>
+{%- endif -%}

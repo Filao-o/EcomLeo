@@ -80,6 +80,16 @@
     }
   });
 
+  document.addEventListener('click', function (e) {
+    var ed = e.target.closest('.ct-ce__edit');
+    if (!ed) return;
+    e.preventDefault();
+    var panel = ed.closest('.ct-ce').querySelector('.ct-ce__panel');
+    if (!panel) return;
+    panel.hidden = !panel.hidden;
+    ed.setAttribute('aria-expanded', String(!panel.hidden));
+  });
+
   document.addEventListener('click', async function (e) {
     var btn = e.target.closest('.ct-cu__add');
     if (!btn) return;

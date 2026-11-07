@@ -424,7 +424,8 @@
               "free_gift_icon_border_width": 2,
               "free_gift_icon_border_color": "#c8956c",
               "free_gift_icon_border_style": "solid"
-            }
+            },
+            "disabled": true
           },
           "cart_social_proof_bar_rMkH4F": {
             "type": "cart-social_proof_bar",
@@ -444,7 +445,8 @@
               "money_back_guarantee_text": "30 Day Money Back Guarantee",
               "money_back_guarantee_icon": "custom",
               "money_back_guarantee_color": "#b3aea8"
-            }
+            },
+            "disabled": true
           },
           "cart_payment_icon_LNm8HV": {
             "type": "cart_payment_icon",
@@ -455,7 +457,8 @@
               "alignment": "center",
               "margin_top": 18,
               "margin_bottom": 8
-            }
+            },
+            "disabled": true
           },
           "cart_shipping_protection_mXGeTd": {
             "type": "cart_shipping_protection",
@@ -479,9 +482,26 @@
               "shipping_protection_padding_vertical": 20,
               "shipping_protection_padding_horizontal": 20
             }
+          },
+          "ct_gifts_main": {
+            "type": "ct_gifts",
+            "settings": {
+              "heading": "[count] free gifts added",
+              "badge": "Free",
+              "free_label": "Free",
+              "open_by_default": true,
+              "required_product": "titanium-frying-pan",
+              "gift_1_name": "Titanium eBook",
+              "gift_1_image": "shopify://shop_images/titanium-ebook-cover.png",
+              "gift_2_name": "Pan protectors",
+              "gift_2_product": "pfannenschutz-set",
+              "gift_3_name": "Cleaning cloth",
+              "gift_4_name": "Mystery gift"
+            }
           }
         },
         "block_order": [
+          "ct_gifts_main",
           "ct_upsells_main",
           "cart_progress_bar_MdnXLU",
           "cart_social_proof_bar_rMkH4F",
@@ -548,7 +568,7 @@
           "cart_drawer_discount_text_color": "#ffffff",
           "cart_drawer_discount_icon_color": "#c8956c",
           "cart_drawer_discount_border_radius": 4,
-          "cart_drawer_checkout_button_label": "",
+          "cart_drawer_checkout_button_label": "Checkout",
           "cart_drawer_checkout_button_border_radius": 6,
           "enable_subscribe_cta": false,
           "subscribe_cta_text": "Subscribe & Save",
@@ -557,7 +577,13 @@
           "subscribe_cta_background_color": "#ffffff",
           "subscribe_cta_border_color": "#000000",
           "subscribe_cta_frequency_label_color": "#6e6e6e",
-          "subscribe_cta_frequency_select_color": "#0374a5"
+          "subscribe_cta_frequency_select_color": "#0374a5",
+          "ct_footer": true,
+          "ct_shipping_text": "Free shipping to 🇦🇺 Australia",
+          "ct_savings_label": "Your savings",
+          "ct_subtotal_label": "Subtotal",
+          "ct_rating_text": "Rated 4.7/5 by our customers",
+          "ct_trust_text": "Ships within 24h · 30-day returns"
         }
       }
     },

@@ -29,12 +29,7 @@
 -%}
 {%- if show and count > 0 -%}
   <div class="ct-cu" {{ block.shopify_attributes }}>
-    {%- if b.heading != blank -%}
-      <p class="ct-cu__heading">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-        {{ b.heading }}
-      </p>
-    {%- endif -%}
+    {%- if b.heading != blank -%}<p class="ct-cu__heading">{{ b.heading }}</p>{%- endif -%}
     <ul class="ct-cu__list">
       {%- for i in (1..4) -%}
         {%- liquid
@@ -51,14 +46,22 @@
           assign v = p.selected_or_first_available_variant
         -%}
         <li class="ct-cu__item">
-          <div class="ct-cu__media">
-            {%- if p.featured_image != blank -%}
-              {{ p.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: p.title, class: 'ct-cu__img' }}
-            {%- endif -%}
+          <div class="ct-cu__top">
+            <div class="ct-cu__media">
+              {%- if p.featured_image != blank -%}
+                {{ p.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: p.title, class: 'ct-cu__img' }}
+              {%- endif -%}
+            </div>
+            <div class="ct-cu__info">
+              <p class="ct-cu__title">{{ p.title }}</p>
+              <p class="ct-cu__price">
+                <span class="ct-cu__now">{{ v.price | money }}</span>
+                {%- if v.compare_at_price > v.price -%}<s class="ct-cu__was">{{ v.compare_at_price | money }}</s>{%- endif -%}
+              </p>
+              {%- if b[sub_key] != blank -%}<p class="ct-cu__sub">{{ b[sub_key] }}</p>{%- endif -%}
+            </div>
           </div>
-          <div class="ct-cu__info">
-            <p class="ct-cu__title">{{ p.title }}</p>
-            {%- if b[sub_key] != blank -%}<p class="ct-cu__sub">{{ b[sub_key] }}</p>{%- endif -%}
+          <div class="ct-cu__actions">
             {%- if p.has_only_default_variant == false -%}
               <span class="ct-ce__select-wrap ct-cu__select-wrap">
                 <select class="ct-cu__select" aria-label="{{ p.options.first | escape }}">
@@ -68,15 +71,8 @@
                 </select>
               </span>
             {%- endif -%}
-            <p class="ct-cu__price">
-              <span class="ct-cu__now">{{ v.price | money }}</span>
-              {%- if v.compare_at_price > v.price -%}
-                <s class="ct-cu__was">{{ v.compare_at_price | money }}</s>
-                <span class="ct-cu__off">-{{ v.compare_at_price | minus: v.price | times: 100 | divided_by: v.compare_at_price }}%</span>
-              {%- endif -%}
-            </p>
+            <button type="button" class="ct-cu__add" data-variant-id="{{ v.id }}">{{ b.button_label | default: 'Add' }}</button>
           </div>
-          <button type="button" class="ct-cu__add" data-variant-id="{{ v.id }}">{{ b.button_label | default: 'Add' }}</button>
         </li>
       {%- endfor -%}
     </ul>
