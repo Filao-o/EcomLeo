@@ -185,6 +185,8 @@
     "show_cart_note": false,
     "cart_drawer_collection": "skin-harmony",
     "pages_without_header_footer": "advertorial",
+    "ct_main_product": "titanium-frying-pan",
+    "ct_redirect_other_products": false,
     "license_key": "",
     "spacing_grid_horizontal": 8,
     "spacing_grid_vertical": 8,
@@ -556,8 +558,13 @@
       }
     },
     "content_for_index": [],
-    "ct_main_product": "titanium-frying-pan",
-    "ct_redirect_other_products": false
+    "blocks": {
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      }
+    }
   },
   "presets": {
     "Default": {
