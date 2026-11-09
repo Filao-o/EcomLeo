@@ -328,9 +328,9 @@
             "verified_label": "Verified",
             "stars": 5,
             "date": "",
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name",
-            "location": ""
+            "quote": "“Knowing that I use cookware that is safe and quality made meets all my objectives. I stand behind Okura craftsmanship.”",
+            "name": "Michael",
+            "location": "Canberra"
           }
         },
         "review_2": {
@@ -340,8 +340,8 @@
             "verified_label": "Verified",
             "stars": 5,
             "date": "",
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name",
+            "quote": "“Heats quickly and evenly, so far no problem with any food sticking making it very easy to clean.”",
+            "name": "Yan",
             "location": ""
           }
         },
@@ -352,9 +352,9 @@
             "verified_label": "Verified",
             "stars": 5,
             "date": "",
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name",
-            "location": ""
+            "quote": "“Feel solid and reliable. Once you get used to the cooking difference from non-stick pans, they're great. Heats and cooks evenly and very easy to clean.”",
+            "name": "Tom",
+            "location": "Perth"
           }
         },
         "review_4": {
@@ -364,8 +364,8 @@
             "verified_label": "Verified",
             "stars": 5,
             "date": "",
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name",
+            "quote": "“It heats evenly, nothing sticks to it, and it is easy to clean. I am very glad to have taken the leap and spent the money.”",
+            "name": "Barbara",
             "location": ""
           }
         },
@@ -376,9 +376,9 @@
             "verified_label": "Verified",
             "stars": 5,
             "date": "",
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name",
-            "location": ""
+            "quote": "“My mom still get the consistency she need as her other pans but with a healthier option. She's very happy!”",
+            "name": "Paolo",
+            "location": "Victoria"
           }
         },
         "review_6": {
@@ -388,9 +388,9 @@
             "verified_label": "Verified",
             "stars": 5,
             "date": "",
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name",
-            "location": ""
+            "quote": "“Pan is nonstick indeed. Performs as advertised. Wish I had purchased a bigger size.”",
+            "name": "Eunice",
+            "location": "Sydney"
           }
         },
         "review_7": {
@@ -400,9 +400,9 @@
             "verified_label": "Verified",
             "stars": 5,
             "date": "",
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name",
-            "location": ""
+            "quote": "“Some foods still stick a little, but adding a little water soak after the meal and everything releases easily. Me and my husband definetely recommend!”",
+            "name": "Ahmed",
+            "location": "Brisbane"
           }
         },
         "review_8": {
@@ -412,9 +412,9 @@
             "verified_label": "Verified",
             "stars": 5,
             "date": "",
-            "quote": "Paste a real customer review here.",
-            "name": "Customer name",
-            "location": ""
+            "quote": "“I did not expect the pan to be nonstick and so easy to clean. It heats up fast, and the heat disperses to the entire pan.”",
+            "name": "Dylan",
+            "location": "Sydney"
           }
         }
       },
@@ -435,12 +435,12 @@
         "heading_align": "left",
         "show_stats": true,
         "stat_1_star": true,
-        "stat_1_value": "",
-        "stat_1_label": "Average rating",
-        "stat_2_value": "",
+        "stat_1_value": "4.7",
+        "stat_1_label": "Customer reviews",
+        "stat_2_value": "16.4k",
         "stat_2_label": "Verified reviews",
-        "stat_3_value": "",
-        "stat_3_label": "4–5 star ratings",
+        "stat_3_value": "94%",
+        "stat_3_label": "4 & 5 stars",
         "background_color": "#262423",
         "accent_color": "",
         "padding_top": 56,
