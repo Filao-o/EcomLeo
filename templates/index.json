@@ -325,19 +325,20 @@
           "type": "review",
           "settings": {
             "image": "shopify://shop_images/okx-review-michael.webp",
-            "verified_label": "Verified",
+            "verified_label": "",
             "stars": 5,
             "date": "",
-            "quote": "“Knowing that I use cookware that is safe and quality made meets all my objectives. I stand behind Okura craftsmanship.”",
+            "quote": "“Knowing that I use cookware that is safe and quality made meets all my objectives.”",
             "name": "Michael",
-            "location": "Canberra"
-          }
+            "location": ""
+          },
+          "disabled": true
         },
         "review_2": {
           "type": "review",
           "settings": {
             "image": "shopify://shop_images/openart-image_2Ug2lyLB_1774353311898_raw_f4262ff8-b3fa-43e5-be77-30ba1a5056c4.webp",
-            "verified_label": "Verified",
+            "verified_label": "",
             "stars": 5,
             "date": "",
             "quote": "“Heats quickly and evenly, so far no problem with any food sticking making it very easy to clean.”",
@@ -349,19 +350,19 @@
           "type": "review",
           "settings": {
             "image": "shopify://shop_images/openart-image_c7iQmDjt_1774353335121_raw.webp",
-            "verified_label": "Verified",
+            "verified_label": "",
             "stars": 5,
             "date": "",
             "quote": "“Feel solid and reliable. Once you get used to the cooking difference from non-stick pans, they're great. Heats and cooks evenly and very easy to clean.”",
             "name": "Tom",
-            "location": "Perth"
+            "location": ""
           }
         },
         "review_4": {
           "type": "review",
           "settings": {
             "image": "shopify://shop_images/Scherm_afbeelding_2026-05-27_om_19.33.36.webp",
-            "verified_label": "Verified",
+            "verified_label": "",
             "stars": 5,
             "date": "",
             "quote": "“It heats evenly, nothing sticks to it, and it is easy to clean. I am very glad to have taken the leap and spent the money.”",
@@ -373,48 +374,48 @@
           "type": "review",
           "settings": {
             "image": "shopify://shop_images/Scherm_afbeelding_2026-04-08_om_14.49.01.webp",
-            "verified_label": "Verified",
+            "verified_label": "",
             "stars": 5,
             "date": "",
             "quote": "“My mom still get the consistency she need as her other pans but with a healthier option. She's very happy!”",
             "name": "Paolo",
-            "location": "Victoria"
+            "location": ""
           }
         },
         "review_6": {
           "type": "review",
           "settings": {
             "image": "shopify://shop_images/Scherm_afbeelding_2026-05-27_om_19-33-10.png",
-            "verified_label": "Verified",
+            "verified_label": "",
             "stars": 5,
             "date": "",
             "quote": "“Pan is nonstick indeed. Performs as advertised. Wish I had purchased a bigger size.”",
             "name": "Eunice",
-            "location": "Sydney"
+            "location": ""
           }
         },
         "review_7": {
           "type": "review",
           "settings": {
             "image": "shopify://shop_images/IMG_3037_3c8c968a-87f2-4180-8b68-bba9339a1013.webp",
-            "verified_label": "Verified",
+            "verified_label": "",
             "stars": 5,
             "date": "",
             "quote": "“Some foods still stick a little, but adding a little water soak after the meal and everything releases easily. Me and my husband definetely recommend!”",
             "name": "Ahmed",
-            "location": "Brisbane"
+            "location": ""
           }
         },
         "review_8": {
           "type": "review",
           "settings": {
             "image": "shopify://shop_images/image_1776242245_fc1989cf-6caa-4490-8250-fe1b88d37354.webp",
-            "verified_label": "Verified",
+            "verified_label": "",
             "stars": 5,
             "date": "",
             "quote": "“I did not expect the pan to be nonstick and so easy to clean. It heats up fast, and the heat disperses to the entire pan.”",
             "name": "Dylan",
-            "location": "Sydney"
+            "location": ""
           }
         }
       },
@@ -430,7 +431,7 @@
       ],
       "settings": {
         "eyebrow": "Loved by home cooks",
-        "heading": "Real kitchens, real <em>reviews</em>",
+        "heading": "Real kitchens, real <em>results</em>",
         "subheading": "",
         "heading_align": "left",
         "show_stats": true,
