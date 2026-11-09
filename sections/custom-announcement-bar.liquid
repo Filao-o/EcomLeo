@@ -109,6 +109,9 @@
   }
 
   /* Per-slide highlight text styling */
+  .announcement-static-{{ section.id }} .announcement-highlight {
+    color: {{ section.settings.slide_1_highlight_color | default: '#FFD700' }} !important;
+  }
   .announcement-slide-{{ section.id }}[data-slide-index="0"] .announcement-highlight {
     color: {{ section.settings.slide_1_highlight_color | default: '#FFD700' }} !important;
     {% if section.settings.slide_1_highlight_bg != blank and section.settings.slide_1_highlight_bg != 'rgba(0,0,0,0)' %}
@@ -597,7 +600,7 @@
     
     // Apply highlights to each slide
     {% if section.settings.slide_1_highlight_text != blank %}
-      const slide0 = document.querySelector('.announcement-slide-{{ section.id }}[data-slide-index="0"]');
+      const slide0 = document.querySelector('.announcement-slide-{{ section.id }}[data-slide-index="0"]') || document.querySelector('.announcement-static-{{ section.id }}');
       highlightText(slide0, {{ section.settings.slide_1_highlight_text | json }});
     {% endif %}
     
