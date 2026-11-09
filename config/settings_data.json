@@ -360,6 +360,27 @@
       "cart-drawer": {
         "type": "cart-drawer",
         "blocks": {
+          "ct_gifts_main": {
+            "type": "ct_gifts",
+            "settings": {
+              "heading": "[count] free gifts added",
+              "badge": "Free",
+              "free_label": "Free",
+              "open_by_default": true,
+              "required_product": "titanium-frying-pan",
+              "gift_1_name": "Titanium eBook",
+              "gift_1_image": "shopify://shop_images/okura-titanium-cookware-ebook-dark.avif",
+              "gift_1_product": "",
+              "gift_2_name": "Pan protectors",
+              "gift_2_image": "shopify://shop_images/hf_20261020_094328_0679c9fc-70dc-42a1-87f4-fd61f5aec03c.avif",
+              "gift_2_product": "pfannenschutz-set",
+              "gift_3_name": "Pan Scrubber",
+              "gift_3_image": "shopify://shop_images/okura-scrubber-single-01-hero_f10d683c-8b15-4ff1-b21f-fafa0018e0a1.jxl",
+              "gift_3_product": "",
+              "gift_4_name": "",
+              "gift_4_product": ""
+            }
+          },
           "ct_upsells_main": {
             "type": "ct_upsells",
             "settings": {
@@ -481,22 +502,6 @@
               "shipping_protection_description_font_size_mobile": 10,
               "shipping_protection_padding_vertical": 20,
               "shipping_protection_padding_horizontal": 20
-            }
-          },
-          "ct_gifts_main": {
-            "type": "ct_gifts",
-            "settings": {
-              "heading": "[count] free gifts added",
-              "badge": "Free",
-              "free_label": "Free",
-              "open_by_default": true,
-              "required_product": "titanium-frying-pan",
-              "gift_1_name": "Titanium eBook",
-              "gift_1_image": "shopify://shop_images/titanium-ebook-cover.png",
-              "gift_2_name": "Pan protectors",
-              "gift_2_product": "pfannenschutz-set",
-              "gift_3_name": "Cleaning cloth",
-              "gift_4_name": "Mystery gift"
             }
           }
         },
