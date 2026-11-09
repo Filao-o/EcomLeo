@@ -43,7 +43,7 @@
       {%- if b.badge != blank -%}<span class="ct-cg__badge">{{ b.badge }}</span>{%- endif -%}
       <span class="ct-cg__chev" aria-hidden="true"></span>
     </summary>
-    <ul class="ct-cg__grid">
+    <ul class="ct-cg__grid" style="--ct-cg-cols: {{ count }}">
       {%- for i in (1..4) -%}
         {%- liquid
           assign nk = 'gift_' | append: i | append: '_name'

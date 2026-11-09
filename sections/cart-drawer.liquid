@@ -771,7 +771,7 @@
             assign ct_savings = ct_base_total | minus: cart.total_price
           -%}
           <div class="ct-cf">
-            {%- if section.settings.ct_shipping_text != blank -%}<p class="ct-cf__ship">{{ section.settings.ct_shipping_text }}</p>{%- endif -%}
+            {%- if section.settings.ct_shipping_text != blank -%}{%- capture ct_flag -%}{% render 'ct-flag-au' %}{%- endcapture -%}<p class="ct-cf__ship">{{ section.settings.ct_shipping_text | escape | replace: '🇦🇺', ct_flag }}</p>{%- endif -%}
             {%- if ct_savings > 0 and section.settings.ct_savings_label != blank -%}
               <div class="ct-cf__row ct-cf__save"><span>{{ section.settings.ct_savings_label }}</span><span>{{ ct_savings | money }}</span></div>
             {%- endif -%}
@@ -903,7 +903,7 @@
   "settings": [
     { "type": "header", "content": "⭐ Pied de panier CookingTitan" },
     { "type": "checkbox", "id": "ct_footer", "label": "Activer le pied de panier CookingTitan", "default": true },
-    { "type": "text", "id": "ct_shipping_text", "label": "Ligne livraison", "default": "Free shipping to 🇦🇺 Australia" },
+    { "type": "text", "id": "ct_shipping_text", "label": "Ligne livraison", "default": "Free shipping to 🇦🇺 Australia", "info": "L'emoji 🇦🇺 est remplacé par un drapeau image (lisible sur tous les appareils)." },
     { "type": "text", "id": "ct_savings_label", "label": "Libellé des économies", "default": "Your savings", "info": "Somme des prix barrés et des réductions. Masqué s'il n'y a aucune économie." },
     { "type": "text", "id": "ct_subtotal_label", "label": "Libellé du sous-total", "default": "Subtotal" },
     { "type": "text", "id": "ct_rating_text", "label": "Ligne avis (sous le bouton)", "default": "Rated 4.7/5 by our customers" },

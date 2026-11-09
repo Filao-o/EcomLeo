@@ -129,3 +129,11 @@ cart-drawer .ct-cf__trust .ct-cf__small { margin: 0; color: rgba(255,255,255,.6)
 /* Marges latérales alignées sur les lignes produit */
 cart-drawer .ct-cg, cart-drawer .ct-cu { margin-left: 15px; margin-right: 15px; }
 cart-drawer .ct-cg__grid { gap: 8px; }
+/* Drapeau livraison */
+.ct-flag { display: inline-block; width: 1.5em; height: .75em; vertical-align: -.05em; margin: 0 .15em; border-radius: 2px; }
+/* Cadeaux : autant de colonnes que de cadeaux, sur une seule ligne */
+cart-drawer .ct-cg__grid { grid-template-columns: repeat(var(--ct-cg-cols, 4), minmax(0, 1fr)); gap: 12px; }
+/* Prix des lignes : prix actuel en haut (plus gros, blanc), prix barré dessous (rouge comme la fiche produit) */
+cart-drawer .cart-item__price-wrapper .gb-price-drawer { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+cart-drawer .cart-item__price-wrapper .gb-price-drawer strong.cart-item__final-price { order: 1; color: #ffffff !important; font-weight: 700; font-size: 16px !important; line-height: 1.2; }
+cart-drawer .cart-item__price-wrapper .gb-price-drawer s.cart-item__old-price { order: 2; color: #e5484d !important; font-weight: 500; font-size: 12.5px !important; line-height: 1.2; }
