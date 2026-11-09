@@ -48,8 +48,25 @@
     var props = readJSON(ce, '[data-ct-ce-props]', {});
     if (Array.isArray(props)) props = {};
     ce.classList.add('is-loading');
+    var qty = parseInt(ce.dataset.qty, 10) || 1;
+    // Cas courant (pas de propriétés, variante cible absente du panier) : une seule requête
+    if (!Object.keys(props).length && !v.q) {
+      try {
+        var updates = {};
+        updates[ce.dataset.key] = 0;
+        updates[v.id] = qty;
+        var up = await post('cart/update.js', { updates: updates });
+        if (!up.ok) {
+          var e1 = await up.json().catch(function () { return {}; });
+          alert(e1.description || 'This option is unavailable.');
+        }
+      } catch (e) {
+        console.error(e);
+      }
+      return refresh(ce);
+    }
     try {
-      var add = await post('cart/add.js', { items: [{ id: v.id, quantity: parseInt(ce.dataset.qty, 10) || 1, properties: props }] });
+      var add = await post('cart/add.js', { items: [{ id: v.id, quantity: qty, properties: props }] });
       if (!add.ok) {
         var err = await add.json().catch(function () { return {}; });
         alert(err.description || 'This option is unavailable.');
@@ -68,9 +85,9 @@
     if (t.classList.contains('ct-ce__size')) {
       var ce = t.closest('.ct-ce');
       swap(ce, t.value, ce.dataset.curLid);
-    } else if (t.classList.contains('ct-ce__lid-input') && t.checked) {
+    } else if (t.classList.contains('ct-ce__lid-input')) {
       var ce2 = t.closest('.ct-ce');
-      swap(ce2, ce2.querySelector('.ct-ce__size').value, t.dataset.lidValue);
+      swap(ce2, ce2.querySelector('.ct-ce__size').value, t.checked ? t.dataset.onValue : t.dataset.offValue);
     } else if (t.classList.contains('ct-cu__select')) {
       var item = t.closest('.ct-cu__item');
       var opt = t.options[t.selectedIndex];

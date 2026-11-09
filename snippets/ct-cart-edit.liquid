@@ -46,12 +46,30 @@
       endif
       assign v_lid_down = v_lid | downcase
       if v_size == cur_size and v_lid != cur_lid and v_lid_down contains 'lid'
-        unless v_lid_down contains 'without' or v_lid_down contains 'no lid'
+        assign v_is_without = false
+        if v_lid_down contains 'without' or v_lid_down contains 'no lid' or v_lid_down contains 'sans'
+          assign v_is_without = true
+        endif
+        if without_lid and v_is_without == false
           assign lid_variant = v
           assign lid_value = v_lid
-        endunless
+        elsif without_lid == false and v_is_without
+          assign lid_variant = v
+          assign lid_value = v_lid
+        endif
       endif
     endfor
+    if lid_variant
+      if without_lid
+        assign lid_on_value = lid_value
+        assign lid_off_value = cur_lid
+        assign lid_delta = lid_variant.price | minus: item.variant.price
+      else
+        assign lid_on_value = cur_lid
+        assign lid_off_value = lid_value
+        assign lid_delta = item.variant.price | minus: lid_variant.price
+      endif
+    endif
   -%}
   <div
     class="ct-ce"
@@ -62,7 +80,7 @@
     data-cur-lid="{{ cur_lid | escape }}"
   >
     <script type="application/json" data-ct-ce-variants>
-      [{%- for v in item.product.variants -%}{"id":{{ v.id }},"o1":{{ v.option1 | json }},"o2":{{ v.option2 | json }},"a":{{ v.available | json }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
+      [{%- for v in item.product.variants -%}{%- assign v_q = 0 -%}{%- for ci in cart.items -%}{%- if ci.variant_id == v.id -%}{%- assign v_q = v_q | plus: ci.quantity -%}{%- endif -%}{%- endfor -%}{"id":{{ v.id }},"o1":{{ v.option1 | json }},"o2":{{ v.option2 | json }},"a":{{ v.available | json }},"q":{{ v_q }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
     </script>
     <script type="application/json" data-ct-ce-props>{{ item.properties | json }}</script>
     <p class="ct-ce__sum">
@@ -81,11 +99,10 @@
       </span>
     </label>
     </div>
-    {%- if without_lid and lid_variant -%}
-      {%- assign lid_delta = lid_variant.price | minus: item.variant.price -%}
+    {%- if lid_variant -%}
       <label class="ct-ce__lid">
-        <input type="checkbox" class="ct-ce__lid-input" data-lid-value="{{ lid_value | escape }}">
-        <span class="ct-ce__box" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
+        <input type="checkbox" role="switch" class="ct-ce__lid-input" data-on-value="{{ lid_on_value | escape }}" data-off-value="{{ lid_off_value | escape }}"{% unless without_lid %} checked{% endunless %}>
+        <span class="ct-ce__switch" aria-hidden="true"></span>
         <span>Add the glass lid{% if lid_delta > 0 %} <strong>+{{ lid_delta | money }}</strong>{% endif %}</span>
       </label>
     {%- endif -%}
