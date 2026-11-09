@@ -93,7 +93,8 @@
       swap(ce, t.value, ce.dataset.curLid);
     } else if (t.classList.contains('ct-ce__lid-input')) {
       var ce2 = t.closest('.ct-ce');
-      swap(ce2, ce2.querySelector('.ct-ce__size').value, t.checked ? t.dataset.onValue : t.dataset.offValue, 1);
+      var sz = ce2.querySelector('.ct-ce__size');
+      swap(ce2, sz ? sz.value : ce2.dataset.curSize, t.checked ? t.dataset.onValue : t.dataset.offValue, 1);
     } else if (t.classList.contains('ct-cu__select')) {
       var item = t.closest('.ct-cu__item');
       var opt = t.options[t.selectedIndex];

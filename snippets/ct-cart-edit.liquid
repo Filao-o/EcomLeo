@@ -1,7 +1,7 @@
 {%- comment -%}
   Modification de la poêle dans le tiroir panier : taille + ajout du couvercle.
   Rendu uniquement pour un produit à 2 options dont l'une contient « lid ».
-  Paramètre : item (line item)
+  Paramètres : item (line item) ; part: 'lid' pour l'encart couvercle (rendu sous la ligne, pleine largeur)
 {%- endcomment -%}
 {%- liquid
   assign lid_pos = 0
@@ -71,6 +71,29 @@
       endif
     endif
   -%}
+  {%- if part == 'lid' -%}
+    {%- if lid_variant -%}
+  <div
+    class="ct-ce ct-ce--lid"
+    data-key="{{ item.key }}"
+    data-qty="{{ item.quantity }}"
+    data-size-pos="{{ size_pos }}"
+    data-lid-pos="{{ lid_pos }}"
+    data-cur-size="{{ cur_size | escape }}"
+    data-cur-lid="{{ cur_lid | escape }}"
+  >
+    <script type="application/json" data-ct-ce-variants>
+      [{%- for v in item.product.variants -%}{%- assign v_q = 0 -%}{%- for ci in cart.items -%}{%- if ci.variant_id == v.id -%}{%- assign v_q = v_q | plus: ci.quantity -%}{%- endif -%}{%- endfor -%}{"id":{{ v.id }},"o1":{{ v.option1 | json }},"o2":{{ v.option2 | json }},"a":{{ v.available | json }},"q":{{ v_q }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
+    </script>
+    <script type="application/json" data-ct-ce-props>{{ item.properties | json }}</script>
+      <label class="ct-ce__lid">
+        <input type="checkbox" role="switch" class="ct-ce__lid-input" data-on-value="{{ lid_on_value | escape }}" data-off-value="{{ lid_off_value | escape }}"{% unless without_lid %} checked{% endunless %}>
+        <span class="ct-ce__switch" aria-hidden="true"></span>
+        <span>Add the glass lid{% if lid_delta > 0 %} <strong>+{{ lid_delta | money }}</strong>{% endif %}</span>
+      </label>
+  </div>
+    {%- endif -%}
+  {%- else -%}
   <div
     class="ct-ce"
     data-key="{{ item.key }}"
@@ -99,12 +122,6 @@
       </span>
     </label>
     </div>
-    {%- if lid_variant -%}
-      <label class="ct-ce__lid">
-        <input type="checkbox" role="switch" class="ct-ce__lid-input" data-on-value="{{ lid_on_value | escape }}" data-off-value="{{ lid_off_value | escape }}"{% unless without_lid %} checked{% endunless %}>
-        <span class="ct-ce__switch" aria-hidden="true"></span>
-        <span>Add the glass lid{% if lid_delta > 0 %} <strong>+{{ lid_delta | money }}</strong>{% endif %}</span>
-      </label>
-    {%- endif -%}
   </div>
+  {%- endif -%}
 {%- endif -%}

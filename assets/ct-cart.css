@@ -144,9 +144,14 @@ cart-drawer .ct-ce .ct-ce__lid-input:checked + .ct-ce__switch { background: #c89
 cart-drawer .ct-ce .ct-ce__lid-input:checked + .ct-ce__switch::after { transform: translateX(14px); background: #1a1410; }
 cart-drawer .ct-ce .ct-ce__lid-input:focus-visible + .ct-ce__switch { outline: 1px solid #c8956c; outline-offset: 2px; }
 /* Interrupteur couvercle aligné à droite, sous le prix, sur la ligne « Add the glass lid » */
-cart-drawer .cart-details-wrapper { position: relative; }
-cart-drawer .ct-ce .ct-ce__lid { padding-right: 44px; }
-cart-drawer .ct-ce .ct-ce__switch { position: absolute; right: 0; }
+/* Encart couvercle : pleine largeur sous la ligne, texte à gauche, interrupteur à droite */
+cart-drawer .ct-ce--lid { display: block; max-width: none; margin: 12px 0 14px; }
+cart-drawer .ct-ce--lid .ct-ce__lid { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 12px; background: #262423; border: 1px solid #3a3836; border-radius: 8px; transition: border-color .2s, background .2s; }
+cart-drawer .ct-ce--lid .ct-ce__lid:hover { border-color: #5a5450; }
+cart-drawer .ct-ce--lid .ct-ce__lid:has(.ct-ce__lid-input:checked) { border-color: #c8956c; background: rgba(200,149,108,.08); }
+cart-drawer .ct-ce--lid .ct-ce__lid > span:last-child { order: 1; font-size: 14px; font-weight: 500; color: #fff !important; }
+cart-drawer .ct-ce--lid .ct-ce__lid strong { font-size: 14px; font-weight: 700; }
+cart-drawer .ct-ce--lid .ct-ce__switch { order: 2; }
 /* Remise automatique : plus d'air, un peu plus grand */
 cart-drawer .ct-disc { margin: 6px 0 10px; }
 cart-drawer .ct-disc p { margin: 0; font-size: 13.5px !important; font-weight: 500; }
@@ -155,3 +160,4 @@ cart-drawer .quantity { width: 84px !important; min-height: 28px !important; hei
 cart-drawer .quantity__input { border: 0 !important; background: transparent !important; height: 26px !important; min-height: 0 !important; font-size: 13px !important; color: #fff !important; padding: 0 !important; }
 cart-drawer .quantity__button { height: 26px !important; width: 24px !important; color: rgba(255,255,255,.7) !important; background: transparent !important; border: 0 !important; }
 cart-drawer .quantity__button svg { width: 9px !important; height: 9px !important; }
+cart-drawer .cart-item__quantity-wrapper { margin-top: 0 !important; }

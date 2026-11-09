@@ -537,6 +537,8 @@
               </div>
             </div>
 
+            {%- if ct_editable -%}{% render 'ct-cart-edit', item: item, part: 'lid' %}{%- endif -%}
+
             {%- comment -%} Subscription dropdown row - outside cart-details-wrapper but inside cart-item__details {%- endcomment -%}
             {% if enable_subscribe_cta and item.product.selling_plan_groups.size > 0 %}
               {%- liquid
