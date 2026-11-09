@@ -3165,6 +3165,21 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "1794204559ae002c70": {
+      "type": "apps",
+      "blocks": {
+        "rivyo_reviews_loyalty_wc_review_section_mehbfB": {
+          "type": "shopify://apps/rivyo-reviews-loyalty/blocks/wc-review-section/f1860e84-309f-40ca-a2df-188435a622f3",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "rivyo_reviews_loyalty_wc_review_section_mehbfB"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -3187,6 +3202,7 @@
     "1794032029c56b76ab",
     "sticky_add_to_cart_NJqgUd",
     "as_seen_in_logos_byrbEG",
-    "17940187419ef006ff"
+    "17940187419ef006ff",
+    "1794204559ae002c70"
   ]
 }
