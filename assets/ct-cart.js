@@ -38,7 +38,8 @@
     return null;
   }
 
-  async function swap(ce, size, lid) {
+  // move : nombre d'unités à basculer (couvercle : 1 seule poêle ; taille : toute la ligne)
+  async function swap(ce, size, lid, move) {
     var v = findVariant(ce, size, lid);
     if (!v) return;
     if (!v.a) {
@@ -49,12 +50,13 @@
     if (Array.isArray(props)) props = {};
     ce.classList.add('is-loading');
     var qty = parseInt(ce.dataset.qty, 10) || 1;
+    var n = Math.min(move || qty, qty);
     // Cas courant (pas de propriétés, variante cible absente du panier) : une seule requête
     if (!Object.keys(props).length && !v.q) {
       try {
         var updates = {};
-        updates[ce.dataset.key] = 0;
-        updates[v.id] = qty;
+        updates[ce.dataset.key] = qty - n;
+        updates[v.id] = n;
         var up = await post('cart/update.js', { updates: updates });
         if (!up.ok) {
           var e1 = await up.json().catch(function () { return {}; });
@@ -65,15 +67,19 @@
       }
       return refresh(ce);
     }
+    // Variante cible déjà au panier : propriété cachée unique pour garder une ligne séparée (pas de fusion)
+    var p2 = {};
+    for (var k in props) p2[k] = props[k];
+    if (v.q) p2._ct_split = String(Date.now());
     try {
-      var add = await post('cart/add.js', { items: [{ id: v.id, quantity: qty, properties: props }] });
+      var add = await post('cart/add.js', { items: [{ id: v.id, quantity: n, properties: p2 }] });
       if (!add.ok) {
         var err = await add.json().catch(function () { return {}; });
         alert(err.description || 'This option is unavailable.');
         ce.classList.remove('is-loading');
         return;
       }
-      await post('cart/change.js', { id: ce.dataset.key, quantity: 0 });
+      await post('cart/change.js', { id: ce.dataset.key, quantity: qty - n });
     } catch (e) {
       console.error(e);
     }
@@ -87,7 +93,7 @@
       swap(ce, t.value, ce.dataset.curLid);
     } else if (t.classList.contains('ct-ce__lid-input')) {
       var ce2 = t.closest('.ct-ce');
-      swap(ce2, ce2.querySelector('.ct-ce__size').value, t.checked ? t.dataset.onValue : t.dataset.offValue);
+      swap(ce2, ce2.querySelector('.ct-ce__size').value, t.checked ? t.dataset.onValue : t.dataset.offValue, 1);
     } else if (t.classList.contains('ct-cu__select')) {
       var item = t.closest('.ct-cu__item');
       var opt = t.options[t.selectedIndex];

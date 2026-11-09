@@ -214,7 +214,7 @@
             "panel_primary_heading": "Size of your second pan",
             "panel_secondary_heading": "",
             "panel_note": "",
-            "cart_property_label": "Bundle",
+            "cart_property_label": "_bundle",
             "cart_property_value": "Second pan",
             "border_style": "dashed",
             "border_radius": 6,

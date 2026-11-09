@@ -143,3 +143,15 @@ cart-drawer .ct-ce .ct-ce__switch::after { content: ""; position: absolute; top:
 cart-drawer .ct-ce .ct-ce__lid-input:checked + .ct-ce__switch { background: #c8956c !important; border-color: #c8956c; }
 cart-drawer .ct-ce .ct-ce__lid-input:checked + .ct-ce__switch::after { transform: translateX(14px); background: #1a1410; }
 cart-drawer .ct-ce .ct-ce__lid-input:focus-visible + .ct-ce__switch { outline: 1px solid #c8956c; outline-offset: 2px; }
+/* Interrupteur couvercle aligné à droite, sous le prix, sur la ligne « Add the glass lid » */
+cart-drawer .cart-details-wrapper { position: relative; }
+cart-drawer .ct-ce .ct-ce__lid { padding-right: 44px; }
+cart-drawer .ct-ce .ct-ce__switch { position: absolute; right: 0; }
+/* Remise automatique : plus d'air, un peu plus grand */
+cart-drawer .ct-disc { margin: 6px 0 10px; }
+cart-drawer .ct-disc p { margin: 0; font-size: 13.5px !important; font-weight: 500; }
+/* Quantité : plus compacte, sobre, sans séparateurs */
+cart-drawer .quantity { width: 84px !important; min-height: 28px !important; height: 28px; background: #1a1918 !important; border: 1px solid #2f2c2a !important; border-radius: 6px !important; }
+cart-drawer .quantity__input { border: 0 !important; background: transparent !important; height: 26px !important; min-height: 0 !important; font-size: 13px !important; color: #fff !important; padding: 0 !important; }
+cart-drawer .quantity__button { height: 26px !important; width: 24px !important; color: rgba(255,255,255,.7) !important; background: transparent !important; border: 0 !important; }
+cart-drawer .quantity__button svg { width: 9px !important; height: 9px !important; }
