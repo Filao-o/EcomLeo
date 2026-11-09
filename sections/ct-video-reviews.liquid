@@ -28,7 +28,15 @@
 <script>
   document.querySelectorAll('#shopify-section-{{ section.id }} .ct-vid__card').forEach(function (card) {
     var v = card.querySelector('video'); if (!v) return;
-    card.addEventListener('click', function () { if (v.paused) { v.play(); card.classList.add('is-playing'); } else { v.pause(); card.classList.remove('is-playing'); } });
+    card.addEventListener('click', function () {
+      if (v.paused) {
+        // Une seule vidéo à la fois, lancée avec le son (clic = geste utilisateur, le navigateur l'autorise)
+        document.querySelectorAll('#shopify-section-{{ section.id }} .ct-vid__card.is-playing').forEach(function (c) {
+          var o = c.querySelector('video'); if (o && o !== v) { o.pause(); c.classList.remove('is-playing'); }
+        });
+        v.muted = false; v.volume = 1; v.play(); card.classList.add('is-playing');
+      } else { v.pause(); card.classList.remove('is-playing'); }
+    });
   });
 </script>
 
