@@ -1,0 +1,18 @@
+/* CookingTitan : galerie produit en grille sur desktop (≥ 800 px), carrousel conservé sur mobile */
+.ct-pg-grid { display: none; }
+@media screen and (min-width: 800px) {
+  .shop-carousel-container.ct-has-grid {
+    position: static !important; max-height: none !important; overflow: visible !important; height: auto !important;
+    display: block !important;
+  }
+  .shop-carousel-container.ct-has-grid > .shop-product-carousel { display: none !important; }
+  .ct-pg-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; }
+  .ct-pg-grid__item { position: relative; margin: 0; overflow: hidden; border-radius: 6px; background: #262423; aspect-ratio: 1; }
+  .ct-pg-grid__item--full { grid-column: 1 / -1; }
+  .ct-pg-grid__item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .shop-product-layout:has(.ct-has-grid) { align-items: flex-start; }
+  .shop-product-layout:has(.ct-has-grid) > .shop-product-info { position: sticky; top: var(--ct-info-top, 20px); align-self: flex-start; }
+}
+/* Miniatures (mobile) : couleurs d'origine, sans voile blanc */
+.shop-thumbnails img, .shop-thumbnails img:hover { opacity: 1 !important; }
+.shop-thumbnail, .shop-thumbnail .thumb-square { background: transparent !important; }

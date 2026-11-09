@@ -19,7 +19,35 @@
 
   
 %}
-<div class="shop-carousel-container page-fade-in{% if section.settings.thumbnails_left_column_desktop %} thumbnails-left-column{% endif %}" style="animation-delay: 0.1s;">
+<div class="shop-carousel-container page-fade-in{% if section.settings.ct_desktop_grid %} ct-has-grid{% endif %}{% if section.settings.thumbnails_left_column_desktop %} thumbnails-left-column{% endif %}" style="animation-delay: 0.1s;">
+{%- if section.settings.ct_desktop_grid -%}
+  {%- liquid
+    assign ct_imgs = product.media | where: 'media_type', 'image'
+    assign ct_rest = ct_imgs.size | minus: 1
+    assign ct_odd = ct_rest | modulo: 2
+  -%}
+  <div class="ct-pg-grid" aria-label="{{ product.title | escape }} gallery">
+    {%- for media in ct_imgs -%}
+      {%- liquid
+        assign ct_full = false
+        if forloop.first
+          assign ct_full = true
+        elsif forloop.last and ct_odd == 1
+          assign ct_full = true
+        endif
+      -%}
+      <figure class="ct-pg-grid__item{% if ct_full %} ct-pg-grid__item--full{% endif %}">
+        {%- if forloop.first -%}{% render 'pdp-image-badge', section: section %}{%- endif -%}
+        {%- if ct_full -%}
+          {{ media | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 800px) 50vw, 100vw', widths: '600,900,1200,1400', alt: media.alt }}
+        {%- else -%}
+          {{ media | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 800px) 25vw, 50vw', widths: '400,600,900', alt: media.alt }}
+        {%- endif -%}
+      </figure>
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
   <div class="shop-product-carousel product-gallery">
     {% if section.settings.thumbnails_left_column_desktop %}
       <div class="shop-main-image-wrapper shop-image-thumbnails-row">

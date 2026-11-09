@@ -906,6 +906,8 @@
 <script src="{{ 'pdp-buybox.js' | asset_url }}" defer></script>
 <script src="{{ 'shop-product-details.js' | asset_url }}" defer></script>
 <script src="{{ 'product-gallery.js' | asset_url }}" defer></script>
+<script src="{{ 'ct-pdp-grid.js' | asset_url }}" defer></script>
+{{ 'ct-pdp-grid.css' | asset_url | stylesheet_tag }}
 
 {% schema %}
 {
@@ -999,6 +1001,13 @@
       "label": "Show product gallery",
       "default": true,
       "info": "Turn off to hide the product images and gallery completely"
+    },
+    {
+      "type": "checkbox",
+      "id": "ct_desktop_grid",
+      "label": "⭐ Galerie en grille (desktop)",
+      "default": true,
+      "info": "Desktop : grande photo puis 2 photos par ligne, la colonne d'infos reste fixe pendant le défilement. Mobile : carrousel + miniatures."
     },
     {
       "type": "checkbox",
