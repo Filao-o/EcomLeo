@@ -492,7 +492,7 @@
             "image": "shopify://shop_images/okx-cook-oven-v8.webp",
             "icon": "oven",
             "title": "Finish it in the oven",
-            "text": "Oven-safe up to 260°C, so frittatas and roasts can go from flame to oven."
+            "text": "Handles up to 540°C, so frittatas and roasts can go from flame to oven."
           }
         },
         "heat_icon_6": {
@@ -917,7 +917,7 @@
           "type": "question",
           "settings": {
             "question": "Which heat sources does it work on?",
-            "answer": "<p>Gas, electric, ceramic, induction, the oven (up to 260°C; glass lid up to 180°C) and the grill.</p>"
+            "answer": "<p>Gas, electric, ceramic, induction, the oven (up to 540°C) and the grill.</p>"
           }
         },
         "question_5": {
@@ -995,7 +995,7 @@
         "product_eyebrow": "You're viewing",
         "rating_text": "",
         "save_label": "Save",
-        "tags": "Titanium surface, PFAS-free, Induction ready, Oven-safe 260°C",
+        "tags": "Titanium surface, PFAS-free, Induction ready, Oven-safe 540°C",
         "background_color": "#201f1e",
         "accent_color": "",
         "padding_top": 56,
