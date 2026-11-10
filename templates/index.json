@@ -726,26 +726,19 @@
         "product_1": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "titanium-frying-pan"
           }
         },
         "product_2": {
           "type": "product",
           "settings": {
-            "product": ""
-          }
-        },
-        "product_3": {
-          "type": "product",
-          "settings": {
-            "product": ""
+            "product": "titanium-cutting-board"
           }
         }
       },
       "block_order": [
         "product_1",
-        "product_2",
-        "product_3"
+        "product_2"
       ],
       "settings": {
         "eyebrow": "",
