@@ -2,9 +2,18 @@
 <section class="ct-sec ct-xs" data-ct-carousel>
   <div class="ct-wrap">
     {% render 'ct-head', s: section.settings %}
-    <div class="ct-track ct-xs__track ct-xs__track--{{ section.blocks.size }}" data-ct-track style="--ct-card-w: 72%; --ct-card-w-desk: 26%; --ct-xs-n: {{ section.blocks.size }};">
+    {%- liquid
+      assign xs_n = 0
+      for block in section.blocks
+        if block.settings.product != blank or request.design_mode
+          assign xs_n = xs_n | plus: 1
+        endif
+      endfor
+    -%}
+    <div class="ct-track ct-xs__track ct-xs__track--{{ xs_n }}" data-ct-track style="--ct-card-w: 72%; --ct-card-w-desk: 26%;">
       {%- for block in section.blocks -%}
         {%- assign p = block.settings.product -%}
+        {%- if p == blank -%}{%- unless request.design_mode -%}{%- continue -%}{%- endunless -%}{%- endif -%}
         <article class="ct-card ct-xs__card" {{ block.shopify_attributes }}>
           <div class="ct-xs__media">
             {%- if p.featured_image != blank -%}{{ p.featured_image | image_url: width: 600 | image_tag: class: 'ct-img', loading: 'lazy' }}{%- else -%}<div class="ct-ph">{{ "image" | placeholder_svg_tag }}</div>{%- endif -%}
