@@ -323,6 +323,7 @@
       "blocks": {
         "review_1": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/okx-review-michael.webp",
             "verified_label": "",
@@ -331,8 +332,7 @@
             "quote": "“Knowing that I use cookware that is safe and quality made meets all my objectives.”",
             "name": "Michael",
             "location": ""
-          },
-          "disabled": true
+          }
         },
         "review_2": {
           "type": "review",
@@ -1412,6 +1412,21 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "179431277211ac593f": {
+      "type": "apps",
+      "blocks": {
+        "rivyo_reviews_loyalty_wc_review_media_carousel_section_pe6zhp": {
+          "type": "shopify://apps/rivyo-reviews-loyalty/blocks/wc-review-media-carousel-section/f1860e84-309f-40ca-a2df-188435a622f3",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "rivyo_reviews_loyalty_wc_review_media_carousel_section_pe6zhp"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -1432,6 +1447,7 @@
     "testimonials_44W6N3",
     "ct_newsletter_main",
     "as_seen_in_logos_byrbEG",
-    "1794205058cd083f8c"
+    "1794205058cd083f8c",
+    "179431277211ac593f"
   ]
 }
