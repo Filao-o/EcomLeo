@@ -2028,6 +2028,7 @@
       "blocks": {
         "review_1": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/okx-review-michael.webp",
             "verified_label": "",
@@ -2036,8 +2037,7 @@
             "quote": "“Knowing that I use cookware that is safe and quality made meets all my objectives.”",
             "name": "Michael",
             "location": ""
-          },
-          "disabled": true
+          }
         },
         "review_2": {
           "type": "review",
@@ -2431,13 +2431,13 @@
         "product_1": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "titanium-frying-pan"
           }
         },
         "product_2": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "titanium-cutting-board"
           }
         },
         "product_3": {
@@ -2452,6 +2452,7 @@
         "product_2",
         "product_3"
       ],
+      "disabled": true,
       "settings": {
         "eyebrow": "",
         "heading": "Complete your <em>kitchen</em>",
