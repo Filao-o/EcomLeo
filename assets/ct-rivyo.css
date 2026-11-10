@@ -1,0 +1,32 @@
+/* CookingTitan : habillage du widget d'avis Rivyo (fond du site, cartes sombres, mosaïque) */
+.shopify-section:has(.wc_review_main_content),
+.shopify-section:has(.wc_review_media_carousel_section) { background: #201f1e !important; padding: 48px 0; }
+
+/* Compteur « 20 Reviews » et filet au-dessus de la grille */
+#wc_all_review_page .wc_review_summary_count_text { display: none !important; }
+#wc_all_review_page .wc_review_summary { border: 0 !important; padding: 0 !important; margin: 0 !important; min-height: 0 !important; }
+
+/* Mosaïque : chaque carte prend la hauteur de son contenu */
+#wc_all_review_page ul.wc_review_widget { display: block !important; column-count: 4; column-gap: 16px; margin: 0 !important; padding: 0 !important; width: 100% !important; }
+#wc_all_review_page li.wc_review_widget_item { display: block !important; width: 100% !important; max-width: none !important; padding: 0 !important; margin: 0 0 16px !important; break-inside: avoid; -webkit-column-break-inside: avoid; list-style: none; }
+@media (max-width: 1199px) { #wc_all_review_page ul.wc_review_widget { column-count: 3; } }
+@media (max-width: 899px) { #wc_all_review_page ul.wc_review_widget { column-count: 2; column-gap: 12px; } #wc_all_review_page li.wc_review_widget_item { margin-bottom: 12px !important; } }
+@media (max-width: 479px) { #wc_all_review_page ul.wc_review_widget { column-count: 1; } }
+
+/* Cartes */
+#wc_all_review_page .wc_review_grid_view { display: block !important; height: auto !important; background: #262423 !important; border: 1px solid #3a3836 !important; border-radius: 12px !important; overflow: hidden; box-shadow: none !important; }
+#wc_all_review_page .wc_review_item_info { display: block !important; height: auto !important; padding: 16px !important; }
+#wc_all_review_page .wc_review_grid_img img { display: block; width: 100%; height: auto; }
+#wc_all_review_page .wc_review_author_name .author,
+#wc_all_review_page .wc_review_author_name h6 { color: #ffffff !important; font-weight: 600 !important; font-size: 15px !important; }
+#wc_all_review_page .wc_review_item_body_desc,
+#wc_all_review_page .wc_review_item_body_desc p,
+#wc_all_review_page .wc_review_item_body_desc span { color: rgba(255,255,255,.82) !important; font-size: 14px !important; line-height: 1.55 !important; }
+#wc_all_review_page .wc_review_item_body_title { color: #ffffff !important; }
+#wc_all_review_page .wc_review_date, #wc_all_review_page .wc_review_item_product,
+#wc_all_review_page .wc_review_item_product a, #wc_all_review_page .wc_review_item_product span { color: rgba(255,255,255,.55) !important; }
+/* Étoiles : jaune comme sur le reste du site */
+#wc_all_review_page .wc_icon_color svg { fill: #f5b400 !important; width: 16px; height: 16px; }
+#wc_all_review_page .wc_icon_color.wc_icon_empty svg { fill: #4a4744 !important; }
+/* Pagination / « load more » */
+#wc_all_review_page .wc_review_pagination button, #wc_all_review_page .wc_review_btn { background: transparent !important; color: #ffffff !important; border: 1px solid #5a5450 !important; border-radius: 8px !important; }

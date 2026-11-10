@@ -390,7 +390,8 @@
       }
     </style>
     {% endif %}
-  </head>
+    {{ 'ct-rivyo.css' | asset_url | stylesheet_tag }}
+</head>
 
   {% comment %} Body with Attributes {% endcomment %}
   <body
