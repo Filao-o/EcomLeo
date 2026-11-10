@@ -55,7 +55,7 @@
   .ct-xs__btn { padding: 12px 14px; font-size: 12px; }
   /* Desktop : jusqu'à 4 produits, les cartes se partagent toute la largeur (plus de vide à droite) */
   @media (min-width: 750px) {
-    .ct-xs__track--1 > *, .ct-xs__track--2 > *, .ct-xs__track--3 > *, .ct-xs__track--4 > * { flex: 1 1 0; min-width: 0; }
+    .ct-track.ct-xs__track--1 > *, .ct-track.ct-xs__track--2 > *, .ct-track.ct-xs__track--3 > *, .ct-track.ct-xs__track--4 > * { flex: 1 1 0; min-width: 0; }
     .ct-xs__track--1 ~ .ct-progress, .ct-xs__track--2 ~ .ct-progress, .ct-xs__track--3 ~ .ct-progress, .ct-xs__track--4 ~ .ct-progress { display: none; }
     /* 1 ou 2 produits : carte horizontale (photo à gauche) pour garder une hauteur raisonnable */
     .ct-xs__track--1 .ct-xs__card, .ct-xs__track--2 .ct-xs__card { flex-direction: row; }
