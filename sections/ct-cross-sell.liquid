@@ -2,7 +2,7 @@
 <section class="ct-sec ct-xs" data-ct-carousel>
   <div class="ct-wrap">
     {% render 'ct-head', s: section.settings %}
-    <div class="ct-track" data-ct-track style="--ct-card-w: 72%; --ct-card-w-desk: 26%;">
+    <div class="ct-track ct-xs__track ct-xs__track--{{ section.blocks.size }}" data-ct-track style="--ct-card-w: 72%; --ct-card-w-desk: 26%; --ct-xs-n: {{ section.blocks.size }};">
       {%- for block in section.blocks -%}
         {%- assign p = block.settings.product -%}
         <article class="ct-card ct-xs__card" {{ block.shopify_attributes }}>
@@ -44,6 +44,17 @@
   .ct-xs__save { align-self: flex-start; padding: 3px 10px; border-radius: 100px; border: 1px solid rgba(200,149,108,.4); color: var(--ct-copper); font-size: 11px; }
   .ct-xs__form { margin-top: auto; }
   .ct-xs__btn { padding: 12px 14px; font-size: 12px; }
+  /* Desktop : jusqu'à 4 produits, les cartes se partagent toute la largeur (plus de vide à droite) */
+  @media (min-width: 750px) {
+    .ct-xs__track--1 > *, .ct-xs__track--2 > *, .ct-xs__track--3 > *, .ct-xs__track--4 > * { flex: 1 1 0; min-width: 0; }
+    .ct-xs__track--1 ~ .ct-progress, .ct-xs__track--2 ~ .ct-progress, .ct-xs__track--3 ~ .ct-progress, .ct-xs__track--4 ~ .ct-progress { display: none; }
+    /* 1 ou 2 produits : carte horizontale (photo à gauche) pour garder une hauteur raisonnable */
+    .ct-xs__track--1 .ct-xs__card, .ct-xs__track--2 .ct-xs__card { flex-direction: row; }
+    .ct-xs__track--1 .ct-xs__media, .ct-xs__track--2 .ct-xs__media { flex: 0 0 42%; max-width: 280px; }
+    .ct-xs__track--1 .ct-xs__body, .ct-xs__track--2 .ct-xs__body { justify-content: center; padding: 24px; gap: 10px; }
+    .ct-xs__track--1 .ct-xs__body h3, .ct-xs__track--2 .ct-xs__body h3 { font-size: 22px; }
+    .ct-xs__track--1 .ct-xs__form, .ct-xs__track--2 .ct-xs__form { margin-top: 8px; }
+  }
 </style>
 
 {% schema %}
