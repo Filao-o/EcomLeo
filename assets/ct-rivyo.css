@@ -26,7 +26,8 @@
 #wc_all_review_page .wc_review_date, #wc_all_review_page .wc_review_item_product,
 #wc_all_review_page .wc_review_item_product a, #wc_all_review_page .wc_review_item_product span { color: rgba(255,255,255,.55) !important; }
 /* Étoiles : jaune comme sur le reste du site */
-#wc_all_review_page .wc_icon_color svg { fill: #f5b400 !important; width: 16px; height: 16px; }
-#wc_all_review_page .wc_icon_color.wc_icon_empty svg { fill: #4a4744 !important; }
+#wc_all_review_page .wc_icon_color svg { width: 16px; height: 16px; }
+#wc_all_review_page .wc_icon_color svg, #wc_all_review_page .wc_icon_color svg * { fill: #f5b400 !important; }
+#wc_all_review_page .wc_icon_color.wc_icon_empty svg, #wc_all_review_page .wc_icon_color.wc_icon_empty svg * { fill: #4a4744 !important; }
 /* Pagination / « load more » */
 #wc_all_review_page .wc_review_pagination button, #wc_all_review_page .wc_review_btn { background: transparent !important; color: #ffffff !important; border: 1px solid #5a5450 !important; border-radius: 8px !important; }
