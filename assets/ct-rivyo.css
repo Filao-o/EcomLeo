@@ -6,12 +6,14 @@
 #wc_all_review_page .wc_review_summary_count_text { display: none !important; }
 #wc_all_review_page .wc_review_summary { border: 0 !important; padding: 0 !important; margin: 0 !important; min-height: 0 !important; }
 
-/* Mosaïque : chaque carte prend la hauteur de son contenu */
-#wc_all_review_page ul.wc_review_widget { display: block !important; column-count: 4; column-gap: 16px; margin: 0 !important; padding: 0 !important; width: 100% !important; }
-#wc_all_review_page li.wc_review_widget_item { display: block !important; width: 100% !important; max-width: none !important; padding: 0 !important; margin: 0 0 16px !important; break-inside: avoid; -webkit-column-break-inside: avoid; list-style: none; }
-@media (max-width: 1199px) { #wc_all_review_page ul.wc_review_widget { column-count: 3; } }
-@media (max-width: 899px) { #wc_all_review_page ul.wc_review_widget { column-count: 2; column-gap: 12px; } #wc_all_review_page li.wc_review_widget_item { margin-bottom: 12px !important; } }
-@media (max-width: 479px) { #wc_all_review_page ul.wc_review_widget { column-count: 1; } }
+/* Mosaïque en grille (pas de colonnes CSS : elles provoquent des défauts d'affichage des photos dans Chrome).
+   ct-rivyo.js calcule la hauteur de chaque carte (grid-row-end: span N). Sans JS : grille simple alignée en haut. */
+#wc_all_review_page ul.wc_review_widget { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 16px; row-gap: 16px; align-items: start; margin: 0 !important; padding: 0 !important; width: 100% !important; }
+#wc_all_review_page ul.wc_review_widget.ct-masonry { grid-auto-rows: 4px; row-gap: 0; }
+#wc_all_review_page li.wc_review_widget_item { display: block !important; width: auto !important; max-width: none !important; min-width: 0; padding: 0 !important; margin: 0 !important; list-style: none; }
+@media (max-width: 1199px) { #wc_all_review_page ul.wc_review_widget { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 899px) { #wc_all_review_page ul.wc_review_widget { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; } }
+@media (max-width: 479px) { #wc_all_review_page ul.wc_review_widget { grid-template-columns: minmax(0, 1fr); } }
 
 /* Cartes */
 #wc_all_review_page .wc_review_grid_view { display: block !important; height: auto !important; background: #262423 !important; border: 1px solid #3a3836 !important; border-radius: 12px !important; overflow: hidden; box-shadow: none !important; }
