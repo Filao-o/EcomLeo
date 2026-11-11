@@ -31,3 +31,11 @@
 #wc_all_review_page .wc_icon_color.wc_icon_empty svg, #wc_all_review_page .wc_icon_color.wc_icon_empty svg * { fill: #4a4744 !important; }
 /* Pagination / « load more » */
 #wc_all_review_page .wc_review_pagination button, #wc_all_review_page .wc_review_btn { background: transparent !important; color: #ffffff !important; border: 1px solid #5a5450 !important; border-radius: 8px !important; }
+
+/* Le thème révèle les sections au défilement quand 40 % de leur hauteur est visible.
+   La liste d'avis (chargée après coup, très haute sur mobile) n'atteint jamais ce seuil
+   et restait invisible : on la rend toujours visible, sans animation. */
+.scroll-trigger:has(.wc_review_main_content),
+.scroll-trigger:has(.wc_review_media_carousel_section),
+.shopify-section.scroll-trigger:has(.wc_review_main_content),
+.shopify-section.scroll-trigger:has(.wc_review_media_carousel_section) { opacity: 1 !important; transform: none !important; animation: none !important; }
