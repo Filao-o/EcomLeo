@@ -2,7 +2,7 @@
 <section class="ct-sec ct-vid" data-ct-carousel>
   <div class="ct-wrap">
     {% render 'ct-head', s: section.settings %}
-    <div class="ct-track" data-ct-track style="--ct-card-w: 37%; --ct-card-w-desk: 23%;">
+    <div class="ct-track" data-ct-track style="--ct-card-w: 40%; --ct-card-w-desk: 23%;">
       {%- for block in section.blocks -%}
         <div class="ct-vid__card" {{ block.shopify_attributes }}>
           {%- if block.settings.video != blank -%}
