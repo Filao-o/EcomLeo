@@ -295,3 +295,4 @@
 .pdp-si__title,
 .pdp-acc__summary,
 .pdp-acc__title { color: rgba(255, 255, 255, .92) !important; }
+.pdp-heat__tile:has(.pdp-heat__sub) { justify-content: flex-start; padding-top: 12px; padding-bottom: 12px; }
