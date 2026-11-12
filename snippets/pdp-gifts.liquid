@@ -27,6 +27,8 @@
         assign k_name = 'gift_' | append: i | append: '_name'
         assign k_img = 'gift_' | append: i | append: '_image'
         assign k_price = 'gift_' | append: i | append: '_value'
+        assign k_desc = 'gift_' | append: i | append: '_desc'
+        assign g_desc = s[k_desc]
         assign g_name = s[k_name]
         assign g_img = s[k_img]
         assign g_value = s[k_price]
@@ -38,6 +40,7 @@
             {%- if g_img != blank -%}{{ g_img | image_url: width: 160 | image_tag: loading: 'lazy', alt: g_name }}{%- else -%}{% render 'pdp-icon', icon: 'gift' %}{%- endif -%}
           </span>
           <span class="pdp-gifts__name">{{ g_name }}</span>
+          {%- if g_desc != blank -%}<span class="pdp-gifts__desc">{{ g_desc }}</span>{%- endif -%}
           <span class="pdp-gifts__price">
             {%- if g_value != blank -%}<s>{{ g_value }}</s>{%- endif -%}
             <span class="pdp-gifts__free">{{ s.free_label }}</span>
