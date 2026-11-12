@@ -38,6 +38,8 @@
           assign k_label = 'tile_' | append: i | append: '_label'
           assign k_icon = 'tile_' | append: i | append: '_icon'
           assign k_img = 'tile_' | append: i | append: '_image'
+          assign k_sub = 'tile_' | append: i | append: '_subtitle'
+          assign t_sub = s[k_sub]
           assign t_label = s[k_label]
           assign t_icon = s[k_icon]
           assign t_img = s[k_img]
@@ -52,6 +54,7 @@
               {%- endif -%}
             </span>
             <span class="pdp-heat__label">{{ t_label }}</span>
+            {%- if t_sub != blank -%}<span class="pdp-heat__sub">{{ t_sub }}</span>{%- endif -%}
           </div>
         {%- endif -%}
       {%- endfor -%}
