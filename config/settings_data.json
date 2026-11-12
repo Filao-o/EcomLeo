@@ -380,28 +380,28 @@
               "heading": "[count] free gifts added",
               "badge": "Free",
               "free_label": "FREE",
+              "show_check": true,
               "open_by_default": true,
               "required_product": "titanium-frying-pan",
               "gift_1_name": "Pan Scrubber",
+              "gift_1_desc": "Included",
+              "gift_1_value": "$15",
               "gift_1_image": "shopify://shop_images/okura-scrubber-single-01-hero_f10d683c-8b15-4ff1-b21f-fafa0018e0a1.jpg",
               "gift_1_product": "",
               "gift_2_name": "Pan protector",
+              "gift_2_desc": "Included",
+              "gift_2_value": "$15",
               "gift_2_image": "shopify://shop_images/hf_20261020_094328_0679c9fc-70dc-42a1-87f4-fd61f5aec03c.jpg",
               "gift_2_product": "",
               "gift_3_name": "Titanium eBook",
+              "gift_3_desc": "30-day guide",
+              "gift_3_value": "$45",
               "gift_3_image": "shopify://shop_images/okx-ebook-cover-v2.avif",
               "gift_3_product": "",
               "gift_4_name": "",
-              "gift_4_product": "",
-              "gift_1_desc": "Included",
-              "gift_1_value": "$15",
-              "gift_2_desc": "Included",
-              "gift_2_value": "$15",
-              "gift_3_desc": "30-day guide",
-              "gift_3_value": "$45",
               "gift_4_desc": "",
               "gift_4_value": "",
-              "show_check": true
+              "gift_4_product": ""
             }
           },
           "ct_upsells_main": {
@@ -652,6 +652,11 @@
       },
       "17332068787184144230": {
         "type": "shopify://apps/spinnio-wheel-spin/blocks/star_rating/1d42278f-2151-4c55-a676-eedb2d0dbcc4",
+        "disabled": false,
+        "settings": {}
+      },
+      "855628211100114053": {
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
       }
