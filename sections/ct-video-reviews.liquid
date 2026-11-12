@@ -2,7 +2,7 @@
 <section class="ct-sec ct-vid" data-ct-carousel>
   <div class="ct-wrap">
     {% render 'ct-head', s: section.settings %}
-    <div class="ct-track" data-ct-track style="--ct-card-w: 62%; --ct-card-w-desk: 23%;">
+    <div class="ct-track" data-ct-track style="--ct-card-w: 37%; --ct-card-w-desk: 23%;">
       {%- for block in section.blocks -%}
         <div class="ct-vid__card" {{ block.shopify_attributes }}>
           {%- if block.settings.video != blank -%}
@@ -23,6 +23,14 @@
   .ct-vid__play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(0,0,0,.55); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   .ct-vid__play svg { width: 20px; height: 20px; margin-left: 2px; }
   .ct-vid__card.is-playing .ct-vid__play { opacity: 0; }
+  /* Mobile : 2 vignettes + un peu plus de la moitié de la suivante, bouton lecture réduit */
+  @media (max-width: 749px) {
+    .ct-vid .ct-track { gap: 8px; }
+    .ct-vid__card { border-radius: 10px; }
+    .ct-vid__play { width: 32px; height: 32px; }
+    .ct-vid__play svg { width: 14px; height: 14px; }
+    .ct-vid__cap { font-size: 11px; padding: 18px 8px 8px; }
+  }
   .ct-vid__cap { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 24px 12px 12px; font-size: 13px; background: linear-gradient(transparent, rgba(0,0,0,.7)); }
 </style>
 <script>
