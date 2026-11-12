@@ -296,3 +296,21 @@
 .pdp-acc__summary,
 .pdp-acc__title { color: rgba(255, 255, 255, .92) !important; }
 .pdp-heat__tile:has(.pdp-heat__sub) { justify-content: flex-start; padding-top: 12px; padding-bottom: 12px; }
+/* Tuiles d'icônes sur mobile : 2 colonnes, icône dans un carré à gauche, titre + sous-titre à droite */
+@media (max-width: 749px) {
+  .pdp-heat__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px; }
+  .pdp-heat__tile, .pdp-heat__tile:has(.pdp-heat__sub) {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 10px; row-gap: 2px;
+    align-items: center; align-content: center; justify-content: stretch; text-align: left;
+    padding: 10px; min-height: 58px;
+  }
+  .pdp-heat__icon {
+    grid-row: 1 / span 2; align-self: center; width: 34px; height: 34px; border-radius: 8px;
+    align-items: center; justify-content: center;
+    background: rgba(200, 149, 108, .1); border: 1px solid rgba(200, 149, 108, .28);
+  }
+  .pdp-heat__icon .pdp-icon, .pdp-heat__icon img { width: 18px; height: 18px; }
+  .pdp-heat__label { grid-column: 2; font-size: 13px; font-weight: 700; line-height: 1.2; align-self: end; }
+  .pdp-heat__sub { grid-column: 2; margin-top: 0; font-size: 11px; line-height: 1.25; align-self: start; }
+  .pdp-heat__tile:not(:has(.pdp-heat__sub)) .pdp-heat__label { grid-row: 1 / span 2; align-self: center; }
+}
