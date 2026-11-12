@@ -323,3 +323,4 @@
 .pdp-gifts__price { margin-top: -3px; }
 .pdp-gifts__desc { margin-top: -3px; color: var(--gf-muted); font-size: 11px; line-height: 1.3; }
 .pdp-gifts__desc + .pdp-gifts__price { margin-top: 0; }
+.pdp-gifts__grid:has(.pdp-gifts__desc) .pdp-gifts__price { margin-top: auto; }
