@@ -318,3 +318,6 @@
 @media (max-width: 749px) {
   .shop-product-info > div:has(> .pdp-vc) { width: 100%; align-self: stretch; }
 }
+/* Cadeaux : nom et prix resserrés (plus de hauteur réservée sous le nom) */
+.pdp-gifts__name { min-height: 0; }
+.pdp-gifts__price { margin-top: -3px; }
