@@ -240,7 +240,7 @@
           "settings": {
             "in_stock_text": "In stock",
             "out_of_stock_text": "Out of stock",
-            "shipping_text": "Dispatched within 24 hours",
+            "shipping_text": "Ships out within 24 Hours",
             "pulse": true,
             "font_size": 13,
             "in_stock_color": "#3ecf6e",
