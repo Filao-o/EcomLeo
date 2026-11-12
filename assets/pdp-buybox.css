@@ -314,3 +314,7 @@
   .pdp-heat__sub { grid-column: 2; margin-top: 0; font-size: 11px; line-height: 1.25; align-self: start; }
   .pdp-heat__tile:not(:has(.pdp-heat__sub)) .pdp-heat__label { grid-row: 1 / span 2; align-self: center; }
 }
+/* Cartes de variantes sur mobile : le conteneur prend toute la largeur (il se réduisait à son contenu) */
+@media (max-width: 749px) {
+  .shop-product-info > div:has(> .pdp-vc) { width: 100%; align-self: stretch; }
+}
