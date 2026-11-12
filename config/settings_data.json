@@ -360,6 +360,20 @@
       "cart-drawer": {
         "type": "cart-drawer",
         "blocks": {
+          "cart_timer_bar_eWbHCd": {
+            "type": "cart_timer_bar",
+            "settings": {
+              "timer_minutes": 10,
+              "timer_text": "Your order is reserved for {timer} mins!",
+              "timer_bg_color": "#000000",
+              "timer_text_color": "#ffffff",
+              "timer_padding": 8,
+              "timer_text_size": 15,
+              "timer_border_width": 0,
+              "timer_border_color": "#ffffff",
+              "timer_border_style": "solid"
+            }
+          },
           "ct_gifts_main": {
             "type": "ct_gifts",
             "settings": {
@@ -506,6 +520,7 @@
           }
         },
         "block_order": [
+          "cart_timer_bar_eWbHCd",
           "ct_gifts_main",
           "ct_upsells_main",
           "cart_progress_bar_MdnXLU",
