@@ -49,6 +49,8 @@
           assign nk = 'gift_' | append: i | append: '_name'
           assign ik = 'gift_' | append: i | append: '_image'
           assign pk = 'gift_' | append: i | append: '_product'
+          assign dk = 'gift_' | append: i | append: '_desc'
+          assign vk = 'gift_' | append: i | append: '_value'
           assign img = b[ik]
           if img == blank and b[pk] != blank
             assign img = b[pk].featured_image
@@ -56,9 +58,14 @@
         -%}
         {%- if b[nk] != blank -%}
           <li class="ct-cg__item">
-            <span class="ct-cg__img">{%- if img != blank -%}{{ img | image_url: width: 200 | image_tag: loading: 'lazy', alt: b[nk] }}{%- else -%}{% render 'pdp-icon', icon: 'gift' %}{%- endif -%}</span>
+            {%- if b.show_check -%}<span class="ct-cg__check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>{%- endif -%}
+            <span class="ct-cg__img">{%- if img != blank -%}{{ img | image_url: width: 160 | image_tag: loading: 'lazy', alt: b[nk] }}{%- else -%}{% render 'pdp-icon', icon: 'gift' %}{%- endif -%}</span>
             <span class="ct-cg__name">{{ b[nk] }}</span>
-            <span class="ct-cg__free">{{ b.free_label }}</span>
+            {%- if b[dk] != blank -%}<span class="ct-cg__desc">{{ b[dk] }}</span>{%- endif -%}
+            <span class="ct-cg__price">
+              {%- if b[vk] != blank -%}<s>{{ b[vk] }}</s>{%- endif -%}
+              {%- if b.free_label != blank -%}<span class="ct-cg__free">{{ b.free_label }}</span>{%- endif -%}
+            </span>
           </li>
         {%- endif -%}
       {%- endfor -%}
