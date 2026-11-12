@@ -17,6 +17,9 @@
           "settings": {
             "text": "The Choice of Professional Chefs",
             "link": "",
+            "avatar_1": "shopify://shop_images/okx-chef-3.jxl",
+            "avatar_2": "shopify://shop_images/okx-chef-1.jxl",
+            "avatar_3": "shopify://shop_images/okx-chef-2.jxl",
             "avatar_size": 24,
             "show_verified": true,
             "font_size": 14,
