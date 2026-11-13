@@ -435,7 +435,7 @@
                     {%- endfor -%}
                   </dl>
                   {%- if ct_editable -%}{% render 'ct-cart-edit', item: item %}{%- endif -%}
-                  {%- if item.discount_allocations.size > 0 -%}<div class="ct-disc">{%- for discount in item.discount_allocations -%}<p>{{ discount.discount_application.title }}: -{{ discount.amount | money }}</p>{%- endfor -%}</div>{%- endif -%}
+                  {%- if item.discount_allocations.size > 0 -%}<div class="ct-disc">{%- for discount in item.discount_allocations -%}{%- if discount.amount > 0 -%}<p>{{ discount.discount_application.title }}: -{{ discount.amount | money }}</p>{%- endif -%}{%- endfor -%}</div>{%- endif -%}
 
                   {%- comment -%} Calculate subscription options count for conditional display {%- endcomment -%}
                   {%- if enable_subscribe_cta and item.selling_plan_allocation != blank -%}
